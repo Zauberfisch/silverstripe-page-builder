@@ -1,0 +1,7 @@
+---
+Name: PageBuilder
+After: 'framework/*','cms/*'
+---
+LeftAndMain:
+  extensions:
+    - 'PageBuilder_LeftAndMainExtension'

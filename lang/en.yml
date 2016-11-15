@@ -1,0 +1,21 @@
+en:
+  PageBuilder_ContentElement:
+    __PLURALNAME: 'Page Builder Content Elements'
+    __SINGULARNAME: 'Page Builder Content Element'
+  PageBuilder_Field_Handler_Block:
+    AddFormClassName: Type
+    __AddFormSubmit: add
+  PageBuilder_Field_Handler_ContentElement:
+    __Submit: save
+    __SubmitSuccess: saved
+  PageBuilder_Value_Block:
+    __ConfirmDelete: 'Are you sure you want to delete this block?'
+    __field_WidthDesktop: 'Width Desktop'
+    __field_WidthTablet: 'Width Tablet'
+  PageBuilder_Value_Block_BlockGroup:
+    __AddButton: 'add block'
+    __list_Blocks: Blocks
+  PageBuilder_Value_Block_ContentElement:
+    __Edit: 'edit block content'
+    __NoContentElement: 'Content not found'
+    __field_ContentElementID: 'Content Element ID'

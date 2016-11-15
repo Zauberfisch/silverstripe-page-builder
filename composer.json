@@ -1,0 +1,21 @@
+{
+	"name": "zauberfisch/silverstripe-page-builder",
+	"description": "SilverStripe module to allow for modular, block based, content in SilverStripe",
+	"type": "silverstripe-module",
+	"keywords": ["silverstripe", "content", "elements", "blocks", "contentblock", "pagebuilder"],
+	"license": "BSD-3-Clause",
+	"authors": [{
+		"name": "Zauberfisch",
+		"email": "code@zauberfisch.at"
+	}],
+	"require": {
+		"silverstripe/framework": "~3.5",
+		"zauberfisch/silverstripe-serialized-dataobject": "~1.0"
+	},
+	"suggest": {
+		"zauberfisch/silverstripe-page-builder-basic-blocks": "*"
+	},
+	"extra": {
+        "installer-name": "page-builder"
+    }
+}

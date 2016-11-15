@@ -1,0 +1,21 @@
+de:
+  PageBuilder_ContentElement:
+    __PLURALNAME: 'Page Builder Content Elements'
+    __SINGULARNAME: 'Page Builder Content Element'
+  PageBuilder_Field_Handler_Block:
+    AddFormClassName: Typ
+    AddFormSubmit: hinzufügen
+  PageBuilder_Field_Handler_ContentElement:
+    Submit: speichern
+    SubmitSuccess: 'Eintrag erfolgreich gespeichert'
+  PageBuilder_Value_Block:
+    ConfirmDelete: 'Ausgewählten Block löschen?'
+    field_WidthDesktop: 'Desktop Breite'
+    field_WidthTablet: 'Tablet Breite'
+  PageBuilder_Value_Block_BlockGroup:
+    AddButton: 'Block hinzufügen'
+    list_Blocks: Blöcke
+  PageBuilder_Value_Block_ContentElement:
+    Edit: 'Inhalt bearbeiten'
+    NoContentElement: 'Inhalt nicht gefunden'
+    __field_ContentElementID: 'Content Element ID'
