@@ -114,7 +114,6 @@ class PageBuilder_Field extends FormField {
 		$this->setAttribute('data-config', json_encode([
 			'urls' => [
 				'add' => $this->Link('handleBlock/add'),
-				'edit-content-element' => $this->Link('handleContentElement'),
 				//'group' => [
 				//	'create' => $this->Link('handleGroup/createNew'),
 				//	'createFromTemplate' => $this->Link('handleGroup/createFromTemplate'),
@@ -134,7 +133,7 @@ class PageBuilder_Field extends FormField {
 		if ($val && is_a($val->getValue(), 'PageBuilder_Value_Block_BlockGroup_Base')) {
 			/** @var PageBuilder_Value_Block_BlockGroup_Base $baseBlock */
 			$baseBlock = $val->getValue();
-			return $baseBlock->getPageBuilderFields($this->getName());
+			return $baseBlock->getPageBuilderFields($this->getName(), $this);
 			//foreach ($val->getValue() as $i => $group) {
 			//	/** @var PageBuilder_Value_BlockGroup_Grid $group */
 			//	$groupsFields[] = $group->getPageBuilderGridFields($this->getName(), $i);
@@ -183,5 +182,12 @@ class PageBuilder_Field extends FormField {
 
 	public function handleContentElement(SS_HTTPRequest $r) {
 		return new PageBuilder_Field_Handler_ContentElement($this);
+	}
+	
+	public function getContentElementEditLink($id) {
+		return Controller::join_links($this->Link('handleContentElement'), $id);
+	}
+	public function getContentElementPreviewLink($id) {
+		return Controller::join_links($this->Link('handleContentElement'), $id, 'PageBuilderPreview');
 	}
 }

@@ -10,14 +10,14 @@ class PageBuilder_Value_Block_BlockGroup extends PageBuilder_Value_Block {
 		'Blocks',
 	];
 
-	public function getPageBuilderFields($prefix, $blockPosition = 0, $parent = null) {
-		$fields = parent::getPageBuilderFields($prefix, $blockPosition, $parent);
+	public function getPageBuilderFields($prefix, $pageBuilder,  $blockPosition = 0, $parent = null) {
+		$fields = parent::getPageBuilderFields($prefix, $pageBuilder, $blockPosition, $parent);
 		$name = $this->getName();
 		$i = 0;
 		$fields->push(
 			(new PageBuilder_CompositeField(
-				array_map(function (PageBuilder_Value_Block $block) use ($prefix, &$i, $name) {
-					return $block->getPageBuilderFields($prefix, $i++, $name);
+				array_map(function (PageBuilder_Value_Block $block) use ($prefix, $pageBuilder, &$i, $name) {
+					return $block->getPageBuilderFields($prefix, $pageBuilder, $i++, $name);
 				}, $this->getBlocks()->toArray())
 			))->addExtraClass('PageBuilder_Value_Block_BlockGroup-Blocks')
 		);

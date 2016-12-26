@@ -8,7 +8,7 @@ class PageBuilder_Field_Handler_Block extends PageBuilder_Field_Handler {
 		'EditContentElementForm',
 		'EditorToolbar',
 	];
-
+	
 	/**
 	 * @param string $action
 	 * @return string
@@ -16,7 +16,7 @@ class PageBuilder_Field_Handler_Block extends PageBuilder_Field_Handler {
 	public function Link($action = null) {
 		return Controller::join_links($this->parent->Link(), '/handleBlock/', $action);
 	}
-
+	
 	public function Add(SS_HTTPRequest $r) {
 		return json_encode([
 			'html' => $this->AddForm()->loadDataFrom([
@@ -25,7 +25,7 @@ class PageBuilder_Field_Handler_Block extends PageBuilder_Field_Handler {
 			])->forTemplate()->forTemplate(),
 		]);
 	}
-
+	
 	/**
 	 * @return Form
 	 */
@@ -50,8 +50,9 @@ class PageBuilder_Field_Handler_Block extends PageBuilder_Field_Handler {
 			new RequiredFields(['AddClassName'])
 		))->disableSecurityToken()->addExtraClass('PageBuilderDialog-Form');
 	}
-
+	
 	public function AddFormSubmit($data) {
+		$pageBuilder = $this->getParent();
 		$class = $data['ClassName'];
 		/** @var PageBuilder_Value_Block $obj */
 		$obj = new $class();
@@ -60,7 +61,7 @@ class PageBuilder_Field_Handler_Block extends PageBuilder_Field_Handler {
 		}
 		return json_encode([
 			'DialogEnd' => [
-				'html' => (string)$obj->getPageBuilderFields($this->getParent()->getName(), $data['BlockPosition'], $data['BlockParent'])->FieldHolder(),
+				'html' => (string)$obj->getPageBuilderFields($pageBuilder->getName(), $pageBuilder, $data['BlockPosition'], $data['BlockParent'])->FieldHolder(),
 			],
 		]);
 	}

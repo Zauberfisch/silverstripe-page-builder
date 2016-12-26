@@ -202,22 +202,13 @@
     $('.PageBuilder_Value_Block-Edit').entwine({
         onclick: function () {
             var dialog = $('<div/>'),
-                iframeURL = [
-                    this.getConfig().urls[this.data('edit-type')],
-                    this.data('id')
-                ].join('/'),
-                updatePreviewURL = [
-                    this.getConfig().urls[this.data('edit-type')],
-                    this.data('id'),
-                    'PageBuilderPreview'
-                ].join('/'),
-                previewElement = this.getBlockContainer().find('> .PageBuilder_Value_Block-Preview');
+                _this = this;
             dialog.ssdialog({
-                iframeUrl: iframeURL,
+                iframeUrl: this.data('edit-url'),
                 height: 550,
                 beforeClose: function () {
-                    $.get(updatePreviewURL, function (content) {
-                        previewElement.html(content);
+                    $.get(_this.data('preview-url'), function (content) {
+                        _this.getBlockContainer().find('> .PageBuilder_Value_Block-Preview').html(content);
                     });
                 }
             });

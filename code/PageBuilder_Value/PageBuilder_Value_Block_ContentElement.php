@@ -35,8 +35,8 @@ class PageBuilder_Value_Block_ContentElement extends PageBuilder_Value_Block {
 		return null;
 	}
 	
-	public function getPageBuilderFields($prefix, $blockPosition = 0, $parent = null) {
-		$return = parent::getPageBuilderFields($prefix, $blockPosition, $parent);
+	public function getPageBuilderFields($prefix, $pageBuilder, $blockPosition = 0, $parent = null) {
+		$return = parent::getPageBuilderFields($prefix, $pageBuilder, $blockPosition, $parent);
 		$obj = $this->getContentElement();
 		$return->push(new HiddenField($this->getNameForField($prefix, 'ContentElementID'), '', $this->getContentElementID()));
 		$return->push((new CompositeField([
@@ -54,7 +54,8 @@ class PageBuilder_Value_Block_ContentElement extends PageBuilder_Value_Block {
 				->addExtraClass('PageBuilder_Value_Block-Edit')
 				->addExtraClass('font-icon-edit-write')
 				->setAttribute('data-id', $this->getContentElementID())
-				->setAttribute('data-edit-type', 'edit-content-element')
+				->setAttribute('data-edit-url', $pageBuilder->getContentElementEditLink($this->getContentElementID()))
+				->setAttribute('data-preview-url', $pageBuilder->getContentElementPreviewLink($this->getContentElementID()))
 		);
 		return $return;
 	}

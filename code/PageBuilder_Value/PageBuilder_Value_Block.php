@@ -43,14 +43,15 @@ abstract class PageBuilder_Value_Block extends SerializedDataObject {
 		}
 		return _t("{$this->class}.PLURALNAME", $name . 's');
 	}
-
+	
 	/**
 	 * @param string $prefix
+	 * @param PageBuilder_Field $pageBuilder
 	 * @param int $blockPosition
 	 * @param string $parent
 	 * @return PageBuilder_CompositeField
 	 */
-	public function getPageBuilderFields($prefix, $blockPosition = 0, $parent = null) {
+	public function getPageBuilderFields($prefix, $pageBuilder, $blockPosition = 0, $parent = null) {
 		$classes = [];
 		foreach (array_reverse(ClassInfo::ancestry($this->class)) as $class) {
 			$classes[] = $class;

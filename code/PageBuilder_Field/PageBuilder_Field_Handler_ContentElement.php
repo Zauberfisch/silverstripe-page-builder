@@ -9,6 +9,9 @@ class PageBuilder_Field_Handler_ContentElement extends PageBuilder_Field_Handler
 		'PageBuilderPreview',
 		'EditorToolbar',
 	];
+	/**
+	 * @var PageBuilder_ContentElement
+	 */
 	protected $_contentElement;
 
 	public function getContentElementID() {
@@ -27,7 +30,7 @@ class PageBuilder_Field_Handler_ContentElement extends PageBuilder_Field_Handler
 		}
 		return $this->_contentElement;
 	}
-
+	
 	/**
 	 * @param string $action
 	 * @return string
