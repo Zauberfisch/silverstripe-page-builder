@@ -88,7 +88,7 @@
             var rowDesktop = 0,
                 rowTablet = 0,
                 parentWidthDesktop = parseInt(this.data('width-desktop')),
-                parentWidthTablet = parseInt(this.data('width-desktop'));
+                parentWidthTablet = parseInt(this.data('width-tablet'));
             this.getDirectChildren().each(function (i) {
                 var _this = $(this),
                     desktop = parseInt(_this.data('width-desktop')),
