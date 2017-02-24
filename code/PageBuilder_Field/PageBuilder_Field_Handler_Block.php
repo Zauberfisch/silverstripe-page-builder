@@ -26,15 +26,19 @@ class PageBuilder_Field_Handler_Block extends PageBuilder_Field_Handler {
 		]);
 	}
 	
+	protected function getCreateOptions() {
+		return call_user_func_array('array_merge', array_map(function($class) {
+			return $class::get_create_options();
+		}, ClassInfo::subclassesFor('PageBuilder_Value_Block')));
+	}
+	
 	/**
 	 * @return Form
 	 */
 	public function AddForm() {
-		$classes = [];
-		foreach (ClassInfo::subclassesFor('PageBuilder_Value_Block') as $class) {
-			if (!in_array($class, ['PageBuilder_Value_Block', 'PageBuilder_Value_Block_BlockGroup_Base', 'PageBuilder_Value_Block_ContentElement'])) {
-				$classes[$class] = singleton($class)->i18n_singular_name();
-			}
+		$options = [];
+		foreach($this->getCreateOptions() as $key => $info) {
+			$options[$key] = $info['Title'];
 		}
 		return (new Form(
 			$this,
@@ -42,20 +46,36 @@ class PageBuilder_Field_Handler_Block extends PageBuilder_Field_Handler {
 			new FieldList([
 				new HiddenField('BlockPosition', ''),
 				new HiddenField('BlockParent', ''),
-				new OptionsetField('ClassName', _t('PageBuilder_Field_Handler_Block.AddFormClassName', 'Class name'), $classes),
+				new OptionsetField('BlockType', _t('PageBuilder_Field_Handler_Block.AddFormBlockType', 'Type'), $options),
 			]),
 			new FieldList([
 				new FormAction('AddFormSubmit', _t('PageBuilder_Field_Handler_Block.AddFormSubmit', 'add')),
 			]),
-			new RequiredFields(['AddClassName'])
+			new RequiredFields(['BlockType'])
 		))->disableSecurityToken()->addExtraClass('PageBuilderDialog-Form');
 	}
 	
 	public function AddFormSubmit($data) {
 		$pageBuilder = $this->getParent();
-		$class = $data['ClassName'];
-		/** @var PageBuilder_Value_Block $obj */
-		$obj = new $class();
+		$options = $this->getCreateOptions();
+		$key = $data['BlockType'];
+		if (!isset($options[$key])) {
+			throw new Exception(sprintf('Failed to create block, they key "%s" does not exist', $key));
+		}
+		$info = $options[$key];
+		if (isset($info['Callback'])) {
+			/** @var PageBuilder_Value_Block $obj */
+			$obj = call_user_func($info['Callback']);
+			if ($obj->hasMethod('onAfterCreate')) {
+				$obj->onAfterCreate();
+			}
+		} elseif (isset($info['ClassName'])) {
+			$class = $info['ClassName'];
+			/** @var PageBuilder_Value_Block $obj */
+			$obj = new $class();
+		} else {
+			throw new Exception(sprintf('Failed to create block, "%s" is not a valid class', $key));
+		}
 		if ($obj->hasMethod('onAfterCreate')) {
 			$obj->onAfterCreate();
 		}

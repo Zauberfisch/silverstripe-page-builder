@@ -35,6 +35,34 @@ class PageBuilder_Value_Block_ContentElement extends PageBuilder_Value_Block {
 		return null;
 	}
 	
+	public function getBlockDescription() {
+		$obj = $this->getContentElement();
+		return $obj ? $obj->i18n_singular_name() : parent::getBlockDescription();
+	}
+	
+	public static function get_create_options() {
+		$elementClasses = ClassInfo::subclassesFor('PageBuilder_ContentElement');
+		$options = [];
+		$class = __CLASS__;
+		foreach ($elementClasses as $elementClass) {
+			if ($elementClass != 'PageBuilder_ContentElement') {
+				$options["$class.$elementClass"] = [
+					'Title' => singleton($elementClass)->i18n_singular_name(),
+					'Callback' => function () use ($class, $elementClass) {
+						/** @var PageBuilder_Value_Block_ContentElement $block */
+						$block = new $class();
+						/** @var PageBuilder_ContentElement $elementObj */
+						$elementObj = new $elementClass();
+						$elementObj->write();
+						$block->setContentElementID($elementObj->ID);
+						return $block;
+					},
+				];
+			}
+		}
+		return $options;
+	}
+	
 	public function getPageBuilderFields($prefix, $pageBuilder, $blockPosition = 0, $parent = null) {
 		$return = parent::getPageBuilderFields($prefix, $pageBuilder, $blockPosition, $parent);
 		$obj = $this->getContentElement();
@@ -58,14 +86,5 @@ class PageBuilder_Value_Block_ContentElement extends PageBuilder_Value_Block {
 				->setAttribute('data-preview-url', $pageBuilder->getContentElementPreviewLink($this->getContentElementID()))
 		);
 		return $return;
-	}
-	
-	public function onAfterCreate() {
-		parent::onAfterCreate();
-		$class = "{$this->class}_ContentElement";
-		/** @var PageBuilder_ContentElement $obj */
-		$obj = new $class();
-		$obj->write();
-		$this->setContentElementID($obj->ID);
 	}
 }

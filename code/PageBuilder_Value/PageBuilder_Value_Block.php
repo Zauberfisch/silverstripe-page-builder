@@ -15,26 +15,43 @@ abstract class PageBuilder_Value_Block extends SerializedDataObject {
 	protected $name;
 	protected $prefix;
 	protected $extraClasses = [];
-
+	
 	public function getName() {
 		if (!$this->name) {
 			$this->name = uniqid();
 		}
 		return $this->name;
 	}
-
+	
+	public static function get_create_options() {
+		$class = get_called_class();
+		if ($class != __CLASS__) {
+			return [
+				$class => [
+					'Title' => singleton($class)->i18n_singular_name(),
+					'ClassName' => $class,
+				],
+			];
+		}
+		return [];
+	}
+	
 	public function getNamePrefixed($prefix) {
 		return sprintf('%s[%s]', $prefix, $this->getName());
 	}
-
+	
 	public function getNameForField($prefix, $fieldName) {
 		return sprintf('%s[%s]', $this->getNamePrefixed($prefix), $fieldName);
 	}
-
+	
+	public function getBlockDescription() {
+		return $this->i18n_singular_name();
+	}
+	
 	public function i18n_singular_name() {
 		return _t("{$this->class}.SINGULARNAME", FormField::name_to_label(str_replace('PageBuilder_Value_Block_', '', $this->class)));
 	}
-
+	
 	public function i18n_plural_name() {
 		$name = FormField::name_to_label(str_replace('PageBuilder_Value_Block_', '', $this->class));
 		//if the penultimate character is not a vowel, replace "y" with "ies"
@@ -60,7 +77,7 @@ abstract class PageBuilder_Value_Block extends SerializedDataObject {
 			}
 		}
 		return (new PageBuilder_CompositeField([
-			(new LabelField($this->getNameForField($prefix, 'ClassNameInfo'), $this->i18n_singular_name()))
+			(new LabelField($this->getNameForField($prefix, 'ClassNameInfo'), $this->getBlockDescription()))
 				->addExtraClass('PageBuilder_Value_Block-ClassNameInfo'),
 			(new PageBuilder_CompositeField([
 				(new FormAction($this->getNameForField($prefix, 'EditColumns'), ''))
@@ -104,18 +121,18 @@ abstract class PageBuilder_Value_Block extends SerializedDataObject {
 			//->setAttribute('data-width-tablet-context', $this->getMaxWidthTablet())
 			->setAttribute('data-name', $this->getName());
 	}
-
+	
 	public static function getPageBuilderEditPopupFields() {
 		return new FieldList([]);
 	}
-
+	
 	public function onAfterCreate() {
 		$this->setWidthDesktop(12);
 		$this->setWidthTablet(12);
 		//$this->setField('WidthDesktop', 12);
 		//$this->setField('WidthTablet', 12);
 	}
-
+	
 	public function forTemplate() {
 		$templates = SSViewer::get_templates_by_class($this->class, '', __CLASS__);
 		if (!$templates) {
@@ -123,18 +140,20 @@ abstract class PageBuilder_Value_Block extends SerializedDataObject {
 		}
 		return $this->renderWith($templates);
 	}
-
+	
 	/**
 	 * Compiles all CSS-classes
+	 *
 	 * @return string
 	 */
 	public function extraClass() {
 		return implode(' ', $this->extraClasses);
 	}
-
+	
 	/**
 	 * Add one or more CSS-classes
 	 * Multiple class names should be space delimited
+	 *
 	 * @param string $class
 	 * @return $this
 	 */
@@ -145,9 +164,10 @@ abstract class PageBuilder_Value_Block extends SerializedDataObject {
 		}
 		return $this;
 	}
-
+	
 	/**
 	 * Remove one or more CSS-classes
+	 *
 	 * @param string $class
 	 * @return $this
 	 */

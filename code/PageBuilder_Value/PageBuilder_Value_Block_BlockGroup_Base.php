@@ -4,6 +4,10 @@
  * @author zauberfisch
  */
 class PageBuilder_Value_Block_BlockGroup_Base extends PageBuilder_Value_Block_BlockGroup {
+	public static function get_create_options() {
+		return [];
+	}
+	
 	public function getField($name) {
 		return $name = in_array($name, ['WidthDesktop', 'WidthTablet']) ? 12 : parent::getField($name);
 	}

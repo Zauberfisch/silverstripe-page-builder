@@ -3,7 +3,7 @@ de:
     __PLURALNAME: 'Page Builder Content Elements'
     __SINGULARNAME: 'Page Builder Content Element'
   PageBuilder_Field_Handler_Block:
-    AddFormClassName: Typ
+    AddFormBlockType: Typ
     AddFormSubmit: hinzufügen
   PageBuilder_Field_Handler_ContentElement:
     Submit: speichern

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class PageBuilder_ContentElement
+ * Class PageBuilder_AbstractContentElement
  
  */
 class PageBuilder_ContentElement extends DataObject {
