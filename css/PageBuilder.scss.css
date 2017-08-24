@@ -1,418 +1,433 @@
-.PageBuilder_Field {
+.zauberfisch\\PageBuilder\\Form\\Field {
   min-width: 600px; }
-  .PageBuilder_Field .grid-controls {
+  .zauberfisch\\PageBuilder\\Form\\Field .grid-controls {
     float: right; }
-    .PageBuilder_Field .grid-controls .icon-button {
+    .zauberfisch\\PageBuilder\\Form\\Field .grid-controls .icon-button {
       display: block;
       float: left;
       padding: 6px 8px;
       height: 14px; }
-  .PageBuilder_Field > .middleColumn {
+  .zauberfisch\\PageBuilder\\Form\\Field > .middleColumn {
     margin: 0 auto !important; }
-    .PageBuilder_Field > .middleColumn:after {
+    .zauberfisch\\PageBuilder\\Form\\Field > .middleColumn:after {
       content: " ";
       display: block;
       clear: both; }
-    .PageBuilder_Field > .middleColumn *, .PageBuilder_Field > .middleColumn *:before, .PageBuilder_Field > .middleColumn *:after {
+    .zauberfisch\\PageBuilder\\Form\\Field > .middleColumn *, .zauberfisch\\PageBuilder\\Form\\Field > .middleColumn *:before, .zauberfisch\\PageBuilder\\Form\\Field > .middleColumn *:after {
       margin: 0;
       padding: 0;
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box; }
-  .PageBuilder_Field .clear {
+  .zauberfisch\\PageBuilder\\Form\\Field .clear {
     clear: both; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .grid-desktop-clear {
+  .zauberfisch\\PageBuilder\\Form\\Field .fieldgroup .fieldgroup-field {
+    margin: 0 10px 0 0; }
+    .zauberfisch\\PageBuilder\\Form\\Field .fieldgroup .fieldgroup-field input.checkbox {
+      float: left; }
+    .zauberfisch\\PageBuilder\\Form\\Field .fieldgroup .fieldgroup-field .checkboxfield-small {
+      margin: 0 0 0 16px; }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .grid-desktop-clear {
     clear: both; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="1"][data-width-desktop-context="1"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="1"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="1"][data-width-desktop-context="2"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="2"] {
     width: 48%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="1"][data-width-desktop-context="3"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="3"] {
     width: 31.33333%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="1"][data-width-desktop-context="4"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="4"] {
     width: 23%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="1"][data-width-desktop-context="5"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="5"] {
     width: 18%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="1"][data-width-desktop-context="6"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="6"] {
     width: 14.66667%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="1"][data-width-desktop-context="7"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="7"] {
     width: 12.28571%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="1"][data-width-desktop-context="8"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="8"] {
     width: 10.5%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="1"][data-width-desktop-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="9"] {
     width: 9.11111%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="1"][data-width-desktop-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="10"] {
     width: 8%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="1"][data-width-desktop-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="11"] {
     width: 7.09091%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="1"][data-width-desktop-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="12"] {
     width: 6.33333%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="2"][data-width-desktop-context="2"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="2"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="2"][data-width-desktop-context="3"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="3"] {
     width: 64.66667%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="2"][data-width-desktop-context="4"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="4"] {
     width: 48%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="2"][data-width-desktop-context="5"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="5"] {
     width: 38%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="2"][data-width-desktop-context="6"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="6"] {
     width: 31.33333%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="2"][data-width-desktop-context="7"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="7"] {
     width: 26.57143%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="2"][data-width-desktop-context="8"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="8"] {
     width: 23%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="2"][data-width-desktop-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="9"] {
     width: 20.22222%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="2"][data-width-desktop-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="10"] {
     width: 18%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="2"][data-width-desktop-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="11"] {
     width: 16.18182%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="2"][data-width-desktop-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="12"] {
     width: 14.66667%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="3"][data-width-desktop-context="3"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="3"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="3"][data-width-desktop-context="4"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="4"] {
     width: 73%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="3"][data-width-desktop-context="5"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="5"] {
     width: 58%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="3"][data-width-desktop-context="6"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="6"] {
     width: 48%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="3"][data-width-desktop-context="7"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="7"] {
     width: 40.85714%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="3"][data-width-desktop-context="8"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="8"] {
     width: 35.5%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="3"][data-width-desktop-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="9"] {
     width: 31.33333%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="3"][data-width-desktop-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="10"] {
     width: 28%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="3"][data-width-desktop-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="11"] {
     width: 25.27273%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="3"][data-width-desktop-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="12"] {
     width: 23%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="4"][data-width-desktop-context="4"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="4"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="4"][data-width-desktop-context="5"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="5"] {
     width: 78%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="4"][data-width-desktop-context="6"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="6"] {
     width: 64.66667%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="4"][data-width-desktop-context="7"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="7"] {
     width: 55.14286%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="4"][data-width-desktop-context="8"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="8"] {
     width: 48%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="4"][data-width-desktop-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="9"] {
     width: 42.44444%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="4"][data-width-desktop-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="10"] {
     width: 38%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="4"][data-width-desktop-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="11"] {
     width: 34.36364%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="4"][data-width-desktop-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="12"] {
     width: 31.33333%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="5"][data-width-desktop-context="5"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"][data-width-desktop-context="5"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="5"][data-width-desktop-context="6"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"][data-width-desktop-context="6"] {
     width: 81.33333%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="5"][data-width-desktop-context="7"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"][data-width-desktop-context="7"] {
     width: 69.42857%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="5"][data-width-desktop-context="8"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"][data-width-desktop-context="8"] {
     width: 60.5%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="5"][data-width-desktop-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"][data-width-desktop-context="9"] {
     width: 53.55556%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="5"][data-width-desktop-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"][data-width-desktop-context="10"] {
     width: 48%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="5"][data-width-desktop-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"][data-width-desktop-context="11"] {
     width: 43.45455%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="5"][data-width-desktop-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"][data-width-desktop-context="12"] {
     width: 39.66667%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="6"][data-width-desktop-context="6"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"][data-width-desktop-context="6"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="6"][data-width-desktop-context="7"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"][data-width-desktop-context="7"] {
     width: 83.71429%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="6"][data-width-desktop-context="8"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"][data-width-desktop-context="8"] {
     width: 73%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="6"][data-width-desktop-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"][data-width-desktop-context="9"] {
     width: 64.66667%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="6"][data-width-desktop-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"][data-width-desktop-context="10"] {
     width: 58%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="6"][data-width-desktop-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"][data-width-desktop-context="11"] {
     width: 52.54545%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="6"][data-width-desktop-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"][data-width-desktop-context="12"] {
     width: 48%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="7"][data-width-desktop-context="7"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="7"][data-width-desktop-context="7"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="7"][data-width-desktop-context="8"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="7"][data-width-desktop-context="8"] {
     width: 85.5%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="7"][data-width-desktop-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="7"][data-width-desktop-context="9"] {
     width: 75.77778%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="7"][data-width-desktop-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="7"][data-width-desktop-context="10"] {
     width: 68%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="7"][data-width-desktop-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="7"][data-width-desktop-context="11"] {
     width: 61.63636%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="7"][data-width-desktop-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="7"][data-width-desktop-context="12"] {
     width: 56.33333%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="8"][data-width-desktop-context="8"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="8"][data-width-desktop-context="8"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="8"][data-width-desktop-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="8"][data-width-desktop-context="9"] {
     width: 86.88889%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="8"][data-width-desktop-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="8"][data-width-desktop-context="10"] {
     width: 78%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="8"][data-width-desktop-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="8"][data-width-desktop-context="11"] {
     width: 70.72727%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="8"][data-width-desktop-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="8"][data-width-desktop-context="12"] {
     width: 64.66667%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="9"][data-width-desktop-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="9"][data-width-desktop-context="9"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="9"][data-width-desktop-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="9"][data-width-desktop-context="10"] {
     width: 88%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="9"][data-width-desktop-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="9"][data-width-desktop-context="11"] {
     width: 79.81818%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="9"][data-width-desktop-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="9"][data-width-desktop-context="12"] {
     width: 73%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="10"][data-width-desktop-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="10"][data-width-desktop-context="10"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="10"][data-width-desktop-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="10"][data-width-desktop-context="11"] {
     width: 88.90909%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="10"][data-width-desktop-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="10"][data-width-desktop-context="12"] {
     width: 81.33333%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="11"][data-width-desktop-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="11"][data-width-desktop-context="11"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="11"][data-width-desktop-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="11"][data-width-desktop-context="12"] {
     width: 89.66667%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="12"][data-width-desktop-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="12"][data-width-desktop-context="12"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="1"] .PageBuilder_Value_Block-Widths div.PageBuilder_Value_Block-Width, .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="2"] .PageBuilder_Value_Block-Widths div.PageBuilder_Value_Block-Width, .PageBuilder_Field[data-grid-mode="desktop"] .PageBuilder_Value_Block[data-width-desktop="3"] .PageBuilder_Value_Block-Widths div.PageBuilder_Value_Block-Width {
-    width: auto;
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"] .PageBuilder_Value_Block-Widths, .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"] .PageBuilder_Value_Block-Widths, .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"] .PageBuilder_Value_Block-Widths {
+    clear: left;
     float: none; }
-  .PageBuilder_Field[data-grid-mode="desktop"] input.PageBuilder_Value_Block-WidthDesktop {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] input.PageBuilder_Value_Block-WidthDesktop {
     background: #DBF8FF; }
-  .PageBuilder_Field[data-grid-mode="tablet"] > .middleColumn {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] > .middleColumn {
     width: 600px; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .grid-tablet-clear {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .grid-tablet-clear {
     clear: both; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="1"][data-width-tablet-context="1"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="1"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="1"][data-width-tablet-context="2"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="2"] {
     width: 48%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="1"][data-width-tablet-context="3"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="3"] {
     width: 31.33333%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="1"][data-width-tablet-context="4"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="4"] {
     width: 23%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="1"][data-width-tablet-context="5"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="5"] {
     width: 18%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="1"][data-width-tablet-context="6"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="6"] {
     width: 14.66667%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="1"][data-width-tablet-context="7"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="7"] {
     width: 12.28571%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="1"][data-width-tablet-context="8"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="8"] {
     width: 10.5%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="1"][data-width-tablet-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="9"] {
     width: 9.11111%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="1"][data-width-tablet-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="10"] {
     width: 8%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="1"][data-width-tablet-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="11"] {
     width: 7.09091%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="1"][data-width-tablet-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="12"] {
     width: 6.33333%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="2"][data-width-tablet-context="2"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="2"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="2"][data-width-tablet-context="3"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="3"] {
     width: 64.66667%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="2"][data-width-tablet-context="4"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="4"] {
     width: 48%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="2"][data-width-tablet-context="5"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="5"] {
     width: 38%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="2"][data-width-tablet-context="6"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="6"] {
     width: 31.33333%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="2"][data-width-tablet-context="7"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="7"] {
     width: 26.57143%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="2"][data-width-tablet-context="8"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="8"] {
     width: 23%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="2"][data-width-tablet-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="9"] {
     width: 20.22222%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="2"][data-width-tablet-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="10"] {
     width: 18%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="2"][data-width-tablet-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="11"] {
     width: 16.18182%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="2"][data-width-tablet-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="12"] {
     width: 14.66667%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="3"][data-width-tablet-context="3"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="3"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="3"][data-width-tablet-context="4"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="4"] {
     width: 73%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="3"][data-width-tablet-context="5"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="5"] {
     width: 58%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="3"][data-width-tablet-context="6"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="6"] {
     width: 48%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="3"][data-width-tablet-context="7"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="7"] {
     width: 40.85714%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="3"][data-width-tablet-context="8"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="8"] {
     width: 35.5%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="3"][data-width-tablet-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="9"] {
     width: 31.33333%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="3"][data-width-tablet-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="10"] {
     width: 28%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="3"][data-width-tablet-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="11"] {
     width: 25.27273%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="3"][data-width-tablet-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="12"] {
     width: 23%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="4"][data-width-tablet-context="4"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="4"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="4"][data-width-tablet-context="5"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="5"] {
     width: 78%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="4"][data-width-tablet-context="6"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="6"] {
     width: 64.66667%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="4"][data-width-tablet-context="7"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="7"] {
     width: 55.14286%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="4"][data-width-tablet-context="8"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="8"] {
     width: 48%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="4"][data-width-tablet-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="9"] {
     width: 42.44444%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="4"][data-width-tablet-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="10"] {
     width: 38%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="4"][data-width-tablet-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="11"] {
     width: 34.36364%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="4"][data-width-tablet-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="12"] {
     width: 31.33333%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="5"][data-width-tablet-context="5"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"][data-width-tablet-context="5"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="5"][data-width-tablet-context="6"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"][data-width-tablet-context="6"] {
     width: 81.33333%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="5"][data-width-tablet-context="7"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"][data-width-tablet-context="7"] {
     width: 69.42857%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="5"][data-width-tablet-context="8"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"][data-width-tablet-context="8"] {
     width: 60.5%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="5"][data-width-tablet-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"][data-width-tablet-context="9"] {
     width: 53.55556%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="5"][data-width-tablet-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"][data-width-tablet-context="10"] {
     width: 48%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="5"][data-width-tablet-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"][data-width-tablet-context="11"] {
     width: 43.45455%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="5"][data-width-tablet-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"][data-width-tablet-context="12"] {
     width: 39.66667%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="6"][data-width-tablet-context="6"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"][data-width-tablet-context="6"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="6"][data-width-tablet-context="7"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"][data-width-tablet-context="7"] {
     width: 83.71429%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="6"][data-width-tablet-context="8"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"][data-width-tablet-context="8"] {
     width: 73%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="6"][data-width-tablet-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"][data-width-tablet-context="9"] {
     width: 64.66667%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="6"][data-width-tablet-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"][data-width-tablet-context="10"] {
     width: 58%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="6"][data-width-tablet-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"][data-width-tablet-context="11"] {
     width: 52.54545%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="6"][data-width-tablet-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"][data-width-tablet-context="12"] {
     width: 48%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="7"][data-width-tablet-context="7"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="7"][data-width-tablet-context="7"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="7"][data-width-tablet-context="8"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="7"][data-width-tablet-context="8"] {
     width: 85.5%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="7"][data-width-tablet-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="7"][data-width-tablet-context="9"] {
     width: 75.77778%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="7"][data-width-tablet-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="7"][data-width-tablet-context="10"] {
     width: 68%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="7"][data-width-tablet-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="7"][data-width-tablet-context="11"] {
     width: 61.63636%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="7"][data-width-tablet-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="7"][data-width-tablet-context="12"] {
     width: 56.33333%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="8"][data-width-tablet-context="8"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="8"][data-width-tablet-context="8"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="8"][data-width-tablet-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="8"][data-width-tablet-context="9"] {
     width: 86.88889%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="8"][data-width-tablet-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="8"][data-width-tablet-context="10"] {
     width: 78%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="8"][data-width-tablet-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="8"][data-width-tablet-context="11"] {
     width: 70.72727%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="8"][data-width-tablet-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="8"][data-width-tablet-context="12"] {
     width: 64.66667%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="9"][data-width-tablet-context="9"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="9"][data-width-tablet-context="9"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="9"][data-width-tablet-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="9"][data-width-tablet-context="10"] {
     width: 88%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="9"][data-width-tablet-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="9"][data-width-tablet-context="11"] {
     width: 79.81818%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="9"][data-width-tablet-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="9"][data-width-tablet-context="12"] {
     width: 73%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="10"][data-width-tablet-context="10"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="10"][data-width-tablet-context="10"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="10"][data-width-tablet-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="10"][data-width-tablet-context="11"] {
     width: 88.90909%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="10"][data-width-tablet-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="10"][data-width-tablet-context="12"] {
     width: 81.33333%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="11"][data-width-tablet-context="11"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="11"][data-width-tablet-context="11"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="11"][data-width-tablet-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="11"][data-width-tablet-context="12"] {
     width: 89.66667%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="12"][data-width-tablet-context="12"] {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="12"][data-width-tablet-context="12"] {
     width: 98%; }
-  .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="1"] .PageBuilder_Value_Block-Widths div.PageBuilder_Value_Block-Width, .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="2"] .PageBuilder_Value_Block-Widths div.PageBuilder_Value_Block-Width, .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="3"] .PageBuilder_Value_Block-Widths div.PageBuilder_Value_Block-Width, .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="4"] .PageBuilder_Value_Block-Widths div.PageBuilder_Value_Block-Width, .PageBuilder_Field[data-grid-mode="tablet"] .PageBuilder_Value_Block[data-width-tablet="5"] .PageBuilder_Value_Block-Widths div.PageBuilder_Value_Block-Width {
-    width: auto;
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"] .PageBuilder_Value_Block-Widths, .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"] .PageBuilder_Value_Block-Widths, .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"] .PageBuilder_Value_Block-Widths, .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"] .PageBuilder_Value_Block-Widths, .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"] .PageBuilder_Value_Block-Widths {
+    clear: left;
     float: none; }
-  .PageBuilder_Field[data-grid-mode="tablet"] input.PageBuilder_Value_Block-WidthTablet {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] input.PageBuilder_Value_Block-WidthTablet {
     background: #DBF8FF; }
-  .PageBuilder_Field .PageBuilder_Value_Block {
+  .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock {
     border-radius: 3px;
     background: rgba(0, 0, 0, 0.05);
-    border: 1px solid #CDCCD0;
+    border: 1px solid #CDCCD0 !important;
     padding: 8px 15px 3px !important;
     float: left;
     margin: 10px 1% 0 !important;
     position: relative; }
-    .PageBuilder_Field .PageBuilder_Value_Block.pre-delete {
-      border-color: red; }
-    .PageBuilder_Field .PageBuilder_Value_Block label {
+    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.pre-delete {
+      border: 1px solid red !important; }
+    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock label {
       width: auto;
       padding: 0 0 8px;
       margin: 0; }
-    .PageBuilder_Field .PageBuilder_Value_Block div.field {
+    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock div.field {
       padding: 0 0 8px;
       margin: 0;
       border: 0;
       -webkit-box-shadow: none;
       -moz-box-shadow: none;
       box-shadow: none; }
-    .PageBuilder_Field .PageBuilder_Value_Block .PageBuilder_Value_Block-ClassNameInfo {
+    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .PageBuilder_Value_Block-ClassNameInfo {
       opacity: .5;
       padding: 0;
       font-size: small;
       margin: 0 0 10px; }
-    .PageBuilder_Field .PageBuilder_Value_Block .PageBuilder_Value_Block-Controls {
+    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .PageBuilder_Value_Block-Controls {
       transition: opacity 300ms ease;
       position: absolute;
       right: 5px;
       top: 5px;
       opacity: 0;
       white-space: nowrap; }
-      .PageBuilder_Field .PageBuilder_Value_Block .PageBuilder_Value_Block-Controls > * {
+      .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .PageBuilder_Value_Block-Controls > * {
         display: block;
-        float: left;
+        float: right;
         margin: 0 4px;
         padding: 2px; }
-      .PageBuilder_Field .PageBuilder_Value_Block .PageBuilder_Value_Block-Controls .PageBuilder_Value_Block-Reorder {
+      .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .PageBuilder_Value_Block-Controls .PageBuilder_Value_Block-Reorder {
         height: 22px;
         width: 16px;
         cursor: move;
         background: center center no-repeat url("../images/reorder.png"); }
-      .PageBuilder_Field .PageBuilder_Value_Block .PageBuilder_Value_Block-Controls button:before {
+      .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .PageBuilder_Value_Block-Controls button:before {
         margin: 0; }
-    .PageBuilder_Field .PageBuilder_Value_Block .PageBuilder_Value_Block-Widths {
-      display: none; }
-      .PageBuilder_Field .PageBuilder_Value_Block .PageBuilder_Value_Block-Widths:after {
-        content: " ";
-        display: block;
-        clear: both; }
-      .PageBuilder_Field .PageBuilder_Value_Block .PageBuilder_Value_Block-Widths div.PageBuilder_Value_Block-Width {
-        width: 49%;
+      .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .PageBuilder_Value_Block-Controls .PageBuilder_Value_Block-Widths {
+        display: none;
         float: left;
         margin: 0; }
-        .PageBuilder_Field .PageBuilder_Value_Block .PageBuilder_Value_Block-Widths div.PageBuilder_Value_Block-Width.PageBuilder_Value_Block-WidthDesktop {
-          margin: 0 2% 0 0; }
-    .PageBuilder_Field .PageBuilder_Value_Block.PageBuilder_Value_Block_BlockGroup .PageBuilder_Value_Block_BlockGroup-Blocks {
+        .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .PageBuilder_Value_Block-Controls .PageBuilder_Value_Block-Widths:after {
+          content: " ";
+          display: block;
+          clear: both; }
+        .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .PageBuilder_Value_Block-Controls .PageBuilder_Value_Block-Widths div.PageBuilder_Value_Block-Width {
+          width: 49%;
+          float: left;
+          margin: 0; }
+          .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .PageBuilder_Value_Block-Controls .PageBuilder_Value_Block-Widths div.PageBuilder_Value_Block-Width label.left {
+            display: none; }
+          .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .PageBuilder_Value_Block-Controls .PageBuilder_Value_Block-Widths div.PageBuilder_Value_Block-Width.PageBuilder_Value_Block-WidthDesktop {
+            margin: 0 2% 0 0; }
+          .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .PageBuilder_Value_Block-Controls .PageBuilder_Value_Block-Widths div.PageBuilder_Value_Block-Width input {
+            font-size: 10px;
+            padding: 2px 4px; }
+    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Base .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .PageBuilder_Value_Block-Widths {
+      display: block; }
+    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group .PageBuilder_Value_Block_BlockGroup-Blocks {
       padding: 0 0 30px; }
-      .PageBuilder_Field .PageBuilder_Value_Block.PageBuilder_Value_Block_BlockGroup .PageBuilder_Value_Block_BlockGroup-Blocks:after {
+      .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group .PageBuilder_Value_Block_BlockGroup-Blocks:after {
         content: " ";
         display: block;
         clear: both; }
-    .PageBuilder_Field .PageBuilder_Value_Block.PageBuilder_Value_Block_BlockGroup .PageBuilder_Value_Block_BlockGroup-AddButton {
+    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group .PageBuilder_Value_Block_BlockGroup-AddButton {
       clear: both; }
-    .PageBuilder_Field .PageBuilder_Value_Block:hover > .PageBuilder_Value_Block-Controls {
+    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock:hover > .PageBuilder_Value_Block-Controls {
       opacity: 1; }

@@ -1,15 +1,17 @@
 <?php
 
+namespace zauberfisch\PageBuilder\Form;
+
 /**
- * no underscore because it would break routing
+ * @author zauberfisch
  */
-class PageBuilderHtmlEditorField_Toolbar extends HtmlEditorField_Toolbar {
+class HtmlEditorField_Toolbar extends \HtmlEditorField_Toolbar {
 	private static $allowed_actions = ['viewfile'];
 
 	/**
-	 * @param SS_HTTPRequest $request
-	 * @return HTMLText
-	 * @throws SS_HTTPResponse_Exception
+	 * @param \SS_HTTPRequest $request
+	 * @return \HTMLText
+	 * @throws \SS_HTTPResponse_Exception
 	 */
 	public function viewfile($request) {
 		$data = [
@@ -22,7 +24,7 @@ class PageBuilderHtmlEditorField_Toolbar extends HtmlEditorField_Toolbar {
 				unset($arr['FileID']);
 			}
 		}
-		$request = new SS_HTTPRequest($request->httpMethod(), $request->getURL(), $data[0], $data[1], $request->getBody());
+		$request = new \SS_HTTPRequest($request->httpMethod(), $request->getURL(), $data[0], $data[1], $request->getBody());
 		return parent::viewfile($request);
 	}
 

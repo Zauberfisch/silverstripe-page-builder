@@ -1,11 +1,11 @@
 en:
-  PageBuilder_ContentElement:
+  PageBuilder_Model_ContentElement_AbstractContentElement:
     __PLURALNAME: 'Page Builder Content Elements'
     __SINGULARNAME: 'Page Builder Content Element'
-  PageBuilder_Field_Handler_Block:
+  PageBuilder_Form_RequestHandler_Block:
     __AddFormBlockType: Type
     __AddFormSubmit: add
-  PageBuilder_Field_Handler_ContentElement:
+  PageBuilder_Form_RequestHandler_ContentElement:
     __Submit: save
     __SubmitSuccess: saved
   PageBuilder_Value_Block:

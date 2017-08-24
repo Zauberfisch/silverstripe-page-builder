@@ -5,8 +5,8 @@ composer.json
     {
         "require": {
             "php": ">=5.4",
-            "silverstripe/cms": "^3.5",
-            "silverstripe/framework": "^3.5",
+            "silverstripe/cms": "^3.6",
+            "silverstripe/framework": "^3.6",
             "zauberfisch/silverstripe-page-builder": "^1.0",
             "zauberfisch/silverstripe-page-builder-basic-blocks": "^1.0"
         },
@@ -20,13 +20,13 @@ mysite/code/Page.php
     
     class Page extends SiteTree {
         private static $db = [
-            'PageBuilder' => 'PageBuilder_DBField',
+            'PageBuilder' => \zauberfisch\PageBuilder\Model\DBField::class,
         ];
         
         public function getCMSFields() {
             $fields = parent::getCMSFields();
             $fields->addFieldsToTab('Root.Main', [
-                new PageBuilder_Field('PageBuilder', $this->fieldLabel('PageBuilder')),
+                new \zauberfisch\PageBuilder\Form\Field('PageBuilder', $this->fieldLabel('PageBuilder')),
             ]);
             return $fields;
         }

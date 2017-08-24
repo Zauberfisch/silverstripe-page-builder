@@ -4,4 +4,4 @@ After: 'framework/*','cms/*'
 ---
 LeftAndMain:
   extensions:
-    - 'PageBuilder_LeftAndMainExtension'
+    - 'zauberfisch\PageBuilder\LeftAndMainExtension'

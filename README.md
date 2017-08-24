@@ -12,16 +12,15 @@ SilverStripe module to allow for modular, block based, content in SilverStripe
 
 ## Requirements
 
-* silverstripe/framework >=3.5
-* zauberfisch/silverstripe-serialized-dataobject >=1.0
+* silverstripe/framework >=3.6
+* zauberfisch/silverstripe-serialized-dataobject >=2.0
+* zauberfisch/silverstripe-namespace-templates >=1.0
 
 ## Installation
 
 * `composer require "zauberfisch/silverstripe-page-builder"`
 * Optional: install suggested packages
-
-      composer require "zauberfisch/silverstripe-page-builder-basic-blocks"
-      
+  * composer require `"zauberfisch/silverstripe-page-builder-basic-blocks"`
 * rebuild manifest (flush)
 * Unfortunately a bug in SilverStripe current breaks the HTMLEditorField file management 
   inside a sub controller within the CMS, to work around this bug the following work around is required: 
@@ -63,13 +62,13 @@ Add the PageBuilder DB Field and FormField to any DataObject, for example Page:
 
     class Page extends SiteTree {
         private static $db = [
-            'PageBuilder' => 'PageBuilder_DBField',
+            'PageBuilder' => \zauberfisch\PageBuilder\Model\DBField::class,
         ];
         
         public function getCMSFields() {
             $fields = parent::getCMSFields();
             $fields->addFieldsToTab('Root.Main', [
-                new PageBuilder_Field('PageBuilder', $this->fieldLabel('PageBuilder')),
+                new \zauberfisch\PageBuilder\Form\Field('PageBuilder', $this->fieldLabel('PageBuilder')),
             ]);
             return $fields;
         }
@@ -95,3 +94,13 @@ A good starting point with some basic block types can be found in the
 Documentation for creating custom blocks has not been written yet, please refer
 to the [basic blocks module](https://packagist.org/packages/zauberfisch/silverstripe-page-builder-basic-blocks), 
 they should serve as good examples.
+
+## Known Issues
+
+- [ ] When using this module with Translatable, the language selection for the TreeDropdownField in the 
+     HTMLEditorField insert link dialog does not work
+- [ ] GridFields within the dialog might not work
+- [ ] Duplicating a Record will duplicate blocks, but ContentBlocks are still linked by their ID, 
+   therefore two objects now share the same ContentElement
+- [ ] Obsolete ContentElement DataObjects are not deleted (eg if a Text Block is created, but the page is never saved)
+- [ ] The Edit Dialog is not ideal for nested content that also requires a dialog (HTMLEditor, GridField, ...)

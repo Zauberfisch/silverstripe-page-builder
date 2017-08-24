@@ -1,5 +1,12 @@
 <?php
 
+namespace zauberfisch\PageBuilder\Model\Block;
+
+use zauberfisch\NamespaceTemplates\View\SSViewer;
+use zauberfisch\NamespaceTemplates\Form\CompositeField;
+use zauberfisch\PageBuilder\Form\Field;
+use zauberfisch\SerializedDataObject\AbstractDataObject;
+
 /**
  * @author zauberfisch
  * @method string getWidthDesktop
@@ -7,7 +14,7 @@
  * @method $this setWidthDesktop(string $width)
  * @method $this setWidthTablet(string $width)
  */
-abstract class PageBuilder_Value_Block extends SerializedDataObject {
+abstract class AbstractBlock extends AbstractDataObject {
 	private static $fields = [
 		'WidthDesktop',
 		'WidthTablet',
@@ -48,43 +55,37 @@ abstract class PageBuilder_Value_Block extends SerializedDataObject {
 		return $this->i18n_singular_name();
 	}
 	
-	public function i18n_singular_name() {
-		return _t("{$this->class}.SINGULARNAME", FormField::name_to_label(str_replace('PageBuilder_Value_Block_', '', $this->class)));
-	}
-	
-	public function i18n_plural_name() {
-		$name = FormField::name_to_label(str_replace('PageBuilder_Value_Block_', '', $this->class));
-		//if the penultimate character is not a vowel, replace "y" with "ies"
-		if (preg_match('/[^aeiou]y$/i', $name)) {
-			$name = substr($name, 0, -1) . 'ie';
-		}
-		return _t("{$this->class}.PLURALNAME", $name . 's');
+	public function _getPageBuilderFields($prefix, $pageBuilder, $blockPosition = 0, $parent = null) {
+		$return = $this->getPageBuilderFields($prefix, $pageBuilder, $blockPosition, $parent);
+		$this->extend('updatePageBuilderFields', $return, $prefix, $pageBuilder, $blockPosition, $parent);
+		return $return;
 	}
 	
 	/**
 	 * @param string $prefix
-	 * @param PageBuilder_Field $pageBuilder
+	 * @param Field $pageBuilder
 	 * @param int $blockPosition
 	 * @param string $parent
-	 * @return PageBuilder_CompositeField
+	 * @return CompositeField
 	 */
 	public function getPageBuilderFields($prefix, $pageBuilder, $blockPosition = 0, $parent = null) {
 		$classes = [];
-		foreach (array_reverse(ClassInfo::ancestry($this->class)) as $class) {
+		foreach (array_reverse(\ClassInfo::ancestry($this->class)) as $class) {
 			$classes[] = $class;
 			if ($class == __CLASS__) {
 				break;
 			}
 		}
-		return (new PageBuilder_CompositeField([
-			(new LabelField($this->getNameForField($prefix, 'ClassNameInfo'), $this->getBlockDescription()))
+		return (new CompositeField([
+			(new \LabelField($this->getNameForField($prefix, 'ClassNameInfo'), $this->getBlockDescription()))
 				->addExtraClass('PageBuilder_Value_Block-ClassNameInfo'),
-			(new PageBuilder_CompositeField([
-				(new FormAction($this->getNameForField($prefix, 'EditColumns'), ''))
-					->setUseButtonTag(true)
-					->addExtraClass('PageBuilder_Value_Block-EditColumns')
-					->addExtraClass('font-icon-columns'),
-				(new FormAction($this->getNameForField($prefix, 'Delete'), ''))
+			(new CompositeField([
+				//(new \FormAction($this->getNameForField($prefix, 'EditColumns'), ''))
+				//	->setUseButtonTag(true)
+				//	->addExtraClass('PageBuilder_Value_Block-EditColumns')
+				//	->addExtraClass('font-icon-columns'),
+				new \LiteralField($this->getNameForField($prefix, 'Reorder'), '<div class="PageBuilder_Value_Block-Reorder"></div>'),
+				(new \FormAction($this->getNameForField($prefix, 'Delete'), ''))
 					->setUseButtonTag(true)
 					->addExtraClass('PageBuilder_Value_Block-Delete')
 					->addExtraClass('font-icon-cancel-circled')
@@ -93,24 +94,23 @@ abstract class PageBuilder_Value_Block extends SerializedDataObject {
 				//	->setUseButtonTag(true)
 				//	->addExtraClass('PageBuilder_Value_Block-Edit')
 				//	->addExtraClass('font-icon-edit-write'),
-				new LiteralField($this->getNameForField($prefix, 'Reorder'), '<div class="PageBuilder_Value_Block-Reorder"></div>'),
+				(new CompositeField([
+					(new \TextField($this->getNameForField($prefix, 'WidthDesktop'), $this->fieldLabel('WidthDesktop'), $this->getWidthDesktop()))
+						->setAttribute('type', 'number')
+						->setAttribute('min', '1')
+						->setAttribute('max', '12')
+						->addExtraClass('PageBuilder_Value_Block-Width PageBuilder_Value_Block-WidthDesktop'),
+					(new \TextField($this->getNameForField($prefix, 'WidthTablet'), $this->fieldLabel('WidthTablet'), $this->getWidthTablet()))
+						->setAttribute('type', 'number')
+						->setAttribute('min', '1')
+						->setAttribute('max', '12')
+						->addExtraClass('PageBuilder_Value_Block-Width PageBuilder_Value_Block-WidthTablet'),
+				]))->addExtraClass('PageBuilder_Value_Block-Widths')->setName($this->getNameForField($prefix, 'Widths')),
 				//new InlineFormAction($this->getNameForField($prefix, 'Edit')),
 			]))->addExtraClass('PageBuilder_Value_Block-Controls')->setName($this->getNameForField($prefix, 'Controls')),
-			new HiddenField($this->getNameForField($prefix, 'ClassName'), '', $this->class),
-			new HiddenField($this->getNameForField($prefix, 'BlockPosition'), '', $blockPosition),
-			new HiddenField($this->getNameForField($prefix, 'BlockParent'), '', $parent),
-			(new PageBuilder_CompositeField([
-				(new TextField($this->getNameForField($prefix, 'WidthDesktop'), $this->fieldLabel('WidthDesktop'), $this->getWidthDesktop()))
-					->setAttribute('type', 'number')
-					->setAttribute('min', '1')
-					->setAttribute('max', '12')
-					->addExtraClass('PageBuilder_Value_Block-Width PageBuilder_Value_Block-WidthDesktop'),
-				(new TextField($this->getNameForField($prefix, 'WidthTablet'), $this->fieldLabel('WidthTablet'), $this->getWidthTablet()))
-					->setAttribute('type', 'number')
-					->setAttribute('min', '1')
-					->setAttribute('max', '12')
-					->addExtraClass('PageBuilder_Value_Block-Width PageBuilder_Value_Block-WidthTablet'),
-			]))->addExtraClass('PageBuilder_Value_Block-Widths')->setName($this->getNameForField($prefix, 'Widths')),
+			new \HiddenField($this->getNameForField($prefix, 'ClassName'), '', $this->class),
+			new \HiddenField($this->getNameForField($prefix, 'BlockPosition'), '', $blockPosition),
+			new \HiddenField($this->getNameForField($prefix, 'BlockParent'), '', $parent),
 		]))
 			->addExtraClass(implode(' ', $classes))
 			->setAttribute('data-width-desktop', $this->getWidthDesktop())
@@ -123,7 +123,7 @@ abstract class PageBuilder_Value_Block extends SerializedDataObject {
 	}
 	
 	public static function getPageBuilderEditPopupFields() {
-		return new FieldList([]);
+		return new \FieldList([]);
 	}
 	
 	public function onAfterCreate() {
@@ -135,8 +135,9 @@ abstract class PageBuilder_Value_Block extends SerializedDataObject {
 	
 	public function forTemplate() {
 		$templates = SSViewer::get_templates_by_class($this->class, '', __CLASS__);
+		//$templates = \SSViewer::get_templates_by_class($this->class, '', __CLASS__);
 		if (!$templates) {
-			throw new Exception("No template found for {$this->class}");
+			throw new \Exception("No template found for {$this->class}");
 		}
 		return $this->renderWith($templates);
 	}
@@ -147,7 +148,22 @@ abstract class PageBuilder_Value_Block extends SerializedDataObject {
 	 * @return string
 	 */
 	public function extraClass() {
-		return implode(' ', $this->extraClasses);
+		$array = array_merge($this->extraClasses, $this->getClassNameForExtraClass());
+		$this->extend('updateExtraClass', $array);
+		return implode(' ', $array);
+	}
+	
+	protected function getClassNameForExtraClass() {
+		$classes = [];
+		foreach (array_reverse(\ClassInfo::ancestry($this->class)) as $class) {
+			if ($class == self::class) {
+				break;
+			}
+			$class = str_replace('zauberfisch\\PageBuilder\\Model\\', '', $class);
+			$class = str_replace('\\', '-', $class);
+			$classes[] = $class;
+		}
+		return $classes;
 	}
 	
 	/**
