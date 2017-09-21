@@ -126,6 +126,10 @@ abstract class AbstractBlock extends AbstractDataObject {
 		return new \FieldList([]);
 	}
 	
+	public function duplicate() {
+		return clone $this;
+	}
+	
 	public function onAfterCreate() {
 		$this->setWidthDesktop(12);
 		$this->setWidthTablet(12);

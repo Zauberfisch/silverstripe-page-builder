@@ -24,6 +24,7 @@ class ContentElement extends AbstractBlock {
 		$this->_contentElement = $contentElement;
 		if ($contentElement->hasField('ID') && $contentElement->ID) {
 			$this->setContentElementID($contentElement->ID);
+			$contentElement->setBlock($this);
 		}
 		return $this;
 	}
@@ -37,6 +38,7 @@ class ContentElement extends AbstractBlock {
 			$obj = \PageBuilder_Model_ContentElement_AbstractContentElement::get()->byID($this->getContentElementID());
 			if ($obj && $obj->exists()) {
 				$this->_contentElement = $obj;
+				$obj->setBlock($this);
 			}
 		}
 		return $this->_contentElement;
@@ -82,6 +84,18 @@ class ContentElement extends AbstractBlock {
 			}
 		}
 		return $options;
+	}
+	
+	public function duplicate() {
+		/** @var ContentElement $new */
+		$new = parent::duplicate();
+		$element = $this->getContentElement();
+		if ($element) {
+			$new->setContentElement($element->duplicate());
+		} else {
+			$new->setContentElementID(0);
+		}
+		return $new;
 	}
 	
 	public function getPageBuilderFields($prefix, $pageBuilder, $blockPosition = 0, $parent = null) {

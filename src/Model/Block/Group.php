@@ -102,4 +102,14 @@ class Group extends AbstractBlock {
 		$this->extend('updateBlocksForTemplate', $blocks);
 		return new \ArrayList($blocks);
 	}
+	
+	public function duplicate() {
+		$new = parent::duplicate();
+		$blocks = [];
+		foreach ($this->getBlocks() as $block) {
+			$blocks[] = $block->duplicate();
+		}
+		$this->setBlocks(new ArrayList($blocks));
+		return $new;
+	}
 }

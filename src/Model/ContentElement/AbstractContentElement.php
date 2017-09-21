@@ -9,6 +9,8 @@
  */
 class PageBuilder_Model_ContentElement_AbstractContentElement extends \PersistentDataObject_Model_DataObject {
 //class AbstractContentElement extends \DataObject {
+	protected $block;
+
 	public function getPageBuilderPopupFields() {
 		$fields = new \FieldList();
 		$this->extend('updatePageBuilderPopupFields', $fields);
@@ -48,5 +50,21 @@ class PageBuilder_Model_ContentElement_AbstractContentElement extends \Persisten
 		$class = explode('ContentElement_', $this->class);
 		$class = $class[count($class) - 1];
 		return _t("{$this->class}.SINGULARNAME", FormField::name_to_label($class));
+	}
+	
+	/**
+	 * @param \zauberfisch\PageBuilder\Model\Block\ContentElement $block
+	 * @return PageBuilder_Model_ContentElement_AbstractContentElement
+	 */
+	public function setBlock($block) {
+		$this->block = $block;
+		return $this;
+	}
+	
+	/**
+	 * @return \zauberfisch\PageBuilder\Model\Block\ContentElement
+	 */
+	public function getBlock() {
+		return $this->block;
 	}
 }
