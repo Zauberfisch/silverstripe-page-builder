@@ -59,7 +59,7 @@ class ContentElement extends AbstractBlock {
 		if ($obj) {
 			return $obj->i18n_singular_name();
 		}
-		return _t(static::class . '.NoContentElement', 'ERROR');
+		return _t('ContentElement.NoContentElement', 'ERROR');
 	}
 	
 	public static function get_create_options() {
