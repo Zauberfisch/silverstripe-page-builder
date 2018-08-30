@@ -295,12 +295,12 @@
 						var clone = $('<div></div>');
 						clone.addClass(orig.get(0).className);
 						clone.addClass('sort-placeholder');
-						clone.css('height', orig.css('height'));
-						clone.css('border', '1px solid red');
-						clone.css('float', 'left');
-						clone.css('margin-right', '0');
-						clone.css('min-width', '10%');
-						clone.css('max-width', '100%');
+						// clone.css('height', orig.css('height'));
+						// clone.css('border', '1px solid red');
+						// clone.css('float', 'left');
+						// clone.css('margin-right', '0');
+						// clone.css('min-width', '10%');
+						// clone.css('max-width', '100%');
 						return clone;
 					},
 					update: function () {
