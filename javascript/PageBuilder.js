@@ -36,7 +36,7 @@
 		}
 	});
 	$('.zauberfisch\\\\PageBuilder\\\\Form\\\\Field .zauberfisch\\\\PageBuilder\\\\Model\\\\Block\\\\AbstractBlock').entwine({
-		getWidthsControls: function() {
+		getWidthsControls: function () {
 			return this.find('> .PageBuilder_Value_Block-Controls > .PageBuilder_Value_Block-Widths');
 		},
 		updateWidthDesktop: function (width) {
@@ -83,11 +83,11 @@
 				parentWidthTablet = parseInt(this.data('width-tablet'));
 			this.getDirectChildren().each(function () {
 				var _this = $(this);
-				_this.data('width-desktop-context', parentWidthDesktop);
-				_this.attr('data-width-desktop-context', parentWidthDesktop);
-				_this.data('width-tablet-context', parentWidthTablet);
-				_this.attr('data-width-tablet-context', parentWidthTablet);
-				// set max values
+				// _this.data('width-desktop-context', parentWidthDesktop);
+				// _this.attr('data-width-desktop-context', parentWidthDesktop);
+				// _this.data('width-tablet-context', parentWidthTablet);
+				// _this.attr('data-width-tablet-context', parentWidthTablet);
+				//// set max values
 				var inputDesktop = _this.getWidthsControls().find('input.PageBuilder_Value_Block-WidthDesktop');
 				var inputTablet = _this.find('input.PageBuilder_Value_Block-WidthTablet');
 				inputDesktop.attr('max', parentWidthDesktop);
@@ -106,33 +106,33 @@
 			});
 		},
 		updateGrid: function () {
-			var rowDesktop = 0,
-				rowTablet = 0,
-				parentWidthDesktop = parseInt(this.data('width-desktop')),
-				parentWidthTablet = parseInt(this.data('width-tablet'));
-			this.getDirectChildren().each(function (i) {
-				var _this = $(this),
-					desktop = parseInt(_this.data('width-desktop')),
-					tablet = parseInt(_this.data('width-tablet'));
-				rowDesktop += desktop;
-				if (i == 0 || rowDesktop > parentWidthDesktop) {
-					// item can't fit into current row, place it on next row
-					_this.addClass('grid-desktop-clear');
-					rowDesktop = desktop;
-				} else {
-					// item fits
-					_this.removeClass('grid-desktop-clear');
-				}
-				rowTablet += tablet;
-				if (i == 0 || rowTablet > parentWidthTablet) {
-					// item can't fit into current row, place it on next row
-					_this.addClass('grid-tablet-clear');
-					rowTablet = tablet;
-				} else {
-					// item fits
-					_this.removeClass('grid-tablet-clear');
-				}
-			});
+			// var rowDesktop = 0,
+			// 	rowTablet = 0,
+			// 	parentWidthDesktop = parseInt(this.data('width-desktop')),
+			// 	parentWidthTablet = parseInt(this.data('width-tablet'));
+			// this.getDirectChildren().each(function (i) {
+			// 	var _this = $(this),
+			// 		desktop = parseInt(_this.data('width-desktop')),
+			// 		tablet = parseInt(_this.data('width-tablet'));
+			// 	rowDesktop += desktop;
+			// 	if (i == 0 || rowDesktop > parentWidthDesktop) {
+			// 		// item can't fit into current row, place it on next row
+			// 		_this.addClass('grid-desktop-clear');
+			// 		rowDesktop = desktop;
+			// 	} else {
+			// 		// item fits
+			// 		_this.removeClass('grid-desktop-clear');
+			// 	}
+			// 	rowTablet += tablet;
+			// 	if (i == 0 || rowTablet > parentWidthTablet) {
+			// 		// item can't fit into current row, place it on next row
+			// 		_this.addClass('grid-tablet-clear');
+			// 		rowTablet = tablet;
+			// 	} else {
+			// 		// item fits
+			// 		_this.removeClass('grid-tablet-clear');
+			// 	}
+			// });
 		},
 		updateBlocksMetadata: function () {
 			var groupName = this.data('name');
@@ -150,10 +150,10 @@
 	});
 	$('.zauberfisch\\\\PageBuilder\\\\Form\\\\Field .zauberfisch\\\\PageBuilder\\\\Model\\\\Block\\\\Group.zauberfisch\\\\PageBuilder\\\\Model\\\\Block\\\\Base').entwine({
 		onmatch: function () {
-			this.data('width-desktop-context', 12);
-			this.attr('data-width-desktop-context', 12);
-			this.data('width-tablet-context', 12);
-			this.attr('data-width-tablet-context', 12);
+			// this.data('width-desktop-context', 12);
+			// this.attr('data-width-desktop-context', 12);
+			// this.data('width-tablet-context', 12);
+			// this.attr('data-width-tablet-context', 12);
 			this.updateWidthContext();
 			this._super();
 		},
@@ -164,10 +164,10 @@
 				_this.attr('data-width-desktop', 12);
 				_this.data('width-tablet', 12);
 				_this.attr('data-width-tablet', 12);
-				_this.data('width-desktop-context', 12);
-				_this.attr('data-width-desktop-context', 12);
-				_this.data('width-tablet-context', 12);
-				_this.attr('data-width-tablet-context', 12);
+				// _this.data('width-desktop-context', 12);
+				// _this.attr('data-width-desktop-context', 12);
+				// _this.data('width-tablet-context', 12);
+				// _this.attr('data-width-tablet-context', 12);
 				// set max values
 				var inputDesktop = _this.find('> .PageBuilder_Value_Block-Widths input.PageBuilder_Value_Block-WidthDesktop');
 				var inputTablet = _this.find('> .PageBuilder_Value_Block-Widths input.PageBuilder_Value_Block-WidthTablet');
@@ -216,16 +216,19 @@
 	});
 	$('.PageBuilder_Value_Block-Delete').entwine({
 		onclick: function () {
-			var container = this.getBlockContainer();
+			var container = this.getBlockContainer(),
+				_this = this;
 			container.addClass('pre-delete');
-			if (confirm(this.data('confirm'))) {
-				var parent = this.getParentBlockContainer();
-				container.remove();
-				parent.updateBlocksMetadata();
-				//var index = this.closest('.PageBuilder_Field-BlockGroup').index();
-				//this.closest('.PageBuilder_Field-BlockGroups').removeGroup(index);
-			}
-			container.removeClass('pre-delete');
+			setTimeout(function () {
+				if (confirm(_this.data('confirm'))) {
+					var parent = _this.getParentBlockContainer();
+					container.remove();
+					parent.updateBlocksMetadata();
+					//var index = this.closest('.PageBuilder_Field-BlockGroup').index();
+					//this.closest('.PageBuilder_Field-BlockGroups').removeGroup(index);
+				}
+				container.removeClass('pre-delete');
+			}, 100);
 			this.blur();
 			return false;
 		}
@@ -291,23 +294,26 @@
 				//placeholder: 'zauberfisch\\\\PageBuilder\\\\Model\\\\Block\\\\AbstractBlock',
 				placeholder: {
 					element: function (orig, ui) {
-						rootForm.addClass('changed');
+						// rootForm.addClass('changed');
 						var clone = $('<div></div>');
-						clone.addClass(orig.get(0).className);
+						// clone.addClass(orig.get(0).className);
 						clone.addClass('sort-placeholder');
+						clone.css('grid-column', 'span 1');
+						$('.zauberfisch\\\\PageBuilder\\\\Model\\\\Block\\\\Base .PageBuilder_Value_Block_BlockGroup-Blocks').prepend(clone);
 						// clone.css('height', orig.css('height'));
 						// clone.css('border', '1px solid red');
 						// clone.css('float', 'left');
 						// clone.css('margin-right', '0');
 						// clone.css('min-width', '10%');
 						// clone.css('max-width', '100%');
+
 						return clone;
 					},
 					update: function () {
 						return;
 					}
 				},
-				//helper: 'clone',
+				helper: 'clone',
 				//forceHelperSize: true,
 				//forcePlaceholderSize: true,
 				update: function () {

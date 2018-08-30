@@ -27,40 +27,6 @@
       float: left; }
     .zauberfisch\\PageBuilder\\Form\\Field .fieldgroup .fieldgroup-field .checkboxfield-small {
       margin: 0 0 0 16px; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .grid-desktop-clear {
-    clear: both; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"] {
-    grid-column: span 1; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"] {
-    grid-column: span 2; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"] {
-    grid-column: span 3; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"] {
-    grid-column: span 4; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"] {
-    grid-column: span 5; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"] {
-    grid-column: span 6; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="7"] {
-    grid-column: span 7; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="8"] {
-    grid-column: span 8; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="9"] {
-    grid-column: span 9; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="10"] {
-    grid-column: span 10; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="11"] {
-    grid-column: span 11; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="12"] {
-    grid-column: span 12; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] input.PageBuilder_Value_Block-WidthDesktop {
-    background: #DBF8FF; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] > .middleColumn {
-    width: 600px; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .grid-tablet-clear {
-    clear: both; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] input.PageBuilder_Value_Block-WidthTablet {
-    background: #DBF8FF; }
   .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock {
     border-radius: 3px;
     background: rgba(0, 0, 0, 0.05);
@@ -69,7 +35,8 @@
     float: left;
     position: relative; }
     .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.pre-delete {
-      border: 1px solid red !important; }
+      border: 1px solid rgba(255, 0, 0, 0.8) !important;
+      background: rgba(255, 0, 0, 0.05) !important; }
     .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock label {
       width: auto;
       padding: 0 0 8px;
@@ -126,39 +93,107 @@
             padding: 2px 4px; }
     .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Base .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .PageBuilder_Value_Block-Widths {
       display: block; }
-    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group .PageBuilder_Value_Block_BlockGroup-Blocks {
-      padding: 0 0 30px;
+    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock:hover > .PageBuilder_Value_Block-Controls {
+      opacity: 1; }
+  .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock {
+    grid-column: span 1; }
+    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock > .PageBuilder_Value_Block_BlockGroup-Blocks {
       display: grid;
       grid-gap: 10px;
       grid-template-rows: auto;
-      grid-template-columns: 100%; }
-      .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group .PageBuilder_Value_Block_BlockGroup-Blocks:after {
-        content: " ";
-        display: block;
-        clear: both; }
-    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group[data-width-desktop="2"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: 100%;
+      width: 100%; }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"] {
+    grid-column: span 2; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
       grid-template-columns: repeat(2, 1fr); }
-    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group[data-width-desktop="3"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"] {
+    grid-column: span 3; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
       grid-template-columns: repeat(3, 1fr); }
-    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group[data-width-desktop="4"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"] {
+    grid-column: span 4; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
       grid-template-columns: repeat(4, 1fr); }
-    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group[data-width-desktop="5"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"] {
+    grid-column: span 5; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
       grid-template-columns: repeat(5, 1fr); }
-    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group[data-width-desktop="6"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"] {
+    grid-column: span 6; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
       grid-template-columns: repeat(6, 1fr); }
-    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group[data-width-desktop="7"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="7"] {
+    grid-column: span 7; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="7"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
       grid-template-columns: repeat(7, 1fr); }
-    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group[data-width-desktop="8"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="8"] {
+    grid-column: span 8; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="8"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
       grid-template-columns: repeat(8, 1fr); }
-    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group[data-width-desktop="9"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="9"] {
+    grid-column: span 9; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="9"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
       grid-template-columns: repeat(9, 1fr); }
-    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group[data-width-desktop="10"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="10"] {
+    grid-column: span 10; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="10"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
       grid-template-columns: repeat(10, 1fr); }
-    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group[data-width-desktop="11"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="11"] {
+    grid-column: span 11; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="11"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
       grid-template-columns: repeat(11, 1fr); }
-    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group[data-width-desktop="12"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="12"] {
+    grid-column: span 12; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="12"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
       grid-template-columns: repeat(12, 1fr); }
-    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group .PageBuilder_Value_Block_BlockGroup-AddButton {
-      clear: both; }
-    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock:hover > .PageBuilder_Value_Block-Controls {
-      opacity: 1; }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] input.PageBuilder_Value_Block-WidthDesktop {
+    background: #DBF8FF; }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] > .middleColumn {
+    width: 600px; }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"] {
+    grid-column: span 2; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(2, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"] {
+    grid-column: span 3; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(3, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"] {
+    grid-column: span 4; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(4, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"] {
+    grid-column: span 5; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(5, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"] {
+    grid-column: span 6; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(6, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="7"] {
+    grid-column: span 7; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="7"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(7, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="8"] {
+    grid-column: span 8; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="8"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(8, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="9"] {
+    grid-column: span 9; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="9"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(9, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="10"] {
+    grid-column: span 10; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="10"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(10, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="11"] {
+    grid-column: span 11; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="11"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(11, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="12"] {
+    grid-column: span 12; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="12"] > .PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(12, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] input.PageBuilder_Value_Block-WidthTablet {
+    background: #DBF8FF; }
