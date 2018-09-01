@@ -2,14 +2,8 @@
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	cursor: pointer;
 	background: transparent;
-	-webkit-border-radius: 0;
-	-moz-border-radius: 0;
 	border-radius: 0;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
 	box-shadow: none;
-	-webkit-text-shadow: none;
-	-moz-text-shadow: none;
 	text-shadow: none;
 	border: 0;
 	display: block;
@@ -50,46 +44,132 @@
 		}
 	}
 	> .middleColumn {
-		@include clear-fix;
 		margin: 0 auto !important;
 		
 		*, *:before, *:after {
-			margin: 0;
-			padding: 0;
-			-webkit-box-sizing: border-box;
-			-moz-box-sizing: border-box;
 			box-sizing: border-box;
+		}
+		.chzn-container {
+			*, *:before, *:after {
+				box-sizing: content-box;
+			}
+		}
+	}
+	div.hidden-dropdown {
+		> label {
+			display: inline-block;
+			opacity: .6;
+			
+			&:after {
+				content: ':';
+			}
+		}
+		.middleColumn {
+			display: inline-block;
+			//float: left;
+			
+			.chzn-container {
+				width: auto !important;
+				min-width: 0;
+				
+				.chzn-single {
+					display: block;
+					background: transparent;
+					border: 0;
+					padding: 0;
+					box-shadow: none;
+					height: 16px;
+					line-height: 16px;
+					float: left;
+					
+					span {
+						display: inline-block;
+						margin: 0 5px 0 0;
+					}
+					div {
+						display: inline-block;
+						width: auto;
+						position: static;
+						height: 16px;
+						line-height: 16px;
+						vertical-align: top;
+						
+						&:before {
+							font-family: "silverstripe" !important;
+							font-style: normal !important;
+							font-weight: normal !important;
+							font-variant: normal !important;
+							text-transform: none !important;
+							speak: none;
+							-webkit-font-smoothing: antialiased;
+							-moz-osx-font-smoothing: grayscale;
+							content: "u";
+							display: inline-block;
+							height: 16px;
+							line-height: 16px;
+						}
+						b {
+							display: none;
+						}
+					}
+				}
+				.chzn-drop {
+					min-width: 200px;
+					border: 1px solid #aaa;
+					border-radius: 4px;
+					margin: 5px 0 0 -5px;
+				}
+			}
 		}
 	}
 	.clear {
 		clear: both;
 	}
-	.fieldgroup .fieldgroup-field {
-		margin: 0 10px 0 0;
-		
-		input.checkbox {
+	.fieldgroup {
+		> .fieldgroup-field, > div.field {
 			float: left;
+			margin: 0 10px 0 0 !important;
+			padding: 0 8px 8px 0 !important;
+			
+			input.checkbox {
+				float: left;
+				margin-top: 1px;
+			}
+			.checkboxfield-small {
+				margin: 0 0 0 16px;
+			}
 		}
-		.checkboxfield-small {
-			margin: 0 0 0 16px;
+		.dropdown {
+		
 		}
 	}
 	.zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock {
-		border-radius: 3px;
+		transition: background 300ms ease, border 300ms ease, box-shadow 300ms ease;
 		background: rgba(#000, .05);
-		border: 1px solid #CDCCD0 !important;
-		padding: 8px 15px 3px !important;
-		float: left;
-		//margin: 10px 1% 0 !important;
+		border: 1px solid #AAA !important;
+		padding: 8px 14px 0 !important;
 		position: relative;
 		
-		//&.sort-placeholder + .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock {
-		//	clear: none;
-		//}
+		&:hover {
+			box-shadow: 0 0 0 1px #666 !important;
+		}
+		&.zauberfisch\\PageBuilder\\Model\\Block\\Base {
+			padding: 15px 15px 0 !important;
+			border-color: #CCC !important;
+			box-shadow: none !important;
+		}
 		&.pre-delete {
-			// TODO fix pre-delete style
-			border: 1px solid rgba(#f00, .8) !important;
-			background: rgba(#f00, .05) !important;
+			border: 1px solid rgba(#F00, .8) !important;
+			background: rgba(#F00, .05);
+		}
+		&.drag-ghost {
+			border: 1px dashed #000 !important;
+			box-shadow: none !important;
+			height: 100px;
+			
+			* {
+				display: none !important;
+			}
 		}
 		label {
 			width: auto;
@@ -100,8 +180,6 @@
 			padding: 0 0 8px;
 			margin: 0;
 			border: 0;
-			-webkit-box-shadow: none;
-			-moz-box-shadow: none;
 			box-shadow: none;
 		}
 		.PageBuilder_Value_Block-ClassNameInfo {
@@ -171,16 +249,20 @@
 	}
 	.zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock {
 		grid-column: span 1;
+		//align-self: start;
+		align-self: stretch;
+		justify-self: stretch;
 		
-		> .PageBuilder_Value_Block_BlockGroup-Blocks {
-			//padding: 0 0 30px;
+		> div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
 			display: grid;
-			//grid-gap: 10px 1%;
 			grid-gap: 10px;
-			//grid-template-columns: repeat(12, (100% / 12));
 			grid-template-rows: auto;
 			grid-template-columns: 100%;
-			width: 100%;
+			margin: 0 -15px;
+			min-height: 100px;
+		}
+		&.zauberfisch\\PageBuilder\\Model\\Block\\Base > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+			margin: 0;
 		}
 	}
 	&[data-grid-mode="desktop"] {
@@ -188,7 +270,7 @@
 			.zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="#{$i}"] {
 				grid-column: span $i;
 				
-				> .PageBuilder_Value_Block_BlockGroup-Blocks {
+				> div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
 					grid-template-columns: repeat($i, 1fr);
 				}
 			}
@@ -205,13 +287,92 @@
 			.zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="#{$i}"] {
 				grid-column: span $i;
 				
-				> .PageBuilder_Value_Block_BlockGroup-Blocks {
+				> div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
 					grid-template-columns: repeat($i, 1fr);
 				}
 			}
 		}
 		input.PageBuilder_Value_Block-WidthTablet {
 			background: #DBF8FF;
+		}
+	}
+}
+
+.PageBuilderDialog-Form {
+	#BlockType {
+		border: 0;
+		box-shadow: none;
+		
+		label.left {
+			font-size: 17px;
+			line-height: 20px;
+		}
+		ul {
+			display: grid;
+			grid-gap: 10px;
+			grid-template-rows: auto;
+			grid-template-columns: repeat(4, 150px);
+			
+			li {
+				margin: 0;
+				padding: 0;
+				position: relative;
+				width: auto;
+				float: none;
+				align-self: stretch;
+				justify-self: stretch;
+				
+				input {
+					position: absolute;
+					top: 150px;
+					left: 10px;
+					margin: 1px 0 0;
+				}
+				label {
+					display: block;
+					padding: 10px;
+					margin: 0;
+					
+					&:before {
+						content: '';
+						position: absolute;
+						top: 0;
+						right: 0;
+						bottom: 0;
+						left: 0;
+						border: 1px solid #AAA;
+						background: rgba(#000, .05);
+					}
+					span {
+						display: block;
+						position: relative;
+						
+						&.block-type-icon {
+							padding: 0 0 120px;
+							position: relative;
+							margin: 10px;
+							height: 0;
+							background: center center no-repeat / contain;
+							
+							span {
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								transform: translate(-50%, -50%);
+								font-size: 50px;
+								line-height: 1;
+								font-weight: bold;
+							}
+						}
+						&.block-type-title {
+							padding: 0 0 0 18px;
+						}
+					}
+				}
+				input:checked + label:before {
+					background: rgba(#000, .15);
+				}
+			}
 		}
 	}
 }

@@ -65,22 +65,9 @@ class ContentElement extends AbstractBlock {
 	public static function get_create_options() {
 		$elementClasses = \ClassInfo::subclassesFor(\PageBuilder_Model_ContentElement_AbstractContentElement::class);
 		$options = [];
-		$class = __CLASS__;
 		foreach ($elementClasses as $elementClass) {
 			if ($elementClass != \PageBuilder_Model_ContentElement_AbstractContentElement::class) {
-				$options["$class.$elementClass"] = [
-					'Title' => singleton($elementClass)->i18n_singular_name(),
-					'Callback' => function () use ($class, $elementClass) {
-						/** @var ContentElement $block */
-						$block = new $class();
-						/** @var \PageBuilder_Model_ContentElement_AbstractContentElement $elementObj */
-						$elementObj = new $elementClass();
-						$elementObj->write();
-						$block->setContentElementVersionGroupID($elementObj->VersionGroupID);
-						$block->setContentElementID($elementObj->ID);
-						return $block;
-					},
-				];
+				$options += $elementClass::{__FUNCTION__}(__CLASS__);
 			}
 		}
 		return $options;
