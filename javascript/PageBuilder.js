@@ -263,9 +263,22 @@
 				setTimeout(function () {
 					dragElement.addClass('drag-ghost');
 				}, 0);
+				var _this = this,
+					dragoverRunning = false;
+				this.on('dragover', function (e) {
+					if (!dragoverRunning) {
+						dragoverRunning = true;
+						_this._ondragover(e);
+						dragoverRunning = false;
+					}
+				});
+				this.on('dragend', function (e) {
+					_this._ondragend(e);
+				});
 			}
 		},
-		ondragover: function (e) {
+		_ondragover: function (e) {
+			console.log('ondragover');
 			var dragElement = this.getBlockDragElement();
 			if (dragElement) {
 				e.preventDefault();
@@ -302,8 +315,10 @@
 				}
 			}
 		},
-		ondragend: function (e) {
+		_ondragend: function (e) {
 			var dragElement = this.getBlockDragElement();
+			this.off('dragover');
+			this.off('dragend');
 			if (dragElement) {
 				e.preventDefault();
 				dragElement.removeClass('drag-ghost');
