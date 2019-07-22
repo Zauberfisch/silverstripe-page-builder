@@ -9,362 +9,91 @@
       height: 14px; }
   .zauberfisch\\PageBuilder\\Form\\Field > .middleColumn {
     margin: 0 auto !important; }
-    .zauberfisch\\PageBuilder\\Form\\Field > .middleColumn:after {
-      content: " ";
-      display: block;
-      clear: both; }
     .zauberfisch\\PageBuilder\\Form\\Field > .middleColumn *, .zauberfisch\\PageBuilder\\Form\\Field > .middleColumn *:before, .zauberfisch\\PageBuilder\\Form\\Field > .middleColumn *:after {
-      margin: 0;
-      padding: 0;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
       box-sizing: border-box; }
+    .zauberfisch\\PageBuilder\\Form\\Field > .middleColumn .chzn-container *, .zauberfisch\\PageBuilder\\Form\\Field > .middleColumn .chzn-container *:before, .zauberfisch\\PageBuilder\\Form\\Field > .middleColumn .chzn-container *:after {
+      box-sizing: content-box; }
+  .zauberfisch\\PageBuilder\\Form\\Field div.hidden-dropdown > label {
+    display: inline-block;
+    opacity: .6; }
+    .zauberfisch\\PageBuilder\\Form\\Field div.hidden-dropdown > label:after {
+      content: ':'; }
+  .zauberfisch\\PageBuilder\\Form\\Field div.hidden-dropdown .middleColumn {
+    display: inline-block; }
+    .zauberfisch\\PageBuilder\\Form\\Field div.hidden-dropdown .middleColumn .chzn-container {
+      width: auto !important;
+      min-width: 0; }
+      .zauberfisch\\PageBuilder\\Form\\Field div.hidden-dropdown .middleColumn .chzn-container .chzn-single {
+        display: block;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        box-shadow: none;
+        height: 16px;
+        line-height: 16px;
+        float: left; }
+        .zauberfisch\\PageBuilder\\Form\\Field div.hidden-dropdown .middleColumn .chzn-container .chzn-single span {
+          display: inline-block;
+          margin: 0 5px 0 0; }
+        .zauberfisch\\PageBuilder\\Form\\Field div.hidden-dropdown .middleColumn .chzn-container .chzn-single div {
+          display: inline-block;
+          width: auto;
+          position: static;
+          height: 16px;
+          line-height: 16px;
+          vertical-align: top; }
+          .zauberfisch\\PageBuilder\\Form\\Field div.hidden-dropdown .middleColumn .chzn-container .chzn-single div:before {
+            font-family: "silverstripe" !important;
+            font-style: normal !important;
+            font-weight: normal !important;
+            font-variant: normal !important;
+            text-transform: none !important;
+            speak: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            content: "u";
+            display: inline-block;
+            height: 16px;
+            line-height: 16px; }
+          .zauberfisch\\PageBuilder\\Form\\Field div.hidden-dropdown .middleColumn .chzn-container .chzn-single div b {
+            display: none; }
+      .zauberfisch\\PageBuilder\\Form\\Field div.hidden-dropdown .middleColumn .chzn-container .chzn-drop {
+        min-width: 200px;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        margin: 5px 0 0 -5px; }
   .zauberfisch\\PageBuilder\\Form\\Field .clear {
     clear: both; }
-  .zauberfisch\\PageBuilder\\Form\\Field .fieldgroup .fieldgroup-field {
-    margin: 0 10px 0 0; }
-    .zauberfisch\\PageBuilder\\Form\\Field .fieldgroup .fieldgroup-field input.checkbox {
-      float: left; }
-    .zauberfisch\\PageBuilder\\Form\\Field .fieldgroup .fieldgroup-field .checkboxfield-small {
-      margin: 0 0 0 16px; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .grid-desktop-clear {
-    clear: both; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="1"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="2"] {
-    width: 48%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="3"] {
-    width: 31.33333%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="4"] {
-    width: 23%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="5"] {
-    width: 18%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="6"] {
-    width: 14.66667%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="7"] {
-    width: 12.28571%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="8"] {
-    width: 10.5%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="9"] {
-    width: 9.11111%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="10"] {
-    width: 8%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="11"] {
-    width: 7.09091%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"][data-width-desktop-context="12"] {
-    width: 6.33333%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="2"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="3"] {
-    width: 64.66667%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="4"] {
-    width: 48%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="5"] {
-    width: 38%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="6"] {
-    width: 31.33333%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="7"] {
-    width: 26.57143%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="8"] {
-    width: 23%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="9"] {
-    width: 20.22222%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="10"] {
-    width: 18%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="11"] {
-    width: 16.18182%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"][data-width-desktop-context="12"] {
-    width: 14.66667%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="3"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="4"] {
-    width: 73%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="5"] {
-    width: 58%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="6"] {
-    width: 48%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="7"] {
-    width: 40.85714%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="8"] {
-    width: 35.5%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="9"] {
-    width: 31.33333%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="10"] {
-    width: 28%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="11"] {
-    width: 25.27273%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"][data-width-desktop-context="12"] {
-    width: 23%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="4"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="5"] {
-    width: 78%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="6"] {
-    width: 64.66667%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="7"] {
-    width: 55.14286%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="8"] {
-    width: 48%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="9"] {
-    width: 42.44444%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="10"] {
-    width: 38%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="11"] {
-    width: 34.36364%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"][data-width-desktop-context="12"] {
-    width: 31.33333%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"][data-width-desktop-context="5"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"][data-width-desktop-context="6"] {
-    width: 81.33333%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"][data-width-desktop-context="7"] {
-    width: 69.42857%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"][data-width-desktop-context="8"] {
-    width: 60.5%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"][data-width-desktop-context="9"] {
-    width: 53.55556%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"][data-width-desktop-context="10"] {
-    width: 48%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"][data-width-desktop-context="11"] {
-    width: 43.45455%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"][data-width-desktop-context="12"] {
-    width: 39.66667%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"][data-width-desktop-context="6"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"][data-width-desktop-context="7"] {
-    width: 83.71429%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"][data-width-desktop-context="8"] {
-    width: 73%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"][data-width-desktop-context="9"] {
-    width: 64.66667%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"][data-width-desktop-context="10"] {
-    width: 58%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"][data-width-desktop-context="11"] {
-    width: 52.54545%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"][data-width-desktop-context="12"] {
-    width: 48%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="7"][data-width-desktop-context="7"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="7"][data-width-desktop-context="8"] {
-    width: 85.5%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="7"][data-width-desktop-context="9"] {
-    width: 75.77778%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="7"][data-width-desktop-context="10"] {
-    width: 68%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="7"][data-width-desktop-context="11"] {
-    width: 61.63636%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="7"][data-width-desktop-context="12"] {
-    width: 56.33333%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="8"][data-width-desktop-context="8"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="8"][data-width-desktop-context="9"] {
-    width: 86.88889%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="8"][data-width-desktop-context="10"] {
-    width: 78%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="8"][data-width-desktop-context="11"] {
-    width: 70.72727%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="8"][data-width-desktop-context="12"] {
-    width: 64.66667%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="9"][data-width-desktop-context="9"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="9"][data-width-desktop-context="10"] {
-    width: 88%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="9"][data-width-desktop-context="11"] {
-    width: 79.81818%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="9"][data-width-desktop-context="12"] {
-    width: 73%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="10"][data-width-desktop-context="10"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="10"][data-width-desktop-context="11"] {
-    width: 88.90909%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="10"][data-width-desktop-context="12"] {
-    width: 81.33333%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="11"][data-width-desktop-context="11"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="11"][data-width-desktop-context="12"] {
-    width: 89.66667%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="12"][data-width-desktop-context="12"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="1"] .PageBuilder_Value_Block-Widths, .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"] .PageBuilder_Value_Block-Widths, .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"] .PageBuilder_Value_Block-Widths {
-    clear: left;
-    float: none; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] input.PageBuilder_Value_Block-WidthDesktop {
-    background: #DBF8FF; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] > .middleColumn {
-    width: 600px; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .grid-tablet-clear {
-    clear: both; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="1"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="2"] {
-    width: 48%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="3"] {
-    width: 31.33333%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="4"] {
-    width: 23%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="5"] {
-    width: 18%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="6"] {
-    width: 14.66667%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="7"] {
-    width: 12.28571%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="8"] {
-    width: 10.5%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="9"] {
-    width: 9.11111%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="10"] {
-    width: 8%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="11"] {
-    width: 7.09091%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"][data-width-tablet-context="12"] {
-    width: 6.33333%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="2"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="3"] {
-    width: 64.66667%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="4"] {
-    width: 48%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="5"] {
-    width: 38%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="6"] {
-    width: 31.33333%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="7"] {
-    width: 26.57143%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="8"] {
-    width: 23%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="9"] {
-    width: 20.22222%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="10"] {
-    width: 18%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="11"] {
-    width: 16.18182%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"][data-width-tablet-context="12"] {
-    width: 14.66667%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="3"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="4"] {
-    width: 73%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="5"] {
-    width: 58%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="6"] {
-    width: 48%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="7"] {
-    width: 40.85714%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="8"] {
-    width: 35.5%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="9"] {
-    width: 31.33333%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="10"] {
-    width: 28%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="11"] {
-    width: 25.27273%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"][data-width-tablet-context="12"] {
-    width: 23%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="4"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="5"] {
-    width: 78%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="6"] {
-    width: 64.66667%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="7"] {
-    width: 55.14286%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="8"] {
-    width: 48%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="9"] {
-    width: 42.44444%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="10"] {
-    width: 38%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="11"] {
-    width: 34.36364%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"][data-width-tablet-context="12"] {
-    width: 31.33333%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"][data-width-tablet-context="5"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"][data-width-tablet-context="6"] {
-    width: 81.33333%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"][data-width-tablet-context="7"] {
-    width: 69.42857%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"][data-width-tablet-context="8"] {
-    width: 60.5%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"][data-width-tablet-context="9"] {
-    width: 53.55556%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"][data-width-tablet-context="10"] {
-    width: 48%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"][data-width-tablet-context="11"] {
-    width: 43.45455%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"][data-width-tablet-context="12"] {
-    width: 39.66667%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"][data-width-tablet-context="6"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"][data-width-tablet-context="7"] {
-    width: 83.71429%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"][data-width-tablet-context="8"] {
-    width: 73%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"][data-width-tablet-context="9"] {
-    width: 64.66667%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"][data-width-tablet-context="10"] {
-    width: 58%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"][data-width-tablet-context="11"] {
-    width: 52.54545%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"][data-width-tablet-context="12"] {
-    width: 48%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="7"][data-width-tablet-context="7"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="7"][data-width-tablet-context="8"] {
-    width: 85.5%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="7"][data-width-tablet-context="9"] {
-    width: 75.77778%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="7"][data-width-tablet-context="10"] {
-    width: 68%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="7"][data-width-tablet-context="11"] {
-    width: 61.63636%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="7"][data-width-tablet-context="12"] {
-    width: 56.33333%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="8"][data-width-tablet-context="8"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="8"][data-width-tablet-context="9"] {
-    width: 86.88889%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="8"][data-width-tablet-context="10"] {
-    width: 78%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="8"][data-width-tablet-context="11"] {
-    width: 70.72727%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="8"][data-width-tablet-context="12"] {
-    width: 64.66667%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="9"][data-width-tablet-context="9"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="9"][data-width-tablet-context="10"] {
-    width: 88%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="9"][data-width-tablet-context="11"] {
-    width: 79.81818%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="9"][data-width-tablet-context="12"] {
-    width: 73%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="10"][data-width-tablet-context="10"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="10"][data-width-tablet-context="11"] {
-    width: 88.90909%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="10"][data-width-tablet-context="12"] {
-    width: 81.33333%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="11"][data-width-tablet-context="11"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="11"][data-width-tablet-context="12"] {
-    width: 89.66667%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="12"][data-width-tablet-context="12"] {
-    width: 98%; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="1"] .PageBuilder_Value_Block-Widths, .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"] .PageBuilder_Value_Block-Widths, .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"] .PageBuilder_Value_Block-Widths, .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"] .PageBuilder_Value_Block-Widths, .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"] .PageBuilder_Value_Block-Widths {
-    clear: left;
-    float: none; }
-  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] input.PageBuilder_Value_Block-WidthTablet {
-    background: #DBF8FF; }
-  .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock {
-    border-radius: 3px;
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid #CDCCD0 !important;
-    padding: 8px 15px 3px !important;
+  .zauberfisch\\PageBuilder\\Form\\Field .fieldgroup > .fieldgroup-field, .zauberfisch\\PageBuilder\\Form\\Field .fieldgroup > div.field {
     float: left;
-    margin: 10px 1% 0 !important;
+    margin: 0 10px 0 0 !important;
+    padding: 0 8px 8px 0 !important; }
+    .zauberfisch\\PageBuilder\\Form\\Field .fieldgroup > .fieldgroup-field input.checkbox, .zauberfisch\\PageBuilder\\Form\\Field .fieldgroup > div.field input.checkbox {
+      float: left;
+      margin-top: 1px; }
+    .zauberfisch\\PageBuilder\\Form\\Field .fieldgroup > .fieldgroup-field .checkboxfield-small, .zauberfisch\\PageBuilder\\Form\\Field .fieldgroup > div.field .checkboxfield-small {
+      margin: 0 0 0 16px; }
+  .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock {
+    transition: background 300ms ease, border 300ms ease, box-shadow 300ms ease;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid #AAA !important;
+    padding: 8px 14px 0 !important;
     position: relative; }
+    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock:hover {
+      box-shadow: 0 0 0 1px #666 !important; }
+    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Base {
+      padding: 15px 15px 0 !important;
+      border-color: #CCC !important;
+      box-shadow: none !important; }
     .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.pre-delete {
-      border: 1px solid red !important; }
+      border: 1px solid rgba(255, 0, 0, 0.8) !important;
+      background: rgba(255, 0, 0, 0.05); }
+    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.drag-ghost {
+      border: 1px dashed #000 !important;
+      box-shadow: none !important;
+      height: 100px; }
+      .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.drag-ghost * {
+        display: none !important; }
     .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock label {
       width: auto;
       padding: 0 0 8px;
@@ -373,8 +102,6 @@
       padding: 0 0 8px;
       margin: 0;
       border: 0;
-      -webkit-box-shadow: none;
-      -moz-box-shadow: none;
       box-shadow: none; }
     .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .PageBuilder_Value_Block-ClassNameInfo {
       opacity: .5;
@@ -421,13 +148,171 @@
             padding: 2px 4px; }
     .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Base .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock .PageBuilder_Value_Block-Widths {
       display: block; }
-    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group .PageBuilder_Value_Block_BlockGroup-Blocks {
-      padding: 0 0 30px; }
-      .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group .PageBuilder_Value_Block_BlockGroup-Blocks:after {
-        content: " ";
-        display: block;
-        clear: both; }
-    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Group .PageBuilder_Value_Block_BlockGroup-AddButton {
-      clear: both; }
     .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock:hover > .PageBuilder_Value_Block-Controls {
       opacity: 1; }
+  .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock {
+    grid-column: span 1;
+    align-self: stretch;
+    justify-self: stretch; }
+    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      display: grid;
+      grid-gap: 10px;
+      grid-template-rows: auto;
+      grid-template-columns: 100%;
+      margin: 0 -15px;
+      min-height: 100px; }
+    .zauberfisch\\PageBuilder\\Form\\Field .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock.zauberfisch\\PageBuilder\\Model\\Block\\Base > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      margin: 0; }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"] {
+    grid-column: span 2; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="2"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(2, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"] {
+    grid-column: span 3; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="3"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(3, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"] {
+    grid-column: span 4; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="4"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(4, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"] {
+    grid-column: span 5; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="5"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(5, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"] {
+    grid-column: span 6; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="6"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(6, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="7"] {
+    grid-column: span 7; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="7"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(7, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="8"] {
+    grid-column: span 8; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="8"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(8, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="9"] {
+    grid-column: span 9; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="9"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(9, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="10"] {
+    grid-column: span 10; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="10"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(10, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="11"] {
+    grid-column: span 11; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="11"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(11, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="12"] {
+    grid-column: span 12; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-desktop="12"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(12, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="desktop"] input.PageBuilder_Value_Block-WidthDesktop {
+    background: #DBF8FF; }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] > .middleColumn {
+    width: 600px; }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"] {
+    grid-column: span 2; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="2"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(2, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"] {
+    grid-column: span 3; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="3"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(3, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"] {
+    grid-column: span 4; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="4"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(4, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"] {
+    grid-column: span 5; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="5"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(5, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"] {
+    grid-column: span 6; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="6"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(6, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="7"] {
+    grid-column: span 7; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="7"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(7, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="8"] {
+    grid-column: span 8; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="8"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(8, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="9"] {
+    grid-column: span 9; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="9"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(9, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="10"] {
+    grid-column: span 10; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="10"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(10, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="11"] {
+    grid-column: span 11; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="11"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(11, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="12"] {
+    grid-column: span 12; }
+    .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] .zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock[data-width-tablet="12"] > div.field.PageBuilder_Value_Block_BlockGroup-Blocks {
+      grid-template-columns: repeat(12, 1fr); }
+  .zauberfisch\\PageBuilder\\Form\\Field[data-grid-mode="tablet"] input.PageBuilder_Value_Block-WidthTablet {
+    background: #DBF8FF; }
+
+.PageBuilderDialog-Form #BlockType {
+  border: 0;
+  box-shadow: none; }
+  .PageBuilderDialog-Form #BlockType label.left {
+    font-size: 17px;
+    line-height: 20px; }
+  .PageBuilderDialog-Form #BlockType ul {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(4, 150px); }
+    .PageBuilderDialog-Form #BlockType ul li {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      width: auto;
+      float: none;
+      align-self: stretch;
+      justify-self: stretch; }
+      .PageBuilderDialog-Form #BlockType ul li input {
+        position: absolute;
+        top: 150px;
+        left: 10px;
+        margin: 1px 0 0; }
+      .PageBuilderDialog-Form #BlockType ul li label {
+        display: block;
+        padding: 10px;
+        margin: 0; }
+        .PageBuilderDialog-Form #BlockType ul li label:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          border: 1px solid #AAA;
+          background: rgba(0, 0, 0, 0.05); }
+        .PageBuilderDialog-Form #BlockType ul li label span {
+          display: block;
+          position: relative; }
+          .PageBuilderDialog-Form #BlockType ul li label span.block-type-icon {
+            padding: 0 0 120px;
+            position: relative;
+            margin: 10px;
+            height: 0;
+            background: center center no-repeat / contain; }
+            .PageBuilderDialog-Form #BlockType ul li label span.block-type-icon span {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              font-size: 50px;
+              line-height: 1;
+              font-weight: bold; }
+          .PageBuilderDialog-Form #BlockType ul li label span.block-type-title {
+            padding: 0 0 0 18px; }
+      .PageBuilderDialog-Form #BlockType ul li input:checked + label:before {
+        background: rgba(0, 0, 0, 0.15); }

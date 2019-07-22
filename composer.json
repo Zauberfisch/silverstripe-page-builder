@@ -23,7 +23,7 @@
 	],
 	"require": {
 		"silverstripe/framework": "~3.6",
-		"zauberfisch/silverstripe-serialized-dataobject": "^2.0",
+		"zauberfisch/silverstripe-serialized-dataobject": ">=2.0,<=4.0",
 		"zauberfisch/silverstripe-persistent-dataobject": "^1.0",
 		"zauberfisch/silverstripe-namespace-templates": "^1.0"
 	},

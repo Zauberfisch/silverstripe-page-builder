@@ -14,7 +14,16 @@ class Group extends AbstractBlock {
 	private static $lists = [
 		'Blocks',
 	];
-
+	
+	public static function get_create_options() {
+		$arr = parent::get_create_options();
+		$arr[get_called_class()] = [
+				'Icon' => PAGE_BUILDER_DIR . '/images/group.svg',
+				'Sort' => 50
+			] + $arr[get_called_class()];
+		return $arr;
+	}
+	
 	public function getPageBuilderFields($prefix, $pageBuilder, $blockPosition = 0, $parent = null) {
 		$fields = parent::getPageBuilderFields($prefix, $pageBuilder, $blockPosition, $parent);
 		$name = $this->getName();
@@ -37,7 +46,7 @@ class Group extends AbstractBlock {
 		);
 		return $fields;
 	}
-
+	
 	public function BlocksForTemplate() {
 		$rowDesktop = 0;
 		$rowTablet = 0;
@@ -104,7 +113,7 @@ class Group extends AbstractBlock {
 		$this->extend('updateBlocksForTemplate', $blocks);
 		return new \ArrayList($blocks);
 	}
-
+	
 	public function duplicate() {
 		$new = parent::duplicate();
 		$blocks = [];

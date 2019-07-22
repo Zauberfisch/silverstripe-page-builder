@@ -10,7 +10,26 @@
 class PageBuilder_Model_ContentElement_AbstractContentElement extends \PersistentDataObject_Model_DataObject {
 //class AbstractContentElement extends \DataObject {
 	protected $block;
-
+	
+	public static function get_create_options($containerClass) {
+		$elementClass = get_called_class();
+		return [
+			"$containerClass.$elementClass" => [
+				'Title' => static::singleton()->i18n_singular_name(),
+				'Callback' => function () use ($containerClass, $elementClass) {
+					/** @var \zauberfisch\PageBuilder\Model\Block\ContentElement $block */
+					$block = new $containerClass();
+					/** @var \PageBuilder_Model_ContentElement_AbstractContentElement $elementObj */
+					$elementObj = new $elementClass();
+					$elementObj->write();
+					$block->setContentElementVersionGroupID($elementObj->VersionGroupID);
+					$block->setContentElementID($elementObj->ID);
+					return $block;
+				},
+			]
+		];
+	}
+	
 	public function getPageBuilderPopupFields() {
 		$fields = new \FieldList();
 		$this->extend('updatePageBuilderPopupFields', $fields);

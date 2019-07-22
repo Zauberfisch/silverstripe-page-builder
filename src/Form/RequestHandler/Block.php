@@ -43,9 +43,33 @@ class Block extends AbstractRequestHandler {
 	 * @return \Form
 	 */
 	public function AddForm() {
-		$options = [];
+		$_options = [];
 		foreach ($this->getCreateOptions() as $key => $info) {
-			$options[$key] = $info['Title'];
+			$_options[] = [
+				'Key' => $key,
+				'Sort' => isset($info['Sort']) ? $info['Sort'] : 100,
+				'TitlePlain' => $info['Title'],
+				'Title' => \DBField::create_field(\HTMLText::class, sprintf(
+					'<span class="block-type-icon" style="%s">%s</span><span class="block-type-title">%s</span>',
+					isset($info['Icon']) && $info['Icon'] ? "background-image: url('{$info['Icon']}');" : '',
+					isset($info['Icon']) && $info['Icon'] ? '' : '<span>' . (isset($info['IconText']) && $info['IconText'] ? $info['IconText'] : substr($info['Title'], 0, 3)) . '</span>',
+					$info['Title']
+				))
+			];
+		}
+		usort($_options, function ($a, $b) {
+			$return = $a['Sort'] <=> $b['Sort'];
+			if ($return == 0) {
+				$return = $a['TitlePlain'] <=> $b['TitlePlain'];
+				if ($return == 0) {
+					$return = $a['Key'] <=> $b['Key'];
+				}
+			}
+			return $return;
+		});
+		$options = [];
+		foreach ($_options as $info) {
+			$options[$info['Key']] = $info['Title'];
 		}
 		/** @noinspection PhpParamsInspection */
 		return (new \Form(
@@ -54,7 +78,8 @@ class Block extends AbstractRequestHandler {
 			new \FieldList([
 				new \HiddenField('BlockPosition', ''),
 				new \HiddenField('BlockParent', ''),
-				new \OptionsetField('BlockType', _t('PageBuilder_Form_RequestHandler_Block.AddFormBlockType', 'Type'), $options),
+				(new \OptionsetField('BlockType', _t('PageBuilder_Form_RequestHandler_Block.AddFormBlockType', 'Type'), $options))
+					->addExtraClass('stacked'),
 			]),
 			new \FieldList([
 				new \FormAction('AddFormSubmit', _t('PageBuilder_Form_RequestHandler_Block.AddFormSubmit', 'add')),
@@ -74,7 +99,7 @@ class Block extends AbstractRequestHandler {
 		if (isset($info['Callback'])) {
 			/** @var Model\Block\AbstractBlock $obj */
 			$obj = call_user_func($info['Callback']);
-		} elseif (isset($info['ClassName'])) {
+		} else if (isset($info['ClassName'])) {
 			$class = $info['ClassName'];
 			/** @var Model\Block\AbstractBlock $obj */
 			$obj = new $class();

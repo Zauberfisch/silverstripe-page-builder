@@ -1,11 +1,4 @@
 (function ($) {
-	if ($.ui.sortable) {
-		var sortable_mouseStart = $.ui.sortable.prototype._mouseStart;
-		$.ui.sortable.prototype._mouseStart = function (event, overrideHandle, noActivation) {
-			this._trigger('customBeforeStart', event, this._uiHash());
-			sortable_mouseStart.apply(this, [event, overrideHandle, noActivation]);
-		};
-	}
 	$('.zauberfisch\\\\PageBuilder\\\\Form\\\\Field, .zauberfisch\\\\PageBuilder\\\\Form\\\\Field *').entwine({
 		getPageBuilderField: function () {
 			return this.closest('.zauberfisch\\\\PageBuilder\\\\Form\\\\Field');
@@ -36,13 +29,12 @@
 		}
 	});
 	$('.zauberfisch\\\\PageBuilder\\\\Form\\\\Field .zauberfisch\\\\PageBuilder\\\\Model\\\\Block\\\\AbstractBlock').entwine({
-		getWidthsControls: function() {
+		getWidthsControls: function () {
 			return this.find('> .PageBuilder_Value_Block-Controls > .PageBuilder_Value_Block-Widths');
 		},
 		updateWidthDesktop: function (width) {
 			this.data('width-desktop', width);
 			this.attr('data-width-desktop', width);
-			this.getParentBlockContainer().updateGrid();
 			if (this.hasClass('zauberfisch\\PageBuilder\\Model\\Block\\Group')) {
 				this.updateWidthContext();
 			}
@@ -50,7 +42,6 @@
 		updateWidthTablet: function (width) {
 			this.data('width-tablet', width);
 			this.attr('data-width-tablet', width);
-			this.getParentBlockContainer().updateGrid();
 			if (this.hasClass('zauberfisch\\PageBuilder\\Model\\Block\\Group')) {
 				this.updateWidthContext();
 			}
@@ -63,18 +54,27 @@
 	});
 	$('.zauberfisch\\\\PageBuilder\\\\Form\\\\Field input.PageBuilder_Value_Block-WidthDesktop').entwine({
 		onchange: function () {
-			this.getBlockContainer().updateWidthDesktop(this.val());
+			var val = parseInt(this.val()),
+				max = parseInt(this.prop('max'));
+			if (val > max) {
+				val = max;
+				this.val(val);
+			}
+			this.getBlockContainer().updateWidthDesktop(val);
 		}
 	});
 	$('.zauberfisch\\\\PageBuilder\\\\Form\\\\Field input.PageBuilder_Value_Block-WidthTablet').entwine({
 		onchange: function () {
-			this.getBlockContainer().updateWidthTablet(this.val());
+			var val = parseInt(this.val()),
+				max = parseInt(this.prop('max'));
+			if (val > max) {
+				val = max;
+				this.val(val);
+			}
+			this.getBlockContainer().updateWidthTablet(val);
 		}
 	});
 	$('.zauberfisch\\\\PageBuilder\\\\Form\\\\Field .zauberfisch\\\\PageBuilder\\\\Model\\\\Block\\\\Group').entwine({
-		onmatch: function () {
-			this.updateGrid();
-		},
 		getDirectChildren: function () {
 			return this.find('> .PageBuilder_Value_Block_BlockGroup-Blocks > .zauberfisch\\\\PageBuilder\\\\Model\\\\Block\\\\AbstractBlock');
 		},
@@ -83,10 +83,6 @@
 				parentWidthTablet = parseInt(this.data('width-tablet'));
 			this.getDirectChildren().each(function () {
 				var _this = $(this);
-				_this.data('width-desktop-context', parentWidthDesktop);
-				_this.attr('data-width-desktop-context', parentWidthDesktop);
-				_this.data('width-tablet-context', parentWidthTablet);
-				_this.attr('data-width-tablet-context', parentWidthTablet);
 				// set max values
 				var inputDesktop = _this.getWidthsControls().find('input.PageBuilder_Value_Block-WidthDesktop');
 				var inputTablet = _this.find('input.PageBuilder_Value_Block-WidthTablet');
@@ -105,38 +101,8 @@
 				_this.updateWidthContext();
 			});
 		},
-		updateGrid: function () {
-			var rowDesktop = 0,
-				rowTablet = 0,
-				parentWidthDesktop = parseInt(this.data('width-desktop')),
-				parentWidthTablet = parseInt(this.data('width-tablet'));
-			this.getDirectChildren().each(function (i) {
-				var _this = $(this),
-					desktop = parseInt(_this.data('width-desktop')),
-					tablet = parseInt(_this.data('width-tablet'));
-				rowDesktop += desktop;
-				if (i == 0 || rowDesktop > parentWidthDesktop) {
-					// item can't fit into current row, place it on next row
-					_this.addClass('grid-desktop-clear');
-					rowDesktop = desktop;
-				} else {
-					// item fits
-					_this.removeClass('grid-desktop-clear');
-				}
-				rowTablet += tablet;
-				if (i == 0 || rowTablet > parentWidthTablet) {
-					// item can't fit into current row, place it on next row
-					_this.addClass('grid-tablet-clear');
-					rowTablet = tablet;
-				} else {
-					// item fits
-					_this.removeClass('grid-tablet-clear');
-				}
-			});
-		},
 		updateBlocksMetadata: function () {
 			var groupName = this.data('name');
-			this.updateGrid();
 			this.updateWidthContext();
 			this.getDirectChildren().each(function (i) {
 				var _this = $(this);
@@ -150,10 +116,6 @@
 	});
 	$('.zauberfisch\\\\PageBuilder\\\\Form\\\\Field .zauberfisch\\\\PageBuilder\\\\Model\\\\Block\\\\Group.zauberfisch\\\\PageBuilder\\\\Model\\\\Block\\\\Base').entwine({
 		onmatch: function () {
-			this.data('width-desktop-context', 12);
-			this.attr('data-width-desktop-context', 12);
-			this.data('width-tablet-context', 12);
-			this.attr('data-width-tablet-context', 12);
 			this.updateWidthContext();
 			this._super();
 		},
@@ -164,10 +126,6 @@
 				_this.attr('data-width-desktop', 12);
 				_this.data('width-tablet', 12);
 				_this.attr('data-width-tablet', 12);
-				_this.data('width-desktop-context', 12);
-				_this.attr('data-width-desktop-context', 12);
-				_this.data('width-tablet-context', 12);
-				_this.attr('data-width-tablet-context', 12);
 				// set max values
 				var inputDesktop = _this.find('> .PageBuilder_Value_Block-Widths input.PageBuilder_Value_Block-WidthDesktop');
 				var inputTablet = _this.find('> .PageBuilder_Value_Block-Widths input.PageBuilder_Value_Block-WidthTablet');
@@ -185,7 +143,6 @@
 				//_this = this,
 				dialog = $('<div/>'),
 				container = this.getBlockContainer(),
-				pageBuilder = this.getPageBuilderField(),
 				blocks = container.find('> .PageBuilder_Value_Block_BlockGroup-Blocks');
 			dialog.PageBuilderDialog({
 				contentURL: this.getConfig().urls.add,
@@ -203,7 +160,6 @@
 				DialogEnd: function (event, data) {
 					var block = $(data.html);
 					blocks.append(block);
-					pageBuilder.sortableBind();
 					rootForm.addClass('changed');
 					if (!block.hasClass('zauberfisch\\PageBuilder\\Model\\Block\\Group')) {
 						block.find('.PageBuilder_Value_Block-Edit').click();
@@ -216,16 +172,19 @@
 	});
 	$('.PageBuilder_Value_Block-Delete').entwine({
 		onclick: function () {
-			var container = this.getBlockContainer();
+			var container = this.getBlockContainer(),
+				_this = this;
 			container.addClass('pre-delete');
-			if (confirm(this.data('confirm'))) {
-				var parent = this.getParentBlockContainer();
-				container.remove();
-				parent.updateBlocksMetadata();
-				//var index = this.closest('.PageBuilder_Field-BlockGroup').index();
-				//this.closest('.PageBuilder_Field-BlockGroups').removeGroup(index);
-			}
-			container.removeClass('pre-delete');
+			setTimeout(function () {
+				if (confirm(_this.data('confirm'))) {
+					var parent = _this.getParentBlockContainer();
+					container.remove();
+					parent.updateBlocksMetadata();
+					//var index = this.closest('.PageBuilder_Field-BlockGroup').index();
+					//this.closest('.PageBuilder_Field-BlockGroups').removeGroup(index);
+				}
+				container.removeClass('pre-delete');
+			}, 100);
 			this.blur();
 			return false;
 		}
@@ -272,57 +231,112 @@
 			return false;
 		}
 	});
-	$('.zauberfisch\\\\PageBuilder\\\\Form\\\\Field').entwine({
-		onmatch: function () {
-			this.sortableBind();
-		},
-		sortableBind: function () {
-			var rootForm = this.getRootForm(),
-				base = this.find('.zauberfisch\\\\PageBuilder\\\\Model\\\\Block\\\\Base'),
-				groups = this.find('.PageBuilder_Value_Block_BlockGroup-Blocks');
-			groups.each(function () {
-				if ($(this).hasClass('ui-sortable')) {
-					$(this).sortable('destroy');
-				}
-			});
-			groups.sortable({
-				connectWith: '#' + this.prop('id') + " .PageBuilder_Value_Block_BlockGroup-Blocks",
-				handle: '> .PageBuilder_Value_Block-Controls > .PageBuilder_Value_Block-Reorder',
-				//placeholder: 'zauberfisch\\\\PageBuilder\\\\Model\\\\Block\\\\AbstractBlock',
-				placeholder: {
-					element: function (orig, ui) {
-						rootForm.addClass('changed');
-						var clone = $('<div></div>');
-						clone.addClass(orig.get(0).className);
-						clone.addClass('sort-placeholder');
-						clone.css('height', orig.css('height'));
-						clone.css('border', '1px solid red');
-						clone.css('float', 'left');
-						clone.css('margin-right', '0');
-						clone.css('min-width', '10%');
-						clone.css('max-width', '100%');
-						return clone;
-					},
-					update: function () {
-						return;
-					}
-				},
-				//helper: 'clone',
-				//forceHelperSize: true,
-				//forcePlaceholderSize: true,
-				update: function () {
-					base.updateBlocksMetadata();
-					rootForm.addClass('changed');
-				},
-				customBeforeStart: function () {
-					//_this.find('.PageBuilder_Field-BlockGroup > *').hide()
-					//	.filter('.PageBuilder_Field-BlockGroup-MetaFields, .PageBuilder_Field-BlockGroup-Reorder').show();
-				},
-				stop: function () {
-					//_this.find('.PageBuilder_Field-BlockGroup > *').show();
-				}
-			});
+	$('.zauberfisch\\\\PageBuilder\\\\Form\\\\Field .zauberfisch\\\\PageBuilder\\\\Model\\\\Block\\\\AbstractBlock .PageBuilder_Value_Block-Reorder').entwine({
+		onmousedown: function () {
+			this.getBlockContainer().attr('draggable', 'true');
 		}
 	});
-})
-(jQuery);
+	$('.zauberfisch\\\\PageBuilder\\\\Form\\\\Field').entwine({
+		BlockDragElement: null,
+		BlockDragElementWidthDesktop: null,
+		BlockDragElementWidthTablet: null,
+		ondragstart: function (e) {
+			var dragElement = $(e.target);
+			if (dragElement.hasClass('zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock')) {
+				this.setBlockDragElement(dragElement);
+				this.setBlockDragElementWidthDesktop(dragElement.data('width-desktop'));
+				this.setBlockDragElementWidthTablet(dragElement.data('width-tablet'));
+				/* dragGhost = dragEl.cloneNode(true);
+				dragGhost.classList.add('hidden-drag-ghost'); */
+				
+				/*  document.body.appendChild(dragGhost);
+				 e.dataTransfer.setDragImage(dragGhost, 0, 0); */
+				
+				e.originalEvent.dataTransfer.effectAllowed = 'move';
+				// TODO once we have support for copy&paste, the drag data should also be set to the copy text
+				//e.originalEvent.dataTransfer.setData('Text', '');
+				
+				// var img = new Image();
+				// img.src = 'example.png';
+				// e.originalEvent.dataTransfer.setDragImage(img, 10, 10);
+				
+				setTimeout(function () {
+					dragElement.addClass('drag-ghost');
+				}, 0);
+				var _this = this,
+					dragoverRunning = false;
+				this.on('dragover', function (e) {
+					if (!dragoverRunning) {
+						dragoverRunning = true;
+						_this._ondragover(e);
+						dragoverRunning = false;
+					}
+				});
+				this.on('dragend', function (e) {
+					_this._ondragend(e);
+				});
+			}
+		},
+		_ondragover: function (e) {
+			console.log('ondragover');
+			var dragElement = this.getBlockDragElement();
+			if (dragElement) {
+				e.preventDefault();
+				e.originalEvent.dataTransfer.dropEffect = 'move';
+				var dragTarget = null,
+					dragTargetIsGroup = false;
+				for (var i in e.originalEvent.path) {
+					var _dragTarget = e.originalEvent.path[i];
+					if (_dragTarget.classList.contains('PageBuilder_Value_Block_BlockGroup-Blocks')) {
+						dragTargetIsGroup = true;
+					}
+					if (_dragTarget.classList.contains('zauberfisch\\PageBuilder\\Model\\Block\\AbstractBlock')) {
+						dragTarget = _dragTarget;
+						break;
+					}
+				}
+				if (dragTarget) {
+					dragTarget = $(dragTarget);
+					if (!dragTarget.is(dragElement)) {
+						var group = dragTargetIsGroup ? dragTarget : dragTarget.getParentBlockContainer();
+						var widthDesktop = Math.min(this.getBlockDragElementWidthDesktop(), group.data('width-desktop'));
+						dragElement.data('width-desktop', widthDesktop);
+						dragElement.attr('data-width-desktop', widthDesktop);
+						var widthTablet = Math.min(this.getBlockDragElementWidthTablet(), group.data('width-tablet'));
+						dragElement.data('width-tablet', widthTablet);
+						dragElement.attr('data-width-tablet', widthTablet);
+						if (dragTargetIsGroup) {
+							var blocks = group.find('> .PageBuilder_Value_Block_BlockGroup-Blocks');
+							dragElement.appendTo(blocks);
+						} else {
+							dragElement[((e.originalEvent.clientX - dragTarget.offset().left) / dragTarget.width() > .5) ? 'insertAfter' : 'insertBefore'](dragTarget);
+						}
+					}
+				}
+			}
+		},
+		_ondragend: function (e) {
+			var dragElement = this.getBlockDragElement();
+			this.off('dragover');
+			this.off('dragend');
+			if (dragElement) {
+				e.preventDefault();
+				dragElement.removeClass('drag-ghost');
+				// setting the width back to it's previous value. This is needed for .updateBlocksMetadata() to work
+				// correctly which will then return it back to the current value
+				var widthDesktop = this.getBlockDragElementWidthDesktop();
+				dragElement.data('width-desktop', widthDesktop);
+				dragElement.attr('data-width-desktop', widthDesktop);
+				var widthTablet = this.getBlockDragElementWidthTablet();
+				dragElement.data('width-tablet', widthTablet);
+				dragElement.attr('data-width-tablet', widthTablet);
+				dragElement.attr('draggable', 'false');
+				this.setBlockDragElement(null);
+				this.setBlockDragElementWidthDesktop(null);
+				this.setBlockDragElementWidthTablet(null);
+				this.find('.zauberfisch\\\\PageBuilder\\\\Model\\\\Block\\\\Base').updateBlocksMetadata();
+				this.getRootForm().addClass('changed');
+			}
+		}
+	});
+})(jQuery);
