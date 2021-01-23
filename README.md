@@ -2,10 +2,6 @@
 
 SilverStripe module to allow for modular, block based, content in SilverStripe
 
-**WARNING: this module is still work in progress and may not be suitable for production yet.**
-
-**Major API changes are more than likely**
-
 ## Maintainer Contact
 
 * Zauberfisch <code@zauberfisch.at>
