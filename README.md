@@ -8,8 +8,8 @@ SilverStripe module to allow for modular, block based, content in SilverStripe
 
 ## Requirements
 
-* silverstripe/framework >=3.6
-* zauberfisch/silverstripe-serialized-dataobject >=2.0
+* silverstripe/framework >=3.7
+* zauberfisch/silverstripe-serialized-dataobject >=3.0
 * zauberfisch/silverstripe-namespace-templates >=1.0
 
 ## Installation
