@@ -1,0 +1,6 @@
+// Import core variables from silverstripe/admin
+@import "variables";
+
+.todo-component-selected {
+	outline: solid $brand-primary !important;
+}

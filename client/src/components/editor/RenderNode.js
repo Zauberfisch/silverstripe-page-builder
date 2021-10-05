@@ -2,6 +2,7 @@ import {useNode, useEditor} from "@craftjs/core"
 import {ROOT_NODE} from "@craftjs/utils"
 import React, {useEffect, useRef, useCallback} from "react"
 import ReactDOM from "react-dom"
+import styles from "./RenderNode.module.scss"
 
 export const RenderNode = ({render}) => {
 	const {id} = useNode()
@@ -71,7 +72,7 @@ export const RenderNode = ({render}) => {
 				? ReactDOM.createPortal(
 					<div
 						ref={currentRef}
-						className="todo-IndicatorDiv"
+						className={styles.indicator}
 						style={{
 							left: getPos(dom).left,
 							top: getPos(dom).top,

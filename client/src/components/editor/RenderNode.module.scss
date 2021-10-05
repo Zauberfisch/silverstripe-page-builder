@@ -1,7 +1,6 @@
-// Import core variables from silverstripe/admin
 @import "variables";
 
-.todo-IndicatorDiv {
+.indicator {
 	height: 30px;
 	margin-top: -29px;
 	font-size: 12px;
@@ -9,15 +8,11 @@
 	position: fixed;
 	display: flex;
 	padding: 2px;
-	background: blue;
+	background: $brand-primary;
 	align-items: center;
 	color: white;
 
 	* {
 		color: white;
 	}
-}
-
-.todo-component-selected {
-	outline: solid red !important;
 }

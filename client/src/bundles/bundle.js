@@ -1,6 +1,3 @@
-// Include any legacy Entwine wrappers
-require("legacy/entwine")
-
-// Include boot entrypoint
-require("boot")
-
+import "legacy/entwine"
+import "boot"
+import "../styles/global.scss"
