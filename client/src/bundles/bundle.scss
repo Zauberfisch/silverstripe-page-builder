@@ -1,8 +1,23 @@
 // Import core variables from silverstripe/admin
 @import "variables";
 
-// Import all of your SCSS stylesheets using relative paths from "components"
-// e.g. @import '../components/MyComponent/MyComponent.scss';
+.todo-IndicatorDiv {
+	height: 30px;
+	margin-top: -29px;
+	font-size: 12px;
+	line-height: 12px;
+	position: fixed;
+	display: flex;
+	padding: 2px;
+	background: blue;
+	align-items: center;
+	color: white;
 
-// Import any legacy SCSS stylesheets
-// e.g. @import '../styles/MyComponent-ModelAdmin-legacy.scss
+	* {
+		color: white;
+	}
+}
+
+.todo-component-selected {
+	outline: solid red !important;
+}

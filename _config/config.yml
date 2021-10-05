@@ -1,0 +1,9 @@
+---
+Name: zauberfisch-page-builder
+---
+#SilverStripe\Admin\LeftAndMain:
+#  extra_requirements_css:
+#    - "zauberfisch/silverstripe-page-builder:client/dist/styles/bundle.css"
+#  extra_requirements_javascript:
+#    - "zauberfisch/silverstripe-page-builder:client/dist/js/bundle.js"
+#    - "zauberfisch/silverstripe-page-builder:client/dist/js/vendor.js"

@@ -1,6 +1,9 @@
 /* global window */
-import registerComponents from 'boot/registerComponents';
+import Injector from "lib/Injector"
+import PageBuilderField from "../components/PageBuilderField"
 
-window.document.addEventListener('DOMContentLoaded', () => {
-  registerComponents();
-});
+window.document.addEventListener("DOMContentLoaded", () => {
+	Injector.component.registerMany({
+		PageBuilderField,
+	})
+})
