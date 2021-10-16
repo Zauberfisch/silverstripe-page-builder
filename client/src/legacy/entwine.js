@@ -3,7 +3,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import {loadComponent} from "lib/Injector"
 
-jQuery.entwine("ss", ($) => {
+jQuery.entwine('ss', function($) {
 	$(".js-injector-boot .form__field-holder .zauberfisch__page-builder__field").entwine({
 		onmatch() {
 			const PageBuilderField = loadComponent("PageBuilderField")

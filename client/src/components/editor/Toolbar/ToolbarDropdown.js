@@ -1,22 +1,26 @@
 import styles from "./ToolbarDropdown.module.scss"
 import React from "react"
-import classNames from "classnames"
 import {Dropdown, DropdownMenu, DropdownToggle, DropdownItem} from "reactstrap"
 import {ToolbarButton} from "./ToolbarButton"
+import {Icon} from "../../utility/Icon"
 
-const ToolbarSelectItem = ({onClick, onChange, title, ...props}) => {
+const ToolbarSelectItem = ({onClick, onChange, title, iconName, style = {}, ...props}) => {
+	const onMouseDown = React.useCallback((e) => e.preventDefault(), [])
 	const _onClick = React.useCallback((e) => {
 		e.preventDefault()
 		typeof onClick === "function" && onClick(e)
 		onChange(props.value)
 	}, [props.value])
-	return <DropdownItem {...props} onClick={_onClick}>{title}</DropdownItem>
+	return <DropdownItem {...props} onMouseDown={onMouseDown} onClick={_onClick} style={{padding: "0 10px", ...style}}>
+		{iconName ? <Icon style={{width: 20, display: "inline-block", padding: "0 5px 0 0"}} iconName={iconName} /> : null}
+		<span>{title}</span>
+	</DropdownItem>
 }
 
-export const ToolbarSelect = ({options, value, onChange, children, title, ...props}) => {
-	const _title = options.find(({value: _value}) => value === _value)
+export const ToolbarSelect = ({options, value, onChange, showSelectedTitle = true, showSelectedIcon = true, ...props}) => {
+	const selected = options.find(({value: _value}) => value === _value) || {}
 	return (
-		<ToolbarDropdown {...props} title={_title ? _title.title : "xxx"}>
+		<ToolbarDropdown {...props} title={showSelectedTitle && selected && selected.title} iconName={showSelectedIcon && selected && selected.iconName}>
 			{options && options.map(option => {
 				return <ToolbarSelectItem {...option} active={option.value === value} onChange={onChange} />
 			})}
@@ -30,24 +34,17 @@ export const ToolbarMultiSelect = () => {
 	)
 }
 
-export const ToolbarDropdown = ({title = "", className, disabled = false, children}) => {
+export const ToolbarDropdown = ({title = "", iconName, disabled = false, children}) => {
 	const [dropdownOpen, setDropdownOpen] = React.useState(false)
 	const toggle = () => setDropdownOpen(prevState => !prevState)
 	return (
 		<Dropdown isOpen={dropdownOpen} toggle={toggle}>
 			<DropdownToggle tag="span">
-				<ToolbarButton title={title} disabled={disabled} active={dropdownOpen} />
+				<ToolbarButton {...{title, iconName, iconNameRight: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown", disabled, active: dropdownOpen}} />
 			</DropdownToggle>
 			<DropdownMenu>
 				{children}
 			</DropdownMenu>
 		</Dropdown>
 	)
-	// return (
-	// 	<span>
-	// 		<button {...{onChange, id, disabled}} className={classNames(styles.button, className, {[styles.active]: active, [styles.hasText]: title})}>
-	// 		</button>
-	// 		{id && tooltip ? <UncontrolledTooltip placement="bottom" target={id}>{tooltip}</UncontrolledTooltip> : null}
-	// 	</span>
-	// )
 }

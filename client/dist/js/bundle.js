@@ -228,9 +228,7 @@ function PageBuilderField() {
 			{ className: _PageBuilderFieldModule2.default.field, ref: refPageBuilderContainer },
 			_react2.default.createElement(
 				_core.Editor,
-				{
-					resolver: _extends({}, elements, { RootContainer: _RootContainer.RootContainer })
-				},
+				{ resolver: _extends({}, elements, { RootContainer: _RootContainer.RootContainer }) },
 				_react2.default.createElement(_Toolbar.Toolbar, { refToolbarTop: refToolbarTop, refToolbarRows: refToolbarRows }),
 				_react2.default.createElement(
 					_core.Frame,
@@ -943,6 +941,7 @@ var ToolbarButton = function ToolbarButton(_ref) {
 	    _ref$tooltip = _ref.tooltip,
 	    tooltip = _ref$tooltip === undefined ? "" : _ref$tooltip,
 	    iconName = _ref.iconName,
+	    iconNameRight = _ref.iconNameRight,
 	    _ref$active = _ref.active,
 	    active = _ref$active === undefined ? false : _ref$active,
 	    _ref$disabled = _ref.disabled,
@@ -950,7 +949,7 @@ var ToolbarButton = function ToolbarButton(_ref) {
 	    id = _ref.id,
 	    _ref$className = _ref.className,
 	    className = _ref$className === undefined ? "" : _ref$className,
-	    props = _objectWithoutProperties(_ref, ["title", "tooltip", "iconName", "active", "disabled", "id", "className"]);
+	    props = _objectWithoutProperties(_ref, ["title", "tooltip", "iconName", "iconNameRight", "active", "disabled", "id", "className"]);
 
 	var onMouseDown = _react2.default.useCallback(function (e) {
 		return e.preventDefault();
@@ -963,7 +962,7 @@ var ToolbarButton = function ToolbarButton(_ref) {
 		_react2.default.createElement(
 			"button",
 			_extends({}, _extends({ onMouseDown: onMouseDown }, props, { id: id, disabled: disabled }), { className: (0, _classnames2.default)(_ToolbarButtonModule2.default.button, className, (_classNames = {}, _defineProperty(_classNames, _ToolbarButtonModule2.default.active, active), _defineProperty(_classNames, _ToolbarButtonModule2.default.hasText, title), _classNames)) }),
-			iconName ? _react2.default.createElement(_Icon.Icon, _extends({ className: _ToolbarButtonModule2.default.icon }, { iconName: iconName })) : null,
+			iconName ? _react2.default.createElement(_Icon.Icon, { className: _ToolbarButtonModule2.default.icon, iconName: iconName }) : null,
 			title ? _react2.default.createElement(
 				"span",
 				{ className: _ToolbarButtonModule2.default.title },
@@ -972,7 +971,8 @@ var ToolbarButton = function ToolbarButton(_ref) {
 					null,
 					title
 				)
-			) : null
+			) : null,
+			iconNameRight ? _react2.default.createElement(_Icon.Icon, { className: _ToolbarButtonModule2.default.icon, iconName: iconNameRight }) : null
 		),
 		id && tooltip ? _react2.default.createElement(
 			_reactstrap.UncontrolledTooltip,
@@ -1016,13 +1016,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(2);
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
 var _reactstrap = __webpack_require__(5);
 
 var _ToolbarButton = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarButton.js");
+
+var _Icon = __webpack_require__("./client/src/components/utility/Icon.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1032,8 +1030,14 @@ var ToolbarSelectItem = function ToolbarSelectItem(_ref) {
 	var onClick = _ref.onClick,
 	    onChange = _ref.onChange,
 	    title = _ref.title,
-	    props = _objectWithoutProperties(_ref, ["onClick", "onChange", "title"]);
+	    iconName = _ref.iconName,
+	    _ref$style = _ref.style,
+	    style = _ref$style === undefined ? {} : _ref$style,
+	    props = _objectWithoutProperties(_ref, ["onClick", "onChange", "title", "iconName", "style"]);
 
+	var onMouseDown = _react2.default.useCallback(function (e) {
+		return e.preventDefault();
+	}, []);
 	var _onClick = _react2.default.useCallback(function (e) {
 		e.preventDefault();
 		typeof onClick === "function" && onClick(e);
@@ -1041,8 +1045,13 @@ var ToolbarSelectItem = function ToolbarSelectItem(_ref) {
 	}, [props.value]);
 	return _react2.default.createElement(
 		_reactstrap.DropdownItem,
-		_extends({}, props, { onClick: _onClick }),
-		title
+		_extends({}, props, { onMouseDown: onMouseDown, onClick: _onClick, style: _extends({ padding: "0 10px" }, style) }),
+		iconName ? _react2.default.createElement(_Icon.Icon, { style: { width: 20, display: "inline-block", padding: "0 5px 0 0" }, iconName: iconName }) : null,
+		_react2.default.createElement(
+			"span",
+			null,
+			title
+		)
 	);
 };
 
@@ -1050,17 +1059,19 @@ var ToolbarSelect = function ToolbarSelect(_ref2) {
 	var options = _ref2.options,
 	    value = _ref2.value,
 	    onChange = _ref2.onChange,
-	    children = _ref2.children,
-	    title = _ref2.title,
-	    props = _objectWithoutProperties(_ref2, ["options", "value", "onChange", "children", "title"]);
+	    _ref2$showSelectedTit = _ref2.showSelectedTitle,
+	    showSelectedTitle = _ref2$showSelectedTit === undefined ? true : _ref2$showSelectedTit,
+	    _ref2$showSelectedIco = _ref2.showSelectedIcon,
+	    showSelectedIcon = _ref2$showSelectedIco === undefined ? true : _ref2$showSelectedIco,
+	    props = _objectWithoutProperties(_ref2, ["options", "value", "onChange", "showSelectedTitle", "showSelectedIcon"]);
 
-	var _title = options.find(function (_ref3) {
+	var selected = options.find(function (_ref3) {
 		var _value = _ref3.value;
 		return value === _value;
-	});
+	}) || {};
 	return _react2.default.createElement(
 		ToolbarDropdown,
-		_extends({}, props, { title: _title ? _title.title : "xxx" }),
+		_extends({}, props, { title: showSelectedTitle && selected && selected.title, iconName: showSelectedIcon && selected && selected.iconName }),
 		options && options.map(function (option) {
 			return _react2.default.createElement(ToolbarSelectItem, _extends({}, option, { active: option.value === value, onChange: onChange }));
 		})
@@ -1075,7 +1086,7 @@ var ToolbarMultiSelect = exports.ToolbarMultiSelect = function ToolbarMultiSelec
 var ToolbarDropdown = exports.ToolbarDropdown = function ToolbarDropdown(_ref4) {
 	var _ref4$title = _ref4.title,
 	    title = _ref4$title === undefined ? "" : _ref4$title,
-	    className = _ref4.className,
+	    iconName = _ref4.iconName,
 	    _ref4$disabled = _ref4.disabled,
 	    disabled = _ref4$disabled === undefined ? false : _ref4$disabled,
 	    children = _ref4.children;
@@ -1096,7 +1107,7 @@ var ToolbarDropdown = exports.ToolbarDropdown = function ToolbarDropdown(_ref4) 
 		_react2.default.createElement(
 			_reactstrap.DropdownToggle,
 			{ tag: "span" },
-			_react2.default.createElement(_ToolbarButton.ToolbarButton, { title: title, disabled: disabled, active: dropdownOpen })
+			_react2.default.createElement(_ToolbarButton.ToolbarButton, { title: title, iconName: iconName, iconNameRight: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown", disabled: disabled, active: dropdownOpen })
 		),
 		_react2.default.createElement(
 			_reactstrap.DropdownMenu,
@@ -1758,7 +1769,7 @@ var _Injector = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_jquery2.default.entwine("ss", function ($) {
+_jquery2.default.entwine('ss', function ($) {
 	$(".js-injector-boot .form__field-holder .zauberfisch__page-builder__field").entwine({
 		onmatch: function onmatch() {
 			var PageBuilderField = (0, _Injector.loadComponent)("PageBuilderField");

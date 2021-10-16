@@ -1,19 +1,10 @@
-// import fieldHolder from "components/FieldHolder/FieldHolder"
-// import Injector from "lib/Injector"
-// import fetch from "isomorphic-fetch"
-// import url from "url"
-// import debounce from "debounce-promise"
-// import PropTypes from "prop-types"
-
 import React from "react"
 import {Editor, Frame, Element} from "@craftjs/core"
-
 import {Toolbar} from "./editor/Toolbar"
 import {Button} from "./user/Button"
 import {Container} from "./user/Container"
 import {Text} from "./user/Text"
 import {RootContainer} from "./user/RootContainer"
-// import {RenderNode} from "./editor/RenderNode"
 import Injector from "lib/Injector"
 
 import styles from "./PageBuilderField.module.scss"
@@ -40,10 +31,7 @@ function PageBuilderField() {
 			refToolbarRows
 		}}>
 			<div className={styles.field} ref={refPageBuilderContainer}>
-				<Editor
-					resolver={{...elements, RootContainer}}
-					// onRender={RenderNode}
-				>
+				<Editor resolver={{...elements, RootContainer}}>
 					<Toolbar {...{refToolbarTop, refToolbarRows}} />
 					<Frame>
 						<Element canvas is={RootContainer}>
