@@ -1,17 +1,23 @@
 @import "variables";
 
 .indicator {
-	height: 30px;
-	margin-top: -29px;
-	font-size: 12px;
-	line-height: 12px;
+	margin-top: -36px;
 	position: fixed;
 	display: flex;
-	padding: 2px;
 	background: $brand-primary;
 	align-items: center;
 	color: white;
+	padding: 3px 5px;
 
+	h2 {
+		font-size: 12px;
+		margin: 0;
+		line-height: 30px;
+		font-weight: bold;
+	}
+	> a {
+		margin: 0 0 0 5px;
+	}
 	* {
 		color: white;
 	}

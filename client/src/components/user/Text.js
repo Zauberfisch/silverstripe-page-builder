@@ -1,5 +1,9 @@
 import {useNode} from "@craftjs/core"
 import React from "react"
+import {CreateElementButton} from "../editor/CreateElementButton"
+import {ToolbarPortalRow, ToolbarPortalTop} from "../editor/ElementUtilities"
+import {ElementContainer} from "../editor/ElementUtilities/ElementContainer"
+import {ToolbarButton} from "../editor/Toolbar/ToolbarButton"
 
 
 export const Text = ({text, fontSize, textAlign, ...props}) => {
@@ -25,8 +29,21 @@ export const Text = ({text, fontSize, textAlign, ...props}) => {
 	// }, [selected])
 
 	//onClick={() => selected && setEditable(true)}
+	// 		{/*{...props}*/}
 	return (
-		<div {...props} ref={(ref) => connect(ref)} style={{position: "relative"}}>
+		<ElementContainer>
+			<ToolbarPortalTop>
+				{/*<input type="number" value={fontSize} onChange={(e) => {*/}
+				{/*	const val = e.target.value*/}
+				{/*	setProp((_props) => {*/}
+				{/*		// eslint-disable-next-line no-param-reassign*/}
+				{/*		_props.fontSize = val*/}
+				{/*	})*/}
+				{/*}} />*/}
+			</ToolbarPortalTop>
+			<ToolbarPortalRow>
+				<ToolbarButton title={`foo b`} />
+			</ToolbarPortalRow>
 			<textarea
 				value={text}
 				disabled={!editable}
@@ -52,7 +69,7 @@ export const Text = ({text, fontSize, textAlign, ...props}) => {
 			{/*    tagName="p"*/}
 			{/*    style={{fontSize: `${fontSize}px`, textAlign}}*/}
 			{/*/>*/}
-		</div>
+		</ElementContainer>
 	)
 }
 
@@ -84,14 +101,20 @@ const TextSettings = () => {
 	return <div />
 }
 
-export const TextDefaultProps = {
+const defaultProps = {
 	text: "Hi",
 	fontSize: 20,
 }
 
+Text.getTypeDisplayName = () => ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_ELEMENT.Text")
+
+function CreateButton(props) {
+	return <CreateElementButton {...props} element={<Text />} iconName="mdiCardTextOutline" />
+}
+
 Text.craft = {
-	props: TextDefaultProps,
+	props: defaultProps,
 	related: {
-		settings: TextSettings,
+		CreateButton,
 	},
 }

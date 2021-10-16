@@ -1,5 +1,4 @@
 {
-	"main": "./client/src/boot/index.js",
 	"engines": {
 		"node": ">=10.x"
 	},
@@ -7,7 +6,6 @@
 		"build": "yarn && yarn lint && NODE_ENV=production webpack -p --bail --progress",
 		"dev": "NODE_ENV=development webpack --progress",
 		"watch": "NODE_ENV=development webpack --watch --progress",
-		"css": "WEBPACK_CHILD=css npm run build",
 		"test": "jest",
 		"coverage": "jest --coverage",
 		"lock": "npm-shrinkwrap --dev",
@@ -19,6 +17,8 @@
 	"dependencies": {
 		"@craftjs/core": "^0.2.0-alpha.28",
 		"@craftjs/utils": "^0.2.0-alpha.28",
+		"@mdi/js": "^6.2.95",
+		"@mdi/react": "^1.5.0",
 		"babel-polyfill": "6.7.4",
 		"dialog-polyfill": "^0.5.6",
 		"nanoid": "^3.1.28",

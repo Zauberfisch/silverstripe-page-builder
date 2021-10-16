@@ -1,0 +1,15 @@
+@import "variables";
+
+.elements {
+	display: flex;
+	flex-wrap: wrap;
+
+	> div {
+		padding: 4px;
+		//flex-grow: 1;
+	}
+}
+
+.popoverHidden {
+	display: none !important;
+}

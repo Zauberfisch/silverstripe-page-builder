@@ -8,71 +8,57 @@
 import React from "react"
 import {Editor, Frame, Element} from "@craftjs/core"
 
-import {SettingsPanel} from "./editor/SettingsPanel"
-import {Toolbox} from "./editor/Toolbox"
-import {Topbar} from "./editor/Topbar"
+import {Toolbar} from "./editor/Toolbar"
 import {Button} from "./user/Button"
-// import {Card, CardBottom, CardTop} from "./user/Card"
 import {Container} from "./user/Container"
 import {Text} from "./user/Text"
-import {RenderNode} from "./editor/RenderNode"
+import {RootContainer} from "./user/RootContainer"
+// import {RenderNode} from "./editor/RenderNode"
+import Injector from "lib/Injector"
 
+import styles from "./PageBuilderField.module.scss"
+import {PageBuilderContextProvider} from "./PageBuilderContext"
 
 function PageBuilderField() {
-	// const FooComponent = Injector.component.get("Foo")
+	const refPageBuilderContainer = React.createRef()
+	const refToolbarTop = React.createRef()
+	const refToolbarRows = React.createRef()
+
+	const elements = {
+		Button,
+		Text,
+		Container,
+		DraftEditor: Injector.component.get("PageBuilder/DraftEditor"),
+	}
+
+
 	return (
-		<div className="page-container">
-			<Editor
-				resolver={{
-					// Card,
-					// CardTop,
-					// CardBottom,
-					Button,
-					Text,
-					Container,
-					// FooComponent,
-				}}
-				onRender={RenderNode}
-			>
-				<Topbar />
-				<Frame>
-					{/*<Element canvas is={Container} padding={15} background="red" />*/}
-					<Element
-						canvas
-						is={Container}
-						padding={5}
-						background="#eeeeee"
-					>
-						{/*<FooComponent />*/}
-						<Text fontSize={20} text="test" data-cy="frame-text" />
-						{/*<Card data-cy="frame-card" />*/}
-						{/*<Button text="Click me" size="small" data-cy="frame-button" />*/}
-						{/*<Text fontSize={20} text="Hi world!" data-cy="frame-text" />*/}
-						{/*<Element*/}
-						{/*    canvas*/}
-						{/*    is={Container}*/}
-						{/*    padding={6}*/}
-						{/*    background="#999999"*/}
-						{/*    data-cy="frame-container"*/}
-						{/*>*/}
-						{/*    <Text*/}
-						{/*        size="small"*/}
-						{/*        text="It's me again!"*/}
-						{/*        data-cy="frame-container-text"*/}
-						{/*    />*/}
-						{/*</Element>*/}
-					</Element>
-				</Frame>
-				<div style={{display: "flex"}}>
-					<div style={{paddingTop: "10px"}}>
-						<Toolbox />
-					</div>
-					<div style={{paddingTop: "10px"}}>
-						<SettingsPanel />
-					</div>
-				</div>
-			</Editor>
-		</div>
+		<PageBuilderContextProvider {...{
+			refPageBuilderContainer,
+			elements,
+			refToolbarTop,
+			refToolbarRows
+		}}>
+			<div className={styles.field} ref={refPageBuilderContainer}>
+				<Editor
+					resolver={{...elements, RootContainer}}
+					// onRender={RenderNode}
+				>
+					<Toolbar {...{refToolbarTop, refToolbarRows}} />
+					<Frame>
+						<Element canvas is={RootContainer}>
+							{/*<Container></Container>*/}
+							{/*<Text fontSize={20} text="test" />*/}
+							{/*<Button />*/}
+							{/*<Text fontSize={20} text="test" />*/}
+							{/*<Button />*/}
+							<elements.DraftEditor />
+							{/*<Text fontSize={20} text="test 2" />*/}
+						</Element>
+					</Frame>
+				</Editor>
+			</div>
+		</PageBuilderContextProvider>
 	)
 }
 

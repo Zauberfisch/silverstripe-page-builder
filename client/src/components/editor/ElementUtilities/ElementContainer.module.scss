@@ -1,0 +1,20 @@
+@import "variables";
+
+.element {
+	position: relative;
+	//border: 1px solid transparent;
+	border: 1px solid $btn-secondary-border;
+
+	&.inline {
+		display: inline-block;
+	}
+
+	&.hover {
+		//border: 1px solid $brand-secondary;
+	}
+
+
+	&.active {
+		border: 1px solid $brand-primary;
+	}
+}

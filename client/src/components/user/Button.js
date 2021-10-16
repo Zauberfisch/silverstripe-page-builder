@@ -1,25 +1,34 @@
-import {useNode} from "@craftjs/core"
+import {useEditor, useNode} from "@craftjs/core"
 import React from "react"
+// import {CursorClickIcon} from "@heroicons/react/solid"
+import {CreateElementButton} from "../editor/CreateElementButton"
+// import {Text} from "./Text"
+// import {ToolbarButton} from "../editor/Toolbar/ToolbarButton"
+import {ToolbarPortalTop, ElementContainer} from "../editor/ElementUtilities"
 
 export const Button = ({size, variant, color, text, ...props}) => {
 	const {
 		connectors: {connect},
 	} = useNode()
 	return (
-		<button
-			ref={(ref) => connect(ref)}
-			style={{margin: "5px"}}
-			// size={size}
-			// variant={variant}
-			color={color}
-			{...props}
-		>
-			{text} (size: {size}, variant: {variant})
-		</button>
+		<ElementContainer inline={true}>
+			<ToolbarPortalTop>
+				<div>A</div>
+			</ToolbarPortalTop>
+			<button
+				style={{margin: "5px"}}
+				// size={size}
+				// variant={variant}
+				color={color}
+				{...props}
+			>
+				{text} (size: {size}, variant: {variant})
+			</button>
+		</ElementContainer>
 	)
 }
 
-export const ButtonSettings = () => {
+const ButtonSettings = () => {
 	const {
 		actions: {setProp},
 		props,
@@ -75,16 +84,22 @@ export const ButtonSettings = () => {
 	)
 }
 
-export const ButtonDefaultProps = {
+const defaultProps = {
 	size: "small",
 	variant: "contained",
 	color: "primary",
 	text: "Click me",
 }
 
+Button.getTypeDisplayName = () => ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_ELEMENT.Button")
+
+function CreateButton(props) {
+	return <CreateElementButton {...props} element={<Button />} iconName="mdiGestureTapButton" />
+}
+
 Button.craft = {
-	props: ButtonDefaultProps,
+	props: defaultProps,
 	related: {
-		settings: ButtonSettings,
+		CreateButton,
 	},
 }

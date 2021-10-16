@@ -14,6 +14,9 @@ class Field extends FormField {
 		Requirements::css('zauberfisch/silverstripe-page-builder: client/dist/styles/bundle.css');
 		Requirements::javascript('zauberfisch/silverstripe-page-builder: client/dist/js/vendor.js');
 		Requirements::javascript('zauberfisch/silverstripe-page-builder: client/dist/js/bundle.js');
+		Requirements::javascript('zauberfisch/silverstripe-page-builder-draft-editor: client/dist/js/bundle.js');
+		Requirements::css('zauberfisch/silverstripe-page-builder-draft-editor: client/dist/styles/bundle.css');
+		Requirements::add_i18n_javascript('zauberfisch/silverstripe-page-builder:client/lang', false, true);
 
 		$this->addExtraClass('zauberfisch__page-builder__field');
 		$this->addExtraClass('stacked');

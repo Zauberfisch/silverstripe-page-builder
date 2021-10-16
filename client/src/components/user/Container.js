@@ -1,14 +1,21 @@
-import {useNode} from "@craftjs/core"
+import {Element, useNode} from "@craftjs/core"
 import React from "react"
+import {CreateElementButton} from "../editor/CreateElementButton"
+import {ElementContainer} from "../editor/ElementUtilities"
+
+const ContainerInner = () => {
+}
 
 export const Container = ({background, padding, children, ...props}) => {
 	const {
 		connectors: {connect},
 	} = useNode()
+	// {...props}
+	// style={{margin: "15px 0", background, padding: `${padding}px`, position: "relative"}}
 	return (
-		<div {...props} ref={(ref) => connect(ref)} style={{margin: "15px 0", background, padding: `${padding}px`}}>
-			{children}
-		</div>
+		<ElementContainer style={{background: background}}>
+			<div style={{padding: 15}}>{children}</div>
+		</ElementContainer>
 	)
 }
 
@@ -48,14 +55,21 @@ export const ContainerSettings = () => {
 	// );
 }
 
-export const ContainerDefaultProps = {
+
+const defaultProps = {
 	background: "#ffffff",
-	padding: 15,
+	padding: 35,
+}
+
+Container.getTypeDisplayName = () => ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_ELEMENT.Container")
+
+function CreateButton(props) {
+	return <CreateElementButton {...props} title={Container.getTypeDisplayName()} element={<Element canvas is={Container} />} iconName="mdiRectangleOutline" />
 }
 
 Container.craft = {
-	props: ContainerDefaultProps,
+	props: defaultProps,
 	related: {
-		settings: ContainerSettings,
+		CreateButton,
 	},
 }

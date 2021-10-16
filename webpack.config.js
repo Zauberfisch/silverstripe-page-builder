@@ -37,7 +37,7 @@ const PATHS = {
 const devtool = (ENV !== "production") ? "source-map" : ""
 
 const externals = externalJS(ENV, PATHS)
-delete externals.reactstrap
+// delete externals.reactstrap
 const externalsVendor = JSON.parse(JSON.stringify(externals))
 externals["@craftjs/core"] = "CraftJsCore"
 externals["@craftjs/utils"] = "CraftJsUtils"

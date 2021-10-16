@@ -37,7 +37,8 @@
 	},
 	"extra": {
 		"expose": [
-			"client/dist"
+			"client/dist",
+			"client/lang"
 		]
 	},
 	"minimum-stability": "dev",
