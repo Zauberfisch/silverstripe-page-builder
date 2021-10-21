@@ -3,8 +3,7 @@ import {PageBuilderContext} from "../../PageBuilderContext"
 import {useNodeState} from "./useNodeState"
 import ReactDOM from "react-dom"
 import {useEditor} from "@craftjs/core"
-import {ToolbarButton} from "../Toolbar/ToolbarButton"
-import {ToolbarSeparator} from "../Toolbar/ToolbarSeparator"
+import {ToolbarButton, ToolbarSeparator} from "../Toolbar"
 
 export function ToolbarPortalTop({children, childrenRight}) {
 	const {actions} = useEditor()

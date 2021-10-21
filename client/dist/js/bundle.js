@@ -88,20 +88,13 @@ var _Toolbar = __webpack_require__("./client/src/components/editor/Toolbar/index
 
 var _ElementUtilities = __webpack_require__("./client/src/components/editor/ElementUtilities/index.js");
 
+var _Icon = __webpack_require__("./client/src/components/utility/Icon.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.document.addEventListener("DOMContentLoaded", function () {
 	_Injector2.default.component.registerMany({
-		PageBuilderField: _PageBuilderField2.default,
-		"PageBuilder/CreateElementButton": _CreateElementButton.CreateElementButton,
-		"PageBuilder/ToolbarButton": _Toolbar.ToolbarButton,
-		"PageBuilder/ToolbarSelect": _Toolbar.ToolbarSelect,
-		"PageBuilder/ToolbarDropdown": _Toolbar.ToolbarDropdown,
-		"PageBuilder/ToolbarMultiSelect": _Toolbar.ToolbarMultiSelect,
-		"PageBuilder/ElementContainer": _ElementUtilities.ElementContainer,
-		"PageBuilder/ToolbarPortalTop": _ElementUtilities.ToolbarPortalTop,
-		"PageBuilder/ToolbarPortalRow": _ElementUtilities.ToolbarPortalRow,
-		"PageBuilder/ToolbarSeparator": _Toolbar.ToolbarSeparator
+		PageBuilderField: _PageBuilderField2.default
 	});
 });
 
@@ -118,6 +111,8 @@ __webpack_require__("./client/src/legacy/entwine.js");
 __webpack_require__("./client/src/boot/index.js");
 
 __webpack_require__("./client/src/styles/global.scss");
+
+__webpack_require__("./node_modules/expose-loader/index.js?Zauberfisch_PageBuilder_Components!./client/src/components/components.js-exposed");
 
 /***/ }),
 
@@ -203,18 +198,50 @@ var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuild
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function PageBuilderField() {
+function EditorInner(_ref) {
+	var value = _ref.value,
+	    elements = _ref.elements,
+	    refToolbarTop = _ref.refToolbarTop,
+	    refToolbarRows = _ref.refToolbarRows,
+	    setPageBuilderEditorQuery = _ref.setPageBuilderEditorQuery;
+
+	var _useEditor = (0, _core.useEditor)(),
+	    query = _useEditor.query;
+
+	_react2.default.useEffect(function () {
+		setPageBuilderEditorQuery(query);
+	}, []);
+	return _react2.default.createElement(
+		_react2.default.Fragment,
+		null,
+		_react2.default.createElement(_Toolbar.Toolbar, { refToolbarTop: refToolbarTop, refToolbarRows: refToolbarRows }),
+		_react2.default.createElement(
+			_core.Frame,
+			{ json: value },
+			_react2.default.createElement(
+				_core.Element,
+				{ canvas: true, is: _RootContainer.RootContainer },
+				_react2.default.createElement(_Text.Text, { fontSize: 20, text: "Initial Text" })
+			)
+		)
+	);
+}
+
+function PageBuilderField(_ref2) {
+	var value = _ref2.value,
+	    setPageBuilderEditorQuery = _ref2.setPageBuilderEditorQuery;
+
 	var refPageBuilderContainer = _react2.default.createRef();
 	var refToolbarTop = _react2.default.createRef();
 	var refToolbarRows = _react2.default.createRef();
-
-	var elements = {
-		Button: _Button.Button,
-		Text: _Text.Text,
-		Container: _Container.Container,
-		DraftEditor: _Injector2.default.component.get("PageBuilder/DraftEditor")
-	};
-
+	var elements = _react2.default.useMemo(function () {
+		return {
+			Button: _Button.Button,
+			Text: _Text.Text,
+			Container: _Container.Container,
+			DraftEditor: _Injector2.default.component.get("PageBuilder/DraftEditor")
+		};
+	}, []);
 	return _react2.default.createElement(
 		_PageBuilderContext.PageBuilderContextProvider,
 		{
@@ -229,16 +256,7 @@ function PageBuilderField() {
 			_react2.default.createElement(
 				_core.Editor,
 				{ resolver: _extends({}, elements, { RootContainer: _RootContainer.RootContainer }) },
-				_react2.default.createElement(_Toolbar.Toolbar, { refToolbarTop: refToolbarTop, refToolbarRows: refToolbarRows }),
-				_react2.default.createElement(
-					_core.Frame,
-					null,
-					_react2.default.createElement(
-						_core.Element,
-						{ canvas: true, is: _RootContainer.RootContainer },
-						_react2.default.createElement(elements.DraftEditor, null)
-					)
-				)
+				_react2.default.createElement(EditorInner, { value: value, elements: elements, refToolbarTop: refToolbarTop, refToolbarRows: refToolbarRows, setPageBuilderEditorQuery: setPageBuilderEditorQuery })
 			)
 		)
 	);
@@ -342,7 +360,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _MoveHandle = __webpack_require__("./client/src/components/editor/ElementUtilities/MoveHandle.js");
 
-var _classnames = __webpack_require__(2);
+var _classnames = __webpack_require__(5);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -535,9 +553,7 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _core = __webpack_require__(1);
 
-var _ToolbarButton = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarButton.js");
-
-var _ToolbarSeparator = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarSeparator.js");
+var _Toolbar = __webpack_require__("./client/src/components/editor/Toolbar/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -564,7 +580,7 @@ function ToolbarPortalTop(_ref) {
 			children && _react2.default.createElement(
 				_react2.default.Fragment,
 				null,
-				_react2.default.createElement(_ToolbarSeparator.ToolbarSeparator, null),
+				_react2.default.createElement(_Toolbar.ToolbarSeparator, null),
 				children
 			),
 			_react2.default.createElement("div", { style: { flexGrow: 999 } }),
@@ -577,7 +593,7 @@ function ToolbarPortalTop(_ref) {
 					displayName
 				)
 			),
-			isDeletable && _react2.default.createElement(_ToolbarButton.ToolbarButton, { iconName: "mdiDeleteForever", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElement"), onClick: function onClick() {
+			isDeletable && _react2.default.createElement(_Toolbar.ToolbarButton, { iconName: "mdiDeleteForever", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElement"), onClick: function onClick() {
 					return actions.delete(id);
 				} })
 		), refToolbarTop.current);
@@ -724,13 +740,13 @@ var _AddNewButtonModule = __webpack_require__("./client/src/components/editor/To
 
 var _AddNewButtonModule2 = _interopRequireDefault(_AddNewButtonModule);
 
-var _classnames2 = __webpack_require__(2);
+var _classnames2 = __webpack_require__(5);
 
 var _classnames3 = _interopRequireDefault(_classnames2);
 
 var _ToolbarButton = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarButton.js");
 
-var _reactstrap = __webpack_require__(5);
+var _reactstrap = __webpack_require__(2);
 
 var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilderContext.js");
 
@@ -862,7 +878,8 @@ var Toolbar = exports.Toolbar = function Toolbar(_ref) {
 	}),
 	    actions = _useEditor.actions,
 	    canUndo = _useEditor.canUndo,
-	    canRedo = _useEditor.canRedo;
+	    canRedo = _useEditor.canRedo,
+	    query = _useEditor.query;
 
 	return _react2.default.createElement(
 		"div",
@@ -917,11 +934,11 @@ var _ToolbarButtonModule = __webpack_require__("./client/src/components/editor/T
 
 var _ToolbarButtonModule2 = _interopRequireDefault(_ToolbarButtonModule);
 
-var _classnames = __webpack_require__(2);
+var _classnames = __webpack_require__(5);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _reactstrap = __webpack_require__(5);
+var _reactstrap = __webpack_require__(2);
 
 var _Icon = __webpack_require__("./client/src/components/utility/Icon.js");
 
@@ -1002,25 +1019,78 @@ module.exports = {"button":"_12VEae-SCu60ektdb6nNx7","hasText":"ExzBh-vGB5Vu6g76
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.ToolbarDropdown = exports.ToolbarMultiSelect = exports.ToolbarSelect = undefined;
+exports.ToolbarDropdown = undefined;
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _ToolbarDropdownModule = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarDropdown.module.scss");
-
-var _ToolbarDropdownModule2 = _interopRequireDefault(_ToolbarDropdownModule);
 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactstrap = __webpack_require__(5);
+var _reactstrap = __webpack_require__(2);
 
 var _ToolbarButton = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarButton.js");
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ToolbarDropdown = exports.ToolbarDropdown = function ToolbarDropdown(_ref) {
+	var _ref$title = _ref.title,
+	    title = _ref$title === undefined ? "" : _ref$title,
+	    iconName = _ref.iconName,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    children = _ref.children;
+
+	var _React$useState = _react2.default.useState(false),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    dropdownOpen = _React$useState2[0],
+	    setDropdownOpen = _React$useState2[1];
+
+	var toggle = function toggle() {
+		return setDropdownOpen(function (prevState) {
+			return !prevState;
+		});
+	};
+	return _react2.default.createElement(
+		_reactstrap.Dropdown,
+		{ isOpen: dropdownOpen, toggle: toggle },
+		_react2.default.createElement(
+			_reactstrap.DropdownToggle,
+			{ tag: "span" },
+			_react2.default.createElement(_ToolbarButton.ToolbarButton, { title: title, iconName: iconName, iconNameRight: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown", disabled: disabled, active: dropdownOpen })
+		),
+		_react2.default.createElement(
+			_reactstrap.DropdownMenu,
+			null,
+			children
+		)
+	);
+};
+
+/***/ }),
+
+/***/ "./client/src/components/editor/Toolbar/ToolbarSelect.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.ToolbarSelect = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
 var _Icon = __webpack_require__("./client/src/components/utility/Icon.js");
+
+var _ToolbarDropdown = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarDropdown.js");
+
+var _reactstrap = __webpack_require__(2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1070,59 +1140,14 @@ var ToolbarSelect = function ToolbarSelect(_ref2) {
 		return value === _value;
 	}) || {};
 	return _react2.default.createElement(
-		ToolbarDropdown,
+		_ToolbarDropdown.ToolbarDropdown,
 		_extends({}, props, { title: showSelectedTitle && selected && selected.title, iconName: showSelectedIcon && selected && selected.iconName }),
 		options && options.map(function (option) {
 			return _react2.default.createElement(ToolbarSelectItem, _extends({}, option, { active: option.value === value, onChange: onChange }));
 		})
 	);
 };
-
 exports.ToolbarSelect = ToolbarSelect;
-var ToolbarMultiSelect = exports.ToolbarMultiSelect = function ToolbarMultiSelect() {
-	return _react2.default.createElement(ToolbarDropdown, null);
-};
-
-var ToolbarDropdown = exports.ToolbarDropdown = function ToolbarDropdown(_ref4) {
-	var _ref4$title = _ref4.title,
-	    title = _ref4$title === undefined ? "" : _ref4$title,
-	    iconName = _ref4.iconName,
-	    _ref4$disabled = _ref4.disabled,
-	    disabled = _ref4$disabled === undefined ? false : _ref4$disabled,
-	    children = _ref4.children;
-
-	var _React$useState = _react2.default.useState(false),
-	    _React$useState2 = _slicedToArray(_React$useState, 2),
-	    dropdownOpen = _React$useState2[0],
-	    setDropdownOpen = _React$useState2[1];
-
-	var toggle = function toggle() {
-		return setDropdownOpen(function (prevState) {
-			return !prevState;
-		});
-	};
-	return _react2.default.createElement(
-		_reactstrap.Dropdown,
-		{ isOpen: dropdownOpen, toggle: toggle },
-		_react2.default.createElement(
-			_reactstrap.DropdownToggle,
-			{ tag: "span" },
-			_react2.default.createElement(_ToolbarButton.ToolbarButton, { title: title, iconName: iconName, iconNameRight: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown", disabled: disabled, active: dropdownOpen })
-		),
-		_react2.default.createElement(
-			_reactstrap.DropdownMenu,
-			null,
-			children
-		)
-	);
-};
-
-/***/ }),
-
-/***/ "./client/src/components/editor/Toolbar/ToolbarDropdown.module.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -1769,18 +1794,38 @@ var _Injector = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_jquery2.default.entwine('ss', function ($) {
+_jquery2.default.entwine("ss", function ($) {
 	$(".js-injector-boot .form__field-holder .zauberfisch__page-builder__field").entwine({
+		PageBuilderEditorQuery: null,
+		InputElement: null,
+		EditorElement: null,
 		onmatch: function onmatch() {
 			var PageBuilderField = (0, _Injector.loadComponent)("PageBuilderField");
 
+			this.setInputElement(this.find("> input").get(0));
+			this.setEditorElement(this.find("> div").get(0));
+			var _this = this;
+			var props = {
+				value: this.getInputElement().value,
+				setPageBuilderEditorQuery: function setPageBuilderEditorQuery(query) {
+					_this.setPageBuilderEditorQuery(query);
+				}
+			};
 
-			var props = {};
-
-			_reactDom2.default.render(_react2.default.createElement(PageBuilderField, props), this[0]);
+			_reactDom2.default.render(_react2.default.createElement(PageBuilderField, props), this.getEditorElement());
 		},
 		onunmatch: function onunmatch() {
-			_reactDom2.default.unmountComponentAtNode(this[0]);
+			if (this.getEditorElement()) {
+				_reactDom2.default.unmountComponentAtNode(this.getEditorElement());
+			}
+		},
+
+
+		"from .cms-edit-form": {
+			onbeforesubmitform: function onbeforesubmitform() {
+				this.getInputElement().value = this.getPageBuilderEditorQuery().serialize();
+				this._super();
+			}
 		}
 	});
 });
@@ -14402,6 +14447,134 @@ module.exports=function(e){var t={};function r(n){if(t[n])return t[n].exports;va
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"presets\":[[\"env\",{\"modules\":false}],\"react\"],\"plugins\":[\"transform-object-rest-spread\"],\"comments\":false,\"cacheDirectory\":true}!./client/src/components/components.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _CreateElementButton = __webpack_require__("./client/src/components/editor/CreateElementButton.js");
+
+Object.keys(_CreateElementButton).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _CreateElementButton[key];
+    }
+  });
+});
+
+var _ToolbarButton = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarButton.js");
+
+Object.keys(_ToolbarButton).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarButton[key];
+    }
+  });
+});
+
+var _ToolbarSelect = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarSelect.js");
+
+Object.keys(_ToolbarSelect).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarSelect[key];
+    }
+  });
+});
+
+var _ToolbarDropdown = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarDropdown.js");
+
+Object.keys(_ToolbarDropdown).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarDropdown[key];
+    }
+  });
+});
+
+var _ToolbarSeparator = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarSeparator.js");
+
+Object.keys(_ToolbarSeparator).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarSeparator[key];
+    }
+  });
+});
+
+var _ElementContainer = __webpack_require__("./client/src/components/editor/ElementUtilities/ElementContainer.js");
+
+Object.keys(_ElementContainer).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ElementContainer[key];
+    }
+  });
+});
+
+var _ToolbarPortalTop = __webpack_require__("./client/src/components/editor/ElementUtilities/ToolbarPortalTop.js");
+
+Object.keys(_ToolbarPortalTop).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarPortalTop[key];
+    }
+  });
+});
+
+var _ToolbarPortalRow = __webpack_require__("./client/src/components/editor/ElementUtilities/ToolbarPortalRow.js");
+
+Object.keys(_ToolbarPortalRow).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarPortalRow[key];
+    }
+  });
+});
+
+var _Icon = __webpack_require__("./client/src/components/utility/Icon.js");
+
+Object.keys(_Icon).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _Icon[key];
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./node_modules/expose-loader/index.js?Zauberfisch_PageBuilder_Components!./client/src/components/components.js-exposed":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Zauberfisch_PageBuilder_Components"] = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"presets\":[[\"env\",{\"modules\":false}],\"react\"],\"plugins\":[\"transform-object-rest-spread\"],\"comments\":false,\"cacheDirectory\":true}!./client/src/components/components.js");
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
 /***/ "./node_modules/nanoid/index.browser.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14499,6 +14672,34 @@ exports.urlAlphabet = urlAlphabet;
 
 /***/ }),
 
+/***/ "./node_modules/webpack/buildin/global.js":
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
 /***/ 0:
 /***/ (function(module, exports) {
 
@@ -14516,7 +14717,7 @@ module.exports = CraftJsCore;
 /***/ 2:
 /***/ (function(module, exports) {
 
-module.exports = classnames;
+module.exports = Reactstrap;
 
 /***/ }),
 
@@ -14537,7 +14738,7 @@ module.exports = ReactDom;
 /***/ 5:
 /***/ (function(module, exports) {
 
-module.exports = Reactstrap;
+module.exports = classnames;
 
 /***/ }),
 

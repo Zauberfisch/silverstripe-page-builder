@@ -11,6 +11,5 @@ if (typeof (ss) === "undefined" || typeof (ss.i18n) === "undefined") {
 		"ZAUBERFISCH_PAGEBUILDER_ELEMENT.Button": "Button",
 		"ZAUBERFISCH_PAGEBUILDER_ELEMENT.Container": "Container",
 		"ZAUBERFISCH_PAGEBUILDER_ELEMENT.Text": "Text",
-		"ZAUBERFISCH_PAGEBUILDER_ELEMENT.DraftEditor": "Draft Editor",
 	})
 }

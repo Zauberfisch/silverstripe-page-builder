@@ -135,6 +135,7 @@ _module.rules.push({
 	}),
 })
 const resolve = resolveJS(ENV, PATHS)
+console.log({resolve})
 const plugins = pluginJS(ENV, PATHS)
 plugins.push(
 	new ExtractTextPlugin({

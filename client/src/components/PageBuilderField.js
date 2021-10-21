@@ -1,49 +1,59 @@
 import React from "react"
-import {Editor, Frame, Element} from "@craftjs/core"
+import {Editor, Frame, Element, useEditor} from "@craftjs/core"
 import {Toolbar} from "./editor/Toolbar"
 import {Button} from "./user/Button"
 import {Container} from "./user/Container"
 import {Text} from "./user/Text"
 import {RootContainer} from "./user/RootContainer"
 import Injector from "lib/Injector"
-
 import styles from "./PageBuilderField.module.scss"
 import {PageBuilderContextProvider} from "./PageBuilderContext"
 
-function PageBuilderField() {
+function EditorInner({value, elements, refToolbarTop, refToolbarRows, setPageBuilderEditorQuery}) {
+	const {query} = useEditor()
+	React.useEffect(() => {
+		setPageBuilderEditorQuery(query)
+	}, [])
+	return (
+		<React.Fragment>
+			<Toolbar {...{refToolbarTop, refToolbarRows}} />
+			<Frame json={value}>
+				<Element canvas is={RootContainer}>
+					{/*	/!*<Container></Container>*!/*/}
+					<Text fontSize={20} text="Initial Text" />
+					{/*	/!*<Button />*!/*/}
+					{/*	/!*<Text fontSize={20} text="test" />*!/*/}
+					{/*	/!*<Button />*!/*/}
+					{/*	/!*<elements.DraftEditor />*!/*/}
+					{/*	/!*<Text fontSize={20} text="test 2" />*!/*/}
+				</Element>
+			</Frame>
+		</React.Fragment>
+	)
+}
+
+function PageBuilderField({value, setPageBuilderEditorQuery}) {
 	const refPageBuilderContainer = React.createRef()
 	const refToolbarTop = React.createRef()
 	const refToolbarRows = React.createRef()
-
-	const elements = {
-		Button,
-		Text,
-		Container,
-		DraftEditor: Injector.component.get("PageBuilder/DraftEditor"),
-	}
-
-
+	const elements = React.useMemo(() => {
+		return {
+			Button,
+			Text,
+			Container,
+			DraftEditor: Injector.component.get("PageBuilder/DraftEditor"),
+		}
+	}, [])
 	return (
 		<PageBuilderContextProvider {...{
 			refPageBuilderContainer,
 			elements,
 			refToolbarTop,
-			refToolbarRows
+			refToolbarRows,
 		}}>
 			<div className={styles.field} ref={refPageBuilderContainer}>
 				<Editor resolver={{...elements, RootContainer}}>
-					<Toolbar {...{refToolbarTop, refToolbarRows}} />
-					<Frame>
-						<Element canvas is={RootContainer}>
-							{/*<Container></Container>*/}
-							{/*<Text fontSize={20} text="test" />*/}
-							{/*<Button />*/}
-							{/*<Text fontSize={20} text="test" />*/}
-							{/*<Button />*/}
-							<elements.DraftEditor />
-							{/*<Text fontSize={20} text="test 2" />*/}
-						</Element>
-					</Frame>
+					<EditorInner {...{value, elements, refToolbarTop, refToolbarRows, setPageBuilderEditorQuery}} />
 				</Editor>
 			</div>
 		</PageBuilderContextProvider>

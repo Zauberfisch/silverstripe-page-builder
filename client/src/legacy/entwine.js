@@ -3,26 +3,44 @@ import React from "react"
 import ReactDOM from "react-dom"
 import {loadComponent} from "lib/Injector"
 
-jQuery.entwine('ss', function($) {
+jQuery.entwine("ss", function ($) {
 	$(".js-injector-boot .form__field-holder .zauberfisch__page-builder__field").entwine({
+		PageBuilderEditorQuery: null,
+		InputElement: null,
+		EditorElement: null,
 		onmatch() {
 			const PageBuilderField = loadComponent("PageBuilderField")
 			// const schemaData = this.data("schema")
-
+			this.setInputElement(this.find("> input").get(0))
+			this.setEditorElement(this.find("> div").get(0))
+			const _this = this
 			const props = {
 				// source: schemaData.source,
 				// value: schemaData.value,
 				// name: schemaData.name,
+				value: this.getInputElement().value,
+				setPageBuilderEditorQuery: (query) => {
+					_this.setPageBuilderEditorQuery(query)
+				},
 			}
 
 			ReactDOM.render(
 				<PageBuilderField {...props} />,
-				this[0],
+				this.getEditorElement(),
 			)
 		},
 
 		onunmatch() {
-			ReactDOM.unmountComponentAtNode(this[0])
+			if (this.getEditorElement()) {
+				ReactDOM.unmountComponentAtNode(this.getEditorElement())
+			}
+		},
+
+		"from .cms-edit-form": {
+			onbeforesubmitform: function () {
+				this.getInputElement().value = this.getPageBuilderEditorQuery().serialize()
+				this._super()
+			},
 		},
 	})
 })

@@ -6,7 +6,7 @@ import {AddNewButton} from "./AddNewButton"
 import {ToolbarSeparator} from "./ToolbarSeparator"
 
 export const Toolbar = ({refToolbarTop, refToolbarRows}) => {
-	const {actions, canUndo, canRedo} = useEditor(
+	const {actions, canUndo, canRedo, query} = useEditor(
 		(state, _query) => {
 			return {
 				// enabled: state.options.enabled,

@@ -4,18 +4,20 @@ import PageBuilderField from "../components/PageBuilderField"
 import {CreateElementButton} from "../components/editor/CreateElementButton"
 import {ToolbarButton, ToolbarSelect, ToolbarDropdown, ToolbarMultiSelect, ToolbarSeparator} from "../components/editor/Toolbar"
 import {ElementContainer, ToolbarPortalTop, ToolbarPortalRow} from "../components/editor/ElementUtilities"
+import {Icon} from "../components/utility/Icon"
 
 window.document.addEventListener("DOMContentLoaded", () => {
 	Injector.component.registerMany({
 		PageBuilderField,
-		"PageBuilder/CreateElementButton": CreateElementButton,
-		"PageBuilder/ToolbarButton": ToolbarButton,
-		"PageBuilder/ToolbarSelect": ToolbarSelect,
-		"PageBuilder/ToolbarDropdown": ToolbarDropdown,
-		"PageBuilder/ToolbarMultiSelect": ToolbarMultiSelect,
-		"PageBuilder/ElementContainer": ElementContainer,
-		"PageBuilder/ToolbarPortalTop": ToolbarPortalTop,
-		"PageBuilder/ToolbarPortalRow": ToolbarPortalRow,
-		"PageBuilder/ToolbarSeparator": ToolbarSeparator,
+		// "PageBuilder/CreateElementButton": CreateElementButton,
+		// "PageBuilder/ToolbarButton": ToolbarButton,
+		// "PageBuilder/ToolbarSelect": ToolbarSelect,
+		// "PageBuilder/ToolbarDropdown": ToolbarDropdown,
+		// "PageBuilder/ToolbarMultiSelect": ToolbarMultiSelect,
+		// "PageBuilder/ElementContainer": ElementContainer,
+		// "PageBuilder/ToolbarPortalTop": ToolbarPortalTop,
+		// "PageBuilder/ToolbarPortalRow": ToolbarPortalRow,
+		// "PageBuilder/ToolbarSeparator": ToolbarSeparator,
+		// "PageBuilder/Icon": Icon,
 	})
 })
