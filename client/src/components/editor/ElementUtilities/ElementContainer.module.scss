@@ -2,21 +2,61 @@
 
 .element {
 	position: relative;
-	//border: 1px solid transparent;
-	border: 1px solid $btn-secondary-border;
+	border: 1px solid transparent;
+	//border: 1px solid $btn-secondary-border;
+	//margin: 5px 0 0;
 
 	&.inline {
 		display: inline-block;
 	}
 
 	&.hover {
-		//border: 1px solid $brand-secondary;
+		border: 1px dashed $brand-primary;
 	}
 
 
 	&.active {
 		border: 1px solid $brand-primary;
-		outline: 2px solid $brand-primary;
+		//box-shadow: inset 0 0 1px 1px white;
+		//outline: 1px solid white;
+		//outline: 2px solid $brand-primary;
 		z-index: 50;
+	}
+
+	.borderTopLeft,
+	.borderTopRight,
+	.borderBottomRight,
+	.borderBottomLeft {
+		&:after, &:before {
+			position: absolute;
+			background: $brand-primary;
+			content: '';
+		}
+
+		&:after {
+			width: 10px;
+			height: 3px;
+		}
+
+		&:before {
+			height: 10px;
+			width: 3px;
+		}
+	}
+
+	.borderTopLeft {
+		&:after, &:before {top: 0; left: 0;}
+	}
+
+	.borderTopRight {
+		&:after, &:before {top: 0; right: 0;}
+	}
+
+	.borderBottomRight {
+		&:after, &:before {bottom: 0; right: 0;}
+	}
+
+	.borderBottomLeft {
+		&:after, &:before {bottom: 0; left: 0;}
 	}
 }

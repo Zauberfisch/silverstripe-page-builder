@@ -11,7 +11,7 @@ if (typeof (ss) === "undefined" || typeof (ss.i18n) === "undefined") {
 		"ZAUBERFISCH_PAGEBUILDER.DeleteElementConfirm": "Are you sure you want to delete the selected element?",
 		"ZAUBERFISCH_PAGEBUILDER.Undo": "Undo",
 		"ZAUBERFISCH_PAGEBUILDER.Redo": "Redo",
-		"ZAUBERFISCH_PAGEBUILDER.Add": "Add",
+		"ZAUBERFISCH_PAGEBUILDER.Add": "Add new element",
 		"ZAUBERFISCH_PAGEBUILDER.AddDropdownTitle": "Add with drag&drop",
 		"ZAUBERFISCH_PAGEBUILDER_ELEMENT.Button": "Button",
 		"ZAUBERFISCH_PAGEBUILDER_ELEMENT.Container": "Container",

@@ -182,8 +182,6 @@ var _Button = __webpack_require__("./client/src/components/user/Button.js");
 
 var _Container = __webpack_require__("./client/src/components/user/Container.js");
 
-var _Text = __webpack_require__("./client/src/components/user/Text.js");
-
 var _RootContainer = __webpack_require__("./client/src/components/user/RootContainer.js");
 
 var _Injector = __webpack_require__(3);
@@ -217,11 +215,11 @@ function EditorInner(_ref) {
 		_react2.default.createElement(_Toolbar.Toolbar, { refToolbarTop: refToolbarTop, refToolbarRows: refToolbarRows }),
 		_react2.default.createElement(
 			_core.Frame,
-			{ json: value },
+			{ data: value },
 			_react2.default.createElement(
 				_core.Element,
 				{ canvas: true, is: _RootContainer.RootContainer },
-				_react2.default.createElement(_Text.Text, { fontSize: 20, text: "Initial Text" })
+				_react2.default.createElement(elements.DraftEditor, null)
 			)
 		)
 	);
@@ -237,7 +235,6 @@ function PageBuilderField(_ref2) {
 	var elements = _react2.default.useMemo(function () {
 		return {
 			Button: _Button.Button,
-			Text: _Text.Text,
 			Container: _Container.Container,
 			DraftEditor: _Injector2.default.component.get("PageBuilder/DraftEditor")
 		};
@@ -294,7 +291,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _core = __webpack_require__(1);
 
-var _Icon = __webpack_require__("./client/src/components/utility/Icon.js");
+var _utility = __webpack_require__("./client/src/components/utility/index.js");
 
 var _CreateElementButtonModule = __webpack_require__("./client/src/components/editor/CreateElementButton.module.scss");
 
@@ -321,7 +318,7 @@ var CreateElementButton = exports.CreateElementButton = function CreateElementBu
 		{ className: _CreateElementButtonModule2.default.button, ref: function ref(_ref2) {
 				return connectors.create(_ref2, element, { onCreate: onCreate });
 			}, onDragStart: onDragStart },
-		_react2.default.createElement(_Icon.Icon, _extends({ className: _CreateElementButtonModule2.default.icon }, { iconName: iconName })),
+		_react2.default.createElement(_utility.Icon, _extends({ className: _CreateElementButtonModule2.default.icon }, { iconName: iconName })),
 		_react2.default.createElement(
 			"span",
 			{ className: _CreateElementButtonModule2.default.title },
@@ -404,6 +401,14 @@ function ElementContainer(_ref) {
 	return _react2.default.createElement(
 		"div",
 		_extends({}, props, { className: (0, _classnames2.default)(className, _ElementContainerModule2.default.element, (_classNames = {}, _defineProperty(_classNames, _ElementContainerModule2.default.active, isActive), _defineProperty(_classNames, _ElementContainerModule2.default.hover, isHover), _defineProperty(_classNames, _ElementContainerModule2.default.inline, inline), _classNames)) }),
+		isActive && _react2.default.createElement(
+			_react2.default.Fragment,
+			null,
+			_react2.default.createElement("div", { className: _ElementContainerModule2.default.borderTopLeft }),
+			_react2.default.createElement("div", { className: _ElementContainerModule2.default.borderTopRight }),
+			_react2.default.createElement("div", { className: _ElementContainerModule2.default.borderBottomRight }),
+			_react2.default.createElement("div", { className: _ElementContainerModule2.default.borderBottomLeft })
+		),
 		_react2.default.createElement(_MoveHandle.MoveHandle, null),
 		children
 	);
@@ -415,7 +420,7 @@ function ElementContainer(_ref) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"element":"_2gwqIsbTPSuQTPdRH7qoqI","inline":"_3Sp1KNvRAYxazs-k9gn1Pp","active":"_3YUgO7mWYTTcSG8Y1LPGMl"};
+module.exports = {"element":"_2gwqIsbTPSuQTPdRH7qoqI","inline":"_3Sp1KNvRAYxazs-k9gn1Pp","hover":"_3bNJPl3TRy0usZbQD8v5_o","active":"_3YUgO7mWYTTcSG8Y1LPGMl","borderTopLeft":"_3XWY_WfNT0WYb5idz1HOq","borderTopRight":"_1QBW3V8gSrTkEGTDbhNrTV","borderBottomRight":"_2mberNxccip4JXOljigAjl","borderBottomLeft":"_39fl7gtTVIqhv4w01DQs_o"};
 
 /***/ }),
 
@@ -434,8 +439,6 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilderContext.js");
-
 var _core = __webpack_require__(1);
 
 var _useNodeState2 = __webpack_require__("./client/src/components/editor/ElementUtilities/useNodeState.js");
@@ -444,13 +447,11 @@ var _MoveHandleModule = __webpack_require__("./client/src/components/editor/Elem
 
 var _MoveHandleModule2 = _interopRequireDefault(_MoveHandleModule);
 
-var _Icon = __webpack_require__("./client/src/components/utility/Icon.js");
+var _utility = __webpack_require__("./client/src/components/utility/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function MoveHandle(_ref) {
-	var children = _ref.children;
-
+function MoveHandle() {
 	var _useNode = (0, _core.useNode)(),
 	    drag = _useNode.connectors.drag;
 
@@ -462,7 +463,7 @@ function MoveHandle(_ref) {
 		return _react2.default.createElement(
 			"button",
 			{ ref: drag, className: _MoveHandleModule2.default.handle },
-			_react2.default.createElement(_Icon.Icon, { iconName: "mdiCursorMove" })
+			_react2.default.createElement(_utility.Icon, { iconName: "mdiCursorMove" })
 		);
 	}
 	return null;
@@ -793,7 +794,7 @@ var _reactstrap = __webpack_require__(2);
 
 var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilderContext.js");
 
-var _useUniqueId = __webpack_require__("./client/src/components/utility/useUniqueId.js");
+var _utility = __webpack_require__("./client/src/components/utility/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -804,7 +805,7 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
 var AddNewButton = exports.AddNewButton = function AddNewButton(_ref) {
 	_objectDestructuringEmpty(_ref);
 
-	var id = (0, _useUniqueId.useUniqueId)();
+	var id = (0, _utility.useUniqueId)();
 
 	var _React$useState = _react2.default.useState(false),
 	    _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -831,7 +832,7 @@ var AddNewButton = exports.AddNewButton = function AddNewButton(_ref) {
 	return _react2.default.createElement(
 		"div",
 		null,
-		_react2.default.createElement(_ToolbarButton.ToolbarButton, _extends({ iconName: "mdiPlusBox" }, { id: id })),
+		_react2.default.createElement(_ToolbarButton.ToolbarButton, _extends({ iconName: "mdiPlusBox" }, { id: id }, { tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Add") })),
 		id ? _react2.default.createElement(
 			_reactstrap.Popover,
 			_extends({ placement: "bottom", target: id }, { toggle: toggle, isOpen: isOpen }, { popperClassName: (0, _classnames3.default)(_defineProperty({}, _AddNewButtonModule2.default.popoverHidden, isHidden)) }),
@@ -891,6 +892,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Toolbar = undefined;
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _core = __webpack_require__(1);
 
 var _react = __webpack_require__(0);
@@ -906,6 +909,8 @@ var _ToolbarButton = __webpack_require__("./client/src/components/editor/Toolbar
 var _AddNewButton = __webpack_require__("./client/src/components/editor/Toolbar/AddNewButton.js");
 
 var _ToolbarSeparator = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarSeparator.js");
+
+var _utility = __webpack_require__("./client/src/components/utility/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -924,6 +929,27 @@ var Toolbar = exports.Toolbar = function Toolbar(_ref) {
 	    canRedo = _useEditor.canRedo,
 	    query = _useEditor.query;
 
+	var _React$useState = _react2.default.useState(false),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    isBusy = _React$useState2[0],
+	    setIsBusy = _React$useState2[1];
+
+	var undo = _react2.default.useCallback(function () {
+		setIsBusy(true);
+		actions.history.undo();
+		setTimeout(function () {
+			_utility.EventBus.emit("RELOAD_STATE");
+			setIsBusy(false);
+		}, 50);
+	}, []);
+	var redo = _react2.default.useCallback(function () {
+		setIsBusy(true);
+		actions.history.redo();
+		setTimeout(function () {
+			_utility.EventBus.emit("RELOAD_STATE");
+			setIsBusy(false);
+		}, 50);
+	}, []);
 	return _react2.default.createElement(
 		"div",
 		{ className: _ToolbarModule2.default.toolbar },
@@ -933,12 +959,8 @@ var Toolbar = exports.Toolbar = function Toolbar(_ref) {
 			_react2.default.createElement(
 				"div",
 				{ className: _ToolbarModule2.default.toolbarRow, ref: refToolbarTop },
-				_react2.default.createElement(_ToolbarButton.ToolbarButton, { iconName: "mdiUndoVariant", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Undo"), disabled: !canUndo, onClick: function onClick() {
-						return actions.history.undo();
-					} }),
-				_react2.default.createElement(_ToolbarButton.ToolbarButton, { iconName: "mdiRedoVariant", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Redo"), disabled: !canRedo, onClick: function onClick() {
-						return actions.history.redo();
-					} }),
+				_react2.default.createElement(_ToolbarButton.ToolbarButton, { iconName: "mdiUndoVariant", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Undo"), disabled: !canUndo && !isBusy, onClick: undo }),
+				_react2.default.createElement(_ToolbarButton.ToolbarButton, { iconName: "mdiRedoVariant", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Redo"), disabled: !canRedo && !isBusy, onClick: redo }),
 				_react2.default.createElement(_ToolbarSeparator.ToolbarSeparator, null),
 				_react2.default.createElement(_AddNewButton.AddNewButton, null)
 			)
@@ -983,9 +1005,7 @@ var _classnames2 = _interopRequireDefault(_classnames);
 
 var _reactstrap = __webpack_require__(2);
 
-var _Icon = __webpack_require__("./client/src/components/utility/Icon.js");
-
-var _useUniqueId = __webpack_require__("./client/src/components/utility/useUniqueId.js");
+var _utility = __webpack_require__("./client/src/components/utility/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1018,7 +1038,7 @@ var ToolbarButton = function ToolbarButton(_ref) {
 	var onMouseDown = _react2.default.useCallback(function (e) {
 		return e.preventDefault();
 	}, []);
-	var _id = (0, _useUniqueId.useUniqueId)();
+	var _id = (0, _utility.useUniqueId)();
 	id = id || _id;
 	return _react2.default.createElement(
 		"span",
@@ -1026,7 +1046,7 @@ var ToolbarButton = function ToolbarButton(_ref) {
 		_react2.default.createElement(
 			"button",
 			_extends({}, _extends({ onMouseDown: onMouseDown }, props, { id: id, disabled: disabled }), { className: (0, _classnames2.default)(_ToolbarButtonModule2.default.button, className, (_classNames = {}, _defineProperty(_classNames, _ToolbarButtonModule2.default.active, active), _defineProperty(_classNames, _ToolbarButtonModule2.default.hasText, title), _classNames)) }),
-			iconName ? _react2.default.createElement(_Icon.Icon, { className: _ToolbarButtonModule2.default.icon, iconName: iconName, style: iconStyle }) : null,
+			iconName ? _react2.default.createElement(_utility.Icon, { className: _ToolbarButtonModule2.default.icon, iconName: iconName, style: iconStyle }) : null,
 			title ? _react2.default.createElement(
 				"span",
 				{ className: _ToolbarButtonModule2.default.title },
@@ -1036,7 +1056,7 @@ var ToolbarButton = function ToolbarButton(_ref) {
 					title
 				)
 			) : null,
-			iconNameRight ? _react2.default.createElement(_Icon.Icon, { className: _ToolbarButtonModule2.default.icon, iconName: iconNameRight, style: iconStyleRight }) : null
+			iconNameRight ? _react2.default.createElement(_utility.Icon, { className: _ToolbarButtonModule2.default.icon, iconName: iconNameRight, style: iconStyleRight }) : null
 		),
 		id && tooltip ? _react2.default.createElement(
 			_reactstrap.UncontrolledTooltip,
@@ -1068,6 +1088,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.ToolbarDropdown = undefined;
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _react = __webpack_require__(0);
@@ -1080,7 +1102,9 @@ var _ToolbarButton = __webpack_require__("./client/src/components/editor/Toolbar
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ToolbarDropdown = exports.ToolbarDropdown = function ToolbarDropdown(_ref) {
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var ToolbarDropdown = function ToolbarDropdown(_ref) {
 	var _ref$title = _ref.title,
 	    title = _ref$title === undefined ? "" : _ref$title,
 	    iconName = _ref.iconName,
@@ -1088,7 +1112,8 @@ var ToolbarDropdown = exports.ToolbarDropdown = function ToolbarDropdown(_ref) {
 	    iconStyle = _ref$iconStyle === undefined ? {} : _ref$iconStyle,
 	    _ref$disabled = _ref.disabled,
 	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
-	    children = _ref.children;
+	    children = _ref.children,
+	    props = _objectWithoutProperties(_ref, ["title", "iconName", "iconStyle", "disabled", "children"]);
 
 	var _React$useState = _react2.default.useState(false),
 	    _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -1106,7 +1131,7 @@ var ToolbarDropdown = exports.ToolbarDropdown = function ToolbarDropdown(_ref) {
 		_react2.default.createElement(
 			_reactstrap.DropdownToggle,
 			{ tag: "span" },
-			_react2.default.createElement(_ToolbarButton.ToolbarButton, { title: title, iconName: iconName, iconStyle: iconStyle, iconNameRight: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown", disabled: disabled, active: dropdownOpen })
+			_react2.default.createElement(_ToolbarButton.ToolbarButton, _extends({}, props, { title: title, iconName: iconName, iconStyle: iconStyle, iconNameRight: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown", disabled: disabled, active: dropdownOpen }))
 		),
 		_react2.default.createElement(
 			_reactstrap.DropdownMenu,
@@ -1115,6 +1140,7 @@ var ToolbarDropdown = exports.ToolbarDropdown = function ToolbarDropdown(_ref) {
 		)
 	);
 };
+exports.ToolbarDropdown = ToolbarDropdown;
 
 /***/ }),
 
@@ -1135,7 +1161,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Icon = __webpack_require__("./client/src/components/utility/Icon.js");
+var _utility = __webpack_require__("./client/src/components/utility/index.js");
 
 var _ToolbarDropdown = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarDropdown.js");
 
@@ -1171,7 +1197,7 @@ var ToolbarSelectItem = function ToolbarSelectItem(_ref) {
 		children ? children : _react2.default.createElement(
 			_react2.default.Fragment,
 			null,
-			iconName ? _react2.default.createElement(_Icon.Icon, { style: _extends({ width: 20, display: "inline-block", padding: "0 5px 0 0" }, iconStyle), iconName: iconName }) : null,
+			iconName ? _react2.default.createElement(_utility.Icon, { style: _extends({ width: 20, display: "inline-block", padding: "0 5px 0 0" }, iconStyle), iconName: iconName }) : null,
 			_react2.default.createElement(
 				"span",
 				null,
@@ -1296,6 +1322,18 @@ Object.keys(_ToolbarDropdown).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _ToolbarDropdown[key];
+    }
+  });
+});
+
+var _ToolbarSelect = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarSelect.js");
+
+Object.keys(_ToolbarSelect).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarSelect[key];
     }
   });
 });
@@ -1534,7 +1572,7 @@ Button.craft = {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.ContainerSettings = exports.Container = undefined;
+exports.Container = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -1548,16 +1586,23 @@ var _CreateElementButton = __webpack_require__("./client/src/components/editor/C
 
 var _ElementUtilities = __webpack_require__("./client/src/components/editor/ElementUtilities/index.js");
 
-var _ToolbarSelect = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarSelect.js");
+var _Toolbar = __webpack_require__("./client/src/components/editor/Toolbar/index.js");
+
+var _ContainerModule = __webpack_require__("./client/src/components/user/Container.module.scss");
+
+var _ContainerModule2 = _interopRequireDefault(_ContainerModule);
+
+var _classnames = __webpack_require__(5);
+
+var _classnames2 = _interopRequireDefault(_classnames);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var Container = function Container(_ref) {
+var Container = exports.Container = function Container(_ref) {
 	var background = _ref.background,
-	    children = _ref.children,
-	    props = _objectWithoutProperties(_ref, ["background", "children"]);
+	    children = _ref.children;
 
 	var _useNode = (0, _core.useNode)(),
 	    setProp = _useNode.actions.setProp;
@@ -1566,7 +1611,6 @@ var Container = function Container(_ref) {
 		return [{
 			value: "default",
 			title: "Background",
-			iconName: "mdiPlusBox",
 			pageBuilderStyle: {
 				backgroundColor: "transparent"
 			}
@@ -1590,7 +1634,7 @@ var Container = function Container(_ref) {
 
 			pageBuilderStyle: {
 				backgroundColor: "#e50051",
-				color: "#fff"
+				color: "#ffffff"
 			}
 		}, {
 			value: "grey",
@@ -1605,7 +1649,6 @@ var Container = function Container(_ref) {
 		}];
 	}, []);
 
-
 	var backgroundOnChange = _react2.default.useCallback(function (newBackground) {
 		if (background !== newBackground) {
 			setProp(function (_props) {
@@ -1618,28 +1661,20 @@ var Container = function Container(_ref) {
 		return obj.value === background;
 	}) || { pageBuilderStyle: {} };
 
+	var hasChildren = _react2.default.Children.count(children) > 0;
 	return _react2.default.createElement(
 		_ElementUtilities.ElementContainer,
-		{ style: _extends({ padding: 15 }, selectedBackground.pageBuilderStyle) },
+		{ className: (0, _classnames2.default)(_ContainerModule2.default.container, _defineProperty({}, _ContainerModule2.default.isEmpty, !hasChildren)), style: selectedBackground.pageBuilderStyle },
 		_react2.default.createElement(
 			_ElementUtilities.ToolbarPortalTop,
 			null,
-			_react2.default.createElement(_ToolbarSelect.ToolbarSelect, { value: background, onChange: backgroundOnChange, options: backgroundOptions })
+			_react2.default.createElement(_Toolbar.ToolbarSelect, { value: background, onChange: backgroundOnChange, options: backgroundOptions })
 		),
-		_react2.default.createElement(
+		hasChildren ? _react2.default.createElement(
 			"div",
-			{ style: { minHeight: 15 } },
+			{ className: _ContainerModule2.default.children },
 			children
-		)
-	);
-};
-
-exports.Container = Container;
-var ContainerSettings = exports.ContainerSettings = function ContainerSettings() {
-	return _react2.default.createElement(
-		"div",
-		null,
-		"Settings TODO"
+		) : null
 	);
 };
 
@@ -1661,6 +1696,14 @@ Container.craft = {
 		CreateButton: CreateButton
 	}
 };
+
+/***/ }),
+
+/***/ "./client/src/components/user/Container.module.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"container":"_1saW2C_zxVuEnpK-2faViD","isEmpty":"_11dlW0on9ez7EB50NhvshE"};
 
 /***/ }),
 
@@ -1700,104 +1743,6 @@ var RootContainer = exports.RootContainer = function RootContainer(_ref) {
 
 RootContainer.getTypeDisplayName = function () {
 	return ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_ELEMENT.RootContainer");
-};
-
-/***/ }),
-
-/***/ "./client/src/components/user/Text.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.Text = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _core = __webpack_require__(1);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _CreateElementButton = __webpack_require__("./client/src/components/editor/CreateElementButton.js");
-
-var _ElementUtilities = __webpack_require__("./client/src/components/editor/ElementUtilities/index.js");
-
-var _ElementContainer = __webpack_require__("./client/src/components/editor/ElementUtilities/ElementContainer.js");
-
-var _ToolbarButton = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarButton.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-var Text = function Text(_ref) {
-	var text = _ref.text,
-	    fontSize = _ref.fontSize,
-	    textAlign = _ref.textAlign,
-	    props = _objectWithoutProperties(_ref, ["text", "fontSize", "textAlign"]);
-
-	var _useNode = (0, _core.useNode)(function (state) {
-		return {
-			selected: state.events.selected,
-			dragged: state.events.dragged
-		};
-	}),
-	    connect = _useNode.connectors.connect,
-	    setProp = _useNode.actions.setProp;
-
-	var editable = true;
-
-	return _react2.default.createElement(
-		_ElementContainer.ElementContainer,
-		null,
-		_react2.default.createElement(_ElementUtilities.ToolbarPortalTop, null),
-		_react2.default.createElement(
-			_ElementUtilities.ToolbarPortalRow,
-			null,
-			_react2.default.createElement(_ToolbarButton.ToolbarButton, { title: "foo b" })
-		),
-		_react2.default.createElement("textarea", {
-			value: text,
-			disabled: !editable,
-			style: { fontSize: fontSize + "px", textAlign: textAlign },
-			onChange: function onChange(e) {
-				var val = e.target.value.replace(/<\/?[^>]+(>|$)/g, "");
-				setProp(function (_props) {
-					_props.text = val;
-				}, 500);
-			}
-		})
-	);
-};
-
-exports.Text = Text;
-var TextSettings = function TextSettings() {
-	return _react2.default.createElement("div", null);
-};
-
-var defaultProps = {
-	text: "Hi",
-	fontSize: 20
-};
-
-Text.getTypeDisplayName = function () {
-	return ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_ELEMENT.Text");
-};
-
-function CreateButton(props) {
-	return _react2.default.createElement(_CreateElementButton.CreateElementButton, _extends({}, props, { element: _react2.default.createElement(Text, null), iconName: "mdiCardTextOutline" }));
-}
-
-Text.craft = {
-	props: defaultProps,
-	related: {
-		CreateButton: CreateButton
-	}
 };
 
 /***/ }),
@@ -1863,6 +1808,114 @@ exports.default = DeletionModal;
 
 /***/ }),
 
+/***/ "./client/src/components/utility/EventBus.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var EventBusClass = function () {
+	function EventBusClass() {
+		_classCallCheck(this, EventBusClass);
+
+		this.bus = {};
+	}
+
+	_createClass(EventBusClass, [{
+		key: "off",
+		value: function off(event, id) {
+			if (typeof event !== "string") {
+				throw "EventBus.$off(event, id) event must be a string, " + (typeof event === "undefined" ? "undefined" : _typeof(event)) + " given";
+			}
+			if (typeof id !== "number") {
+				throw "EventBus.$off(event, id) id must be a number, " + (typeof id === "undefined" ? "undefined" : _typeof(id)) + " given";
+			}
+			if (typeof this.bus[event] === "undefined") {
+				throw "EventBus.$off(event, id) event " + event + " has no handler";
+			}
+			delete this.bus[event][id];
+		}
+	}, {
+		key: "on",
+		value: function on(event, callback) {
+			var conditions = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+			if (typeof event !== "string") {
+				throw "EventBus.$on(event, callback, conditions) event must be a string, " + (typeof event === "undefined" ? "undefined" : _typeof(event)) + " given";
+			}
+			if (typeof callback !== "function") {
+				throw "EventBus.$on(event, callback, conditions) callback must be a function, " + (typeof callback === "undefined" ? "undefined" : _typeof(callback)) + " given";
+			}
+			if ((typeof conditions === "undefined" ? "undefined" : _typeof(conditions)) !== "object") {
+				throw "EventBus.$on(event, callback, conditions) conditions must be an object, " + (typeof conditions === "undefined" ? "undefined" : _typeof(conditions)) + " given";
+			}
+			if (typeof this.bus[event] === "undefined") {
+				this.bus[event] = {
+					count: 0
+				};
+			}
+			this.bus[event].count++;
+			var id = this.bus[event].count;
+			this.bus[event][id] = { callback: callback, conditions: conditions };
+			return id;
+		}
+	}, {
+		key: "emit",
+		value: function emit(event) {
+			var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+			if (typeof event !== "string") {
+				throw "EventBus.$emit(event, params) event must be a string, " + (typeof event === "undefined" ? "undefined" : _typeof(event)) + " given";
+			}
+			if ((typeof params === "undefined" ? "undefined" : _typeof(params)) !== "object") {
+				throw "EventBus.$emit(event, params) params must be an object, " + (typeof params === "undefined" ? "undefined" : _typeof(params)) + " given";
+			}
+			if (typeof this.bus[event] !== "undefined") {
+				var _bus$event = this.bus[event],
+				    count = _bus$event.count,
+				    callbacks = _objectWithoutProperties(_bus$event, ["count"]);
+
+				for (var i in callbacks) {
+					var _callbacks$i = callbacks[i],
+					    callback = _callbacks$i.callback,
+					    conditions = _callbacks$i.conditions;
+
+					var conditionsMet = true;
+					if ((typeof conditions === "undefined" ? "undefined" : _typeof(conditions)) === "object") {
+						for (var k in conditions) {
+							if (params[k] !== conditions[k]) {
+								conditionsMet = false;
+								break;
+							}
+						}
+					}
+					if (conditionsMet) {
+						callback(params);
+					}
+				}
+			}
+		}
+	}]);
+
+	return EventBusClass;
+}();
+
+var EventBus = exports.EventBus = new EventBusClass();
+
+/***/ }),
+
 /***/ "./client/src/components/utility/Icon.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1902,6 +1955,66 @@ var Icon = function Icon(_ref) {
 	);
 };
 exports.Icon = Icon;
+
+/***/ }),
+
+/***/ "./client/src/components/utility/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _EventBus = __webpack_require__("./client/src/components/utility/EventBus.js");
+
+Object.keys(_EventBus).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _EventBus[key];
+    }
+  });
+});
+
+var _Icon = __webpack_require__("./client/src/components/utility/Icon.js");
+
+Object.keys(_Icon).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _Icon[key];
+    }
+  });
+});
+
+var _useUniqueId = __webpack_require__("./client/src/components/utility/useUniqueId.js");
+
+Object.keys(_useUniqueId).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _useUniqueId[key];
+    }
+  });
+});
+
+var _DeletionModal = __webpack_require__("./client/src/components/utility/DeletionModal.js");
+
+Object.keys(_DeletionModal).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _DeletionModal[key];
+    }
+  });
+});
 
 /***/ }),
 
@@ -14731,6 +14844,18 @@ Object.keys(_Icon).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _Icon[key];
+    }
+  });
+});
+
+var _EventBus = __webpack_require__("./client/src/components/utility/EventBus.js");
+
+Object.keys(_EventBus).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _EventBus[key];
     }
   });
 });

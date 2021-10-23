@@ -16,6 +16,12 @@ export function ElementContainer({children, className = "", inline = false, ref,
 		[styles.hover]: isHover,
 		[styles.inline]: inline,
 	})}>
+		{isActive && <React.Fragment>
+			<div className={styles.borderTopLeft} />
+			<div className={styles.borderTopRight} />
+			<div className={styles.borderBottomRight} />
+			<div className={styles.borderBottomLeft} />
+		</React.Fragment>}
 		<MoveHandle />
 		{children}
 	</div>

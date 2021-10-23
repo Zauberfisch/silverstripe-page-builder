@@ -3,7 +3,6 @@ import {Editor, Frame, Element, useEditor} from "@craftjs/core"
 import {Toolbar} from "./editor/Toolbar"
 import {Button} from "./user/Button"
 import {Container} from "./user/Container"
-import {Text} from "./user/Text"
 import {RootContainer} from "./user/RootContainer"
 import Injector from "lib/Injector"
 import styles from "./PageBuilderField.module.scss"
@@ -17,14 +16,14 @@ function EditorInner({value, elements, refToolbarTop, refToolbarRows, setPageBui
 	return (
 		<React.Fragment>
 			<Toolbar {...{refToolbarTop, refToolbarRows}} />
-			<Frame json={value}>
+			<Frame data={value}>
 				<Element canvas is={RootContainer}>
 					{/*	/!*<Container></Container>*!/*/}
-					<Text fontSize={20} text="Initial Text" />
+					{/*<Text fontSize={20} text="Initial Text" />*/}
 					{/*	/!*<Button />*!/*/}
 					{/*	/!*<Text fontSize={20} text="test" />*!/*/}
 					{/*	/!*<Button />*!/*/}
-					{/*	/!*<elements.DraftEditor />*!/*/}
+					<elements.DraftEditor />
 					{/*	/!*<Text fontSize={20} text="test 2" />*!/*/}
 				</Element>
 			</Frame>
@@ -39,7 +38,6 @@ function PageBuilderField({value, setPageBuilderEditorQuery}) {
 	const elements = React.useMemo(() => {
 		return {
 			Button,
-			Text,
 			Container,
 			DraftEditor: Injector.component.get("PageBuilder/DraftEditor"),
 		}

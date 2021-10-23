@@ -4,6 +4,7 @@ import styles from "./Toolbar.module.scss"
 import {ToolbarButton} from "./ToolbarButton"
 import {AddNewButton} from "./AddNewButton"
 import {ToolbarSeparator} from "./ToolbarSeparator"
+import {EventBus} from "../../utility"
 
 export const Toolbar = ({refToolbarTop, refToolbarRows}) => {
 	const {actions, canUndo, canRedo, query} = useEditor(
@@ -15,13 +16,30 @@ export const Toolbar = ({refToolbarTop, refToolbarRows}) => {
 			}
 		},
 	)
+	const [isBusy, setIsBusy] = React.useState(false)
+	const undo = React.useCallback(() => {
+		setIsBusy(true)
+		actions.history.undo()
+		setTimeout(() => {
+			EventBus.emit("RELOAD_STATE")
+			setIsBusy(false)
+		}, 50)
+	}, [])
+	const redo = React.useCallback(() => {
+		setIsBusy(true)
+		actions.history.redo()
+		setTimeout(() => {
+			EventBus.emit("RELOAD_STATE")
+			setIsBusy(false)
+		}, 50)
+	}, [])
 	return (
 		<div className={styles.toolbar}>
 			<div className={styles.toolbarInner} ref={refToolbarRows}>
 				<div className={styles.toolbarRow} ref={refToolbarTop}>
-					<ToolbarButton iconName="mdiUndoVariant" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Undo")} disabled={!canUndo} onClick={() => actions.history.undo()} />
-					<ToolbarButton iconName="mdiRedoVariant" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Redo")} disabled={!canRedo} onClick={() => actions.history.redo()} />
-					<ToolbarSeparator/>
+					<ToolbarButton iconName="mdiUndoVariant" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Undo")} disabled={!canUndo && !isBusy} onClick={undo} />
+					<ToolbarButton iconName="mdiRedoVariant" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Redo")} disabled={!canRedo && !isBusy} onClick={redo} />
+					<ToolbarSeparator />
 					<AddNewButton />
 					{/*{selected ? <React.Fragment>*/}
 					{/*	<div style={{paddingRight: 5}}>{selected.displayName}</div>*/}

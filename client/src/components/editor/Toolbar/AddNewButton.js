@@ -2,10 +2,9 @@ import React from "react"
 import styles from "./AddNewButton.module.scss"
 import classnames from "classnames"
 import {ToolbarButton} from "./ToolbarButton"
-// import {Dropdown, DropdownMenu, DropdownToggle} from "reactstrap"
 import {Popover, PopoverHeader, PopoverBody} from "reactstrap"
 import {PageBuilderContext} from "../../PageBuilderContext"
-import {useUniqueId} from "../../utility/useUniqueId"
+import {useUniqueId} from "../../utility"
 
 export const AddNewButton = ({}) => {
 	const id = useUniqueId()
@@ -20,11 +19,9 @@ export const AddNewButton = ({}) => {
 		})
 	})
 	const {elements} = React.useContext(PageBuilderContext)
-	//{id ? <UncontrolledPopover trigger="click" placement="bottom" target={id}>
 	return (
 		<div>
-			<ToolbarButton iconName="mdiPlusBox" {...{id}} />
-			{/*style={{display: isHidden ? "hidden" : undefined}}*/}
+			<ToolbarButton iconName="mdiPlusBox" {...{id}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Add")} />
 			{id ? <Popover placement="bottom" target={id} {...{toggle, isOpen}} popperClassName={classnames({[styles.popoverHidden]: isHidden})}>
 				<PopoverHeader>{ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.AddDropdownTitle")}</PopoverHeader>
 				<PopoverBody>
@@ -41,21 +38,6 @@ export const AddNewButton = ({}) => {
 				</PopoverBody>
 			</Popover> : null}
 		</div>
-		// <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-		// 	<DropdownToggle
-		// 		tag="span"
-		// 		data-toggle="dropdown"
-		// 		aria-expanded={dropdownOpen}
-		// 	>
-		// 		{/*Custom Dropdown Content*/}
-		// 	</DropdownToggle>
-		// 	<DropdownMenu>
-		// 		<div onClick={toggle}>Custom dropdown item</div>
-		// 		<div onClick={toggle}>Custom dropdown item</div>
-		// 		<div onClick={toggle}>Custom dropdown item</div>
-		// 		<div onClick={toggle}>Custom dropdown item</div>
-		// 	</DropdownMenu>
-		// </Dropdown>
 	)
 }
 

@@ -2,17 +2,17 @@ import {Element, useNode} from "@craftjs/core"
 import React from "react"
 import {CreateElementButton} from "../editor/CreateElementButton"
 import {ElementContainer, ToolbarPortalTop} from "../editor/ElementUtilities"
-import {ToolbarSelect} from "../editor/Toolbar/ToolbarSelect"
+import {ToolbarSelect} from "../editor/Toolbar"
+import styles from "./Container.module.scss"
+import classNames from "classnames"
 
-
-export const Container = ({background, children, ...props}) => {
+export const Container = ({background, children}) => {
 	const {actions: {setProp}} = useNode()
 	// TODO from CMS
 	const backgroundOptions = React.useMemo(() => [
 		{
 			value: "default",
 			title: "Background",
-			iconName: "mdiPlusBox",
 			pageBuilderStyle: {
 				backgroundColor: "transparent",
 			},
@@ -41,7 +41,7 @@ export const Container = ({background, children, ...props}) => {
 			// </React.Fragment>,
 			pageBuilderStyle: {
 				backgroundColor: "#e50051",
-				color: "#fff",
+				color: "#ffffff",
 			},
 		},
 		{
@@ -56,10 +56,6 @@ export const Container = ({background, children, ...props}) => {
 			},
 		},
 	], [])
-	// const backgroundOptions = React.useMemo(() => {
-	// 	return Object.fromEntries(Object.entries().map(([value, key]) => [value.label, key]))
-	// }, [])
-	// console.log({backgrounds, backgroundOptions})
 
 	const backgroundOnChange = React.useCallback((newBackground) => {
 		if (background !== newBackground) {
@@ -73,52 +69,18 @@ export const Container = ({background, children, ...props}) => {
 	const selectedBackground = backgroundOptions.find(obj => obj.value === background) || {pageBuilderStyle: {}}
 	// {...props}
 	// style={{margin: "15px 0", background, padding: `${padding}px`, position: "relative"}}
+	const hasChildren = React.Children.count(children) > 0
 	return (
-		<ElementContainer style={{padding: 15, ...selectedBackground.pageBuilderStyle}}>
+		<ElementContainer className={classNames(styles.container, {
+			[styles.isEmpty]: !hasChildren,
+		})} style={selectedBackground.pageBuilderStyle}>
 			<ToolbarPortalTop>
 				<ToolbarSelect value={background} onChange={backgroundOnChange} options={backgroundOptions} />
 			</ToolbarPortalTop>
-			<div style={{minHeight: 15}}>{children}</div>
+			{hasChildren ? <div className={styles.children}>{children}</div> : null}
 		</ElementContainer>
 	)
 }
-
-export const ContainerSettings = () => {
-	return <div>Settings TODO</div>
-	// const {
-	//   background,
-	//   padding,
-	//   actions: { setProp },
-	// } = useNode((node) => ({
-	//   background: node.data.props.background,
-	//   padding: node.data.props.padding,
-	// }));
-	//
-	// return (
-	//   <div>
-	//     <FormControl fullWidth={true} margin="normal" component="fieldset">
-	//       <FormLabel component="legend">Background</FormLabel>
-	//       <ColorPicker
-	//         name="background-color"
-	//         value={background}
-	//         onChange={(color) => {
-	//           setProp((props) => (props.background = color), 500);
-	//         }}
-	//       />
-	//     </FormControl>
-	//     <FormControl fullWidth={true} margin="normal" component="fieldset">
-	//       <FormLabel component="legend">Padding</FormLabel>
-	//       <Slider
-	//         defaultValue={padding}
-	//         onChange={(_, value) =>
-	//           setProp((props) => (props.padding = value), 500)
-	//         }
-	//       />
-	//     </FormControl>
-	//   </div>
-	// );
-}
-
 
 const defaultProps = {
 	background: "default",
