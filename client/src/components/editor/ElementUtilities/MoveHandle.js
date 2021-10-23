@@ -9,7 +9,7 @@ export function MoveHandle() {
 	const {isActive, isMoveable} = useNodeState()
 	if (isActive && isMoveable) {
 		return <button ref={drag} className={styles.handle}>
-			<Icon iconName="mdiCursorMove" />
+			<Icon iconName="mdiCursorMove" className={styles.icon} />
 		</button>
 	}
 	return null

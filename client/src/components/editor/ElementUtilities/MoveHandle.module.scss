@@ -15,6 +15,11 @@
 	z-index: 80;
 
 	.icon {
-		width: 16px;
+		display: block;
+		width: 20px;
+
+		svg {
+			width: 100%;
+		}
 	}
 }

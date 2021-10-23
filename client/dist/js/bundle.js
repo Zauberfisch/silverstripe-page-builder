@@ -74,7 +74,7 @@
 "use strict";
 
 
-var _Injector = __webpack_require__(3);
+var _Injector = __webpack_require__(4);
 
 var _Injector2 = _interopRequireDefault(_Injector);
 
@@ -184,7 +184,7 @@ var _Container = __webpack_require__("./client/src/components/user/Container.js"
 
 var _RootContainer = __webpack_require__("./client/src/components/user/RootContainer.js");
 
-var _Injector = __webpack_require__(3);
+var _Injector = __webpack_require__(4);
 
 var _Injector2 = _interopRequireDefault(_Injector);
 
@@ -357,7 +357,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _MoveHandle = __webpack_require__("./client/src/components/editor/ElementUtilities/MoveHandle.js");
 
-var _classnames = __webpack_require__(5);
+var _classnames = __webpack_require__(3);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -463,7 +463,7 @@ function MoveHandle() {
 		return _react2.default.createElement(
 			"button",
 			{ ref: drag, className: _MoveHandleModule2.default.handle },
-			_react2.default.createElement(_utility.Icon, { iconName: "mdiCursorMove" })
+			_react2.default.createElement(_utility.Icon, { iconName: "mdiCursorMove", className: _MoveHandleModule2.default.icon })
 		);
 	}
 	return null;
@@ -498,7 +498,7 @@ var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuild
 
 var _useNodeState2 = __webpack_require__("./client/src/components/editor/ElementUtilities/useNodeState.js");
 
-var _reactDom = __webpack_require__(4);
+var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -551,7 +551,7 @@ var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuild
 
 var _useNodeState2 = __webpack_require__("./client/src/components/editor/ElementUtilities/useNodeState.js");
 
-var _reactDom = __webpack_require__(4);
+var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -784,7 +784,7 @@ var _AddNewButtonModule = __webpack_require__("./client/src/components/editor/To
 
 var _AddNewButtonModule2 = _interopRequireDefault(_AddNewButtonModule);
 
-var _classnames2 = __webpack_require__(5);
+var _classnames2 = __webpack_require__(3);
 
 var _classnames3 = _interopRequireDefault(_classnames2);
 
@@ -999,7 +999,7 @@ var _ToolbarButtonModule = __webpack_require__("./client/src/components/editor/T
 
 var _ToolbarButtonModule2 = _interopRequireDefault(_ToolbarButtonModule);
 
-var _classnames = __webpack_require__(5);
+var _classnames = __webpack_require__(3);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -1592,9 +1592,11 @@ var _ContainerModule = __webpack_require__("./client/src/components/user/Contain
 
 var _ContainerModule2 = _interopRequireDefault(_ContainerModule);
 
-var _classnames = __webpack_require__(5);
+var _classnames = __webpack_require__(3);
 
 var _classnames2 = _interopRequireDefault(_classnames);
+
+var _utility = __webpack_require__("./client/src/components/utility/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1605,7 +1607,12 @@ var Container = exports.Container = function Container(_ref) {
 	    children = _ref.children;
 
 	var _useNode = (0, _core.useNode)(),
-	    setProp = _useNode.actions.setProp;
+	    _useNode$connectors = _useNode.connectors,
+	    drag = _useNode$connectors.drag,
+	    connect = _useNode$connectors.connect;
+
+	var _useNode2 = (0, _core.useNode)(),
+	    setProp = _useNode2.actions.setProp;
 
 	var backgroundOptions = _react2.default.useMemo(function () {
 		return [{
@@ -1662,6 +1669,7 @@ var Container = exports.Container = function Container(_ref) {
 	}) || { pageBuilderStyle: {} };
 
 	var hasChildren = _react2.default.Children.count(children) > 0;
+
 	return _react2.default.createElement(
 		_ElementUtilities.ElementContainer,
 		{ className: (0, _classnames2.default)(_ContainerModule2.default.container, _defineProperty({}, _ContainerModule2.default.isEmpty, !hasChildren)), style: selectedBackground.pageBuilderStyle },
@@ -1757,7 +1765,7 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _i18n = __webpack_require__(10);
+var _i18n = __webpack_require__(7);
 
 var _i18n2 = _interopRequireDefault(_i18n);
 
@@ -2061,7 +2069,7 @@ function useUniqueId() {
 "use strict";
 
 
-var _jquery = __webpack_require__(7);
+var _jquery = __webpack_require__(8);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -2069,11 +2077,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(4);
+var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Injector = __webpack_require__(3);
+var _Injector = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15009,13 +15017,6 @@ module.exports = CraftJsCore;
 
 /***/ }),
 
-/***/ 10:
-/***/ (function(module, exports) {
-
-module.exports = i18n;
-
-/***/ }),
-
 /***/ 2:
 /***/ (function(module, exports) {
 
@@ -15026,21 +15027,21 @@ module.exports = Reactstrap;
 /***/ 3:
 /***/ (function(module, exports) {
 
-module.exports = Injector;
+module.exports = classnames;
 
 /***/ }),
 
 /***/ 4:
 /***/ (function(module, exports) {
 
-module.exports = ReactDom;
+module.exports = Injector;
 
 /***/ }),
 
 /***/ 5:
 /***/ (function(module, exports) {
 
-module.exports = classnames;
+module.exports = ReactDom;
 
 /***/ }),
 
@@ -15052,6 +15053,13 @@ module.exports = PropTypes;
 /***/ }),
 
 /***/ 7:
+/***/ (function(module, exports) {
+
+module.exports = i18n;
+
+/***/ }),
+
+/***/ 8:
 /***/ (function(module, exports) {
 
 module.exports = jQuery;
