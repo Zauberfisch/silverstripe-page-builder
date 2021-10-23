@@ -16,5 +16,7 @@
 
 	&.active {
 		border: 1px solid $brand-primary;
+		outline: 2px solid $brand-primary;
+		z-index: 50;
 	}
 }

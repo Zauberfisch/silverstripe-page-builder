@@ -1,20 +1,84 @@
 import {Element, useNode} from "@craftjs/core"
 import React from "react"
 import {CreateElementButton} from "../editor/CreateElementButton"
-import {ElementContainer} from "../editor/ElementUtilities"
+import {ElementContainer, ToolbarPortalTop} from "../editor/ElementUtilities"
+import {ToolbarSelect} from "../editor/Toolbar/ToolbarSelect"
 
-const ContainerInner = () => {
-}
 
-export const Container = ({background, padding, children, ...props}) => {
-	const {
-		connectors: {connect},
-	} = useNode()
+export const Container = ({background, children, ...props}) => {
+	const {actions: {setProp}} = useNode()
+	// TODO from CMS
+	const backgroundOptions = React.useMemo(() => [
+		{
+			value: "default",
+			title: "Background",
+			iconName: "mdiPlusBox",
+			pageBuilderStyle: {
+				backgroundColor: "transparent",
+			},
+		},
+		{
+			value: "white",
+			title: "White",
+			iconName: "mdiSquare",
+			iconStyle: {
+				color: "#ffffff",
+			},
+			pageBuilderStyle: {
+				backgroundColor: "#ffffff",
+			},
+		},
+		{
+			value: "pink",
+			title: "Pink",
+			iconName: "mdiSquare",
+			iconStyle: {
+				color: "#e50051",
+			},
+			// children: <React.Fragment>
+			// 	<span style={{display: "inline-block", width: 10, height: 10, margin: '10px 5px 0 0', backgroundColor: "#e50051"}} />
+			// 	<span>Pink</span>
+			// </React.Fragment>,
+			pageBuilderStyle: {
+				backgroundColor: "#e50051",
+				color: "#fff",
+			},
+		},
+		{
+			value: "grey",
+			title: "Grey",
+			iconName: "mdiSquare",
+			iconStyle: {
+				color: "#ededed",
+			},
+			pageBuilderStyle: {
+				backgroundColor: "#ededed",
+			},
+		},
+	], [])
+	// const backgroundOptions = React.useMemo(() => {
+	// 	return Object.fromEntries(Object.entries().map(([value, key]) => [value.label, key]))
+	// }, [])
+	// console.log({backgrounds, backgroundOptions})
+
+	const backgroundOnChange = React.useCallback((newBackground) => {
+		if (background !== newBackground) {
+			setProp((_props) => {
+				// eslint-disable-next-line no-param-reassign
+				_props.background = newBackground
+			}, 500)
+		}
+	}, [background])
+
+	const selectedBackground = backgroundOptions.find(obj => obj.value === background) || {pageBuilderStyle: {}}
 	// {...props}
 	// style={{margin: "15px 0", background, padding: `${padding}px`, position: "relative"}}
 	return (
-		<ElementContainer style={{background: background}}>
-			<div style={{padding: 15}}>{children}</div>
+		<ElementContainer style={{padding: 15, ...selectedBackground.pageBuilderStyle}}>
+			<ToolbarPortalTop>
+				<ToolbarSelect value={background} onChange={backgroundOnChange} options={backgroundOptions} />
+			</ToolbarPortalTop>
+			<div style={{minHeight: 15}}>{children}</div>
 		</ElementContainer>
 	)
 }
@@ -57,8 +121,7 @@ export const ContainerSettings = () => {
 
 
 const defaultProps = {
-	background: "#ffffff",
-	padding: 35,
+	background: "default",
 }
 
 Container.getTypeDisplayName = () => ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_ELEMENT.Container")

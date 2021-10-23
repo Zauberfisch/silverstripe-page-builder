@@ -4,14 +4,15 @@
 	position: sticky;
 	z-index: 100;
 	//margin: 0 0 30px;
+	margin: 0 0 3px;
 	top: -20px;
-	height: 94px;
+	//height: 94px;
 
 	.toolbarInner {
-		position: absolute;
-		top: 0;
-		right: 0;
-		left: 0;
+		//position: absolute;
+		//top: 0;
+		//right: 0;
+		//left: 0;
 		padding: 2px;
 		border-bottom: 1px solid $btn-secondary-border;
 		background: $body-bg-dark;
