@@ -1,15 +1,11 @@
 @import "variables";
 
 .button {
-	all: unset;
 	width: 64px;
 	padding: 6px 4px 4px;
-	//all: unset;
 	display: block;
-	//flex-direction: column;
+	cursor: pointer;
 	font-size: 11px;
-	//align-items: center;
-	//justify-content: space-between;
 	background: rgba(#000, .1);
 
 	.icon {
@@ -17,6 +13,7 @@
 		width: 32px;
 		margin: 0 auto 4px;
 	}
+
 	.title {
 		display: block;
 		text-align: center;

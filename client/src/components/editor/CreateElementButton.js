@@ -8,8 +8,9 @@ export const CreateElementButton = ({element, iconName, title = "", onCreate, on
 	if (!title && element.type && typeof element.type.getTypeDisplayName === "function") {
 		title = element.type.getTypeDisplayName()
 	}
-	return <button className={styles.button} ref={(ref) => connectors.create(ref, element, {onCreate})} onDragStart={onDragStart}>
+	return <div onDragStart={onDragStart} className={styles.button} ref={(ref) => connectors.create(ref, element, {onCreate})}>
 		<Icon className={styles.icon} {...{iconName}} />
 		<span className={styles.title}>{title}</span>
-	</button>
+	</div>
 }
+

@@ -67,8 +67,6 @@ export const Container = ({background, children}) => {
 	}, [background])
 
 	const selectedBackground = backgroundOptions.find(obj => obj.value === background) || {pageBuilderStyle: {}}
-	// {...props}
-	// style={{margin: "15px 0", background, padding: `${padding}px`, position: "relative"}}
 	const hasChildren = React.Children.count(children) > 0
 	return (
 		<ElementContainer className={classNames(styles.container, {

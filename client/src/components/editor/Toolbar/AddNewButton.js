@@ -30,7 +30,14 @@ export const AddNewButton = ({}) => {
 							return <div {...{key}}>
 								{element.craft.related.CreateButton({
 									onCreate: () => setIsOpen(false),
-									onDragStart: () => setIsHidden(true),
+									onDragStart: () => {
+										if (navigator.userAgent.toLowerCase().indexOf("firefox") > -1) {
+											setIsHidden(true)
+										} else {
+											// in chrome, hiding the parent element to early will cause the drag to be canceled
+											setTimeout(() => setIsHidden(true), 1000)
+										}
+									},
 								})}
 							</div>
 						})}
