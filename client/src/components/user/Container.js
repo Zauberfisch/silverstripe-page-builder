@@ -62,7 +62,7 @@ export const Container = ({background, children}) => {
 			setProp((_props) => {
 				// eslint-disable-next-line no-param-reassign
 				_props.background = newBackground
-			}, 500)
+			})
 		}
 	}, [background])
 

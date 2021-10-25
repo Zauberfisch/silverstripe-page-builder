@@ -21547,21 +21547,16 @@ if (true) {
     throw new Error('Your browser does not have secure random generator. ' + 'If you don’t need unpredictable IDs, you can use nanoid/non-secure.');
   }
 }
-
 var random = function random(bytes) {
   return crypto.getRandomValues(new Uint8Array(bytes));
 };
-
 var customRandom = function customRandom(alphabet, size, getRandom) {
   var mask = (2 << Math.log(alphabet.length - 1) / Math.LN2) - 1;
-
   var step = -~(1.6 * mask * size / alphabet.length);
-
   return function () {
     var id = '';
     while (true) {
       var bytes = getRandom(step);
-
       var j = step;
       while (j--) {
         id += alphabet[bytes[j] & mask] || '';
@@ -21570,17 +21565,14 @@ var customRandom = function customRandom(alphabet, size, getRandom) {
     }
   };
 };
-
 var customAlphabet = function customAlphabet(alphabet, size) {
   return customRandom(alphabet, size, random);
 };
-
 var nanoid = function nanoid() {
   var size = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 21;
 
   var id = '';
   var bytes = crypto.getRandomValues(new Uint8Array(size));
-
   while (size--) {
     var byte = bytes[size] & 63;
     if (byte < 36) {
@@ -21595,7 +21587,6 @@ var nanoid = function nanoid() {
   }
   return id;
 };
-
 exports.nanoid = nanoid;
 exports.customAlphabet = customAlphabet;
 exports.customRandom = customRandom;
@@ -21613,9 +21604,7 @@ exports.random = random;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var urlAlphabet = 'ModuleSymbhasOwnPr-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW';
-
+var urlAlphabet = 'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict';
 exports.urlAlphabet = urlAlphabet;
 
 /***/ }),
