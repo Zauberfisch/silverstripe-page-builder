@@ -27,13 +27,10 @@ function PageBuilderField({value, setPageBuilderEditorQuery, elements: allowedEl
 	const refToolbarTop = React.createRef()
 	const refToolbarRows = React.createRef()
 	const [allElements, elements] = React.useMemo(() => {
-		const valueObject = JSON.parse(value)
+		const valueObject = value ? JSON.parse(value) : null
 		const elements = {
 			Container,
-			// DraftEditor: Injector.component.get("PageBuilder/DraftEditor"),
-			// Image: Injector.component.get("PageBuilder/Image"),
 		}
-		console.log("allowedElements", Object.entries(allowedElements))
 		Object.entries(allowedElements).forEach(([key, value]) => elements[key] = Injector.component.get(value))
 		const allElements = {
 			RootContainer,

@@ -384,11 +384,10 @@ function PageBuilderField(_ref2) {
 	var refToolbarRows = _react2.default.createRef();
 
 	var _React$useMemo = _react2.default.useMemo(function () {
-		var valueObject = JSON.parse(value);
+		var valueObject = value ? JSON.parse(value) : null;
 		var elements = {
 			Container: _elements.Container
 		};
-		console.log("allowedElements", Object.entries(allowedElements));
 		Object.entries(allowedElements).forEach(function (_ref3) {
 			var _ref4 = _slicedToArray(_ref3, 2),
 			    key = _ref4[0],
