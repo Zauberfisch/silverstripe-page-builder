@@ -22,7 +22,7 @@ function EditorInner({value, refToolbarTop, refToolbarRows, setPageBuilderEditor
 	)
 }
 
-function PageBuilderField({value, setPageBuilderEditorQuery}) {
+function PageBuilderField({value, setPageBuilderEditorQuery, elements: allowedElements}) {
 	const refPageBuilderContainer = React.createRef()
 	const refToolbarTop = React.createRef()
 	const refToolbarRows = React.createRef()
@@ -31,8 +31,10 @@ function PageBuilderField({value, setPageBuilderEditorQuery}) {
 		const elements = {
 			Container,
 			// DraftEditor: Injector.component.get("PageBuilder/DraftEditor"),
-			Image: Injector.component.get("PageBuilder/Image"),
+			// Image: Injector.component.get("PageBuilder/Image"),
 		}
+		console.log("allowedElements", Object.entries(allowedElements))
+		Object.entries(allowedElements).forEach(([key, value]) => elements[key] = Injector.component.get(value))
 		const allElements = {
 			RootContainer,
 			...elements,
@@ -48,7 +50,7 @@ function PageBuilderField({value, setPageBuilderEditorQuery}) {
 			})
 		}
 		return [allElements, elements]
-	}, [])
+	}, [JSON.stringify(allowedElements)])
 
 	return (
 		<PageBuilderContextProvider {...{

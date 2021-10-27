@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace zauberfisch\PageBuilder\Form;
 
-use DNADesign\Elemental\Controllers\ElementalAreaController;
-use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Forms\FormField;
 use SilverStripe\ORM\DataObjectInterface;
 use SilverStripe\View\Requirements;
@@ -17,9 +15,11 @@ use zauberfisch\PageBuilder\Model\PageBuilderArea;
  */
 class Field extends FormField {
 	protected PageBuilderArea $area;
+	protected array $elements = [];
 
-	public function __construct($name, $title, PageBuilderArea $area, $config = null) {
+	public function __construct($name, $title, PageBuilderArea $area, array $config) {
 		$this->area = $area;
+		$this->elements = $config['elements'];
 		Requirements::css('zauberfisch/silverstripe-page-builder: client/dist/styles/bundle.css');
 		Requirements::javascript('zauberfisch/silverstripe-page-builder: client/dist/js/vendor.js');
 		Requirements::javascript('zauberfisch/silverstripe-page-builder: client/dist/js/bundle.js');
@@ -36,6 +36,12 @@ class Field extends FormField {
 		$this->addExtraClass('zauberfisch__page-builder__field');
 		$this->addExtraClass('stacked');
 		parent::__construct($name, $title, $this->area->ElementsData);
+	}
+
+	public function getSchemaData() {
+		$arr = parent::getSchemaData();
+		$arr['elements'] = $this->elements;
+		return $arr;
 	}
 
 	public function Field($properties = []) {

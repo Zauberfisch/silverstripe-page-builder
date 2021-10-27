@@ -10,14 +10,12 @@ jQuery.entwine("ss", function ($) {
 		EditorElement: null,
 		onmatch() {
 			const PageBuilderField = loadComponent("PageBuilderField")
-			// const schemaData = this.data("schema")
+			const schemaData = this.data("schema")
 			this.setInputElement(this.find("> input").get(0))
 			this.setEditorElement(this.find("> div").get(0))
 			const _this = this
 			const props = {
-				// source: schemaData.source,
-				// value: schemaData.value,
-				// name: schemaData.name,
+				elements: schemaData.elements,
 				value: this.getInputElement().value,
 				setPageBuilderEditorQuery: (query) => {
 					_this.setPageBuilderEditorQuery(query)
