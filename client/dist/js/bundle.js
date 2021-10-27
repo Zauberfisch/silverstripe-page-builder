@@ -2154,7 +2154,7 @@ function useElementPropSelectDropdown(propName, value, options, buttonProps) {
 	}, [value]);
 	return {
 		value: options.find(function (obj) {
-			return obj.value === background;
+			return obj.value === value;
 		}) || { pageBuilderStyle: {} },
 		button: _react2.default.createElement(_Toolbar.ToolbarSelect, _extends({}, buttonProps, { value: value, onChange: onChange, options: options }))
 	};
