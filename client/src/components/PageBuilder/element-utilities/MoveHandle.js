@@ -2,7 +2,7 @@ import React from "react"
 import {useNode} from "@craftjs/core"
 import {useNodeState} from "./useNodeState"
 import styles from "./MoveHandle.module.scss"
-import {Icon} from "../../utility"
+import {Icon} from "components/PageBuilder/utility"
 
 export function MoveHandle() {
 	const {connectors: {drag}} = useNode()

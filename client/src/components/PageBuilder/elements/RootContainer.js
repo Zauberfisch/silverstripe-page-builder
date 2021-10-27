@@ -1,5 +1,5 @@
 import React from "react"
-import {ElementContainer, ToolbarPortalTop} from "../editor/ElementUtilities"
+import {ElementContainer, ToolbarPortalTop} from "components/PageBuilder/element-utilities"
 
 export const RootContainer = ({children}) => {
 	return (

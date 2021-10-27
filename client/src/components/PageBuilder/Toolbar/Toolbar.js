@@ -4,7 +4,7 @@ import styles from "./Toolbar.module.scss"
 import {ToolbarButton} from "./ToolbarButton"
 import {AddNewButton} from "./AddNewButton"
 import {ToolbarSeparator} from "./ToolbarSeparator"
-import {EventBus} from "../../utility"
+import {EventBus} from "components/PageBuilder/utility"
 
 export const Toolbar = ({refToolbarTop, refToolbarRows}) => {
 	const {actions, canUndo, canRedo, query} = useEditor(

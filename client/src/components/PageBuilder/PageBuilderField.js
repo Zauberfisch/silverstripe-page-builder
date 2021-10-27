@@ -1,14 +1,13 @@
 import React from "react"
 import {Editor, Frame, Element, useEditor} from "@craftjs/core"
-import {Toolbar} from "./editor/Toolbar"
-import {Button} from "./user/Button"
-import {Container} from "./user/Container"
-import {RootContainer} from "./user/RootContainer"
+import {Toolbar} from "./Toolbar"
 import Injector from "lib/Injector"
 import styles from "./PageBuilderField.module.scss"
 import {PageBuilderContextProvider} from "./PageBuilderContext"
+import {UnknownElement, Container, RootContainer} from "./elements"
 
-function EditorInner({value, elements, refToolbarTop, refToolbarRows, setPageBuilderEditorQuery}) {
+
+function EditorInner({value, refToolbarTop, refToolbarRows, setPageBuilderEditorQuery}) {
 	const {query} = useEditor()
 	React.useEffect(() => {
 		setPageBuilderEditorQuery(query)
@@ -17,15 +16,7 @@ function EditorInner({value, elements, refToolbarTop, refToolbarRows, setPageBui
 		<React.Fragment>
 			<Toolbar {...{refToolbarTop, refToolbarRows}} />
 			<Frame data={value}>
-				<Element canvas is={RootContainer}>
-					{/*	/!*<Container></Container>*!/*/}
-					{/*<Text fontSize={20} text="Initial Text" />*/}
-					{/*	/!*<Button />*!/*/}
-					{/*	/!*<Text fontSize={20} text="test" />*!/*/}
-					{/*	/!*<Button />*!/*/}
-					<elements.DraftEditor />
-					{/*	/!*<Text fontSize={20} text="test 2" />*!/*/}
-				</Element>
+				<Element canvas is={RootContainer} />
 			</Frame>
 		</React.Fragment>
 	)
@@ -35,13 +26,30 @@ function PageBuilderField({value, setPageBuilderEditorQuery}) {
 	const refPageBuilderContainer = React.createRef()
 	const refToolbarTop = React.createRef()
 	const refToolbarRows = React.createRef()
-	const elements = React.useMemo(() => {
-		return {
-			Button,
+	const [allElements, elements] = React.useMemo(() => {
+		const valueObject = JSON.parse(value)
+		const elements = {
 			Container,
-			DraftEditor: Injector.component.get("PageBuilder/DraftEditor"),
+			// DraftEditor: Injector.component.get("PageBuilder/DraftEditor"),
+			Image: Injector.component.get("PageBuilder/Image"),
 		}
+		const allElements = {
+			RootContainer,
+			...elements,
+		}
+		if (valueObject) {
+			const usedElementTypes = Object.entries(valueObject).map(([id, element]) => {
+				return element.type.resolvedName
+			})
+			usedElementTypes.forEach(elementType => {
+				if (typeof allElements[elementType] === "undefined") {
+					allElements[elementType] = UnknownElement
+				}
+			})
+		}
+		return [allElements, elements]
 	}, [])
+
 	return (
 		<PageBuilderContextProvider {...{
 			refPageBuilderContainer,
@@ -50,8 +58,8 @@ function PageBuilderField({value, setPageBuilderEditorQuery}) {
 			refToolbarRows,
 		}}>
 			<div className={styles.field} ref={refPageBuilderContainer}>
-				<Editor resolver={{...elements, RootContainer}}>
-					<EditorInner {...{value, elements, refToolbarTop, refToolbarRows, setPageBuilderEditorQuery}} />
+				<Editor resolver={allElements}>
+					<EditorInner {...{value, refToolbarTop, refToolbarRows, setPageBuilderEditorQuery}} />
 				</Editor>
 			</div>
 		</PageBuilderContextProvider>

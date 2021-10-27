@@ -3,8 +3,8 @@ import styles from "./AddNewButton.module.scss"
 import classnames from "classnames"
 import {ToolbarButton} from "./ToolbarButton"
 import {Popover, PopoverHeader, PopoverBody} from "reactstrap"
-import {PageBuilderContext} from "../../PageBuilderContext"
-import {useUniqueId} from "../../utility"
+import {PageBuilderContext} from "components/PageBuilder/PageBuilderContext"
+import {useUniqueId} from "components/PageBuilder/utility"
 
 export const AddNewButton = ({}) => {
 	const id = useUniqueId()

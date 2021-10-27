@@ -78,17 +78,9 @@ var _Injector = __webpack_require__(4);
 
 var _Injector2 = _interopRequireDefault(_Injector);
 
-var _PageBuilderField = __webpack_require__("./client/src/components/PageBuilderField.js");
+var _PageBuilderField = __webpack_require__("./client/src/components/PageBuilder/PageBuilderField.js");
 
 var _PageBuilderField2 = _interopRequireDefault(_PageBuilderField);
-
-var _CreateElementButton = __webpack_require__("./client/src/components/editor/CreateElementButton.js");
-
-var _Toolbar = __webpack_require__("./client/src/components/editor/Toolbar/index.js");
-
-var _ElementUtilities = __webpack_require__("./client/src/components/editor/ElementUtilities/index.js");
-
-var _Icon = __webpack_require__("./client/src/components/utility/Icon.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -110,13 +102,161 @@ __webpack_require__("./client/src/legacy/entwine.js");
 
 __webpack_require__("./client/src/boot/index.js");
 
-__webpack_require__("./client/src/styles/global.scss");
-
-__webpack_require__("./node_modules/expose-loader/index.js?Zauberfisch_PageBuilder_Components!./client/src/components/components.js-exposed");
+__webpack_require__("./node_modules/expose-loader/index.js?Zauberfisch_PageBuilder_Components!./client/src/bundles/export-components.js-exposed");
 
 /***/ }),
 
-/***/ "./client/src/components/PageBuilderContext.js":
+/***/ "./client/src/components/DeletionModal.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _i18n = __webpack_require__(9);
+
+var _i18n2 = _interopRequireDefault(_i18n);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactstrap = __webpack_require__(2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var DeletionModal = function DeletionModal(_ref) {
+	var isOpen = _ref.isOpen,
+	    body = _ref.body,
+	    onCancel = _ref.onCancel,
+	    actions = _ref.actions;
+	return _react2.default.createElement(
+		_reactstrap.Modal,
+		{ isOpen: isOpen, toggle: onCancel },
+		_react2.default.createElement(
+			_reactstrap.ModalHeader,
+			{ toggle: onCancel },
+			_i18n2.default._t('AssetAdmin.CONFIRM_FILE_DELETION', 'Confirm deletion')
+		),
+		_react2.default.createElement(
+			_reactstrap.ModalBody,
+			null,
+			body
+		),
+		_react2.default.createElement(
+			_reactstrap.ModalFooter,
+			null,
+			actions.map(function (_ref2) {
+				var label = _ref2.label,
+				    handler = _ref2.handler,
+				    color = _ref2.color;
+				return _react2.default.createElement(
+					_reactstrap.Button,
+					{ key: label, color: color, onClick: handler },
+					label
+				);
+			})
+		)
+	);
+};
+
+exports.default = DeletionModal;
+
+/***/ }),
+
+/***/ "./client/src/components/LinkModals.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.EmbedModalFile = exports.LinkModalFile = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.LinkModalExternal = LinkModalExternal;
+exports.LinkModalInternal = LinkModalInternal;
+exports.LinkModalEmail = LinkModalEmail;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _InsertLinkModal = __webpack_require__(6);
+
+var _InsertMediaModal = __webpack_require__(7);
+
+var _InsertMediaModal2 = _interopRequireDefault(_InsertMediaModal);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var InsertLinkExternalModal = (0, _InsertLinkModal.createInsertLinkModal)("SilverStripe\\Admin\\LeftAndMain", "EditorExternalLink");
+var InsertLinkEmailModal = (0, _InsertLinkModal.createInsertLinkModal)("SilverStripe\\Admin\\LeftAndMain", "EditorEmailLink");
+var InsertLinkInternalModal = (0, _InsertLinkModal.createInsertLinkModal)("SilverStripe\\CMS\\Controllers\\CMSPageEditController", "editorInternalLink");
+function LinkModalExternal(props) {
+	return _react2.default.createElement(InsertLinkExternalModal, _extends({
+		title: i18n._t("Admin.LINK_EXTERNAL", "Insert external link"),
+		requireLinkText: false
+	}, props));
+}
+
+function LinkModalInternal(props) {
+	return _react2.default.createElement(InsertLinkInternalModal, _extends({
+		title: i18n._t("CMS.LINK_ANCHOR", "Link to an anchor on a page"),
+		requireLinkText: false
+	}, props));
+}
+
+function LinkModalEmail(props) {
+	return _react2.default.createElement(InsertLinkEmailModal, _extends({
+		title: i18n._t("Admin.LINK_EMAIL", "Insert email link"),
+		requireLinkText: false
+	}, props));
+}
+
+function LinkModalFile(_ref) {
+	var _onInsert = _ref.onInsert,
+	    props = _objectWithoutProperties(_ref, ["onInsert"]);
+
+	return _react2.default.createElement(_InsertMediaModal2.default, _extends({}, props, {
+		type: "insert-link",
+		onInsert: function onInsert(data) {
+			_onInsert(data);
+			return Promise.resolve();
+		},
+		title: false,
+		requireLinkText: false
+	}));
+}
+
+exports.LinkModalFile = LinkModalFile;
+function EmbedModalFile(_ref2) {
+	var _onInsert2 = _ref2.onInsert,
+	    props = _objectWithoutProperties(_ref2, ["onInsert"]);
+
+	return _react2.default.createElement(_InsertMediaModal2.default, _extends({}, props, {
+		type: "insert-link",
+		onInsert: function onInsert(data, file) {
+			_onInsert2(data, file);
+			return Promise.resolve();
+		},
+		title: false,
+		requireLinkText: false
+	}));
+}
+exports.EmbedModalFile = EmbedModalFile;
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/PageBuilderContext.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -157,7 +297,7 @@ function PageBuilderContextProvider(_ref) {
 
 /***/ }),
 
-/***/ "./client/src/components/PageBuilderField.js":
+/***/ "./client/src/components/PageBuilder/PageBuilderField.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -170,35 +310,32 @@ exports.Component = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
 var _core = __webpack_require__(1);
 
-var _Toolbar = __webpack_require__("./client/src/components/editor/Toolbar/index.js");
-
-var _Button = __webpack_require__("./client/src/components/user/Button.js");
-
-var _Container = __webpack_require__("./client/src/components/user/Container.js");
-
-var _RootContainer = __webpack_require__("./client/src/components/user/RootContainer.js");
+var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/index.js");
 
 var _Injector = __webpack_require__(4);
 
 var _Injector2 = _interopRequireDefault(_Injector);
 
-var _PageBuilderFieldModule = __webpack_require__("./client/src/components/PageBuilderField.module.scss");
+var _PageBuilderFieldModule = __webpack_require__("./client/src/components/PageBuilder/PageBuilderField.module.scss");
 
 var _PageBuilderFieldModule2 = _interopRequireDefault(_PageBuilderFieldModule);
 
-var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilderContext.js");
+var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilder/PageBuilderContext.js");
+
+var _elements = __webpack_require__("./client/src/components/PageBuilder/elements/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function EditorInner(_ref) {
 	var value = _ref.value,
-	    elements = _ref.elements,
 	    refToolbarTop = _ref.refToolbarTop,
 	    refToolbarRows = _ref.refToolbarRows,
 	    setPageBuilderEditorQuery = _ref.setPageBuilderEditorQuery;
@@ -216,11 +353,7 @@ function EditorInner(_ref) {
 		_react2.default.createElement(
 			_core.Frame,
 			{ data: value },
-			_react2.default.createElement(
-				_core.Element,
-				{ canvas: true, is: _RootContainer.RootContainer },
-				_react2.default.createElement(elements.DraftEditor, null)
-			)
+			_react2.default.createElement(_core.Element, { canvas: true, is: _elements.RootContainer })
 		)
 	);
 }
@@ -232,13 +365,37 @@ function PageBuilderField(_ref2) {
 	var refPageBuilderContainer = _react2.default.createRef();
 	var refToolbarTop = _react2.default.createRef();
 	var refToolbarRows = _react2.default.createRef();
-	var elements = _react2.default.useMemo(function () {
-		return {
-			Button: _Button.Button,
-			Container: _Container.Container,
-			DraftEditor: _Injector2.default.component.get("PageBuilder/DraftEditor")
+
+	var _React$useMemo = _react2.default.useMemo(function () {
+		var valueObject = JSON.parse(value);
+		var elements = {
+			Container: _elements.Container,
+
+			Image: _Injector2.default.component.get("PageBuilder/Image")
 		};
-	}, []);
+		var allElements = _extends({
+			RootContainer: _elements.RootContainer
+		}, elements);
+		if (valueObject) {
+			var usedElementTypes = Object.entries(valueObject).map(function (_ref3) {
+				var _ref4 = _slicedToArray(_ref3, 2),
+				    id = _ref4[0],
+				    element = _ref4[1];
+
+				return element.type.resolvedName;
+			});
+			usedElementTypes.forEach(function (elementType) {
+				if (typeof allElements[elementType] === "undefined") {
+					allElements[elementType] = _elements.UnknownElement;
+				}
+			});
+		}
+		return [allElements, elements];
+	}, []),
+	    _React$useMemo2 = _slicedToArray(_React$useMemo, 2),
+	    allElements = _React$useMemo2[0],
+	    elements = _React$useMemo2[1];
+
 	return _react2.default.createElement(
 		_PageBuilderContext.PageBuilderContextProvider,
 		{
@@ -252,8 +409,8 @@ function PageBuilderField(_ref2) {
 			{ className: _PageBuilderFieldModule2.default.field, ref: refPageBuilderContainer },
 			_react2.default.createElement(
 				_core.Editor,
-				{ resolver: _extends({}, elements, { RootContainer: _RootContainer.RootContainer }) },
-				_react2.default.createElement(EditorInner, { value: value, elements: elements, refToolbarTop: refToolbarTop, refToolbarRows: refToolbarRows, setPageBuilderEditorQuery: setPageBuilderEditorQuery })
+				{ resolver: allElements },
+				_react2.default.createElement(EditorInner, { value: value, refToolbarTop: refToolbarTop, refToolbarRows: refToolbarRows, setPageBuilderEditorQuery: setPageBuilderEditorQuery })
 			)
 		)
 	);
@@ -264,15 +421,612 @@ exports.default = PageBuilderField;
 
 /***/ }),
 
-/***/ "./client/src/components/PageBuilderField.module.scss":
+/***/ "./client/src/components/PageBuilder/PageBuilderField.module.scss":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"field":"_21fo0fQgaj1dL21Jy5zZ1m"};
+module.exports = {"field":"UYNzTJJEvJQyI2gnIwZnr"};
 
 /***/ }),
 
-/***/ "./client/src/components/editor/CreateElementButton.js":
+/***/ "./client/src/components/PageBuilder/Toolbar/AddNewButton.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.AddNewButton = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _AddNewButtonModule = __webpack_require__("./client/src/components/PageBuilder/Toolbar/AddNewButton.module.scss");
+
+var _AddNewButtonModule2 = _interopRequireDefault(_AddNewButtonModule);
+
+var _classnames2 = __webpack_require__(3);
+
+var _classnames3 = _interopRequireDefault(_classnames2);
+
+var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarButton.js");
+
+var _reactstrap = __webpack_require__(2);
+
+var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilder/PageBuilderContext.js");
+
+var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
+var AddNewButton = exports.AddNewButton = function AddNewButton(_ref) {
+	_objectDestructuringEmpty(_ref);
+
+	var id = (0, _utility.useUniqueId)();
+
+	var _React$useState = _react2.default.useState(false),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    isOpen = _React$useState2[0],
+	    setIsOpen = _React$useState2[1];
+
+	var _React$useState3 = _react2.default.useState(false),
+	    _React$useState4 = _slicedToArray(_React$useState3, 2),
+	    isHidden = _React$useState4[0],
+	    setIsHidden = _React$useState4[1];
+
+	var toggle = _react2.default.useCallback(function () {
+		setIsOpen(function (_isOpen) {
+			if (!_isOpen) {
+				setIsHidden(false);
+			}
+			return !_isOpen;
+		});
+	});
+
+	var _React$useContext = _react2.default.useContext(_PageBuilderContext.PageBuilderContext),
+	    elements = _React$useContext.elements;
+
+	return _react2.default.createElement(
+		"div",
+		null,
+		_react2.default.createElement(_ToolbarButton.ToolbarButton, _extends({ iconName: "mdiPlusBox" }, { id: id }, { tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Add") })),
+		id ? _react2.default.createElement(
+			_reactstrap.Popover,
+			_extends({ placement: "bottom", target: id }, { toggle: toggle, isOpen: isOpen }, { popperClassName: (0, _classnames3.default)(_defineProperty({}, _AddNewButtonModule2.default.popoverHidden, isHidden)) }),
+			_react2.default.createElement(
+				_reactstrap.PopoverHeader,
+				null,
+				ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.AddDropdownTitle")
+			),
+			_react2.default.createElement(
+				_reactstrap.PopoverBody,
+				null,
+				_react2.default.createElement(
+					"div",
+					{ className: _AddNewButtonModule2.default.elements },
+					Object.entries(elements).map(function (_ref2) {
+						var _ref3 = _slicedToArray(_ref2, 2),
+						    key = _ref3[0],
+						    element = _ref3[1];
+
+						return _react2.default.createElement(
+							"div",
+							{ key: key },
+							element.craft.related.CreateButton({
+								onCreate: function onCreate() {
+									return setIsOpen(false);
+								},
+								onDragStart: function onDragStart() {
+									if (navigator.userAgent.toLowerCase().indexOf("firefox") > -1) {
+										setIsHidden(true);
+									} else {
+										setTimeout(function () {
+											return setIsHidden(true);
+										}, 1000);
+									}
+								}
+							})
+						);
+					})
+				)
+			)
+		) : null
+	);
+};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/Toolbar/AddNewButton.module.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"elements":"_1YZkrQdgraILLsAV0KNoWU","popoverHidden":"ZepUbwqoQltT7d_D8rbQp"};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/Toolbar/Toolbar.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.Toolbar = undefined;
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _core = __webpack_require__(1);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ToolbarModule = __webpack_require__("./client/src/components/PageBuilder/Toolbar/Toolbar.module.scss");
+
+var _ToolbarModule2 = _interopRequireDefault(_ToolbarModule);
+
+var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarButton.js");
+
+var _AddNewButton = __webpack_require__("./client/src/components/PageBuilder/Toolbar/AddNewButton.js");
+
+var _ToolbarSeparator = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarSeparator.js");
+
+var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Toolbar = exports.Toolbar = function Toolbar(_ref) {
+	var refToolbarTop = _ref.refToolbarTop,
+	    refToolbarRows = _ref.refToolbarRows;
+
+	var _useEditor = (0, _core.useEditor)(function (state, _query) {
+		return {
+			canUndo: state.options.enabled && _query.history.canUndo(),
+			canRedo: state.options.enabled && _query.history.canRedo()
+		};
+	}),
+	    actions = _useEditor.actions,
+	    canUndo = _useEditor.canUndo,
+	    canRedo = _useEditor.canRedo,
+	    query = _useEditor.query;
+
+	var _React$useState = _react2.default.useState(false),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    isBusy = _React$useState2[0],
+	    setIsBusy = _React$useState2[1];
+
+	var undo = _react2.default.useCallback(function () {
+		setIsBusy(true);
+		actions.history.undo();
+		setTimeout(function () {
+			_utility.EventBus.emit("RELOAD_STATE");
+			setIsBusy(false);
+		}, 50);
+	}, []);
+	var redo = _react2.default.useCallback(function () {
+		setIsBusy(true);
+		actions.history.redo();
+		setTimeout(function () {
+			_utility.EventBus.emit("RELOAD_STATE");
+			setIsBusy(false);
+		}, 50);
+	}, []);
+	return _react2.default.createElement(
+		"div",
+		{ className: _ToolbarModule2.default.toolbar },
+		_react2.default.createElement(
+			"div",
+			{ className: _ToolbarModule2.default.toolbarInner, ref: refToolbarRows },
+			_react2.default.createElement(
+				"div",
+				{ className: _ToolbarModule2.default.toolbarRow, ref: refToolbarTop },
+				_react2.default.createElement(_ToolbarButton.ToolbarButton, { iconName: "mdiUndoVariant", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Undo"), disabled: !canUndo && !isBusy, onClick: undo }),
+				_react2.default.createElement(_ToolbarButton.ToolbarButton, { iconName: "mdiRedoVariant", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Redo"), disabled: !canRedo && !isBusy, onClick: redo }),
+				_react2.default.createElement(_ToolbarSeparator.ToolbarSeparator, null),
+				_react2.default.createElement(_AddNewButton.AddNewButton, null)
+			)
+		)
+	);
+};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/Toolbar/Toolbar.module.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"toolbar":"_3mk8e5SznTv-m-UBoYT2Cw","toolbarInner":"_39-Px3l4eq8kIk2LFhumbV","toolbarRow":"UcIzmUlSKWNMIGnJTBDse"};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/Toolbar/ToolbarButton.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.ToolbarButton = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ToolbarButtonModule = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarButton.module.scss");
+
+var _ToolbarButtonModule2 = _interopRequireDefault(_ToolbarButtonModule);
+
+var _classnames = __webpack_require__(3);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _reactstrap = __webpack_require__(2);
+
+var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var ToolbarButton = function ToolbarButton(_ref) {
+	var _classNames;
+
+	var _ref$title = _ref.title,
+	    title = _ref$title === undefined ? "" : _ref$title,
+	    _ref$tooltip = _ref.tooltip,
+	    tooltip = _ref$tooltip === undefined ? "" : _ref$tooltip,
+	    iconName = _ref.iconName,
+	    _ref$iconStyle = _ref.iconStyle,
+	    iconStyle = _ref$iconStyle === undefined ? {} : _ref$iconStyle,
+	    iconNameRight = _ref.iconNameRight,
+	    _ref$iconStyleRight = _ref.iconStyleRight,
+	    iconStyleRight = _ref$iconStyleRight === undefined ? {} : _ref$iconStyleRight,
+	    _ref$active = _ref.active,
+	    active = _ref$active === undefined ? false : _ref$active,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    id = _ref.id,
+	    _ref$className = _ref.className,
+	    className = _ref$className === undefined ? "" : _ref$className,
+	    props = _objectWithoutProperties(_ref, ["title", "tooltip", "iconName", "iconStyle", "iconNameRight", "iconStyleRight", "active", "disabled", "id", "className"]);
+
+	var onMouseDown = _react2.default.useCallback(function (e) {
+		return e.preventDefault();
+	}, []);
+	var _id = (0, _utility.useUniqueId)();
+	id = id || _id;
+	return _react2.default.createElement(
+		"span",
+		null,
+		_react2.default.createElement(
+			"button",
+			_extends({}, _extends({ onMouseDown: onMouseDown }, props, { id: id, disabled: disabled }), { className: (0, _classnames2.default)(_ToolbarButtonModule2.default.button, className, (_classNames = {}, _defineProperty(_classNames, _ToolbarButtonModule2.default.active, active), _defineProperty(_classNames, _ToolbarButtonModule2.default.hasText, title), _classNames)) }),
+			iconName ? _react2.default.createElement(_utility.Icon, { className: _ToolbarButtonModule2.default.icon, iconName: iconName, style: iconStyle }) : null,
+			title ? _react2.default.createElement(
+				"span",
+				{ className: _ToolbarButtonModule2.default.title },
+				_react2.default.createElement(
+					"span",
+					null,
+					title
+				)
+			) : null,
+			iconNameRight ? _react2.default.createElement(_utility.Icon, { className: _ToolbarButtonModule2.default.icon, iconName: iconNameRight, style: iconStyleRight }) : null
+		),
+		id && tooltip ? _react2.default.createElement(
+			_reactstrap.UncontrolledTooltip,
+			{ placement: "bottom", target: id },
+			tooltip
+		) : null
+	);
+};
+exports.ToolbarButton = ToolbarButton;
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/Toolbar/ToolbarButton.module.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"button":"_2H36xgwlHwJAIpfG5vmkmG","hasText":"_1cQNXIfh8-7erQgQ7tr3YG","active":"_3rw1-UbZkKuZAq2IOhNqnY","icon":"_1hcinIwAR7HME7GtAIGFLD","title":"kxRzOnLjZA7Gxk0ghYkz7"};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/Toolbar/ToolbarDropdown.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.ToolbarDropdown = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactstrap = __webpack_require__(2);
+
+var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarButton.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var ToolbarDropdown = function ToolbarDropdown(_ref) {
+	var _ref$title = _ref.title,
+	    title = _ref$title === undefined ? "" : _ref$title,
+	    iconName = _ref.iconName,
+	    _ref$iconStyle = _ref.iconStyle,
+	    iconStyle = _ref$iconStyle === undefined ? {} : _ref$iconStyle,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    children = _ref.children,
+	    props = _objectWithoutProperties(_ref, ["title", "iconName", "iconStyle", "disabled", "children"]);
+
+	var _React$useState = _react2.default.useState(false),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    dropdownOpen = _React$useState2[0],
+	    setDropdownOpen = _React$useState2[1];
+
+	var toggle = function toggle() {
+		return setDropdownOpen(function (prevState) {
+			return !prevState;
+		});
+	};
+	return _react2.default.createElement(
+		_reactstrap.Dropdown,
+		{ isOpen: dropdownOpen, toggle: toggle },
+		_react2.default.createElement(
+			_reactstrap.DropdownToggle,
+			{ tag: "span" },
+			_react2.default.createElement(_ToolbarButton.ToolbarButton, _extends({}, props, { title: title, iconName: iconName, iconStyle: iconStyle, iconNameRight: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown", disabled: disabled, active: dropdownOpen }))
+		),
+		_react2.default.createElement(
+			_reactstrap.DropdownMenu,
+			null,
+			children
+		)
+	);
+};
+exports.ToolbarDropdown = ToolbarDropdown;
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/Toolbar/ToolbarSelect.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.ToolbarSelect = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
+
+var _ToolbarDropdown = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarDropdown.js");
+
+var _reactstrap = __webpack_require__(2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var ToolbarSelectItem = function ToolbarSelectItem(_ref) {
+	var onClick = _ref.onClick,
+	    onChange = _ref.onChange,
+	    title = _ref.title,
+	    children = _ref.children,
+	    iconName = _ref.iconName,
+	    _ref$iconStyle = _ref.iconStyle,
+	    iconStyle = _ref$iconStyle === undefined ? {} : _ref$iconStyle,
+	    _ref$style = _ref.style,
+	    style = _ref$style === undefined ? {} : _ref$style,
+	    props = _objectWithoutProperties(_ref, ["onClick", "onChange", "title", "children", "iconName", "iconStyle", "style"]);
+
+	var onMouseDown = _react2.default.useCallback(function (e) {
+		return e.preventDefault();
+	}, []);
+	var _onClick = _react2.default.useCallback(function (e) {
+		e.preventDefault();
+		typeof onClick === "function" && onClick(e);
+		onChange(props.value);
+	}, [props.value]);
+	return _react2.default.createElement(
+		_reactstrap.DropdownItem,
+		_extends({}, props, { onMouseDown: onMouseDown, onClick: _onClick, style: _extends({ padding: "0 10px" }, style) }),
+		children ? children : _react2.default.createElement(
+			_react2.default.Fragment,
+			null,
+			iconName ? _react2.default.createElement(_utility.Icon, { style: _extends({ width: 20, display: "inline-block", padding: "0 5px 0 0" }, iconStyle), iconName: iconName }) : null,
+			_react2.default.createElement(
+				"span",
+				null,
+				title
+			)
+		)
+	);
+};
+
+var ToolbarSelect = function ToolbarSelect(_ref2) {
+	var options = _ref2.options,
+	    value = _ref2.value,
+	    onChange = _ref2.onChange,
+	    _ref2$showSelectedTit = _ref2.showSelectedTitle,
+	    showSelectedTitle = _ref2$showSelectedTit === undefined ? true : _ref2$showSelectedTit,
+	    _ref2$showSelectedIco = _ref2.showSelectedIcon,
+	    showSelectedIcon = _ref2$showSelectedIco === undefined ? true : _ref2$showSelectedIco,
+	    props = _objectWithoutProperties(_ref2, ["options", "value", "onChange", "showSelectedTitle", "showSelectedIcon"]);
+
+	var selected = options.find(function (_ref3) {
+		var _value = _ref3.value;
+		return value === _value;
+	}) || {};
+	return _react2.default.createElement(
+		_ToolbarDropdown.ToolbarDropdown,
+		_extends({}, props, { title: showSelectedTitle && selected && selected.title, iconName: showSelectedIcon && selected && selected.iconName, iconStyle: showSelectedIcon && selected && selected.iconStyle }),
+		options && options.map(function (option) {
+			return _react2.default.createElement(ToolbarSelectItem, _extends({}, option, { active: option.value === value, onChange: onChange }));
+		})
+	);
+};
+exports.ToolbarSelect = ToolbarSelect;
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/Toolbar/ToolbarSeparator.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.ToolbarSeparator = undefined;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ToolbarSeparatorModule = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarSeparator.module.scss");
+
+var _ToolbarSeparatorModule2 = _interopRequireDefault(_ToolbarSeparatorModule);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ToolbarSeparator = exports.ToolbarSeparator = function ToolbarSeparator() {
+	return _react2.default.createElement("span", { className: _ToolbarSeparatorModule2.default.separator });
+};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/Toolbar/ToolbarSeparator.module.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"separator":"_1b8lCGMhMhy_dFzdelqr96"};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/Toolbar/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _AddNewButton = __webpack_require__("./client/src/components/PageBuilder/Toolbar/AddNewButton.js");
+
+Object.keys(_AddNewButton).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _AddNewButton[key];
+    }
+  });
+});
+
+var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/Toolbar.js");
+
+Object.keys(_Toolbar).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _Toolbar[key];
+    }
+  });
+});
+
+var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarButton.js");
+
+Object.keys(_ToolbarButton).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarButton[key];
+    }
+  });
+});
+
+var _ToolbarDropdown = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarDropdown.js");
+
+Object.keys(_ToolbarDropdown).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarDropdown[key];
+    }
+  });
+});
+
+var _ToolbarSelect = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarSelect.js");
+
+Object.keys(_ToolbarSelect).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarSelect[key];
+    }
+  });
+});
+
+var _ToolbarSeparator = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarSeparator.js");
+
+Object.keys(_ToolbarSeparator).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarSeparator[key];
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/element-utilities/CreateElementButton.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -291,9 +1045,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _core = __webpack_require__(1);
 
-var _utility = __webpack_require__("./client/src/components/utility/index.js");
+var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
 
-var _CreateElementButtonModule = __webpack_require__("./client/src/components/editor/CreateElementButton.module.scss");
+var _CreateElementButtonModule = __webpack_require__("./client/src/components/PageBuilder/element-utilities/CreateElementButton.module.scss");
 
 var _CreateElementButtonModule2 = _interopRequireDefault(_CreateElementButtonModule);
 
@@ -329,15 +1083,15 @@ var CreateElementButton = exports.CreateElementButton = function CreateElementBu
 
 /***/ }),
 
-/***/ "./client/src/components/editor/CreateElementButton.module.scss":
+/***/ "./client/src/components/PageBuilder/element-utilities/CreateElementButton.module.scss":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"button":"_28m3yNO1D6ECkSgSVZ91Rf","icon":"_1MzLkv0w40HQqtThDIgCvW","title":"_1hAHUsFXZ799YAHmVeZCdf"};
+module.exports = {"button":"_1OnFy9GtrIYTW3YDNb9qq2","icon":"_1N74hM2mJuDAgvM4nHVzlP","title":"_14ITaeXF8FCcCxTRrLWShK"};
 
 /***/ }),
 
-/***/ "./client/src/components/editor/ElementUtilities/ElementContainer.js":
+/***/ "./client/src/components/PageBuilder/element-utilities/ElementContainer.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -355,15 +1109,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _MoveHandle = __webpack_require__("./client/src/components/editor/ElementUtilities/MoveHandle.js");
+var _MoveHandle = __webpack_require__("./client/src/components/PageBuilder/element-utilities/MoveHandle.js");
 
 var _classnames = __webpack_require__(3);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _useNodeState2 = __webpack_require__("./client/src/components/editor/ElementUtilities/useNodeState.js");
+var _useNodeState2 = __webpack_require__("./client/src/components/PageBuilder/element-utilities/useNodeState.js");
 
-var _ElementContainerModule = __webpack_require__("./client/src/components/editor/ElementUtilities/ElementContainer.module.scss");
+var _ElementContainerModule = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ElementContainer.module.scss");
 
 var _ElementContainerModule2 = _interopRequireDefault(_ElementContainerModule);
 
@@ -416,15 +1170,15 @@ function ElementContainer(_ref) {
 
 /***/ }),
 
-/***/ "./client/src/components/editor/ElementUtilities/ElementContainer.module.scss":
+/***/ "./client/src/components/PageBuilder/element-utilities/ElementContainer.module.scss":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"element":"_2gwqIsbTPSuQTPdRH7qoqI","inline":"_3Sp1KNvRAYxazs-k9gn1Pp","hover":"_3bNJPl3TRy0usZbQD8v5_o","active":"_3YUgO7mWYTTcSG8Y1LPGMl","borderTopLeft":"_3XWY_WfNT0WYb5idz1HOq","borderTopRight":"_1QBW3V8gSrTkEGTDbhNrTV","borderBottomRight":"_2mberNxccip4JXOljigAjl","borderBottomLeft":"_39fl7gtTVIqhv4w01DQs_o"};
+module.exports = {"element":"_1kM2GTBES335mTvmT7SXER","inline":"_37rcwGItDlt9W-mR26b6qU","hover":"_3f4eVKQ6zWN8BzVGcEiNNk","active":"_2aFP4uudLD7Zd8xOAgYvZx","borderTopLeft":"_3IhBBlg7cSD2sUkQts5T5N","borderTopRight":"_2f1vcLf8gTg5OJfPNbbBKs","borderBottomRight":"_3EcN7Zn0cljz1y4S2ZLP9-","borderBottomLeft":"_2o6sP5rDtgMunCykm9aU3u"};
 
 /***/ }),
 
-/***/ "./client/src/components/editor/ElementUtilities/MoveHandle.js":
+/***/ "./client/src/components/PageBuilder/element-utilities/MoveHandle.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -441,13 +1195,13 @@ var _react2 = _interopRequireDefault(_react);
 
 var _core = __webpack_require__(1);
 
-var _useNodeState2 = __webpack_require__("./client/src/components/editor/ElementUtilities/useNodeState.js");
+var _useNodeState2 = __webpack_require__("./client/src/components/PageBuilder/element-utilities/useNodeState.js");
 
-var _MoveHandleModule = __webpack_require__("./client/src/components/editor/ElementUtilities/MoveHandle.module.scss");
+var _MoveHandleModule = __webpack_require__("./client/src/components/PageBuilder/element-utilities/MoveHandle.module.scss");
 
 var _MoveHandleModule2 = _interopRequireDefault(_MoveHandleModule);
 
-var _utility = __webpack_require__("./client/src/components/utility/index.js");
+var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -471,15 +1225,15 @@ function MoveHandle() {
 
 /***/ }),
 
-/***/ "./client/src/components/editor/ElementUtilities/MoveHandle.module.scss":
+/***/ "./client/src/components/PageBuilder/element-utilities/MoveHandle.module.scss":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"handle":"gVAACfan4KT6S5xw1pM4L","icon":"_2wn4Y5Kgvl5ILFjGvLHLjw"};
+module.exports = {"handle":"_1Ssdk-cK-dQpR1l3s23IRa","icon":"_2d4I0LY1h0OgsgVQrMgiTz"};
 
 /***/ }),
 
-/***/ "./client/src/components/editor/ElementUtilities/ToolbarPortalRow.js":
+/***/ "./client/src/components/PageBuilder/element-utilities/ToolbarPortalRow.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -494,15 +1248,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilderContext.js");
+var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilder/PageBuilderContext.js");
 
-var _useNodeState2 = __webpack_require__("./client/src/components/editor/ElementUtilities/useNodeState.js");
+var _useNodeState2 = __webpack_require__("./client/src/components/PageBuilder/element-utilities/useNodeState.js");
 
 var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _ToolbarModule = __webpack_require__("./client/src/components/editor/Toolbar/Toolbar.module.scss");
+var _ToolbarModule = __webpack_require__("./client/src/components/PageBuilder/Toolbar/Toolbar.module.scss");
 
 var _ToolbarModule2 = _interopRequireDefault(_ToolbarModule);
 
@@ -529,7 +1283,7 @@ function ToolbarPortalRow(_ref) {
 
 /***/ }),
 
-/***/ "./client/src/components/editor/ElementUtilities/ToolbarPortalTop.js":
+/***/ "./client/src/components/PageBuilder/element-utilities/ToolbarPortalTop.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -547,9 +1301,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilderContext.js");
+var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilder/PageBuilderContext.js");
 
-var _useNodeState2 = __webpack_require__("./client/src/components/editor/ElementUtilities/useNodeState.js");
+var _useNodeState2 = __webpack_require__("./client/src/components/PageBuilder/element-utilities/useNodeState.js");
 
 var _reactDom = __webpack_require__(5);
 
@@ -557,9 +1311,9 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _core = __webpack_require__(1);
 
-var _Toolbar = __webpack_require__("./client/src/components/editor/Toolbar/index.js");
+var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/index.js");
 
-var _DeletionModal = __webpack_require__("./client/src/components/utility/DeletionModal.js");
+var _DeletionModal = __webpack_require__("./client/src/components/DeletionModal.js");
 
 var _DeletionModal2 = _interopRequireDefault(_DeletionModal);
 
@@ -645,7 +1399,7 @@ function ToolbarPortalTop(_ref) {
 
 /***/ }),
 
-/***/ "./client/src/components/editor/ElementUtilities/index.js":
+/***/ "./client/src/components/PageBuilder/element-utilities/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -655,7 +1409,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _MoveHandle = __webpack_require__("./client/src/components/editor/ElementUtilities/MoveHandle.js");
+var _MoveHandle = __webpack_require__("./client/src/components/PageBuilder/element-utilities/MoveHandle.js");
 
 Object.keys(_MoveHandle).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -667,7 +1421,7 @@ Object.keys(_MoveHandle).forEach(function (key) {
   });
 });
 
-var _ToolbarPortalTop = __webpack_require__("./client/src/components/editor/ElementUtilities/ToolbarPortalTop.js");
+var _ToolbarPortalTop = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ToolbarPortalTop.js");
 
 Object.keys(_ToolbarPortalTop).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -679,7 +1433,7 @@ Object.keys(_ToolbarPortalTop).forEach(function (key) {
   });
 });
 
-var _ToolbarPortalRow = __webpack_require__("./client/src/components/editor/ElementUtilities/ToolbarPortalRow.js");
+var _ToolbarPortalRow = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ToolbarPortalRow.js");
 
 Object.keys(_ToolbarPortalRow).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -691,7 +1445,7 @@ Object.keys(_ToolbarPortalRow).forEach(function (key) {
   });
 });
 
-var _useNodeState = __webpack_require__("./client/src/components/editor/ElementUtilities/useNodeState.js");
+var _useNodeState = __webpack_require__("./client/src/components/PageBuilder/element-utilities/useNodeState.js");
 
 Object.keys(_useNodeState).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -703,7 +1457,7 @@ Object.keys(_useNodeState).forEach(function (key) {
   });
 });
 
-var _ElementContainer = __webpack_require__("./client/src/components/editor/ElementUtilities/ElementContainer.js");
+var _ElementContainer = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ElementContainer.js");
 
 Object.keys(_ElementContainer).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -715,9 +1469,21 @@ Object.keys(_ElementContainer).forEach(function (key) {
   });
 });
 
+var _CreateElementButton = __webpack_require__("./client/src/components/PageBuilder/element-utilities/CreateElementButton.js");
+
+Object.keys(_CreateElementButton).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _CreateElementButton[key];
+    }
+  });
+});
+
 /***/ }),
 
-/***/ "./client/src/components/editor/ElementUtilities/useNodeState.js":
+/***/ "./client/src/components/PageBuilder/element-utilities/useNodeState.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -761,815 +1527,7 @@ function useNodeState() {
 
 /***/ }),
 
-/***/ "./client/src/components/editor/Toolbar/AddNewButton.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.AddNewButton = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _AddNewButtonModule = __webpack_require__("./client/src/components/editor/Toolbar/AddNewButton.module.scss");
-
-var _AddNewButtonModule2 = _interopRequireDefault(_AddNewButtonModule);
-
-var _classnames2 = __webpack_require__(3);
-
-var _classnames3 = _interopRequireDefault(_classnames2);
-
-var _ToolbarButton = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarButton.js");
-
-var _reactstrap = __webpack_require__(2);
-
-var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilderContext.js");
-
-var _utility = __webpack_require__("./client/src/components/utility/index.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
-
-var AddNewButton = exports.AddNewButton = function AddNewButton(_ref) {
-	_objectDestructuringEmpty(_ref);
-
-	var id = (0, _utility.useUniqueId)();
-
-	var _React$useState = _react2.default.useState(false),
-	    _React$useState2 = _slicedToArray(_React$useState, 2),
-	    isOpen = _React$useState2[0],
-	    setIsOpen = _React$useState2[1];
-
-	var _React$useState3 = _react2.default.useState(false),
-	    _React$useState4 = _slicedToArray(_React$useState3, 2),
-	    isHidden = _React$useState4[0],
-	    setIsHidden = _React$useState4[1];
-
-	var toggle = _react2.default.useCallback(function () {
-		setIsOpen(function (_isOpen) {
-			if (!_isOpen) {
-				setIsHidden(false);
-			}
-			return !_isOpen;
-		});
-	});
-
-	var _React$useContext = _react2.default.useContext(_PageBuilderContext.PageBuilderContext),
-	    elements = _React$useContext.elements;
-
-	return _react2.default.createElement(
-		"div",
-		null,
-		_react2.default.createElement(_ToolbarButton.ToolbarButton, _extends({ iconName: "mdiPlusBox" }, { id: id }, { tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Add") })),
-		id ? _react2.default.createElement(
-			_reactstrap.Popover,
-			_extends({ placement: "bottom", target: id }, { toggle: toggle, isOpen: isOpen }, { popperClassName: (0, _classnames3.default)(_defineProperty({}, _AddNewButtonModule2.default.popoverHidden, isHidden)) }),
-			_react2.default.createElement(
-				_reactstrap.PopoverHeader,
-				null,
-				ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.AddDropdownTitle")
-			),
-			_react2.default.createElement(
-				_reactstrap.PopoverBody,
-				null,
-				_react2.default.createElement(
-					"div",
-					{ className: _AddNewButtonModule2.default.elements },
-					Object.entries(elements).map(function (_ref2) {
-						var _ref3 = _slicedToArray(_ref2, 2),
-						    key = _ref3[0],
-						    element = _ref3[1];
-
-						return _react2.default.createElement(
-							"div",
-							{ key: key },
-							element.craft.related.CreateButton({
-								onCreate: function onCreate() {
-									return setIsOpen(false);
-								},
-								onDragStart: function onDragStart() {
-									if (navigator.userAgent.toLowerCase().indexOf("firefox") > -1) {
-										setIsHidden(true);
-									} else {
-										setTimeout(function () {
-											return setIsHidden(true);
-										}, 1000);
-									}
-								}
-							})
-						);
-					})
-				)
-			)
-		) : null
-	);
-};
-
-/***/ }),
-
-/***/ "./client/src/components/editor/Toolbar/AddNewButton.module.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"elements":"_73isDlIL8EcCKO1D0lqKk","popoverHidden":"_1pcyMtYC1otdEnXh6XH7z4"};
-
-/***/ }),
-
-/***/ "./client/src/components/editor/Toolbar/Toolbar.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.Toolbar = undefined;
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _core = __webpack_require__(1);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _ToolbarModule = __webpack_require__("./client/src/components/editor/Toolbar/Toolbar.module.scss");
-
-var _ToolbarModule2 = _interopRequireDefault(_ToolbarModule);
-
-var _ToolbarButton = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarButton.js");
-
-var _AddNewButton = __webpack_require__("./client/src/components/editor/Toolbar/AddNewButton.js");
-
-var _ToolbarSeparator = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarSeparator.js");
-
-var _utility = __webpack_require__("./client/src/components/utility/index.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Toolbar = exports.Toolbar = function Toolbar(_ref) {
-	var refToolbarTop = _ref.refToolbarTop,
-	    refToolbarRows = _ref.refToolbarRows;
-
-	var _useEditor = (0, _core.useEditor)(function (state, _query) {
-		return {
-			canUndo: state.options.enabled && _query.history.canUndo(),
-			canRedo: state.options.enabled && _query.history.canRedo()
-		};
-	}),
-	    actions = _useEditor.actions,
-	    canUndo = _useEditor.canUndo,
-	    canRedo = _useEditor.canRedo,
-	    query = _useEditor.query;
-
-	var _React$useState = _react2.default.useState(false),
-	    _React$useState2 = _slicedToArray(_React$useState, 2),
-	    isBusy = _React$useState2[0],
-	    setIsBusy = _React$useState2[1];
-
-	var undo = _react2.default.useCallback(function () {
-		setIsBusy(true);
-		actions.history.undo();
-		setTimeout(function () {
-			_utility.EventBus.emit("RELOAD_STATE");
-			setIsBusy(false);
-		}, 50);
-	}, []);
-	var redo = _react2.default.useCallback(function () {
-		setIsBusy(true);
-		actions.history.redo();
-		setTimeout(function () {
-			_utility.EventBus.emit("RELOAD_STATE");
-			setIsBusy(false);
-		}, 50);
-	}, []);
-	return _react2.default.createElement(
-		"div",
-		{ className: _ToolbarModule2.default.toolbar },
-		_react2.default.createElement(
-			"div",
-			{ className: _ToolbarModule2.default.toolbarInner, ref: refToolbarRows },
-			_react2.default.createElement(
-				"div",
-				{ className: _ToolbarModule2.default.toolbarRow, ref: refToolbarTop },
-				_react2.default.createElement(_ToolbarButton.ToolbarButton, { iconName: "mdiUndoVariant", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Undo"), disabled: !canUndo && !isBusy, onClick: undo }),
-				_react2.default.createElement(_ToolbarButton.ToolbarButton, { iconName: "mdiRedoVariant", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Redo"), disabled: !canRedo && !isBusy, onClick: redo }),
-				_react2.default.createElement(_ToolbarSeparator.ToolbarSeparator, null),
-				_react2.default.createElement(_AddNewButton.AddNewButton, null)
-			)
-		)
-	);
-};
-
-/***/ }),
-
-/***/ "./client/src/components/editor/Toolbar/Toolbar.module.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"toolbar":"_19IpKb7_3hgoUmjp6b5F5O","toolbarInner":"_25WBONBlJwGaTyZDpT5QgO","toolbarRow":"_3I4wDzG1geBPELK5UqbZbp"};
-
-/***/ }),
-
-/***/ "./client/src/components/editor/Toolbar/ToolbarButton.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.ToolbarButton = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _ToolbarButtonModule = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarButton.module.scss");
-
-var _ToolbarButtonModule2 = _interopRequireDefault(_ToolbarButtonModule);
-
-var _classnames = __webpack_require__(3);
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _reactstrap = __webpack_require__(2);
-
-var _utility = __webpack_require__("./client/src/components/utility/index.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-var ToolbarButton = function ToolbarButton(_ref) {
-	var _classNames;
-
-	var _ref$title = _ref.title,
-	    title = _ref$title === undefined ? "" : _ref$title,
-	    _ref$tooltip = _ref.tooltip,
-	    tooltip = _ref$tooltip === undefined ? "" : _ref$tooltip,
-	    iconName = _ref.iconName,
-	    _ref$iconStyle = _ref.iconStyle,
-	    iconStyle = _ref$iconStyle === undefined ? {} : _ref$iconStyle,
-	    iconNameRight = _ref.iconNameRight,
-	    _ref$iconStyleRight = _ref.iconStyleRight,
-	    iconStyleRight = _ref$iconStyleRight === undefined ? {} : _ref$iconStyleRight,
-	    _ref$active = _ref.active,
-	    active = _ref$active === undefined ? false : _ref$active,
-	    _ref$disabled = _ref.disabled,
-	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
-	    id = _ref.id,
-	    _ref$className = _ref.className,
-	    className = _ref$className === undefined ? "" : _ref$className,
-	    props = _objectWithoutProperties(_ref, ["title", "tooltip", "iconName", "iconStyle", "iconNameRight", "iconStyleRight", "active", "disabled", "id", "className"]);
-
-	var onMouseDown = _react2.default.useCallback(function (e) {
-		return e.preventDefault();
-	}, []);
-	var _id = (0, _utility.useUniqueId)();
-	id = id || _id;
-	return _react2.default.createElement(
-		"span",
-		null,
-		_react2.default.createElement(
-			"button",
-			_extends({}, _extends({ onMouseDown: onMouseDown }, props, { id: id, disabled: disabled }), { className: (0, _classnames2.default)(_ToolbarButtonModule2.default.button, className, (_classNames = {}, _defineProperty(_classNames, _ToolbarButtonModule2.default.active, active), _defineProperty(_classNames, _ToolbarButtonModule2.default.hasText, title), _classNames)) }),
-			iconName ? _react2.default.createElement(_utility.Icon, { className: _ToolbarButtonModule2.default.icon, iconName: iconName, style: iconStyle }) : null,
-			title ? _react2.default.createElement(
-				"span",
-				{ className: _ToolbarButtonModule2.default.title },
-				_react2.default.createElement(
-					"span",
-					null,
-					title
-				)
-			) : null,
-			iconNameRight ? _react2.default.createElement(_utility.Icon, { className: _ToolbarButtonModule2.default.icon, iconName: iconNameRight, style: iconStyleRight }) : null
-		),
-		id && tooltip ? _react2.default.createElement(
-			_reactstrap.UncontrolledTooltip,
-			{ placement: "bottom", target: id },
-			tooltip
-		) : null
-	);
-};
-exports.ToolbarButton = ToolbarButton;
-
-/***/ }),
-
-/***/ "./client/src/components/editor/Toolbar/ToolbarButton.module.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"button":"_12VEae-SCu60ektdb6nNx7","hasText":"ExzBh-vGB5Vu6g76p2h_S","active":"_78hCNwHJCGFFBMUkStoTT","icon":"_1nsYaaaZHf-Zff48OiJuds","title":"_156Rkg1OU-fICFO3qA4FYG"};
-
-/***/ }),
-
-/***/ "./client/src/components/editor/Toolbar/ToolbarDropdown.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.ToolbarDropdown = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactstrap = __webpack_require__(2);
-
-var _ToolbarButton = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarButton.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-var ToolbarDropdown = function ToolbarDropdown(_ref) {
-	var _ref$title = _ref.title,
-	    title = _ref$title === undefined ? "" : _ref$title,
-	    iconName = _ref.iconName,
-	    _ref$iconStyle = _ref.iconStyle,
-	    iconStyle = _ref$iconStyle === undefined ? {} : _ref$iconStyle,
-	    _ref$disabled = _ref.disabled,
-	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
-	    children = _ref.children,
-	    props = _objectWithoutProperties(_ref, ["title", "iconName", "iconStyle", "disabled", "children"]);
-
-	var _React$useState = _react2.default.useState(false),
-	    _React$useState2 = _slicedToArray(_React$useState, 2),
-	    dropdownOpen = _React$useState2[0],
-	    setDropdownOpen = _React$useState2[1];
-
-	var toggle = function toggle() {
-		return setDropdownOpen(function (prevState) {
-			return !prevState;
-		});
-	};
-	return _react2.default.createElement(
-		_reactstrap.Dropdown,
-		{ isOpen: dropdownOpen, toggle: toggle },
-		_react2.default.createElement(
-			_reactstrap.DropdownToggle,
-			{ tag: "span" },
-			_react2.default.createElement(_ToolbarButton.ToolbarButton, _extends({}, props, { title: title, iconName: iconName, iconStyle: iconStyle, iconNameRight: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown", disabled: disabled, active: dropdownOpen }))
-		),
-		_react2.default.createElement(
-			_reactstrap.DropdownMenu,
-			null,
-			children
-		)
-	);
-};
-exports.ToolbarDropdown = ToolbarDropdown;
-
-/***/ }),
-
-/***/ "./client/src/components/editor/Toolbar/ToolbarSelect.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.ToolbarSelect = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _utility = __webpack_require__("./client/src/components/utility/index.js");
-
-var _ToolbarDropdown = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarDropdown.js");
-
-var _reactstrap = __webpack_require__(2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-var ToolbarSelectItem = function ToolbarSelectItem(_ref) {
-	var onClick = _ref.onClick,
-	    onChange = _ref.onChange,
-	    title = _ref.title,
-	    children = _ref.children,
-	    iconName = _ref.iconName,
-	    _ref$iconStyle = _ref.iconStyle,
-	    iconStyle = _ref$iconStyle === undefined ? {} : _ref$iconStyle,
-	    _ref$style = _ref.style,
-	    style = _ref$style === undefined ? {} : _ref$style,
-	    props = _objectWithoutProperties(_ref, ["onClick", "onChange", "title", "children", "iconName", "iconStyle", "style"]);
-
-	var onMouseDown = _react2.default.useCallback(function (e) {
-		return e.preventDefault();
-	}, []);
-	var _onClick = _react2.default.useCallback(function (e) {
-		e.preventDefault();
-		typeof onClick === "function" && onClick(e);
-		onChange(props.value);
-	}, [props.value]);
-	return _react2.default.createElement(
-		_reactstrap.DropdownItem,
-		_extends({}, props, { onMouseDown: onMouseDown, onClick: _onClick, style: _extends({ padding: "0 10px" }, style) }),
-		children ? children : _react2.default.createElement(
-			_react2.default.Fragment,
-			null,
-			iconName ? _react2.default.createElement(_utility.Icon, { style: _extends({ width: 20, display: "inline-block", padding: "0 5px 0 0" }, iconStyle), iconName: iconName }) : null,
-			_react2.default.createElement(
-				"span",
-				null,
-				title
-			)
-		)
-	);
-};
-
-var ToolbarSelect = function ToolbarSelect(_ref2) {
-	var options = _ref2.options,
-	    value = _ref2.value,
-	    onChange = _ref2.onChange,
-	    _ref2$showSelectedTit = _ref2.showSelectedTitle,
-	    showSelectedTitle = _ref2$showSelectedTit === undefined ? true : _ref2$showSelectedTit,
-	    _ref2$showSelectedIco = _ref2.showSelectedIcon,
-	    showSelectedIcon = _ref2$showSelectedIco === undefined ? true : _ref2$showSelectedIco,
-	    props = _objectWithoutProperties(_ref2, ["options", "value", "onChange", "showSelectedTitle", "showSelectedIcon"]);
-
-	var selected = options.find(function (_ref3) {
-		var _value = _ref3.value;
-		return value === _value;
-	}) || {};
-	return _react2.default.createElement(
-		_ToolbarDropdown.ToolbarDropdown,
-		_extends({}, props, { title: showSelectedTitle && selected && selected.title, iconName: showSelectedIcon && selected && selected.iconName, iconStyle: showSelectedIcon && selected && selected.iconStyle }),
-		options && options.map(function (option) {
-			return _react2.default.createElement(ToolbarSelectItem, _extends({}, option, { active: option.value === value, onChange: onChange }));
-		})
-	);
-};
-exports.ToolbarSelect = ToolbarSelect;
-
-/***/ }),
-
-/***/ "./client/src/components/editor/Toolbar/ToolbarSeparator.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.ToolbarSeparator = undefined;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _ToolbarSeparatorModule = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarSeparator.module.scss");
-
-var _ToolbarSeparatorModule2 = _interopRequireDefault(_ToolbarSeparatorModule);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var ToolbarSeparator = exports.ToolbarSeparator = function ToolbarSeparator() {
-	return _react2.default.createElement("span", { className: _ToolbarSeparatorModule2.default.separator });
-};
-
-/***/ }),
-
-/***/ "./client/src/components/editor/Toolbar/ToolbarSeparator.module.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"separator":"_3x1a0k4mwppaIsLNiqEFZS"};
-
-/***/ }),
-
-/***/ "./client/src/components/editor/Toolbar/index.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _AddNewButton = __webpack_require__("./client/src/components/editor/Toolbar/AddNewButton.js");
-
-Object.keys(_AddNewButton).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _AddNewButton[key];
-    }
-  });
-});
-
-var _Toolbar = __webpack_require__("./client/src/components/editor/Toolbar/Toolbar.js");
-
-Object.keys(_Toolbar).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _Toolbar[key];
-    }
-  });
-});
-
-var _ToolbarButton = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarButton.js");
-
-Object.keys(_ToolbarButton).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarButton[key];
-    }
-  });
-});
-
-var _ToolbarDropdown = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarDropdown.js");
-
-Object.keys(_ToolbarDropdown).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarDropdown[key];
-    }
-  });
-});
-
-var _ToolbarSelect = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarSelect.js");
-
-Object.keys(_ToolbarSelect).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarSelect[key];
-    }
-  });
-});
-
-var _ToolbarSeparator = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarSeparator.js");
-
-Object.keys(_ToolbarSeparator).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarSeparator[key];
-    }
-  });
-});
-
-/***/ }),
-
-/***/ "./client/src/components/user/Button.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.Button = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _core = __webpack_require__(1);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _CreateElementButton = __webpack_require__("./client/src/components/editor/CreateElementButton.js");
-
-var _ElementUtilities = __webpack_require__("./client/src/components/editor/ElementUtilities/index.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-var Button = function Button(_ref) {
-	var size = _ref.size,
-	    variant = _ref.variant,
-	    color = _ref.color,
-	    text = _ref.text,
-	    props = _objectWithoutProperties(_ref, ["size", "variant", "color", "text"]);
-
-	var _useNode = (0, _core.useNode)(),
-	    connect = _useNode.connectors.connect;
-
-	return _react2.default.createElement(
-		_ElementUtilities.ElementContainer,
-		{ inline: true },
-		_react2.default.createElement(
-			_ElementUtilities.ToolbarPortalTop,
-			null,
-			_react2.default.createElement(
-				"div",
-				null,
-				"A"
-			)
-		),
-		_react2.default.createElement(
-			"button",
-			_extends({
-				style: { margin: "5px" },
-
-				color: color
-			}, props),
-			text,
-			" (size: ",
-			size,
-			", variant: ",
-			variant,
-			")"
-		)
-	);
-};
-
-exports.Button = Button;
-var ButtonSettings = function ButtonSettings() {
-	var _useNode2 = (0, _core.useNode)(function (node) {
-		return {
-			props: node.data.props
-		};
-	}),
-	    setProp = _useNode2.actions.setProp,
-	    props = _useNode2.props;
-
-	return _react2.default.createElement(
-		"div",
-		null,
-		_react2.default.createElement(
-			"fieldset",
-			null,
-			_react2.default.createElement(
-				"legend",
-				null,
-				"Size"
-			),
-			_react2.default.createElement(
-				"select",
-				{
-					value: props.size,
-					onChange: function onChange(e) {
-						return setProp(function (_props) {
-							_props.size = e.target.value;
-						});
-					}
-				},
-				_react2.default.createElement(
-					"option",
-					{ value: "small" },
-					"Small"
-				),
-				_react2.default.createElement(
-					"option",
-					{ value: "medium" },
-					"Medium"
-				),
-				_react2.default.createElement(
-					"option",
-					{ value: "large" },
-					"Large"
-				)
-			)
-		),
-		_react2.default.createElement(
-			"fieldset",
-			null,
-			_react2.default.createElement(
-				"legend",
-				null,
-				"Variant"
-			),
-			_react2.default.createElement(
-				"select",
-				{
-					value: props.variant,
-					onChange: function onChange(e) {
-						return setProp(function (_props) {
-							_props.variant = e.target.value;
-						});
-					}
-				},
-				_react2.default.createElement(
-					"option",
-					{ value: "text" },
-					"Text"
-				),
-				_react2.default.createElement(
-					"option",
-					{ value: "outlined" },
-					"Outlined"
-				),
-				_react2.default.createElement(
-					"option",
-					{ value: "contained" },
-					"Contained"
-				)
-			)
-		),
-		_react2.default.createElement(
-			"fieldset",
-			null,
-			_react2.default.createElement(
-				"legend",
-				null,
-				"Color"
-			),
-			_react2.default.createElement(
-				"select",
-				{
-					value: props.color,
-					onChange: function onChange(e) {
-						return setProp(function (_props) {
-							_props.color = e.target.value;
-						});
-					}
-				},
-				_react2.default.createElement(
-					"option",
-					{ value: "default" },
-					"Default"
-				),
-				_react2.default.createElement(
-					"option",
-					{ value: "primary" },
-					"Primary"
-				),
-				_react2.default.createElement(
-					"option",
-					{ value: "secondary" },
-					"Secondary"
-				)
-			)
-		)
-	);
-};
-
-var defaultProps = {
-	size: "small",
-	variant: "contained",
-	color: "primary",
-	text: "Click me"
-};
-
-Button.getTypeDisplayName = function () {
-	return ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_ELEMENT.Button");
-};
-
-function CreateButton(props) {
-	return _react2.default.createElement(_CreateElementButton.CreateElementButton, _extends({}, props, { element: _react2.default.createElement(Button, null), iconName: "mdiGestureTapButton" }));
-}
-
-Button.craft = {
-	props: defaultProps,
-	related: {
-		CreateButton: CreateButton
-	}
-};
-
-/***/ }),
-
-/***/ "./client/src/components/user/Container.js":
+/***/ "./client/src/components/PageBuilder/elements/Container.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1588,13 +1546,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _CreateElementButton = __webpack_require__("./client/src/components/editor/CreateElementButton.js");
+var _elementUtilities = __webpack_require__("./client/src/components/PageBuilder/element-utilities/index.js");
 
-var _ElementUtilities = __webpack_require__("./client/src/components/editor/ElementUtilities/index.js");
+var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/index.js");
 
-var _Toolbar = __webpack_require__("./client/src/components/editor/Toolbar/index.js");
-
-var _ContainerModule = __webpack_require__("./client/src/components/user/Container.module.scss");
+var _ContainerModule = __webpack_require__("./client/src/components/PageBuilder/elements/Container.module.scss");
 
 var _ContainerModule2 = _interopRequireDefault(_ContainerModule);
 
@@ -1668,10 +1624,10 @@ var Container = exports.Container = function Container(_ref) {
 	}) || { pageBuilderStyle: {} };
 	var hasChildren = _react2.default.Children.count(children) > 0;
 	return _react2.default.createElement(
-		_ElementUtilities.ElementContainer,
+		_elementUtilities.ElementContainer,
 		{ className: (0, _classnames2.default)(_ContainerModule2.default.container, _defineProperty({}, _ContainerModule2.default.isEmpty, !hasChildren)), style: selectedBackground.pageBuilderStyle },
 		_react2.default.createElement(
-			_ElementUtilities.ToolbarPortalTop,
+			_elementUtilities.ToolbarPortalTop,
 			null,
 			_react2.default.createElement(_Toolbar.ToolbarSelect, { value: background, onChange: backgroundOnChange, options: backgroundOptions })
 		),
@@ -1692,7 +1648,7 @@ Container.getTypeDisplayName = function () {
 };
 
 function CreateButton(props) {
-	return _react2.default.createElement(_CreateElementButton.CreateElementButton, _extends({}, props, { title: Container.getTypeDisplayName(), element: _react2.default.createElement(_core.Element, { canvas: true, is: Container }), iconName: "mdiRectangleOutline" }));
+	return _react2.default.createElement(_elementUtilities.CreateElementButton, _extends({}, props, { title: Container.getTypeDisplayName(), element: _react2.default.createElement(_core.Element, { canvas: true, is: Container }), iconName: "mdiRectangleOutline" }));
 }
 
 Container.craft = {
@@ -1704,15 +1660,15 @@ Container.craft = {
 
 /***/ }),
 
-/***/ "./client/src/components/user/Container.module.scss":
+/***/ "./client/src/components/PageBuilder/elements/Container.module.scss":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"container":"_1saW2C_zxVuEnpK-2faViD","isEmpty":"_11dlW0on9ez7EB50NhvshE"};
+module.exports = {"container":"_3eiUVByYI1FIW207V-gvzk","isEmpty":"Djqbhfcq8n39KNuThF_nM"};
 
 /***/ }),
 
-/***/ "./client/src/components/user/RootContainer.js":
+/***/ "./client/src/components/PageBuilder/elements/RootContainer.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1727,7 +1683,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ElementUtilities = __webpack_require__("./client/src/components/editor/ElementUtilities/index.js");
+var _elementUtilities = __webpack_require__("./client/src/components/PageBuilder/element-utilities/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1735,9 +1691,9 @@ var RootContainer = exports.RootContainer = function RootContainer(_ref) {
 	var children = _ref.children;
 
 	return _react2.default.createElement(
-		_ElementUtilities.ElementContainer,
+		_elementUtilities.ElementContainer,
 		{ style: { border: 0 } },
-		_react2.default.createElement(_ElementUtilities.ToolbarPortalTop, null),
+		_react2.default.createElement(_elementUtilities.ToolbarPortalTop, null),
 		_react2.default.createElement(
 			"div",
 			{ style: { padding: 15 } },
@@ -1752,7 +1708,7 @@ RootContainer.getTypeDisplayName = function () {
 
 /***/ }),
 
-/***/ "./client/src/components/utility/DeletionModal.js":
+/***/ "./client/src/components/PageBuilder/elements/UnknownElement.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1761,59 +1717,91 @@ RootContainer.getTypeDisplayName = function () {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-
-var _i18n = __webpack_require__(7);
-
-var _i18n2 = _interopRequireDefault(_i18n);
+exports.UnknownElement = UnknownElement;
 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactstrap = __webpack_require__(2);
+var _elementUtilities = __webpack_require__("./client/src/components/PageBuilder/element-utilities/index.js");
+
+var _FormAlert = __webpack_require__(11);
+
+var _FormAlert2 = _interopRequireDefault(_FormAlert);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var DeletionModal = function DeletionModal(_ref) {
-	var isOpen = _ref.isOpen,
-	    body = _ref.body,
-	    onCancel = _ref.onCancel,
-	    actions = _ref.actions;
+function UnknownElement(_ref) {
+	var children = _ref.children;
+
 	return _react2.default.createElement(
-		_reactstrap.Modal,
-		{ isOpen: isOpen, toggle: onCancel },
-		_react2.default.createElement(
-			_reactstrap.ModalHeader,
-			{ toggle: onCancel },
-			_i18n2.default._t('AssetAdmin.CONFIRM_FILE_DELETION', 'Confirm deletion')
-		),
-		_react2.default.createElement(
-			_reactstrap.ModalBody,
-			null,
-			body
-		),
-		_react2.default.createElement(
-			_reactstrap.ModalFooter,
-			null,
-			actions.map(function (_ref2) {
-				var label = _ref2.label,
-				    handler = _ref2.handler,
-				    color = _ref2.color;
-				return _react2.default.createElement(
-					_reactstrap.Button,
-					{ key: label, color: color, onClick: handler },
-					label
-				);
-			})
-		)
+		_elementUtilities.ElementContainer,
+		null,
+		_react2.default.createElement(_elementUtilities.ToolbarPortalTop, null),
+		_react2.default.createElement(_FormAlert2.default, { value: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_ELEMENT.UnknownElementMessage"), type: "bad" }),
+		children
 	);
+}
+
+UnknownElement.getTypeDisplayName = function () {
+	return ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_ELEMENT.UnknownElement");
 };
 
-exports.default = DeletionModal;
+UnknownElement.craft = {
+	related: {}
+};
 
 /***/ }),
 
-/***/ "./client/src/components/utility/EventBus.js":
+/***/ "./client/src/components/PageBuilder/elements/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Container = __webpack_require__("./client/src/components/PageBuilder/elements/Container.js");
+
+Object.keys(_Container).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _Container[key];
+    }
+  });
+});
+
+var _RootContainer = __webpack_require__("./client/src/components/PageBuilder/elements/RootContainer.js");
+
+Object.keys(_RootContainer).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _RootContainer[key];
+    }
+  });
+});
+
+var _UnknownElement = __webpack_require__("./client/src/components/PageBuilder/elements/UnknownElement.js");
+
+Object.keys(_UnknownElement).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _UnknownElement[key];
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/utility/EventBus.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1921,7 +1909,7 @@ var EventBus = exports.EventBus = new EventBusClass();
 
 /***/ }),
 
-/***/ "./client/src/components/utility/Icon.js":
+/***/ "./client/src/components/PageBuilder/utility/Icon.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1963,96 +1951,7 @@ exports.Icon = Icon;
 
 /***/ }),
 
-/***/ "./client/src/components/utility/LinkModals.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.EmbedModalFile = exports.LinkModalFile = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports.LinkModalExternal = LinkModalExternal;
-exports.LinkModalInternal = LinkModalInternal;
-exports.LinkModalEmail = LinkModalEmail;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _InsertLinkModal = __webpack_require__(9);
-
-var _InsertMediaModal = __webpack_require__(10);
-
-var _InsertMediaModal2 = _interopRequireDefault(_InsertMediaModal);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-var InsertLinkExternalModal = (0, _InsertLinkModal.createInsertLinkModal)("SilverStripe\\Admin\\LeftAndMain", "EditorExternalLink");
-var InsertLinkEmailModal = (0, _InsertLinkModal.createInsertLinkModal)("SilverStripe\\Admin\\LeftAndMain", "EditorEmailLink");
-var InsertLinkInternalModal = (0, _InsertLinkModal.createInsertLinkModal)("SilverStripe\\CMS\\Controllers\\CMSPageEditController", "editorInternalLink");
-function LinkModalExternal(props) {
-	return _react2.default.createElement(InsertLinkExternalModal, _extends({
-		title: i18n._t("Admin.LINK_EXTERNAL", "Insert external link"),
-		requireLinkText: false
-	}, props));
-}
-
-function LinkModalInternal(props) {
-	return _react2.default.createElement(InsertLinkInternalModal, _extends({
-		title: i18n._t("CMS.LINK_ANCHOR", "Link to an anchor on a page"),
-		requireLinkText: false
-	}, props));
-}
-
-function LinkModalEmail(props) {
-	return _react2.default.createElement(InsertLinkEmailModal, _extends({
-		title: i18n._t("Admin.LINK_EMAIL", "Insert email link"),
-		requireLinkText: false
-	}, props));
-}
-
-function LinkModalFile(_ref) {
-	var _onInsert = _ref.onInsert,
-	    props = _objectWithoutProperties(_ref, ["onInsert"]);
-
-	return _react2.default.createElement(_InsertMediaModal2.default, _extends({}, props, {
-		type: "insert-link",
-		onInsert: function onInsert(data) {
-			_onInsert(data);
-			return Promise.resolve();
-		},
-		title: false,
-		requireLinkText: false
-	}));
-}
-
-exports.LinkModalFile = LinkModalFile;
-function EmbedModalFile(_ref2) {
-	var _onInsert2 = _ref2.onInsert,
-	    props = _objectWithoutProperties(_ref2, ["onInsert"]);
-
-	return _react2.default.createElement(_InsertMediaModal2.default, _extends({}, props, {
-		type: "insert-link",
-		onInsert: function onInsert(data, file) {
-			_onInsert2(data, file);
-			return Promise.resolve();
-		},
-		title: false,
-		requireLinkText: false
-	}));
-}
-exports.EmbedModalFile = EmbedModalFile;
-
-/***/ }),
-
-/***/ "./client/src/components/utility/index.js":
+/***/ "./client/src/components/PageBuilder/utility/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2062,7 +1961,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _EventBus = __webpack_require__("./client/src/components/utility/EventBus.js");
+var _EventBus = __webpack_require__("./client/src/components/PageBuilder/utility/EventBus.js");
 
 Object.keys(_EventBus).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -2074,7 +1973,7 @@ Object.keys(_EventBus).forEach(function (key) {
   });
 });
 
-var _Icon = __webpack_require__("./client/src/components/utility/Icon.js");
+var _Icon = __webpack_require__("./client/src/components/PageBuilder/utility/Icon.js");
 
 Object.keys(_Icon).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -2086,7 +1985,7 @@ Object.keys(_Icon).forEach(function (key) {
   });
 });
 
-var _useUniqueId = __webpack_require__("./client/src/components/utility/useUniqueId.js");
+var _useUniqueId = __webpack_require__("./client/src/components/PageBuilder/utility/useUniqueId.js");
 
 Object.keys(_useUniqueId).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -2098,21 +1997,9 @@ Object.keys(_useUniqueId).forEach(function (key) {
   });
 });
 
-var _DeletionModal = __webpack_require__("./client/src/components/utility/DeletionModal.js");
-
-Object.keys(_DeletionModal).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _DeletionModal[key];
-    }
-  });
-});
-
 /***/ }),
 
-/***/ "./client/src/components/utility/useUniqueId.js":
+/***/ "./client/src/components/PageBuilder/utility/useUniqueId.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2155,7 +2042,7 @@ function useUniqueId() {
 "use strict";
 
 
-var _jquery = __webpack_require__(8);
+var _jquery = __webpack_require__(10);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -2200,19 +2087,14 @@ _jquery2.default.entwine("ss", function ($) {
 
 		"from .cms-edit-form": {
 			onbeforesubmitform: function onbeforesubmitform() {
-				this.getInputElement().value = this.getPageBuilderEditorQuery().serialize();
+				if (this.getPageBuilderEditorQuery()) {
+					this.getInputElement().value = this.getPageBuilderEditorQuery().serialize();
+				}
 				this._super();
 			}
 		}
 	});
 });
-
-/***/ }),
-
-/***/ "./client/src/styles/global.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -15019,12 +14901,12 @@ var mdiZodiacVirgo = "M18.5,19.13C20,17.77 20,15.18 20,14A4,4 0 0,0 16,10C15.3,1
 /***/ "./node_modules/@mdi/react/Icon.js":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports=function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}return r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=2)}([function(e,t){e.exports=__webpack_require__(6)},function(e,t){e.exports=__webpack_require__(0)},function(e,t,r){"use strict";r.r(t);var n=r(1),o=r(0),l=function(){return(l=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var o in t=arguments[r])Object.prototype.hasOwnProperty.call(t,o)&&(e[o]=t[o]);return e}).apply(this,arguments)},i=function(e,t){var r={};for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&t.indexOf(n)<0&&(r[n]=e[n]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols){var o=0;for(n=Object.getOwnPropertySymbols(e);o<n.length;o++)t.indexOf(n[o])<0&&Object.prototype.propertyIsEnumerable.call(e,n[o])&&(r[n[o]]=e[n[o]])}return r},a=0,s=n.forwardRef((function(e,t){var r=e.title,o=void 0===r?null:r,s=e.description,c=void 0===s?null:s,u=e.size,p=void 0===u?null:u,f=e.color,d=void 0===f?"currentColor":f,y=e.horizontal,v=void 0===y?null:y,b=e.vertical,m=void 0===b?null:b,h=e.rotate,g=void 0===h?null:h,O=e.spin,w=void 0===O?null:O,j=e.style,z=void 0===j?{}:j,E=e.children,P=i(e,["title","description","size","color","horizontal","vertical","rotate","spin","style","children"]);a++;var S,x=null!==w&&w,_=n.Children.map(E,(function(e){var t=e;!0!==x&&(x=!0===(null===w?t.props.spin:w));var r=t.props.size;"number"==typeof p&&"number"==typeof t.props.size&&(r=t.props.size/p);var o={size:r,color:null===d?t.props.color:d,horizontal:null===v?t.props.horizontal:v,vertical:null===m?t.props.vertical:m,rotate:null===g?t.props.rotate:g,spin:null===w?t.props.spin:w,inStack:!0};return n.cloneElement(t,o)}));null!==p&&(z.width="string"==typeof p?p:1.5*p+"rem");var k,T="stack_labelledby_"+a,q="stack_describedby_"+a;if(o)S=c?T+" "+q:T;else if(k="presentation",c)throw new Error("title attribute required when description is set");return n.createElement("svg",l({ref:t,viewBox:"0 0 24 24",style:z,role:k,"aria-labelledby":S},P),o&&n.createElement("title",{id:T},o),c&&n.createElement("desc",{id:q},c),x&&n.createElement("style",null,"@keyframes spin { to { transform: rotate(360deg) } }","@keyframes spin-inverse { to { transform: rotate(-360deg) } }"),_)}));s.displayName="Stack",s.propTypes={size:o.oneOfType([o.number,o.string]),color:o.string,horizontal:o.bool,vertical:o.bool,rotate:o.number,spin:o.oneOfType([o.bool,o.number]),children:o.oneOfType([o.arrayOf(o.node),o.node]).isRequired,className:o.string,style:o.object},s.defaultProps={size:null,color:null,horizontal:null,vertical:null,rotate:null,spin:null};var c=s;r.d(t,"Icon",(function(){return d})),r.d(t,"Stack",(function(){return c}));var u=function(){return(u=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var o in t=arguments[r])Object.prototype.hasOwnProperty.call(t,o)&&(e[o]=t[o]);return e}).apply(this,arguments)},p=function(e,t){var r={};for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&t.indexOf(n)<0&&(r[n]=e[n]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols){var o=0;for(n=Object.getOwnPropertySymbols(e);o<n.length;o++)t.indexOf(n[o])<0&&Object.prototype.propertyIsEnumerable.call(e,n[o])&&(r[n[o]]=e[n[o]])}return r},f=0,d=n.forwardRef((function(e,t){var r=e.path,o=e.id,l=void 0===o?++f:o,i=e.title,a=void 0===i?null:i,s=e.description,c=void 0===s?null:s,d=e.size,y=void 0===d?null:d,v=e.color,b=void 0===v?"currentColor":v,m=e.horizontal,h=void 0!==m&&m,g=e.vertical,O=void 0!==g&&g,w=e.rotate,j=void 0===w?0:w,z=e.spin,E=void 0!==z&&z,P=e.style,S=void 0===P?{}:P,x=e.inStack,_=void 0!==x&&x,k=p(e,["path","id","title","description","size","color","horizontal","vertical","rotate","spin","style","inStack"]),T={},q=[];null!==y&&(_?q.push("scale("+y+")"):(S.width="string"==typeof y?y:1.5*y+"rem",S.height=S.width)),h&&q.push("scaleX(-1)"),O&&q.push("scaleY(-1)"),0!==j&&q.push("rotate("+j+"deg)"),null!==b&&(T.fill=b);var M=n.createElement("path",u({d:r,style:T},_?k:{})),C=M;q.length>0&&(S.transform=q.join(" "),S.transformOrigin="center",_&&(C=n.createElement("g",{style:S},M,n.createElement("rect",{width:"24",height:"24",fill:"transparent"}))));var I,N=C,R=!0===E||"number"!=typeof E?2:E,B=!_&&(h||O);if(R<0&&(B=!B),E&&(N=n.createElement("g",{style:{animation:"spin"+(B?"-inverse":"")+" linear "+Math.abs(R)+"s infinite",transformOrigin:"center"}},C,!(h||O||0!==j)&&n.createElement("rect",{width:"24",height:"24",fill:"transparent"}))),_)return N;var X,Y="icon_labelledby_"+l,A="icon_describedby_"+l;if(a)I=c?Y+" "+A:Y;else if(X="presentation",c)throw new Error("title attribute required when description is set");return n.createElement("svg",u({ref:t,viewBox:"0 0 24 24",style:S,role:X,"aria-labelledby":I},k),a&&n.createElement("title",{id:Y},a),c&&n.createElement("desc",{id:A},c),!_&&E&&(B?n.createElement("style",null,"@keyframes spin-inverse { to { transform: rotate(-360deg) } }"):n.createElement("style",null,"@keyframes spin { to { transform: rotate(360deg) } }")),N)}));d.displayName="Icon",d.propTypes={path:o.string.isRequired,size:o.oneOfType([o.number,o.string]),color:o.string,horizontal:o.bool,vertical:o.bool,rotate:o.number,spin:o.oneOfType([o.bool,o.number]),style:o.object,inStack:o.bool,className:o.string},d.defaultProps={size:null,color:"currentColor",horizontal:!1,vertical:!1,rotate:0,spin:!1};t.default=d}]);
+module.exports=function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}return r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=2)}([function(e,t){e.exports=__webpack_require__(8)},function(e,t){e.exports=__webpack_require__(0)},function(e,t,r){"use strict";r.r(t);var n=r(1),o=r(0),l=function(){return(l=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var o in t=arguments[r])Object.prototype.hasOwnProperty.call(t,o)&&(e[o]=t[o]);return e}).apply(this,arguments)},i=function(e,t){var r={};for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&t.indexOf(n)<0&&(r[n]=e[n]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols){var o=0;for(n=Object.getOwnPropertySymbols(e);o<n.length;o++)t.indexOf(n[o])<0&&Object.prototype.propertyIsEnumerable.call(e,n[o])&&(r[n[o]]=e[n[o]])}return r},a=0,s=n.forwardRef((function(e,t){var r=e.title,o=void 0===r?null:r,s=e.description,c=void 0===s?null:s,u=e.size,p=void 0===u?null:u,f=e.color,d=void 0===f?"currentColor":f,y=e.horizontal,v=void 0===y?null:y,b=e.vertical,m=void 0===b?null:b,h=e.rotate,g=void 0===h?null:h,O=e.spin,w=void 0===O?null:O,j=e.style,z=void 0===j?{}:j,E=e.children,P=i(e,["title","description","size","color","horizontal","vertical","rotate","spin","style","children"]);a++;var S,x=null!==w&&w,_=n.Children.map(E,(function(e){var t=e;!0!==x&&(x=!0===(null===w?t.props.spin:w));var r=t.props.size;"number"==typeof p&&"number"==typeof t.props.size&&(r=t.props.size/p);var o={size:r,color:null===d?t.props.color:d,horizontal:null===v?t.props.horizontal:v,vertical:null===m?t.props.vertical:m,rotate:null===g?t.props.rotate:g,spin:null===w?t.props.spin:w,inStack:!0};return n.cloneElement(t,o)}));null!==p&&(z.width="string"==typeof p?p:1.5*p+"rem");var k,T="stack_labelledby_"+a,q="stack_describedby_"+a;if(o)S=c?T+" "+q:T;else if(k="presentation",c)throw new Error("title attribute required when description is set");return n.createElement("svg",l({ref:t,viewBox:"0 0 24 24",style:z,role:k,"aria-labelledby":S},P),o&&n.createElement("title",{id:T},o),c&&n.createElement("desc",{id:q},c),x&&n.createElement("style",null,"@keyframes spin { to { transform: rotate(360deg) } }","@keyframes spin-inverse { to { transform: rotate(-360deg) } }"),_)}));s.displayName="Stack",s.propTypes={size:o.oneOfType([o.number,o.string]),color:o.string,horizontal:o.bool,vertical:o.bool,rotate:o.number,spin:o.oneOfType([o.bool,o.number]),children:o.oneOfType([o.arrayOf(o.node),o.node]).isRequired,className:o.string,style:o.object},s.defaultProps={size:null,color:null,horizontal:null,vertical:null,rotate:null,spin:null};var c=s;r.d(t,"Icon",(function(){return d})),r.d(t,"Stack",(function(){return c}));var u=function(){return(u=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var o in t=arguments[r])Object.prototype.hasOwnProperty.call(t,o)&&(e[o]=t[o]);return e}).apply(this,arguments)},p=function(e,t){var r={};for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&t.indexOf(n)<0&&(r[n]=e[n]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols){var o=0;for(n=Object.getOwnPropertySymbols(e);o<n.length;o++)t.indexOf(n[o])<0&&Object.prototype.propertyIsEnumerable.call(e,n[o])&&(r[n[o]]=e[n[o]])}return r},f=0,d=n.forwardRef((function(e,t){var r=e.path,o=e.id,l=void 0===o?++f:o,i=e.title,a=void 0===i?null:i,s=e.description,c=void 0===s?null:s,d=e.size,y=void 0===d?null:d,v=e.color,b=void 0===v?"currentColor":v,m=e.horizontal,h=void 0!==m&&m,g=e.vertical,O=void 0!==g&&g,w=e.rotate,j=void 0===w?0:w,z=e.spin,E=void 0!==z&&z,P=e.style,S=void 0===P?{}:P,x=e.inStack,_=void 0!==x&&x,k=p(e,["path","id","title","description","size","color","horizontal","vertical","rotate","spin","style","inStack"]),T={},q=[];null!==y&&(_?q.push("scale("+y+")"):(S.width="string"==typeof y?y:1.5*y+"rem",S.height=S.width)),h&&q.push("scaleX(-1)"),O&&q.push("scaleY(-1)"),0!==j&&q.push("rotate("+j+"deg)"),null!==b&&(T.fill=b);var M=n.createElement("path",u({d:r,style:T},_?k:{})),C=M;q.length>0&&(S.transform=q.join(" "),S.transformOrigin="center",_&&(C=n.createElement("g",{style:S},M,n.createElement("rect",{width:"24",height:"24",fill:"transparent"}))));var I,N=C,R=!0===E||"number"!=typeof E?2:E,B=!_&&(h||O);if(R<0&&(B=!B),E&&(N=n.createElement("g",{style:{animation:"spin"+(B?"-inverse":"")+" linear "+Math.abs(R)+"s infinite",transformOrigin:"center"}},C,!(h||O||0!==j)&&n.createElement("rect",{width:"24",height:"24",fill:"transparent"}))),_)return N;var X,Y="icon_labelledby_"+l,A="icon_describedby_"+l;if(a)I=c?Y+" "+A:Y;else if(X="presentation",c)throw new Error("title attribute required when description is set");return n.createElement("svg",u({ref:t,viewBox:"0 0 24 24",style:S,role:X,"aria-labelledby":I},k),a&&n.createElement("title",{id:Y},a),c&&n.createElement("desc",{id:A},c),!_&&E&&(B?n.createElement("style",null,"@keyframes spin-inverse { to { transform: rotate(-360deg) } }"):n.createElement("style",null,"@keyframes spin { to { transform: rotate(360deg) } }")),N)}));d.displayName="Icon",d.propTypes={path:o.string.isRequired,size:o.oneOfType([o.number,o.string]),color:o.string,horizontal:o.bool,vertical:o.bool,rotate:o.number,spin:o.oneOfType([o.bool,o.number]),style:o.object,inStack:o.bool,className:o.string},d.defaultProps={size:null,color:"currentColor",horizontal:!1,vertical:!1,rotate:0,spin:!1};t.default=d}]);
 //# sourceMappingURL=Icon.js.map
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"presets\":[[\"env\",{\"modules\":false}],\"react\"],\"plugins\":[\"transform-object-rest-spread\"],\"comments\":false,\"cacheDirectory\":true}!./client/src/components/components.js":
+/***/ "./node_modules/babel-loader/lib/index.js?{\"presets\":[[\"env\",{\"modules\":false}],\"react\"],\"plugins\":[\"transform-object-rest-spread\"],\"comments\":false,\"cacheDirectory\":true}!./client/src/bundles/export-components.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15034,19 +14916,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _CreateElementButton = __webpack_require__("./client/src/components/editor/CreateElementButton.js");
-
-Object.keys(_CreateElementButton).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _CreateElementButton[key];
-    }
-  });
-});
-
-var _ToolbarButton = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarButton.js");
+var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarButton.js");
 
 Object.keys(_ToolbarButton).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -15058,7 +14928,7 @@ Object.keys(_ToolbarButton).forEach(function (key) {
   });
 });
 
-var _ToolbarSelect = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarSelect.js");
+var _ToolbarSelect = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarSelect.js");
 
 Object.keys(_ToolbarSelect).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -15070,7 +14940,7 @@ Object.keys(_ToolbarSelect).forEach(function (key) {
   });
 });
 
-var _ToolbarDropdown = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarDropdown.js");
+var _ToolbarDropdown = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarDropdown.js");
 
 Object.keys(_ToolbarDropdown).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -15082,7 +14952,7 @@ Object.keys(_ToolbarDropdown).forEach(function (key) {
   });
 });
 
-var _ToolbarSeparator = __webpack_require__("./client/src/components/editor/Toolbar/ToolbarSeparator.js");
+var _ToolbarSeparator = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarSeparator.js");
 
 Object.keys(_ToolbarSeparator).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -15094,7 +14964,19 @@ Object.keys(_ToolbarSeparator).forEach(function (key) {
   });
 });
 
-var _ElementContainer = __webpack_require__("./client/src/components/editor/ElementUtilities/ElementContainer.js");
+var _CreateElementButton = __webpack_require__("./client/src/components/PageBuilder/element-utilities/CreateElementButton.js");
+
+Object.keys(_CreateElementButton).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _CreateElementButton[key];
+    }
+  });
+});
+
+var _ElementContainer = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ElementContainer.js");
 
 Object.keys(_ElementContainer).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -15106,7 +14988,7 @@ Object.keys(_ElementContainer).forEach(function (key) {
   });
 });
 
-var _ToolbarPortalTop = __webpack_require__("./client/src/components/editor/ElementUtilities/ToolbarPortalTop.js");
+var _ToolbarPortalTop = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ToolbarPortalTop.js");
 
 Object.keys(_ToolbarPortalTop).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -15118,7 +15000,7 @@ Object.keys(_ToolbarPortalTop).forEach(function (key) {
   });
 });
 
-var _ToolbarPortalRow = __webpack_require__("./client/src/components/editor/ElementUtilities/ToolbarPortalRow.js");
+var _ToolbarPortalRow = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ToolbarPortalRow.js");
 
 Object.keys(_ToolbarPortalRow).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -15130,7 +15012,7 @@ Object.keys(_ToolbarPortalRow).forEach(function (key) {
   });
 });
 
-var _Icon = __webpack_require__("./client/src/components/utility/Icon.js");
+var _Icon = __webpack_require__("./client/src/components/PageBuilder/utility/Icon.js");
 
 Object.keys(_Icon).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -15142,7 +15024,7 @@ Object.keys(_Icon).forEach(function (key) {
   });
 });
 
-var _EventBus = __webpack_require__("./client/src/components/utility/EventBus.js");
+var _EventBus = __webpack_require__("./client/src/components/PageBuilder/utility/EventBus.js");
 
 Object.keys(_EventBus).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -15154,7 +15036,7 @@ Object.keys(_EventBus).forEach(function (key) {
   });
 });
 
-var _DeletionModal = __webpack_require__("./client/src/components/utility/DeletionModal.js");
+var _DeletionModal = __webpack_require__("./client/src/components/DeletionModal.js");
 
 Object.keys(_DeletionModal).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -15166,7 +15048,7 @@ Object.keys(_DeletionModal).forEach(function (key) {
   });
 });
 
-var _LinkModals = __webpack_require__("./client/src/components/utility/LinkModals.js");
+var _LinkModals = __webpack_require__("./client/src/components/LinkModals.js");
 
 Object.keys(_LinkModals).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -15180,10 +15062,10 @@ Object.keys(_LinkModals).forEach(function (key) {
 
 /***/ }),
 
-/***/ "./node_modules/expose-loader/index.js?Zauberfisch_PageBuilder_Components!./client/src/components/components.js-exposed":
+/***/ "./node_modules/expose-loader/index.js?Zauberfisch_PageBuilder_Components!./client/src/bundles/export-components.js-exposed":
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Zauberfisch_PageBuilder_Components"] = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"presets\":[[\"env\",{\"modules\":false}],\"react\"],\"plugins\":[\"transform-object-rest-spread\"],\"comments\":false,\"cacheDirectory\":true}!./client/src/components/components.js");
+/* WEBPACK VAR INJECTION */(function(global) {module.exports = global["Zauberfisch_PageBuilder_Components"] = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"presets\":[[\"env\",{\"modules\":false}],\"react\"],\"plugins\":[\"transform-object-rest-spread\"],\"comments\":false,\"cacheDirectory\":true}!./client/src/bundles/export-components.js");
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
@@ -15319,7 +15201,14 @@ module.exports = CraftJsCore;
 /***/ 10:
 /***/ (function(module, exports) {
 
-module.exports = InsertMediaModal;
+module.exports = jQuery;
+
+/***/ }),
+
+/***/ 11:
+/***/ (function(module, exports) {
+
+module.exports = FormAlert;
 
 /***/ }),
 
@@ -15354,28 +15243,28 @@ module.exports = ReactDom;
 /***/ 6:
 /***/ (function(module, exports) {
 
-module.exports = PropTypes;
+module.exports = InsertLinkModal;
 
 /***/ }),
 
 /***/ 7:
 /***/ (function(module, exports) {
 
-module.exports = i18n;
+module.exports = InsertMediaModal;
 
 /***/ }),
 
 /***/ 8:
 /***/ (function(module, exports) {
 
-module.exports = jQuery;
+module.exports = PropTypes;
 
 /***/ }),
 
 /***/ 9:
 /***/ (function(module, exports) {
 
-module.exports = InsertLinkModal;
+module.exports = i18n;
 
 /***/ })
 

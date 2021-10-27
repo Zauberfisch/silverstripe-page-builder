@@ -38,7 +38,9 @@ jQuery.entwine("ss", function ($) {
 
 		"from .cms-edit-form": {
 			onbeforesubmitform: function () {
-				this.getInputElement().value = this.getPageBuilderEditorQuery().serialize()
+				if (this.getPageBuilderEditorQuery()) {
+					this.getInputElement().value = this.getPageBuilderEditorQuery().serialize()
+				}
 				this._super()
 			},
 		},

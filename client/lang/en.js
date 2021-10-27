@@ -17,5 +17,7 @@ if (typeof (ss) === "undefined" || typeof (ss.i18n) === "undefined") {
 		"ZAUBERFISCH_PAGEBUILDER_ELEMENT.Container": "Container",
 		"ZAUBERFISCH_PAGEBUILDER_ELEMENT.RootContainer": "Root",
 		"ZAUBERFISCH_PAGEBUILDER_ELEMENT.Text": "Text",
+		"ZAUBERFISCH_PAGEBUILDER_ELEMENT.UnknownElement": "Unknown Element",
+		"ZAUBERFISCH_PAGEBUILDER_ELEMENT.UnknownElementMessage": "ERROR: Element type does not exist",
 	})
 }

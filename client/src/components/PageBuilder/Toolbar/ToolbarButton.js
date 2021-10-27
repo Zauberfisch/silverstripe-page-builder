@@ -2,7 +2,7 @@ import React from "react"
 import styles from "./ToolbarButton.module.scss"
 import classNames from "classnames"
 import {UncontrolledTooltip} from "reactstrap"
-import {useUniqueId, Icon} from "../../utility"
+import {useUniqueId, Icon} from "components/PageBuilder/utility"
 
 export const ToolbarButton = ({title = "", tooltip = "", iconName, iconStyle = {}, iconNameRight, iconStyleRight = {}, active = false, disabled = false, id, className = "", ...props}) => {
 	const onMouseDown = React.useCallback((e) => e.preventDefault(), [])

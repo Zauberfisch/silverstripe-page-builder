@@ -1,10 +1,10 @@
 import React from "react"
-import {PageBuilderContext} from "../../PageBuilderContext"
+import {PageBuilderContext} from "components/PageBuilder/PageBuilderContext"
 import {useNodeState} from "./useNodeState"
 import ReactDOM from "react-dom"
 import {useEditor} from "@craftjs/core"
-import {ToolbarButton, ToolbarSeparator} from "../Toolbar"
-import DeletionModal from "../../utility/DeletionModal"
+import {ToolbarButton, ToolbarSeparator} from "components/PageBuilder/Toolbar"
+import DeletionModal from "components/DeletionModal"
 
 export function ToolbarPortalTop({children, childrenRight}) {
 	const {actions} = useEditor()

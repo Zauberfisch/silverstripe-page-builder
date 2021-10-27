@@ -1,5 +1,5 @@
 import React from "react"
-import {Icon} from "../../utility"
+import {Icon} from "components/PageBuilder/utility"
 import {ToolbarDropdown} from "./ToolbarDropdown"
 import {DropdownItem} from "reactstrap"
 

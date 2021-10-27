@@ -1,8 +1,7 @@
 import {Element, useNode} from "@craftjs/core"
 import React from "react"
-import {CreateElementButton} from "../editor/CreateElementButton"
-import {ElementContainer, ToolbarPortalTop} from "../editor/ElementUtilities"
-import {ToolbarSelect} from "../editor/Toolbar"
+import {CreateElementButton, ElementContainer, ToolbarPortalTop} from "components/PageBuilder/element-utilities"
+import {ToolbarSelect} from "components/PageBuilder/Toolbar"
 import styles from "./Container.module.scss"
 import classNames from "classnames"
 

@@ -1,23 +1,8 @@
-/* global window */
 import Injector from "lib/Injector"
-import PageBuilderField from "../components/PageBuilderField"
-import {CreateElementButton} from "../components/editor/CreateElementButton"
-import {ToolbarButton, ToolbarSelect, ToolbarDropdown, ToolbarMultiSelect, ToolbarSeparator} from "../components/editor/Toolbar"
-import {ElementContainer, ToolbarPortalTop, ToolbarPortalRow} from "../components/editor/ElementUtilities"
-import {Icon} from "../components/utility/Icon"
+import PageBuilderField from "components/PageBuilder/PageBuilderField"
 
 window.document.addEventListener("DOMContentLoaded", () => {
 	Injector.component.registerMany({
 		PageBuilderField,
-		// "PageBuilder/CreateElementButton": CreateElementButton,
-		// "PageBuilder/ToolbarButton": ToolbarButton,
-		// "PageBuilder/ToolbarSelect": ToolbarSelect,
-		// "PageBuilder/ToolbarDropdown": ToolbarDropdown,
-		// "PageBuilder/ToolbarMultiSelect": ToolbarMultiSelect,
-		// "PageBuilder/ElementContainer": ElementContainer,
-		// "PageBuilder/ToolbarPortalTop": ToolbarPortalTop,
-		// "PageBuilder/ToolbarPortalRow": ToolbarPortalRow,
-		// "PageBuilder/ToolbarSeparator": ToolbarSeparator,
-		// "PageBuilder/Icon": Icon,
 	})
 })

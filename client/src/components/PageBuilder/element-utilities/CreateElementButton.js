@@ -1,6 +1,6 @@
 import React from "react"
 import {useEditor} from "@craftjs/core"
-import {Icon} from "../utility"
+import {Icon} from "components/PageBuilder/utility"
 import styles from "./CreateElementButton.module.scss"
 
 export const CreateElementButton = ({element, iconName, title = "", onCreate, onDragStart}) => {
