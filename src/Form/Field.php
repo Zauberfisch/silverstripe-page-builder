@@ -25,14 +25,15 @@ class Field extends FormField {
 		Requirements::javascript('zauberfisch/silverstripe-page-builder: client/dist/js/bundle.js');
 		Requirements::add_i18n_javascript('zauberfisch/silverstripe-page-builder: client/lang', false, true);
 
-		Requirements::javascript('zauberfisch/silverstripe-page-builder-draft-editor: client/dist/js/bundle.js');
-		Requirements::css('zauberfisch/silverstripe-page-builder-draft-editor: client/dist/styles/bundle.css');
-		Requirements::add_i18n_javascript('zauberfisch/silverstripe-page-builder-draft-editor: client/lang', false, true);
-
-		Requirements::javascript('zauberfisch/silverstripe-page-builder-image: client/dist/js/bundle.js');
-		Requirements::css('zauberfisch/silverstripe-page-builder-image: client/dist/styles/bundle.css');
-		Requirements::add_i18n_javascript('zauberfisch/silverstripe-page-builder-image: client/lang', false, true);
-
+		foreach($config['javascript'] as $file) {
+			Requirements::javascript($file);
+		}
+		foreach($config['css'] as $file) {
+			Requirements::css($file);
+		}
+		foreach($config['i18n'] as $file) {
+			Requirements::add_i18n_javascript($file, false, true);
+		}
 		$this->addExtraClass('zauberfisch__page-builder__field');
 		$this->addExtraClass('stacked');
 		parent::__construct($name, $title, $this->area->ElementsData);
