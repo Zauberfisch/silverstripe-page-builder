@@ -19,5 +19,15 @@ if (typeof (ss) === "undefined" || typeof (ss.i18n) === "undefined") {
 		"ZAUBERFISCH_PAGEBUILDER_ELEMENT.Text": "Text",
 		"ZAUBERFISCH_PAGEBUILDER_ELEMENT.UnknownElement": "Unknown Element",
 		"ZAUBERFISCH_PAGEBUILDER_ELEMENT.UnknownElementMessage": "ERROR: Element type does not exist",
+		"ZAUBERFISCH_PAGEBUILDER_useElementPropLink.RemoveLink": "Remove Link",
+		"ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLink": "Add Link",
+		"ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLinkInternal": "Internal",
+		"ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLinkExternal": "External",
+		"ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLinkEmail": "Email",
+		"ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLinkFile": "File",
+		"ZAUBERFISCH_PAGEBUILDER_useElementPropFile.Add": "Add File",
+		"ZAUBERFISCH_PAGEBUILDER_useElementPropFile.Remove": "Remove File",
+		"ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Add": "Add Image",
+		"ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Remove": "Remove Image",
 	})
 }

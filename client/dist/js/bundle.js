@@ -176,7 +176,7 @@ exports.default = DeletionModal;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.EmbedModalFile = exports.LinkModalFile = undefined;
+exports.EmbedModalImage = exports.EmbedModalFile = exports.LinkModalFile = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -228,8 +228,8 @@ function LinkModalFile(_ref) {
 
 	return _react2.default.createElement(_InsertMediaModal2.default, _extends({}, props, {
 		type: "insert-link",
-		onInsert: function onInsert(data) {
-			_onInsert(data);
+		onInsert: function onInsert(data, file) {
+			_onInsert(data, file);
 			return Promise.resolve();
 		},
 		title: false,
@@ -252,7 +252,23 @@ function EmbedModalFile(_ref2) {
 		requireLinkText: false
 	}));
 }
+
 exports.EmbedModalFile = EmbedModalFile;
+function EmbedModalImage(_ref3) {
+	var _onInsert3 = _ref3.onInsert,
+	    props = _objectWithoutProperties(_ref3, ["onInsert"]);
+
+	return _react2.default.createElement(_InsertMediaModal2.default, _extends({}, props, {
+		type: "insert-link",
+		onInsert: function onInsert(data, file) {
+			_onInsert3(data, file);
+			return Promise.resolve();
+		},
+		title: false,
+		requireLinkText: false
+	}));
+}
+exports.EmbedModalImage = EmbedModalImage;
 
 /***/ }),
 
@@ -1798,6 +1814,386 @@ Object.keys(_UnknownElement).forEach(function (key) {
     }
   });
 });
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/hooks/useElementPropFile.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.useElementPropFile = useElementPropFile;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _core = __webpack_require__(1);
+
+var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/index.js");
+
+var _LinkModals = __webpack_require__("./client/src/components/LinkModals.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useElementPropFile(propName, value) {
+	var _useNode = (0, _core.useNode)(),
+	    setProp = _useNode.actions.setProp;
+
+	var _React$useState = _react2.default.useState(false),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    isOpen = _React$useState2[0],
+	    setIsOpen = _React$useState2[1];
+
+	var add = _react2.default.useCallback(function () {
+		setIsOpen(true);
+	}, []);
+	var remove = _react2.default.useCallback(function () {
+		setProp(function (_props) {
+			_props[propName] = null;
+		});
+	}, []);
+	var onInsert = _react2.default.useCallback(function (data, file) {
+		delete data.SecurityID;
+		delete data["action_insert"];
+		delete data.AssetEditorHeaderFieldGroup;
+		delete data.TitleHeader;
+		delete data.Editor;
+		delete data.FileSpecs;
+		setProp(function (_props) {
+			_props[propName] = { data: data, file: file };
+		});
+		setIsOpen(false);
+	}, []);
+	var onClosed = _react2.default.useCallback(function () {
+		return setIsOpen(false);
+	}, []);
+	var hasValue = !!(value && _typeof(value.data) === "object" && _typeof(value.file) === "object");
+	var _value = hasValue ? value : {};
+	return {
+		value: _value,
+		hasValue: hasValue,
+		url: hasValue ? _value.file.url : null,
+		addButton: _react2.default.createElement(
+			_react2.default.Fragment,
+			null,
+			_react2.default.createElement(_Toolbar.ToolbarButton, { iconName: "mdiFolder", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropFile.Add"), onClick: add }),
+			_react2.default.createElement(_LinkModals.EmbedModalFile, { onInsert: onInsert, onClosed: onClosed, isOpen: isOpen, fileAttributes: _value })
+		),
+		removeButton: _react2.default.createElement(_Toolbar.ToolbarButton, { iconName: "mdiFolderRemove", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropFile.Remove"), onClick: remove, disabled: !hasValue })
+	};
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/hooks/useElementPropImage.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.useElementPropImage = useElementPropImage;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _core = __webpack_require__(1);
+
+var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/index.js");
+
+var _LinkModals = __webpack_require__("./client/src/components/LinkModals.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useElementPropImage(propName, value) {
+	var _useNode = (0, _core.useNode)(),
+	    setProp = _useNode.actions.setProp;
+
+	var _React$useState = _react2.default.useState(false),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    isOpen = _React$useState2[0],
+	    setIsOpen = _React$useState2[1];
+
+	var add = _react2.default.useCallback(function () {
+		setIsOpen(true);
+	}, []);
+	var remove = _react2.default.useCallback(function () {
+		setProp(function (_props) {
+			_props[propName] = null;
+		});
+	}, []);
+	var onInsert = _react2.default.useCallback(function (data, file) {
+		delete data.SecurityID;
+		delete data["action_insert"];
+		delete data.AssetEditorHeaderFieldGroup;
+		delete data.TitleHeader;
+		delete data.Editor;
+		delete data.FileSpecs;
+		setProp(function (_props) {
+			_props[propName] = { data: data, file: file };
+		});
+		setIsOpen(false);
+	}, []);
+	var onClosed = _react2.default.useCallback(function () {
+		return setIsOpen(false);
+	}, []);
+	var hasValue = !!(value && _typeof(value.data) === "object" && _typeof(value.file) === "object");
+	var _value = hasValue ? value : {};
+	return {
+		value: _value,
+		hasValue: hasValue,
+		url: hasValue ? _value.file.url : null,
+		addButton: _react2.default.createElement(
+			_react2.default.Fragment,
+			null,
+			_react2.default.createElement(_Toolbar.ToolbarButton, { iconName: "mdiImage", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Add"), onClick: add }),
+			_react2.default.createElement(_LinkModals.EmbedModalImage, { onInsert: onInsert, onClosed: onClosed, isOpen: isOpen, fileAttributes: _value })
+		),
+		removeButton: _react2.default.createElement(_Toolbar.ToolbarButton, { iconName: "mdiImageMinus", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Remove"), onClick: remove, disabled: !hasValue })
+	};
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/hooks/useElementPropLink.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.useElementPropLink = useElementPropLink;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _core = __webpack_require__(1);
+
+var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/index.js");
+
+var _LinkModals = __webpack_require__("./client/src/components/LinkModals.js");
+
+var _reactstrap = __webpack_require__(2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useLinkTypes() {
+	return _react2.default.useMemo(function () {
+		return [{
+			id: "Internal",
+			title: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLinkInternal"),
+			component: _LinkModals.LinkModalInternal
+		}, {
+			id: "External",
+			title: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLinkExternal"),
+			component: _LinkModals.LinkModalExternal
+		}, {
+			id: "Email",
+			title: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLinkEmail"),
+			component: _LinkModals.LinkModalEmail
+		}, {
+			id: "File",
+			title: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLinkFile"),
+			component: _LinkModals.LinkModalFile
+		}];
+	}, []);
+}
+
+function useElementPropLink(propName, value) {
+	var _useNode = (0, _core.useNode)(),
+	    setProp = _useNode.actions.setProp;
+
+	var linkTypes = useLinkTypes();
+
+	var _React$useState = _react2.default.useState(""),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    openModalId = _React$useState2[0],
+	    setOpenModalId = _React$useState2[1];
+
+	var addLink = _react2.default.useCallback(function (e) {
+		setOpenModalId(e.target.dataset.modalid);
+	}, []);
+	var removeLink = _react2.default.useCallback(function () {
+		setProp(function (_props) {
+			_props[propName] = null;
+		});
+	}, []);
+	var onInsert = _react2.default.useCallback(function (data, file) {
+		delete data.SecurityID;
+		delete data["action_insert"];
+		delete data.AssetEditorHeaderFieldGroup;
+		delete data.TitleHeader;
+		delete data.Editor;
+		delete data.FileSpecs;
+		data.Type = openModalId;
+		var url = "";
+		if (openModalId === "Internal") {
+			url = data.PageID;
+		} else if (openModalId === "External") {
+			url = data.Link;
+			if (data.Anchor) {
+				url += "#" + encodeURIComponent(data.Anchor);
+			}
+		} else if (openModalId === "Email") {
+			url = "mailto:" + data.Link;
+			if (data.Subject) {
+				url += "?subject=" + encodeURIComponent(data.Subject);
+			}
+		} else if (openModalId === "File") {
+			url = file.url;
+		}
+		setProp(function (_props) {
+			_props[propName] = { data: data, url: url };
+		});
+		setOpenModalId("");
+	}, [openModalId]);
+	var onClosed = _react2.default.useCallback(function () {
+		return setOpenModalId("");
+	}, []);
+	var hasValue = !!(value && (typeof value === "undefined" ? "undefined" : _typeof(value)) === "object");
+	var _value = hasValue ? value : {};
+	return {
+		value: _value,
+		hasValue: hasValue,
+		url: _value.url || null,
+
+		addButton: _react2.default.createElement(
+			_react2.default.Fragment,
+			null,
+			_react2.default.createElement(
+				_Toolbar.ToolbarDropdown,
+				{ tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLink"), iconName: "mdiLink" },
+				linkTypes.map(function (_ref) {
+					var title = _ref.title,
+					    id = _ref.id;
+					return _react2.default.createElement(
+						_reactstrap.DropdownItem,
+						{ "data-modalid": id, onClick: addLink, style: { padding: "0 10px" } },
+						title
+					);
+				})
+			),
+			linkTypes.map(function (_ref2) {
+				var id = _ref2.id,
+				    component = _ref2.component;
+				return _react2.default.createElement(component, { key: id, fileAttributes: _value, onInsert: onInsert, onClosed: onClosed, isOpen: openModalId === id });
+			})
+		),
+		removeButton: _react2.default.createElement(_Toolbar.ToolbarButton, { iconName: "mdiLinkOff", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.RemoveLink"), onClick: removeLink, disabled: !hasValue })
+	};
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/hooks/useElementPropSelectDropdown.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.useElementPropSelectDropdown = useElementPropSelectDropdown;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _core = __webpack_require__(1);
+
+var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useElementPropSelectDropdown(propName, value, options, buttonProps) {
+	var _useNode = (0, _core.useNode)(),
+	    setProp = _useNode.actions.setProp;
+
+	var onChange = _react2.default.useCallback(function (newValue) {
+		if (value !== newValue) {
+			setProp(function (_props) {
+				_props[propName] = newValue;
+			});
+		}
+	}, [value]);
+	return {
+		value: options.find(function (obj) {
+			return obj.value === background;
+		}) || { pageBuilderStyle: {} },
+		button: _react2.default.createElement(_Toolbar.ToolbarSelect, _extends({}, buttonProps, { value: value, onChange: onChange, options: options }))
+	};
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/hooks/useElementPropToggleButton.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.useElementPropToggleButton = useElementPropToggleButton;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _core = __webpack_require__(1);
+
+var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useElementPropToggleButton(propName, value, buttonProps) {
+	var _useNode = (0, _core.useNode)(),
+	    setProp = _useNode.actions.setProp;
+
+	var onClick = _react2.default.useCallback(function (e) {
+		setProp(function (_props) {
+			_props[propName] = !_props[propName];
+		});
+	}, [propName]);
+	return {
+		value: value,
+		button: _react2.default.createElement(_Toolbar.ToolbarButton, _extends({}, buttonProps, { active: !!value, onClick: onClick }))
+	};
+}
 
 /***/ }),
 
@@ -15056,6 +15452,66 @@ Object.keys(_LinkModals).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _LinkModals[key];
+    }
+  });
+});
+
+var _useElementPropFile = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropFile.js");
+
+Object.keys(_useElementPropFile).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _useElementPropFile[key];
+    }
+  });
+});
+
+var _useElementPropImage = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropImage.js");
+
+Object.keys(_useElementPropImage).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _useElementPropImage[key];
+    }
+  });
+});
+
+var _useElementPropLink = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropLink.js");
+
+Object.keys(_useElementPropLink).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _useElementPropLink[key];
+    }
+  });
+});
+
+var _useElementPropSelectDropdown = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropSelectDropdown.js");
+
+Object.keys(_useElementPropSelectDropdown).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _useElementPropSelectDropdown[key];
+    }
+  });
+});
+
+var _useElementPropToggleButton = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropToggleButton.js");
+
+Object.keys(_useElementPropToggleButton).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _useElementPropToggleButton[key];
     }
   });
 });

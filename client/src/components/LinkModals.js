@@ -50,8 +50,8 @@ export function LinkModalFile({onInsert, ...props}) {
 		<InsertMediaModal
 			{...props}
 			type="insert-link"
-			onInsert={(data) => {
-				onInsert(data)
+			onInsert={(data, file) => {
+				onInsert(data, file)
 				return Promise.resolve()
 			}}
 			title={false}
@@ -63,6 +63,22 @@ export function LinkModalFile({onInsert, ...props}) {
 }
 
 export function EmbedModalFile({onInsert, ...props}) {
+	// 'insert-media', 'insert-link', 'select', 'admin'
+	return (
+		<InsertMediaModal
+			{...props}
+			type="insert-link"
+			onInsert={(data, file) => {
+				onInsert(data, file)
+				return Promise.resolve()
+			}}
+			title={false}
+			requireLinkText={false}
+		/>
+	)
+}
+
+export function EmbedModalImage({onInsert, ...props}) {
 	// 'insert-media', 'insert-link', 'select', 'admin'
 	return (
 		<InsertMediaModal
