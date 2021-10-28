@@ -68,7 +68,7 @@ export const Container = ({background, children}) => {
 	const selectedBackground = backgroundOptions.find(obj => obj.value === background) || {pageBuilderStyle: {}}
 	const hasChildren = React.Children.count(children) > 0
 	return (
-		<ElementContainer className={classNames(styles.container, {
+		<ElementContainer padding={false} className={classNames(styles.container, {
 			[styles.isEmpty]: !hasChildren,
 		})} style={selectedBackground.pageBuilderStyle}>
 			<ToolbarPortalTop>

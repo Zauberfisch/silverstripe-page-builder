@@ -1,0 +1,19 @@
+.container {
+	padding: 10px;
+	background: white;
+	border: 1px solid #ced5e1;
+	position: relative;
+}
+
+.image {
+	padding: 0 0 50%;
+	background: center center no-repeat;
+}
+
+.control {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: flex;
+	justify-content: flex-end;
+}

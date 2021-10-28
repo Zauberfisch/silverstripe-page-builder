@@ -5,7 +5,7 @@ import {useNodeState} from "components/PageBuilder/hooks/useNodeState"
 import styles from "./ElementContainer.module.scss"
 import {useNode} from "@craftjs/core"
 
-export function ElementContainer({children, className = "", inline = false, ref, ...props}) {
+export function ElementContainer({children, padding = true, className = "", inline = false, ref, ...props}) {
 	const {isActive, isHover} = useNodeState()
 	const {connectors: {connect}} = useNode()
 	if (!props.ref) {
@@ -15,6 +15,7 @@ export function ElementContainer({children, className = "", inline = false, ref,
 		[styles.active]: isActive,
 		[styles.hover]: isHover,
 		[styles.inline]: inline,
+		[styles.padding]: padding,
 	})}>
 		{isActive && <React.Fragment>
 			<div className={styles.borderTopLeft} />

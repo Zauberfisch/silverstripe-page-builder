@@ -651,12 +651,14 @@ function ElementContainer(_ref) {
 	var _classNames;
 
 	var children = _ref.children,
+	    _ref$padding = _ref.padding,
+	    padding = _ref$padding === undefined ? true : _ref$padding,
 	    _ref$className = _ref.className,
 	    className = _ref$className === undefined ? "" : _ref$className,
 	    _ref$inline = _ref.inline,
 	    inline = _ref$inline === undefined ? false : _ref$inline,
 	    ref = _ref.ref,
-	    props = _objectWithoutProperties(_ref, ["children", "className", "inline", "ref"]);
+	    props = _objectWithoutProperties(_ref, ["children", "padding", "className", "inline", "ref"]);
 
 	var _useNodeState = (0, _useNodeState2.useNodeState)(),
 	    isActive = _useNodeState.isActive,
@@ -672,7 +674,7 @@ function ElementContainer(_ref) {
 	}
 	return _react2.default.createElement(
 		"div",
-		_extends({}, props, { className: (0, _classnames2.default)(className, _ElementContainerModule2.default.element, (_classNames = {}, _defineProperty(_classNames, _ElementContainerModule2.default.active, isActive), _defineProperty(_classNames, _ElementContainerModule2.default.hover, isHover), _defineProperty(_classNames, _ElementContainerModule2.default.inline, inline), _classNames)) }),
+		_extends({}, props, { className: (0, _classnames2.default)(className, _ElementContainerModule2.default.element, (_classNames = {}, _defineProperty(_classNames, _ElementContainerModule2.default.active, isActive), _defineProperty(_classNames, _ElementContainerModule2.default.hover, isHover), _defineProperty(_classNames, _ElementContainerModule2.default.inline, inline), _defineProperty(_classNames, _ElementContainerModule2.default.padding, padding), _classNames)) }),
 		isActive && _react2.default.createElement(
 			_react2.default.Fragment,
 			null,
@@ -692,7 +694,7 @@ function ElementContainer(_ref) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"element":"_1kM2GTBES335mTvmT7SXER","inline":"_37rcwGItDlt9W-mR26b6qU","hover":"_3f4eVKQ6zWN8BzVGcEiNNk","active":"_2aFP4uudLD7Zd8xOAgYvZx","borderTopLeft":"_3IhBBlg7cSD2sUkQts5T5N","borderTopRight":"_2f1vcLf8gTg5OJfPNbbBKs","borderBottomRight":"_3EcN7Zn0cljz1y4S2ZLP9-","borderBottomLeft":"_2o6sP5rDtgMunCykm9aU3u"};
+module.exports = {"element":"_1kM2GTBES335mTvmT7SXER","inline":"_37rcwGItDlt9W-mR26b6qU","padding":"_2oshjpRKtF9aTV9fvakiPT","hover":"_3f4eVKQ6zWN8BzVGcEiNNk","active":"_2aFP4uudLD7Zd8xOAgYvZx","borderTopLeft":"_3IhBBlg7cSD2sUkQts5T5N","borderTopRight":"_2f1vcLf8gTg5OJfPNbbBKs","borderBottomRight":"_3EcN7Zn0cljz1y4S2ZLP9-","borderBottomLeft":"_2o6sP5rDtgMunCykm9aU3u"};
 
 /***/ }),
 
@@ -1087,7 +1089,7 @@ var Container = exports.Container = function Container(_ref) {
 	var hasChildren = _react2.default.Children.count(children) > 0;
 	return _react2.default.createElement(
 		_elementUtilities.ElementContainer,
-		{ className: (0, _classnames2.default)(_ContainerModule2.default.container, _defineProperty({}, _ContainerModule2.default.isEmpty, !hasChildren)), style: selectedBackground.pageBuilderStyle },
+		{ padding: false, className: (0, _classnames2.default)(_ContainerModule2.default.container, _defineProperty({}, _ContainerModule2.default.isEmpty, !hasChildren)), style: selectedBackground.pageBuilderStyle },
 		_react2.default.createElement(
 			_elementUtilities.ToolbarPortalTop,
 			null,
@@ -1395,27 +1397,6 @@ module.exports = {"elements":"_1cPxMgxXsTlc4H6ktXGayW","popoverHidden":"_1_upKnt
 
 /***/ }),
 
-/***/ "./client/src/components/PageBuilder/form/ImageField.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.ImageField = ImageField;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function ImageField() {}
-
-/***/ }),
-
 /***/ "./client/src/components/PageBuilder/form/ToolbarButton.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1498,7 +1479,7 @@ var ToolbarButton = function ToolbarButton(_ref) {
 		),
 		id && tooltip ? _react2.default.createElement(
 			_reactstrap.UncontrolledTooltip,
-			{ placement: "bottom", target: id },
+			{ autohide: true, placement: "bottom", target: id },
 			tooltip
 		) : null
 	);
@@ -1706,6 +1687,302 @@ module.exports = {"separator":"_1rj1ApJQtArXooYBzLDHNc"};
 
 /***/ }),
 
+/***/ "./client/src/components/PageBuilder/form/fields/ButtonField.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.ButtonField = ButtonField;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FieldHolder = __webpack_require__("./client/src/components/PageBuilder/form/fields/FieldHolder.js");
+
+var _ButtonFieldModule = __webpack_require__("./client/src/components/PageBuilder/form/fields/ButtonField.module.scss");
+
+var _ButtonFieldModule2 = _interopRequireDefault(_ButtonFieldModule);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ButtonField(_ref) {
+	var placeholder = _ref.placeholder,
+	    _ref$linkProp = _ref.linkProp,
+	    addButton = _ref$linkProp.addButton,
+	    removeButton = _ref$linkProp.removeButton,
+	    _ref$textProp = _ref.textProp,
+	    value = _ref$textProp.value,
+	    onChange = _ref$textProp.onChange,
+	    _ref$editable = _ref.editable,
+	    editable = _ref$editable === undefined ? true : _ref$editable;
+
+	return _react2.default.createElement(
+		_FieldHolder.FieldHolder,
+		{ style: { display: "flex" }, className: _ButtonFieldModule2.default.fieldHolder },
+		_react2.default.createElement("input", { placeholder: placeholder, type: "text", value: value, onChange: onChange, className: "text", disabled: !editable }),
+		_react2.default.createElement(
+			"div",
+			{ className: _ButtonFieldModule2.default.buttons },
+			editable && addButton,
+			editable && removeButton
+		)
+	);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/ButtonField.module.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"fieldHolder":"_1zvuMQU41ZicN7gFbrNSFb","buttons":"MM4VwlXTeB08oCE3Btoh4"};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/FieldColumns.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.FieldColumns = FieldColumns;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(3);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _FieldColumnsModule = __webpack_require__("./client/src/components/PageBuilder/form/fields/FieldColumns.module.scss");
+
+var _FieldColumnsModule2 = _interopRequireDefault(_FieldColumnsModule);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function FieldColumns(_ref) {
+	var children = _ref.children,
+	    className = _ref.className,
+	    props = _objectWithoutProperties(_ref, ["children", "className"]);
+
+	return _react2.default.createElement(
+		"div",
+		_extends({ className: (0, _classnames2.default)(className, _FieldColumnsModule2.default.container) }, props),
+		children
+	);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/FieldColumns.module.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"container":"_1gOlA5uWy8SjUTSZPNeRQb"};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/FieldHolder.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.FieldHolder = FieldHolder;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function FieldHolder(_ref) {
+	var children = _ref.children,
+	    style = _ref.style,
+	    props = _objectWithoutProperties(_ref, ["children", "style"]);
+
+	return _react2.default.createElement(
+		"div",
+		_extends({ style: _extends({ maxWidth: 400, margin: "5px 0" }, style) }, props),
+		children
+	);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/ImagePropField.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.ImagePropField = ImagePropField;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ImagePropFieldModule = __webpack_require__("./client/src/components/PageBuilder/form/fields/ImagePropField.module.scss");
+
+var _ImagePropFieldModule2 = _interopRequireDefault(_ImagePropFieldModule);
+
+var _FieldHolder = __webpack_require__("./client/src/components/PageBuilder/form/fields/FieldHolder.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ImagePropField(_ref) {
+	var _ref$imageProp = _ref.imageProp,
+	    url = _ref$imageProp.url,
+	    addButton = _ref$imageProp.addButton,
+	    removeButton = _ref$imageProp.removeButton,
+	    linkProp = _ref.linkProp,
+	    _ref$backgroundSize = _ref.backgroundSize,
+	    backgroundSize = _ref$backgroundSize === undefined ? "contain" : _ref$backgroundSize,
+	    _ref$editable = _ref.editable,
+	    editable = _ref$editable === undefined ? true : _ref$editable;
+
+	return _react2.default.createElement(
+		_FieldHolder.FieldHolder,
+		{ className: _ImagePropFieldModule2.default.container },
+		_react2.default.createElement(
+			"div",
+			null,
+			_react2.default.createElement("div", { className: _ImagePropFieldModule2.default.image, style: { backgroundImage: url && "url('" + url + "')", backgroundSize: backgroundSize } })
+		),
+		editable && _react2.default.createElement(
+			"div",
+			{ className: _ImagePropFieldModule2.default.control },
+			linkProp && _react2.default.createElement(
+				"div",
+				null,
+				linkProp.addButton
+			),
+			linkProp && _react2.default.createElement(
+				"div",
+				null,
+				linkProp.removeButton
+			),
+			_react2.default.createElement(
+				"div",
+				null,
+				addButton
+			),
+			_react2.default.createElement(
+				"div",
+				null,
+				removeButton
+			)
+		)
+	);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/ImagePropField.module.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"container":"hOeYk6WAecNCMJqiUILp-","image":"_2qicMxOT72h7HVB5SLqlI5","control":"_3RBP641rjFozbT1KWScy9-"};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/TextAreaField.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.TextAreaField = TextAreaField;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FieldHolder = __webpack_require__("./client/src/components/PageBuilder/form/fields/FieldHolder.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function TextAreaField(_ref) {
+	var _ref$textProp = _ref.textProp,
+	    value = _ref$textProp.value,
+	    onChange = _ref$textProp.onChange,
+	    placeholder = _ref.placeholder,
+	    _ref$editable = _ref.editable,
+	    editable = _ref$editable === undefined ? true : _ref$editable;
+
+	return _react2.default.createElement(
+		_FieldHolder.FieldHolder,
+		null,
+		_react2.default.createElement("textarea", { placeholder: placeholder, value: value, onChange: onChange, className: "text", disabled: !editable })
+	);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/TextField.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.TextField = TextField;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FieldHolder = __webpack_require__("./client/src/components/PageBuilder/form/fields/FieldHolder.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function TextField(_ref) {
+	var _ref$textProp = _ref.textProp,
+	    value = _ref$textProp.value,
+	    onChange = _ref$textProp.onChange,
+	    placeholder = _ref.placeholder,
+	    _ref$editable = _ref.editable,
+	    editable = _ref$editable === undefined ? true : _ref$editable;
+
+	return _react2.default.createElement(
+		_FieldHolder.FieldHolder,
+		null,
+		_react2.default.createElement("input", { placeholder: placeholder, type: "text", value: value, onChange: onChange, className: "text", disabled: !editable })
+	);
+}
+
+/***/ }),
+
 /***/ "./client/src/components/PageBuilder/form/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1728,14 +2005,62 @@ Object.keys(_AddNewButton).forEach(function (key) {
   });
 });
 
-var _ImageField = __webpack_require__("./client/src/components/PageBuilder/form/ImageField.js");
+var _ImagePropField = __webpack_require__("./client/src/components/PageBuilder/form/fields/ImagePropField.js");
 
-Object.keys(_ImageField).forEach(function (key) {
+Object.keys(_ImagePropField).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _ImageField[key];
+      return _ImagePropField[key];
+    }
+  });
+});
+
+var _TextField = __webpack_require__("./client/src/components/PageBuilder/form/fields/TextField.js");
+
+Object.keys(_TextField).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _TextField[key];
+    }
+  });
+});
+
+var _TextAreaField = __webpack_require__("./client/src/components/PageBuilder/form/fields/TextAreaField.js");
+
+Object.keys(_TextAreaField).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _TextAreaField[key];
+    }
+  });
+});
+
+var _ButtonField = __webpack_require__("./client/src/components/PageBuilder/form/fields/ButtonField.js");
+
+Object.keys(_ButtonField).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ButtonField[key];
+    }
+  });
+});
+
+var _FieldColumns = __webpack_require__("./client/src/components/PageBuilder/form/fields/FieldColumns.js");
+
+Object.keys(_FieldColumns).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _FieldColumns[key];
     }
   });
 });
@@ -2124,6 +2449,43 @@ function useElementPropSelectDropdown(propName, value, options, buttonProps) {
 			return obj.value === value;
 		}) || { pageBuilderStyle: {} },
 		button: _react2.default.createElement(_form.ToolbarSelect, _extends({}, buttonProps, { value: value, onChange: onChange, options: options }))
+	};
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/hooks/useElementPropText.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.useElementPropText = useElementPropText;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _core = __webpack_require__(1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useElementPropText(propName, value) {
+	var _useNode = (0, _core.useNode)(),
+	    setProp = _useNode.actions.setProp;
+
+	var onChange = _react2.default.useCallback(function (e) {
+		var val = e.target.value;
+		setProp(function (_props) {
+			_props[propName] = val;
+		}, 500);
+	}, [propName]);
+	return {
+		value: value,
+		onChange: onChange
 	};
 }
 
@@ -15458,6 +15820,18 @@ Object.keys(_useElementPropToggleButton).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _useElementPropToggleButton[key];
+    }
+  });
+});
+
+var _useElementPropText = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropText.js");
+
+Object.keys(_useElementPropText).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _useElementPropText[key];
     }
   });
 });

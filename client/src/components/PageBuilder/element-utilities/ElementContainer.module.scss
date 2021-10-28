@@ -2,13 +2,17 @@
 
 .element {
 	position: relative;
-	border: 1px solid transparent;
+	//border: 1px solid transparent;
 	//border: 1px solid $btn-secondary-border;
-	margin: 5px 0;
 	border: 1px dashed $brand-primary;
+	margin: 5px 0;
 
 	&.inline {
 		display: inline-block;
+	}
+
+	&.padding {
+		padding: 10px;
 	}
 
 	&.hover {

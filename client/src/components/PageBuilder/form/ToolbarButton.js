@@ -17,7 +17,7 @@ export const ToolbarButton = ({title = "", tooltip = "", iconName, iconStyle = {
 				</span> : null}
 				{iconNameRight ? <Icon className={styles.icon} iconName={iconNameRight} style={iconStyleRight} /> : null}
 			</button>
-			{id && tooltip ? <UncontrolledTooltip placement="bottom" target={id}>{tooltip}</UncontrolledTooltip> : null}
+			{id && tooltip ? <UncontrolledTooltip autohide={true} placement="bottom" target={id}>{tooltip}</UncontrolledTooltip> : null}
 		</span>
 	)
 }
