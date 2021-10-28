@@ -95,8 +95,8 @@ Container.craft = {
 		CreateButton,
 	},
 	rules: {
-		canMoveIn: (incomingNodes) => {
-			const forbiddenChildren = ['Container', 'Grid']
+		canMoveIn(incomingNodes) {
+			const forbiddenChildren = ["Container", "Grid"]
 			return !forbiddenChildren.includes(incomingNodes.length && incomingNodes[0].data.name)
 		},
 	},

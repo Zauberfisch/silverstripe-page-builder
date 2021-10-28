@@ -1122,7 +1122,7 @@ Container.craft = {
 	},
 	rules: {
 		canMoveIn: function canMoveIn(incomingNodes) {
-			var forbiddenChildren = ['Container', 'Grid'];
+			var forbiddenChildren = ["Container", "Grid"];
 			return !forbiddenChildren.includes(incomingNodes.length && incomingNodes[0].data.name);
 		}
 	}
@@ -1362,24 +1362,27 @@ var AddNewButton = exports.AddNewButton = function AddNewButton(_ref) {
 						    key = _ref3[0],
 						    element = _ref3[1];
 
-						return _react2.default.createElement(
-							"div",
-							{ key: key },
-							element.craft.related.CreateButton({
-								onCreate: function onCreate() {
-									return setIsOpen(false);
-								},
-								onDragStart: function onDragStart() {
-									if (navigator.userAgent.toLowerCase().indexOf("firefox") > -1) {
-										setIsHidden(true);
-									} else {
-										setTimeout(function () {
-											return setIsHidden(true);
-										}, 1000);
+						if (element.craft.related && element.craft.related.CreateButton) {
+							return _react2.default.createElement(
+								"div",
+								{ key: key },
+								element.craft.related.CreateButton({
+									onCreate: function onCreate() {
+										return setIsOpen(false);
+									},
+									onDragStart: function onDragStart() {
+										if (navigator.userAgent.toLowerCase().indexOf("firefox") > -1) {
+											setIsHidden(true);
+										} else {
+											setTimeout(function () {
+												return setIsHidden(true);
+											}, 1000);
+										}
 									}
-								}
-							})
-						);
+								})
+							);
+						}
+						return null;
 					})
 				)
 			)

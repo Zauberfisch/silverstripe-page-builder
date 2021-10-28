@@ -27,19 +27,22 @@ export const AddNewButton = ({}) => {
 				<PopoverBody>
 					<div className={styles.elements}>
 						{Object.entries(elements).map(([key, element]) => {
-							return <div {...{key}}>
-								{element.craft.related.CreateButton({
-									onCreate: () => setIsOpen(false),
-									onDragStart: () => {
-										if (navigator.userAgent.toLowerCase().indexOf("firefox") > -1) {
-											setIsHidden(true)
-										} else {
-											// in chrome, hiding the parent element to early will cause the drag to be canceled
-											setTimeout(() => setIsHidden(true), 1000)
-										}
-									},
-								})}
-							</div>
+							if (element.craft.related && element.craft.related.CreateButton) {
+								return <div {...{key}}>
+									{element.craft.related.CreateButton({
+										onCreate: () => setIsOpen(false),
+										onDragStart: () => {
+											if (navigator.userAgent.toLowerCase().indexOf("firefox") > -1) {
+												setIsHidden(true)
+											} else {
+												// in chrome, hiding the parent element to early will cause the drag to be canceled
+												setTimeout(() => setIsHidden(true), 1000)
+											}
+										},
+									})}
+								</div>
+							}
+							return null
 						})}
 					</div>
 				</PopoverBody>
