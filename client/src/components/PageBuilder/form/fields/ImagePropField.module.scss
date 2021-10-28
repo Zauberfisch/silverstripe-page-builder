@@ -1,3 +1,5 @@
+@import "variables";
+
 .container {
 	padding: 10px;
 	background: white;
@@ -17,4 +19,13 @@
 	right: 0;
 	display: flex;
 	justify-content: flex-end;
+
+	.label {
+		background: $body-bg-dark;
+		border: 1px solid $body-bg-dark;
+		color: #43536d;
+		line-height: 20px;
+		padding: 4px;
+		font-size: 14px;
+	}
 }

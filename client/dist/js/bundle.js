@@ -1162,7 +1162,7 @@ var RootContainer = exports.RootContainer = function RootContainer(_ref) {
 
 	return _react2.default.createElement(
 		_elementUtilities.ElementContainer,
-		{ style: { border: 0 } },
+		{ padding: false, style: { border: 0 } },
 		_react2.default.createElement(_elementUtilities.ToolbarPortalTop, null),
 		_react2.default.createElement(
 			"div",
@@ -1856,7 +1856,9 @@ var _FieldHolder = __webpack_require__("./client/src/components/PageBuilder/form
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ImagePropField(_ref) {
-	var _ref$imageProp = _ref.imageProp,
+	var _ref$label = _ref.label,
+	    label = _ref$label === undefined ? "" : _ref$label,
+	    _ref$imageProp = _ref.imageProp,
 	    url = _ref$imageProp.url,
 	    addButton = _ref$imageProp.addButton,
 	    removeButton = _ref$imageProp.removeButton,
@@ -1877,6 +1879,11 @@ function ImagePropField(_ref) {
 		editable && _react2.default.createElement(
 			"div",
 			{ className: _ImagePropFieldModule2.default.control },
+			_react2.default.createElement(
+				"div",
+				{ className: _ImagePropFieldModule2.default.label },
+				label
+			),
 			linkProp && _react2.default.createElement(
 				"div",
 				null,
@@ -1907,7 +1914,7 @@ function ImagePropField(_ref) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"container":"hOeYk6WAecNCMJqiUILp-","image":"_2qicMxOT72h7HVB5SLqlI5","control":"_3RBP641rjFozbT1KWScy9-"};
+module.exports = {"container":"hOeYk6WAecNCMJqiUILp-","image":"_2qicMxOT72h7HVB5SLqlI5","control":"_3RBP641rjFozbT1KWScy9-","label":"_1-0c7NG-0-4eTB7BwXxvhv"};
 
 /***/ }),
 

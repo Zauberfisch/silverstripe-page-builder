@@ -3,7 +3,7 @@ import {ElementContainer, ToolbarPortalTop} from "components/PageBuilder/element
 
 export const RootContainer = ({children}) => {
 	return (
-		<ElementContainer style={{border: 0}}>
+		<ElementContainer padding={false} style={{border: 0}}>
 			<ToolbarPortalTop />
 			<div style={{padding: 15}}>{children}</div>
 		</ElementContainer>
