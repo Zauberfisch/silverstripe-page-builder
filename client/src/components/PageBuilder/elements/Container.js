@@ -4,6 +4,8 @@ import {CreateElementButton, ElementContainer, ToolbarPortalTop} from "component
 import {ToolbarSelect} from "components/PageBuilder/form"
 import styles from "./Container.module.scss"
 import classNames from "classnames"
+import {ClipboardPasteButton} from "../element-utilities/ClipboardPasteButton"
+
 
 export const Container = ({background, children}) => {
 	const {actions: {setProp}} = useNode()
@@ -55,7 +57,6 @@ export const Container = ({background, children}) => {
 			},
 		},
 	], [])
-
 	const backgroundOnChange = React.useCallback((newBackground) => {
 		if (background !== newBackground) {
 			setProp((_props) => {
@@ -64,14 +65,13 @@ export const Container = ({background, children}) => {
 			})
 		}
 	}, [background])
-
 	const selectedBackground = backgroundOptions.find(obj => obj.value === background) || {pageBuilderStyle: {}}
 	const hasChildren = React.Children.count(children) > 0
 	return (
 		<ElementContainer padding={false} className={classNames(styles.container, {
 			[styles.isEmpty]: !hasChildren,
 		})} style={selectedBackground.pageBuilderStyle}>
-			<ToolbarPortalTop>
+			<ToolbarPortalTop childrenRight={<ClipboardPasteButton />}>
 				<ToolbarSelect value={background} onChange={backgroundOnChange} options={backgroundOptions} />
 			</ToolbarPortalTop>
 			{hasChildren ? <div className={styles.children}>{children}</div> : null}

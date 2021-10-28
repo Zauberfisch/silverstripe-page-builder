@@ -5,6 +5,7 @@ import ReactDOM from "react-dom"
 import {useEditor} from "@craftjs/core"
 import {ToolbarButton, ToolbarSeparator} from "components/PageBuilder/form"
 import DeletionModal from "components/DeletionModal"
+import {ClipboardCopyButton} from "./ClipboardCopyButton"
 
 export function ToolbarPortalTop({children, childrenRight}) {
 	const {actions} = useEditor()
@@ -37,9 +38,10 @@ export function ToolbarPortalTop({children, childrenRight}) {
 			<div style={{paddingRight: 5}}>
 				<span>{displayName}</span>
 			</div>
-			{/*{children}*/}
 			{isDeletable && <ToolbarButton iconName="mdiArrowUp" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ParentElement")} onClick={onGoUp} />}
 			{isDeletable && <ToolbarButton iconName="mdiDeleteForever" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElement")} onClick={onDelete} />}
+			{isDeletable && <ClipboardCopyButton />}
+			{childrenRight}
 			<DeletionModal
 				isOpen={requireDeleteConfirmation}
 				body={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElementConfirm")}

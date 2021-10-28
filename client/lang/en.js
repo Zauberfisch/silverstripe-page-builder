@@ -29,5 +29,13 @@ if (typeof (ss) === "undefined" || typeof (ss.i18n) === "undefined") {
 		"ZAUBERFISCH_PAGEBUILDER_useElementPropFile.Remove": "Remove File",
 		"ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Add": "Add Image",
 		"ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Remove": "Remove Image",
+
+		"ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Tooltip": "Copy to clipboard",
+		"ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Success": "Element has been copied to clipboard",
+		"ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Error": "Error copying to clipboard",
+
+		"ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Tooltip": "Paste from clipboard",
+		"ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error": "Error pasting from clipboard",
+		"ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Success": "Elements pasted successfully",
 	})
 }
