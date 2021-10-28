@@ -3,11 +3,7 @@
 	flex-wrap: wrap;
 
 	> div {
-		margin-left: 10px;
-		width: 380px;
-
-		&:first-child {
-			margin-left: 0;
-		}
+		margin-right: 10px;
+		width: 370px;
 	}
 }
