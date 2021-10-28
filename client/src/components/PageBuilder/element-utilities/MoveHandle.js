@@ -1,6 +1,6 @@
 import React from "react"
 import {useNode} from "@craftjs/core"
-import {useNodeState} from "./useNodeState"
+import {useNodeState} from "components/PageBuilder/hooks/useNodeState"
 import styles from "./MoveHandle.module.scss"
 import {Icon} from "components/PageBuilder/utility"
 

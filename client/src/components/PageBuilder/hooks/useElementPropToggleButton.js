@@ -1,6 +1,6 @@
 import React from "react"
 import {useNode} from "@craftjs/core"
-import {ToolbarButton} from "../Toolbar"
+import {ToolbarButton} from "../form"
 
 export function useElementPropToggleButton(propName, value, buttonProps) {
 	const {actions: {setProp}} = useNode()

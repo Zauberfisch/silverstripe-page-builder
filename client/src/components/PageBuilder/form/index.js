@@ -1,5 +1,5 @@
 export * from "./AddNewButton"
-export * from "./Toolbar"
+export * from "./ImageField"
 export * from "./ToolbarButton"
 export * from "./ToolbarDropdown"
 export * from "./ToolbarSelect"

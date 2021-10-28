@@ -1,8 +1,8 @@
 import React from "react"
 import {PageBuilderContext} from "components/PageBuilder/PageBuilderContext"
-import {useNodeState} from "./useNodeState"
+import {useNodeState} from "components/PageBuilder/hooks/useNodeState"
 import ReactDOM from "react-dom"
-import styles from "components/PageBuilder/Toolbar/Toolbar.module.scss"
+import styles from "components/PageBuilder/Toolbar.module.scss"
 
 export function ToolbarPortalRow({children}) {
 	const {isActive} = useNodeState()

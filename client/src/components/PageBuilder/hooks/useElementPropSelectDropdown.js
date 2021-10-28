@@ -1,6 +1,6 @@
 import React from "react"
 import {useNode} from "@craftjs/core"
-import {ToolbarSelect} from "../Toolbar"
+import {ToolbarSelect} from "../form"
 
 export function useElementPropSelectDropdown(propName, value, options, buttonProps) {
 	const {actions: {setProp}} = useNode()

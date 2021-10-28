@@ -1,7 +1,7 @@
 import {Element, useNode} from "@craftjs/core"
 import React from "react"
 import {CreateElementButton, ElementContainer, ToolbarPortalTop} from "components/PageBuilder/element-utilities"
-import {ToolbarSelect} from "components/PageBuilder/Toolbar"
+import {ToolbarSelect} from "components/PageBuilder/form"
 import styles from "./Container.module.scss"
 import classNames from "classnames"
 
@@ -93,5 +93,11 @@ Container.craft = {
 	props: defaultProps,
 	related: {
 		CreateButton,
+	},
+	rules: {
+		canMoveIn: (incomingNodes) => {
+			const forbiddenChildren = ['Container', 'Grid']
+			return !forbiddenChildren.includes(incomingNodes.length && incomingNodes[0].data.name)
+		},
 	},
 }

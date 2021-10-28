@@ -1,9 +1,7 @@
 import {useEditor} from "@craftjs/core"
 import React from "react"
 import styles from "./Toolbar.module.scss"
-import {ToolbarButton} from "./ToolbarButton"
-import {AddNewButton} from "./AddNewButton"
-import {ToolbarSeparator} from "./ToolbarSeparator"
+import {ToolbarButton, AddNewButton, ToolbarSeparator} from "./form"
 import {EventBus} from "components/PageBuilder/utility"
 
 export const Toolbar = ({refToolbarTop, refToolbarRows}) => {

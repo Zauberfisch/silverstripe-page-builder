@@ -13,6 +13,11 @@
 	width: 24px;
 	height: 24px;
 	z-index: 80;
+	opacity: 0;
+
+	&:hover {
+		opacity: 1;
+	}
 
 	.icon {
 		display: block;

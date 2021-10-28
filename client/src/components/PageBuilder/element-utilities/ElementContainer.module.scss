@@ -4,7 +4,8 @@
 	position: relative;
 	border: 1px solid transparent;
 	//border: 1px solid $btn-secondary-border;
-	//margin: 5px 0 0;
+	margin: 5px 0;
+	border: 1px dashed $brand-primary;
 
 	&.inline {
 		display: inline-block;

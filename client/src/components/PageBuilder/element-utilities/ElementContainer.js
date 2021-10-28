@@ -1,7 +1,7 @@
 import React from "react"
 import {MoveHandle} from "./MoveHandle"
 import classNames from "classnames"
-import {useNodeState} from "./useNodeState"
+import {useNodeState} from "components/PageBuilder/hooks/useNodeState"
 import styles from "./ElementContainer.module.scss"
 import {useNode} from "@craftjs/core"
 

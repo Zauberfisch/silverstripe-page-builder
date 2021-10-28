@@ -334,7 +334,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _core = __webpack_require__(1);
 
-var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/index.js");
+var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar.js");
 
 var _Injector = __webpack_require__(4);
 
@@ -451,133 +451,7 @@ module.exports = {"field":"UYNzTJJEvJQyI2gnIwZnr"};
 
 /***/ }),
 
-/***/ "./client/src/components/PageBuilder/Toolbar/AddNewButton.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.AddNewButton = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _AddNewButtonModule = __webpack_require__("./client/src/components/PageBuilder/Toolbar/AddNewButton.module.scss");
-
-var _AddNewButtonModule2 = _interopRequireDefault(_AddNewButtonModule);
-
-var _classnames2 = __webpack_require__(3);
-
-var _classnames3 = _interopRequireDefault(_classnames2);
-
-var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarButton.js");
-
-var _reactstrap = __webpack_require__(2);
-
-var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilder/PageBuilderContext.js");
-
-var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
-
-var AddNewButton = exports.AddNewButton = function AddNewButton(_ref) {
-	_objectDestructuringEmpty(_ref);
-
-	var id = (0, _utility.useUniqueId)();
-
-	var _React$useState = _react2.default.useState(false),
-	    _React$useState2 = _slicedToArray(_React$useState, 2),
-	    isOpen = _React$useState2[0],
-	    setIsOpen = _React$useState2[1];
-
-	var _React$useState3 = _react2.default.useState(false),
-	    _React$useState4 = _slicedToArray(_React$useState3, 2),
-	    isHidden = _React$useState4[0],
-	    setIsHidden = _React$useState4[1];
-
-	var toggle = _react2.default.useCallback(function () {
-		setIsOpen(function (_isOpen) {
-			if (!_isOpen) {
-				setIsHidden(false);
-			}
-			return !_isOpen;
-		});
-	});
-
-	var _React$useContext = _react2.default.useContext(_PageBuilderContext.PageBuilderContext),
-	    elements = _React$useContext.elements;
-
-	return _react2.default.createElement(
-		"div",
-		null,
-		_react2.default.createElement(_ToolbarButton.ToolbarButton, _extends({ iconName: "mdiPlusBox" }, { id: id }, { tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Add") })),
-		id ? _react2.default.createElement(
-			_reactstrap.Popover,
-			_extends({ placement: "bottom", target: id }, { toggle: toggle, isOpen: isOpen }, { popperClassName: (0, _classnames3.default)(_defineProperty({}, _AddNewButtonModule2.default.popoverHidden, isHidden)) }),
-			_react2.default.createElement(
-				_reactstrap.PopoverHeader,
-				null,
-				ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.AddDropdownTitle")
-			),
-			_react2.default.createElement(
-				_reactstrap.PopoverBody,
-				null,
-				_react2.default.createElement(
-					"div",
-					{ className: _AddNewButtonModule2.default.elements },
-					Object.entries(elements).map(function (_ref2) {
-						var _ref3 = _slicedToArray(_ref2, 2),
-						    key = _ref3[0],
-						    element = _ref3[1];
-
-						return _react2.default.createElement(
-							"div",
-							{ key: key },
-							element.craft.related.CreateButton({
-								onCreate: function onCreate() {
-									return setIsOpen(false);
-								},
-								onDragStart: function onDragStart() {
-									if (navigator.userAgent.toLowerCase().indexOf("firefox") > -1) {
-										setIsHidden(true);
-									} else {
-										setTimeout(function () {
-											return setIsHidden(true);
-										}, 1000);
-									}
-								}
-							})
-						);
-					})
-				)
-			)
-		) : null
-	);
-};
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/Toolbar/AddNewButton.module.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"elements":"_1YZkrQdgraILLsAV0KNoWU","popoverHidden":"ZepUbwqoQltT7d_D8rbQp"};
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/Toolbar/Toolbar.js":
+/***/ "./client/src/components/PageBuilder/Toolbar.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -596,15 +470,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ToolbarModule = __webpack_require__("./client/src/components/PageBuilder/Toolbar/Toolbar.module.scss");
+var _ToolbarModule = __webpack_require__("./client/src/components/PageBuilder/Toolbar.module.scss");
 
 var _ToolbarModule2 = _interopRequireDefault(_ToolbarModule);
 
-var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarButton.js");
-
-var _AddNewButton = __webpack_require__("./client/src/components/PageBuilder/Toolbar/AddNewButton.js");
-
-var _ToolbarSeparator = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarSeparator.js");
+var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
 
 var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
 
@@ -655,10 +525,10 @@ var Toolbar = exports.Toolbar = function Toolbar(_ref) {
 			_react2.default.createElement(
 				"div",
 				{ className: _ToolbarModule2.default.toolbarRow, ref: refToolbarTop },
-				_react2.default.createElement(_ToolbarButton.ToolbarButton, { iconName: "mdiUndoVariant", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Undo"), disabled: !canUndo && !isBusy, onClick: undo }),
-				_react2.default.createElement(_ToolbarButton.ToolbarButton, { iconName: "mdiRedoVariant", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Redo"), disabled: !canRedo && !isBusy, onClick: redo }),
-				_react2.default.createElement(_ToolbarSeparator.ToolbarSeparator, null),
-				_react2.default.createElement(_AddNewButton.AddNewButton, null)
+				_react2.default.createElement(_form.ToolbarButton, { iconName: "mdiUndoVariant", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Undo"), disabled: !canUndo && !isBusy, onClick: undo }),
+				_react2.default.createElement(_form.ToolbarButton, { iconName: "mdiRedoVariant", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Redo"), disabled: !canRedo && !isBusy, onClick: redo }),
+				_react2.default.createElement(_form.ToolbarSeparator, null),
+				_react2.default.createElement(_form.AddNewButton, null)
 			)
 		)
 	);
@@ -666,385 +536,11 @@ var Toolbar = exports.Toolbar = function Toolbar(_ref) {
 
 /***/ }),
 
-/***/ "./client/src/components/PageBuilder/Toolbar/Toolbar.module.scss":
+/***/ "./client/src/components/PageBuilder/Toolbar.module.scss":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"toolbar":"_3mk8e5SznTv-m-UBoYT2Cw","toolbarInner":"_39-Px3l4eq8kIk2LFhumbV","toolbarRow":"UcIzmUlSKWNMIGnJTBDse"};
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/Toolbar/ToolbarButton.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.ToolbarButton = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _ToolbarButtonModule = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarButton.module.scss");
-
-var _ToolbarButtonModule2 = _interopRequireDefault(_ToolbarButtonModule);
-
-var _classnames = __webpack_require__(3);
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _reactstrap = __webpack_require__(2);
-
-var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-var ToolbarButton = function ToolbarButton(_ref) {
-	var _classNames;
-
-	var _ref$title = _ref.title,
-	    title = _ref$title === undefined ? "" : _ref$title,
-	    _ref$tooltip = _ref.tooltip,
-	    tooltip = _ref$tooltip === undefined ? "" : _ref$tooltip,
-	    iconName = _ref.iconName,
-	    _ref$iconStyle = _ref.iconStyle,
-	    iconStyle = _ref$iconStyle === undefined ? {} : _ref$iconStyle,
-	    iconNameRight = _ref.iconNameRight,
-	    _ref$iconStyleRight = _ref.iconStyleRight,
-	    iconStyleRight = _ref$iconStyleRight === undefined ? {} : _ref$iconStyleRight,
-	    _ref$active = _ref.active,
-	    active = _ref$active === undefined ? false : _ref$active,
-	    _ref$disabled = _ref.disabled,
-	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
-	    id = _ref.id,
-	    _ref$className = _ref.className,
-	    className = _ref$className === undefined ? "" : _ref$className,
-	    props = _objectWithoutProperties(_ref, ["title", "tooltip", "iconName", "iconStyle", "iconNameRight", "iconStyleRight", "active", "disabled", "id", "className"]);
-
-	var onMouseDown = _react2.default.useCallback(function (e) {
-		return e.preventDefault();
-	}, []);
-	var _id = (0, _utility.useUniqueId)();
-	id = id || _id;
-	return _react2.default.createElement(
-		"span",
-		null,
-		_react2.default.createElement(
-			"button",
-			_extends({}, _extends({ onMouseDown: onMouseDown }, props, { id: id, disabled: disabled }), { className: (0, _classnames2.default)(_ToolbarButtonModule2.default.button, className, (_classNames = {}, _defineProperty(_classNames, _ToolbarButtonModule2.default.active, active), _defineProperty(_classNames, _ToolbarButtonModule2.default.hasText, title), _classNames)) }),
-			iconName ? _react2.default.createElement(_utility.Icon, { className: _ToolbarButtonModule2.default.icon, iconName: iconName, style: iconStyle }) : null,
-			title ? _react2.default.createElement(
-				"span",
-				{ className: _ToolbarButtonModule2.default.title },
-				_react2.default.createElement(
-					"span",
-					null,
-					title
-				)
-			) : null,
-			iconNameRight ? _react2.default.createElement(_utility.Icon, { className: _ToolbarButtonModule2.default.icon, iconName: iconNameRight, style: iconStyleRight }) : null
-		),
-		id && tooltip ? _react2.default.createElement(
-			_reactstrap.UncontrolledTooltip,
-			{ placement: "bottom", target: id },
-			tooltip
-		) : null
-	);
-};
-exports.ToolbarButton = ToolbarButton;
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/Toolbar/ToolbarButton.module.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"button":"_2H36xgwlHwJAIpfG5vmkmG","hasText":"_1cQNXIfh8-7erQgQ7tr3YG","active":"_3rw1-UbZkKuZAq2IOhNqnY","icon":"_1hcinIwAR7HME7GtAIGFLD","title":"kxRzOnLjZA7Gxk0ghYkz7"};
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/Toolbar/ToolbarDropdown.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.ToolbarDropdown = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactstrap = __webpack_require__(2);
-
-var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarButton.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-var ToolbarDropdown = function ToolbarDropdown(_ref) {
-	var _ref$title = _ref.title,
-	    title = _ref$title === undefined ? "" : _ref$title,
-	    iconName = _ref.iconName,
-	    _ref$iconStyle = _ref.iconStyle,
-	    iconStyle = _ref$iconStyle === undefined ? {} : _ref$iconStyle,
-	    _ref$disabled = _ref.disabled,
-	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
-	    children = _ref.children,
-	    props = _objectWithoutProperties(_ref, ["title", "iconName", "iconStyle", "disabled", "children"]);
-
-	var _React$useState = _react2.default.useState(false),
-	    _React$useState2 = _slicedToArray(_React$useState, 2),
-	    dropdownOpen = _React$useState2[0],
-	    setDropdownOpen = _React$useState2[1];
-
-	var toggle = function toggle() {
-		return setDropdownOpen(function (prevState) {
-			return !prevState;
-		});
-	};
-	return _react2.default.createElement(
-		_reactstrap.Dropdown,
-		{ isOpen: dropdownOpen, toggle: toggle },
-		_react2.default.createElement(
-			_reactstrap.DropdownToggle,
-			{ tag: "span" },
-			_react2.default.createElement(_ToolbarButton.ToolbarButton, _extends({}, props, { title: title, iconName: iconName, iconStyle: iconStyle, iconNameRight: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown", disabled: disabled, active: dropdownOpen }))
-		),
-		_react2.default.createElement(
-			_reactstrap.DropdownMenu,
-			null,
-			children
-		)
-	);
-};
-exports.ToolbarDropdown = ToolbarDropdown;
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/Toolbar/ToolbarSelect.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.ToolbarSelect = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
-
-var _ToolbarDropdown = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarDropdown.js");
-
-var _reactstrap = __webpack_require__(2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-var ToolbarSelectItem = function ToolbarSelectItem(_ref) {
-	var onClick = _ref.onClick,
-	    onChange = _ref.onChange,
-	    title = _ref.title,
-	    children = _ref.children,
-	    iconName = _ref.iconName,
-	    _ref$iconStyle = _ref.iconStyle,
-	    iconStyle = _ref$iconStyle === undefined ? {} : _ref$iconStyle,
-	    _ref$style = _ref.style,
-	    style = _ref$style === undefined ? {} : _ref$style,
-	    props = _objectWithoutProperties(_ref, ["onClick", "onChange", "title", "children", "iconName", "iconStyle", "style"]);
-
-	var onMouseDown = _react2.default.useCallback(function (e) {
-		return e.preventDefault();
-	}, []);
-	var _onClick = _react2.default.useCallback(function (e) {
-		e.preventDefault();
-		typeof onClick === "function" && onClick(e);
-		onChange(props.value);
-	}, [props.value]);
-	return _react2.default.createElement(
-		_reactstrap.DropdownItem,
-		_extends({}, props, { onMouseDown: onMouseDown, onClick: _onClick, style: _extends({ padding: "0 10px" }, style) }),
-		children ? children : _react2.default.createElement(
-			_react2.default.Fragment,
-			null,
-			iconName ? _react2.default.createElement(_utility.Icon, { style: _extends({ width: 20, display: "inline-block", padding: "0 5px 0 0" }, iconStyle), iconName: iconName }) : null,
-			_react2.default.createElement(
-				"span",
-				null,
-				title
-			)
-		)
-	);
-};
-
-var ToolbarSelect = function ToolbarSelect(_ref2) {
-	var options = _ref2.options,
-	    value = _ref2.value,
-	    onChange = _ref2.onChange,
-	    _ref2$showSelectedTit = _ref2.showSelectedTitle,
-	    showSelectedTitle = _ref2$showSelectedTit === undefined ? true : _ref2$showSelectedTit,
-	    _ref2$showSelectedIco = _ref2.showSelectedIcon,
-	    showSelectedIcon = _ref2$showSelectedIco === undefined ? true : _ref2$showSelectedIco,
-	    props = _objectWithoutProperties(_ref2, ["options", "value", "onChange", "showSelectedTitle", "showSelectedIcon"]);
-
-	var selected = options.find(function (_ref3) {
-		var _value = _ref3.value;
-		return value === _value;
-	}) || {};
-	return _react2.default.createElement(
-		_ToolbarDropdown.ToolbarDropdown,
-		_extends({}, props, { title: showSelectedTitle && selected && selected.title, iconName: showSelectedIcon && selected && selected.iconName, iconStyle: showSelectedIcon && selected && selected.iconStyle }),
-		options && options.map(function (option) {
-			return _react2.default.createElement(ToolbarSelectItem, _extends({}, option, { active: option.value === value, onChange: onChange }));
-		})
-	);
-};
-exports.ToolbarSelect = ToolbarSelect;
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/Toolbar/ToolbarSeparator.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.ToolbarSeparator = undefined;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _ToolbarSeparatorModule = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarSeparator.module.scss");
-
-var _ToolbarSeparatorModule2 = _interopRequireDefault(_ToolbarSeparatorModule);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var ToolbarSeparator = exports.ToolbarSeparator = function ToolbarSeparator() {
-	return _react2.default.createElement("span", { className: _ToolbarSeparatorModule2.default.separator });
-};
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/Toolbar/ToolbarSeparator.module.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"separator":"_1b8lCGMhMhy_dFzdelqr96"};
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/Toolbar/index.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _AddNewButton = __webpack_require__("./client/src/components/PageBuilder/Toolbar/AddNewButton.js");
-
-Object.keys(_AddNewButton).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _AddNewButton[key];
-    }
-  });
-});
-
-var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/Toolbar.js");
-
-Object.keys(_Toolbar).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _Toolbar[key];
-    }
-  });
-});
-
-var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarButton.js");
-
-Object.keys(_ToolbarButton).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarButton[key];
-    }
-  });
-});
-
-var _ToolbarDropdown = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarDropdown.js");
-
-Object.keys(_ToolbarDropdown).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarDropdown[key];
-    }
-  });
-});
-
-var _ToolbarSelect = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarSelect.js");
-
-Object.keys(_ToolbarSelect).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarSelect[key];
-    }
-  });
-});
-
-var _ToolbarSeparator = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarSeparator.js");
-
-Object.keys(_ToolbarSeparator).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarSeparator[key];
-    }
-  });
-});
+module.exports = {"toolbar":"_1wrJ1DFAs_XXgV3l7kEgzU","toolbarInner":"_3KK4r0u7xHYlu2cobiTp8Z","toolbarRow":"_2nXShAiEUtLB13zC9fTTPE"};
 
 /***/ }),
 
@@ -1137,7 +633,7 @@ var _classnames = __webpack_require__(3);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _useNodeState2 = __webpack_require__("./client/src/components/PageBuilder/element-utilities/useNodeState.js");
+var _useNodeState2 = __webpack_require__("./client/src/components/PageBuilder/hooks/useNodeState.js");
 
 var _ElementContainerModule = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ElementContainer.module.scss");
 
@@ -1217,7 +713,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _core = __webpack_require__(1);
 
-var _useNodeState2 = __webpack_require__("./client/src/components/PageBuilder/element-utilities/useNodeState.js");
+var _useNodeState2 = __webpack_require__("./client/src/components/PageBuilder/hooks/useNodeState.js");
 
 var _MoveHandleModule = __webpack_require__("./client/src/components/PageBuilder/element-utilities/MoveHandle.module.scss");
 
@@ -1272,13 +768,13 @@ var _react2 = _interopRequireDefault(_react);
 
 var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilder/PageBuilderContext.js");
 
-var _useNodeState2 = __webpack_require__("./client/src/components/PageBuilder/element-utilities/useNodeState.js");
+var _useNodeState2 = __webpack_require__("./client/src/components/PageBuilder/hooks/useNodeState.js");
 
 var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _ToolbarModule = __webpack_require__("./client/src/components/PageBuilder/Toolbar/Toolbar.module.scss");
+var _ToolbarModule = __webpack_require__("./client/src/components/PageBuilder/Toolbar.module.scss");
 
 var _ToolbarModule2 = _interopRequireDefault(_ToolbarModule);
 
@@ -1325,7 +821,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilder/PageBuilderContext.js");
 
-var _useNodeState2 = __webpack_require__("./client/src/components/PageBuilder/element-utilities/useNodeState.js");
+var _useNodeState2 = __webpack_require__("./client/src/components/PageBuilder/hooks/useNodeState.js");
 
 var _reactDom = __webpack_require__(5);
 
@@ -1333,7 +829,7 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _core = __webpack_require__(1);
 
-var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/index.js");
+var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
 
 var _DeletionModal = __webpack_require__("./client/src/components/DeletionModal.js");
 
@@ -1393,7 +889,7 @@ function ToolbarPortalTop(_ref) {
 			children && _react2.default.createElement(
 				_react2.default.Fragment,
 				null,
-				_react2.default.createElement(_Toolbar.ToolbarSeparator, null),
+				_react2.default.createElement(_form.ToolbarSeparator, null),
 				children
 			),
 			_react2.default.createElement("div", { style: { flexGrow: 999 } }),
@@ -1406,8 +902,8 @@ function ToolbarPortalTop(_ref) {
 					displayName
 				)
 			),
-			isDeletable && _react2.default.createElement(_Toolbar.ToolbarButton, { iconName: "mdiArrowUp", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ParentElement"), onClick: onGoUp }),
-			isDeletable && _react2.default.createElement(_Toolbar.ToolbarButton, { iconName: "mdiDeleteForever", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElement"), onClick: onDelete }),
+			isDeletable && _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiArrowUp", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ParentElement"), onClick: onGoUp }),
+			isDeletable && _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiDeleteForever", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElement"), onClick: onDelete }),
 			_react2.default.createElement(_DeletionModal2.default, {
 				isOpen: requireDeleteConfirmation,
 				body: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElementConfirm"),
@@ -1431,50 +927,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _MoveHandle = __webpack_require__("./client/src/components/PageBuilder/element-utilities/MoveHandle.js");
+var _CreateElementButton = __webpack_require__("./client/src/components/PageBuilder/element-utilities/CreateElementButton.js");
 
-Object.keys(_MoveHandle).forEach(function (key) {
+Object.keys(_CreateElementButton).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _MoveHandle[key];
-    }
-  });
-});
-
-var _ToolbarPortalTop = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ToolbarPortalTop.js");
-
-Object.keys(_ToolbarPortalTop).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarPortalTop[key];
-    }
-  });
-});
-
-var _ToolbarPortalRow = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ToolbarPortalRow.js");
-
-Object.keys(_ToolbarPortalRow).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarPortalRow[key];
-    }
-  });
-});
-
-var _useNodeState = __webpack_require__("./client/src/components/PageBuilder/element-utilities/useNodeState.js");
-
-Object.keys(_useNodeState).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _useNodeState[key];
+      return _CreateElementButton[key];
     }
   });
 });
@@ -1491,61 +951,41 @@ Object.keys(_ElementContainer).forEach(function (key) {
   });
 });
 
-var _CreateElementButton = __webpack_require__("./client/src/components/PageBuilder/element-utilities/CreateElementButton.js");
+var _MoveHandle = __webpack_require__("./client/src/components/PageBuilder/element-utilities/MoveHandle.js");
 
-Object.keys(_CreateElementButton).forEach(function (key) {
+Object.keys(_MoveHandle).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _CreateElementButton[key];
+      return _MoveHandle[key];
     }
   });
 });
 
-/***/ }),
+var _ToolbarPortalRow = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ToolbarPortalRow.js");
 
-/***/ "./client/src/components/PageBuilder/element-utilities/useNodeState.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
+Object.keys(_ToolbarPortalRow).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarPortalRow[key];
+    }
+  });
 });
-exports.useNodeState = useNodeState;
 
-var _core = __webpack_require__(1);
+var _ToolbarPortalTop = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ToolbarPortalTop.js");
 
-function useNodeState() {
-	var _useEditor = (0, _core.useEditor)(function (state) {
-		return {
-			isActive: state.nodes[id] && state.nodes[id].events.selected
-		};
-	}),
-	    isActive = _useEditor.isActive,
-	    query = _useEditor.query;
-
-	var _useNode = (0, _core.useNode)(function (node) {
-		return {
-			id: node.id,
-			displayName: node.data.type.getTypeDisplayName(),
-			isHover: node.events.hovered,
-			isMoveable: query.node(node.id).isDraggable(),
-			isDeletable: query.node(node.id).isDeletable(),
-			parentId: node.data.parent
-		};
-	}),
-	    id = _useNode.id,
-	    displayName = _useNode.displayName,
-	    isHover = _useNode.isHover,
-	    isMoveable = _useNode.isMoveable,
-	    isDeletable = _useNode.isDeletable,
-	    parentId = _useNode.parentId;
-
-	return { id: id, displayName: displayName, isHover: isHover, isActive: isActive, isMoveable: isMoveable, isDeletable: isDeletable, parentId: parentId };
-}
+Object.keys(_ToolbarPortalTop).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarPortalTop[key];
+    }
+  });
+});
 
 /***/ }),
 
@@ -1570,7 +1010,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _elementUtilities = __webpack_require__("./client/src/components/PageBuilder/element-utilities/index.js");
 
-var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/index.js");
+var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
 
 var _ContainerModule = __webpack_require__("./client/src/components/PageBuilder/elements/Container.module.scss");
 
@@ -1651,7 +1091,7 @@ var Container = exports.Container = function Container(_ref) {
 		_react2.default.createElement(
 			_elementUtilities.ToolbarPortalTop,
 			null,
-			_react2.default.createElement(_Toolbar.ToolbarSelect, { value: background, onChange: backgroundOnChange, options: backgroundOptions })
+			_react2.default.createElement(_form.ToolbarSelect, { value: background, onChange: backgroundOnChange, options: backgroundOptions })
 		),
 		hasChildren ? _react2.default.createElement(
 			"div",
@@ -1677,6 +1117,12 @@ Container.craft = {
 	props: defaultProps,
 	related: {
 		CreateButton: CreateButton
+	},
+	rules: {
+		canMoveIn: function canMoveIn(incomingNodes) {
+			var forbiddenChildren = ['Container', 'Grid'];
+			return !forbiddenChildren.includes(incomingNodes.length && incomingNodes[0].data.name);
+		}
 	}
 };
 
@@ -1823,6 +1269,527 @@ Object.keys(_UnknownElement).forEach(function (key) {
 
 /***/ }),
 
+/***/ "./client/src/components/PageBuilder/form/AddNewButton.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.AddNewButton = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _AddNewButtonModule = __webpack_require__("./client/src/components/PageBuilder/form/AddNewButton.module.scss");
+
+var _AddNewButtonModule2 = _interopRequireDefault(_AddNewButtonModule);
+
+var _classnames2 = __webpack_require__(3);
+
+var _classnames3 = _interopRequireDefault(_classnames2);
+
+var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarButton.js");
+
+var _reactstrap = __webpack_require__(2);
+
+var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilder/PageBuilderContext.js");
+
+var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+
+var AddNewButton = exports.AddNewButton = function AddNewButton(_ref) {
+	_objectDestructuringEmpty(_ref);
+
+	var id = (0, _utility.useUniqueId)();
+
+	var _React$useState = _react2.default.useState(false),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    isOpen = _React$useState2[0],
+	    setIsOpen = _React$useState2[1];
+
+	var _React$useState3 = _react2.default.useState(false),
+	    _React$useState4 = _slicedToArray(_React$useState3, 2),
+	    isHidden = _React$useState4[0],
+	    setIsHidden = _React$useState4[1];
+
+	var toggle = _react2.default.useCallback(function () {
+		setIsOpen(function (_isOpen) {
+			if (!_isOpen) {
+				setIsHidden(false);
+			}
+			return !_isOpen;
+		});
+	});
+
+	var _React$useContext = _react2.default.useContext(_PageBuilderContext.PageBuilderContext),
+	    elements = _React$useContext.elements;
+
+	return _react2.default.createElement(
+		"div",
+		null,
+		_react2.default.createElement(_ToolbarButton.ToolbarButton, _extends({ iconName: "mdiPlusBox" }, { id: id }, { tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Add") })),
+		id ? _react2.default.createElement(
+			_reactstrap.Popover,
+			_extends({ placement: "bottom", target: id }, { toggle: toggle, isOpen: isOpen }, { popperClassName: (0, _classnames3.default)(_defineProperty({}, _AddNewButtonModule2.default.popoverHidden, isHidden)) }),
+			_react2.default.createElement(
+				_reactstrap.PopoverHeader,
+				null,
+				ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.AddDropdownTitle")
+			),
+			_react2.default.createElement(
+				_reactstrap.PopoverBody,
+				null,
+				_react2.default.createElement(
+					"div",
+					{ className: _AddNewButtonModule2.default.elements },
+					Object.entries(elements).map(function (_ref2) {
+						var _ref3 = _slicedToArray(_ref2, 2),
+						    key = _ref3[0],
+						    element = _ref3[1];
+
+						return _react2.default.createElement(
+							"div",
+							{ key: key },
+							element.craft.related.CreateButton({
+								onCreate: function onCreate() {
+									return setIsOpen(false);
+								},
+								onDragStart: function onDragStart() {
+									if (navigator.userAgent.toLowerCase().indexOf("firefox") > -1) {
+										setIsHidden(true);
+									} else {
+										setTimeout(function () {
+											return setIsHidden(true);
+										}, 1000);
+									}
+								}
+							})
+						);
+					})
+				)
+			)
+		) : null
+	);
+};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/AddNewButton.module.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"elements":"_1cPxMgxXsTlc4H6ktXGayW","popoverHidden":"_1_upKntT7XBfIEKaUIHIaI"};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/ImageField.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ImageField = ImageField;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ImageField() {}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/ToolbarButton.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.ToolbarButton = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ToolbarButtonModule = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarButton.module.scss");
+
+var _ToolbarButtonModule2 = _interopRequireDefault(_ToolbarButtonModule);
+
+var _classnames = __webpack_require__(3);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _reactstrap = __webpack_require__(2);
+
+var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var ToolbarButton = function ToolbarButton(_ref) {
+	var _classNames;
+
+	var _ref$title = _ref.title,
+	    title = _ref$title === undefined ? "" : _ref$title,
+	    _ref$tooltip = _ref.tooltip,
+	    tooltip = _ref$tooltip === undefined ? "" : _ref$tooltip,
+	    iconName = _ref.iconName,
+	    _ref$iconStyle = _ref.iconStyle,
+	    iconStyle = _ref$iconStyle === undefined ? {} : _ref$iconStyle,
+	    iconNameRight = _ref.iconNameRight,
+	    _ref$iconStyleRight = _ref.iconStyleRight,
+	    iconStyleRight = _ref$iconStyleRight === undefined ? {} : _ref$iconStyleRight,
+	    _ref$active = _ref.active,
+	    active = _ref$active === undefined ? false : _ref$active,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    id = _ref.id,
+	    _ref$className = _ref.className,
+	    className = _ref$className === undefined ? "" : _ref$className,
+	    props = _objectWithoutProperties(_ref, ["title", "tooltip", "iconName", "iconStyle", "iconNameRight", "iconStyleRight", "active", "disabled", "id", "className"]);
+
+	var onMouseDown = _react2.default.useCallback(function (e) {
+		return e.preventDefault();
+	}, []);
+	var _id = (0, _utility.useUniqueId)();
+	id = id || _id;
+	return _react2.default.createElement(
+		"span",
+		null,
+		_react2.default.createElement(
+			"button",
+			_extends({}, _extends({ onMouseDown: onMouseDown }, props, { id: id, disabled: disabled }), { className: (0, _classnames2.default)(_ToolbarButtonModule2.default.button, className, (_classNames = {}, _defineProperty(_classNames, _ToolbarButtonModule2.default.active, active), _defineProperty(_classNames, _ToolbarButtonModule2.default.hasText, title), _classNames)) }),
+			iconName ? _react2.default.createElement(_utility.Icon, { className: _ToolbarButtonModule2.default.icon, iconName: iconName, style: iconStyle }) : null,
+			title ? _react2.default.createElement(
+				"span",
+				{ className: _ToolbarButtonModule2.default.title },
+				_react2.default.createElement(
+					"span",
+					null,
+					title
+				)
+			) : null,
+			iconNameRight ? _react2.default.createElement(_utility.Icon, { className: _ToolbarButtonModule2.default.icon, iconName: iconNameRight, style: iconStyleRight }) : null
+		),
+		id && tooltip ? _react2.default.createElement(
+			_reactstrap.UncontrolledTooltip,
+			{ placement: "bottom", target: id },
+			tooltip
+		) : null
+	);
+};
+exports.ToolbarButton = ToolbarButton;
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/ToolbarButton.module.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"button":"_17JZPLuy9eDy4dLOJ-kyEa","hasText":"_2OAmVbRkXSVo5n9O4aaHge","active":"_1Ioyt11yHfGSqGEwH7tFpw","icon":"_1lK5mjB7n2rwV7ZQPZs-HT","title":"_3BQ6q1wtcToT75uBwlDHj2"};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/ToolbarDropdown.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.ToolbarDropdown = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactstrap = __webpack_require__(2);
+
+var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarButton.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var ToolbarDropdown = function ToolbarDropdown(_ref) {
+	var _ref$title = _ref.title,
+	    title = _ref$title === undefined ? "" : _ref$title,
+	    iconName = _ref.iconName,
+	    _ref$iconStyle = _ref.iconStyle,
+	    iconStyle = _ref$iconStyle === undefined ? {} : _ref$iconStyle,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    children = _ref.children,
+	    props = _objectWithoutProperties(_ref, ["title", "iconName", "iconStyle", "disabled", "children"]);
+
+	var _React$useState = _react2.default.useState(false),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    dropdownOpen = _React$useState2[0],
+	    setDropdownOpen = _React$useState2[1];
+
+	var toggle = function toggle() {
+		return setDropdownOpen(function (prevState) {
+			return !prevState;
+		});
+	};
+	return _react2.default.createElement(
+		_reactstrap.Dropdown,
+		{ isOpen: dropdownOpen, toggle: toggle },
+		_react2.default.createElement(
+			_reactstrap.DropdownToggle,
+			{ tag: "span" },
+			_react2.default.createElement(_ToolbarButton.ToolbarButton, _extends({}, props, { title: title, iconName: iconName, iconStyle: iconStyle, iconNameRight: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown", disabled: disabled, active: dropdownOpen }))
+		),
+		_react2.default.createElement(
+			_reactstrap.DropdownMenu,
+			null,
+			children
+		)
+	);
+};
+exports.ToolbarDropdown = ToolbarDropdown;
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/ToolbarSelect.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.ToolbarSelect = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
+
+var _ToolbarDropdown = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarDropdown.js");
+
+var _reactstrap = __webpack_require__(2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var ToolbarSelectItem = function ToolbarSelectItem(_ref) {
+	var onClick = _ref.onClick,
+	    onChange = _ref.onChange,
+	    title = _ref.title,
+	    children = _ref.children,
+	    iconName = _ref.iconName,
+	    _ref$iconStyle = _ref.iconStyle,
+	    iconStyle = _ref$iconStyle === undefined ? {} : _ref$iconStyle,
+	    _ref$style = _ref.style,
+	    style = _ref$style === undefined ? {} : _ref$style,
+	    props = _objectWithoutProperties(_ref, ["onClick", "onChange", "title", "children", "iconName", "iconStyle", "style"]);
+
+	var onMouseDown = _react2.default.useCallback(function (e) {
+		return e.preventDefault();
+	}, []);
+	var _onClick = _react2.default.useCallback(function (e) {
+		e.preventDefault();
+		typeof onClick === "function" && onClick(e);
+		onChange(props.value);
+	}, [props.value]);
+	return _react2.default.createElement(
+		_reactstrap.DropdownItem,
+		_extends({}, props, { onMouseDown: onMouseDown, onClick: _onClick, style: _extends({ padding: "0 10px" }, style) }),
+		children ? children : _react2.default.createElement(
+			_react2.default.Fragment,
+			null,
+			iconName ? _react2.default.createElement(_utility.Icon, { style: _extends({ width: 20, display: "inline-block", padding: "0 5px 0 0" }, iconStyle), iconName: iconName }) : null,
+			_react2.default.createElement(
+				"span",
+				null,
+				title
+			)
+		)
+	);
+};
+
+var ToolbarSelect = function ToolbarSelect(_ref2) {
+	var options = _ref2.options,
+	    value = _ref2.value,
+	    onChange = _ref2.onChange,
+	    _ref2$showSelectedTit = _ref2.showSelectedTitle,
+	    showSelectedTitle = _ref2$showSelectedTit === undefined ? true : _ref2$showSelectedTit,
+	    _ref2$showSelectedIco = _ref2.showSelectedIcon,
+	    showSelectedIcon = _ref2$showSelectedIco === undefined ? true : _ref2$showSelectedIco,
+	    props = _objectWithoutProperties(_ref2, ["options", "value", "onChange", "showSelectedTitle", "showSelectedIcon"]);
+
+	var selected = options.find(function (_ref3) {
+		var _value = _ref3.value;
+		return value === _value;
+	}) || {};
+	return _react2.default.createElement(
+		_ToolbarDropdown.ToolbarDropdown,
+		_extends({}, props, { title: showSelectedTitle && selected && selected.title, iconName: showSelectedIcon && selected && selected.iconName, iconStyle: showSelectedIcon && selected && selected.iconStyle }),
+		options && options.map(function (option) {
+			return _react2.default.createElement(ToolbarSelectItem, _extends({}, option, { active: option.value === value, onChange: onChange }));
+		})
+	);
+};
+exports.ToolbarSelect = ToolbarSelect;
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/ToolbarSeparator.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.ToolbarSeparator = undefined;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ToolbarSeparatorModule = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarSeparator.module.scss");
+
+var _ToolbarSeparatorModule2 = _interopRequireDefault(_ToolbarSeparatorModule);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ToolbarSeparator = exports.ToolbarSeparator = function ToolbarSeparator() {
+	return _react2.default.createElement("span", { className: _ToolbarSeparatorModule2.default.separator });
+};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/ToolbarSeparator.module.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"separator":"_1rj1ApJQtArXooYBzLDHNc"};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _AddNewButton = __webpack_require__("./client/src/components/PageBuilder/form/AddNewButton.js");
+
+Object.keys(_AddNewButton).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _AddNewButton[key];
+    }
+  });
+});
+
+var _ImageField = __webpack_require__("./client/src/components/PageBuilder/form/ImageField.js");
+
+Object.keys(_ImageField).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ImageField[key];
+    }
+  });
+});
+
+var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarButton.js");
+
+Object.keys(_ToolbarButton).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarButton[key];
+    }
+  });
+});
+
+var _ToolbarDropdown = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarDropdown.js");
+
+Object.keys(_ToolbarDropdown).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarDropdown[key];
+    }
+  });
+});
+
+var _ToolbarSelect = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarSelect.js");
+
+Object.keys(_ToolbarSelect).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarSelect[key];
+    }
+  });
+});
+
+var _ToolbarSeparator = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarSeparator.js");
+
+Object.keys(_ToolbarSeparator).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarSeparator[key];
+    }
+  });
+});
+
+/***/ }),
+
 /***/ "./client/src/components/PageBuilder/hooks/useElementPropFile.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1845,7 +1812,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _core = __webpack_require__(1);
 
-var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/index.js");
+var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
 
 var _LinkModals = __webpack_require__("./client/src/components/LinkModals.js");
 
@@ -1892,10 +1859,10 @@ function useElementPropFile(propName, value) {
 		addButton: _react2.default.createElement(
 			_react2.default.Fragment,
 			null,
-			_react2.default.createElement(_Toolbar.ToolbarButton, { iconName: "mdiFolder", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropFile.Add"), onClick: add }),
+			_react2.default.createElement(_form.ToolbarButton, { iconName: "mdiFolder", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropFile.Add"), onClick: add }),
 			_react2.default.createElement(_LinkModals.EmbedModalFile, { onInsert: onInsert, onClosed: onClosed, isOpen: isOpen, fileAttributes: _value })
 		),
-		removeButton: _react2.default.createElement(_Toolbar.ToolbarButton, { iconName: "mdiFolderRemove", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropFile.Remove"), onClick: remove, disabled: !hasValue })
+		removeButton: _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiFolderRemove", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropFile.Remove"), onClick: remove, disabled: !hasValue })
 	};
 }
 
@@ -1923,7 +1890,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _core = __webpack_require__(1);
 
-var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/index.js");
+var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
 
 var _LinkModals = __webpack_require__("./client/src/components/LinkModals.js");
 
@@ -1970,10 +1937,10 @@ function useElementPropImage(propName, value) {
 		addButton: _react2.default.createElement(
 			_react2.default.Fragment,
 			null,
-			_react2.default.createElement(_Toolbar.ToolbarButton, { iconName: "mdiImage", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Add"), onClick: add }),
+			_react2.default.createElement(_form.ToolbarButton, { iconName: "mdiImage", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Add"), onClick: add }),
 			_react2.default.createElement(_LinkModals.EmbedModalImage, { onInsert: onInsert, onClosed: onClosed, isOpen: isOpen, fileAttributes: _value })
 		),
-		removeButton: _react2.default.createElement(_Toolbar.ToolbarButton, { iconName: "mdiImageMinus", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Remove"), onClick: remove, disabled: !hasValue })
+		removeButton: _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiImageMinus", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Remove"), onClick: remove, disabled: !hasValue })
 	};
 }
 
@@ -2001,7 +1968,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _core = __webpack_require__(1);
 
-var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/index.js");
+var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
 
 var _LinkModals = __webpack_require__("./client/src/components/LinkModals.js");
 
@@ -2093,7 +2060,7 @@ function useElementPropLink(propName, value) {
 			_react2.default.Fragment,
 			null,
 			_react2.default.createElement(
-				_Toolbar.ToolbarDropdown,
+				_form.ToolbarDropdown,
 				{ tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLink"), iconName: "mdiLink" },
 				linkTypes.map(function (_ref) {
 					var title = _ref.title,
@@ -2111,7 +2078,7 @@ function useElementPropLink(propName, value) {
 				return _react2.default.createElement(component, { key: id, fileAttributes: _value, onInsert: onInsert, onClosed: onClosed, isOpen: openModalId === id });
 			})
 		),
-		removeButton: _react2.default.createElement(_Toolbar.ToolbarButton, { iconName: "mdiLinkOff", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.RemoveLink"), onClick: removeLink, disabled: !hasValue })
+		removeButton: _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiLinkOff", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.RemoveLink"), onClick: removeLink, disabled: !hasValue })
 	};
 }
 
@@ -2137,7 +2104,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _core = __webpack_require__(1);
 
-var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/index.js");
+var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2156,7 +2123,7 @@ function useElementPropSelectDropdown(propName, value, options, buttonProps) {
 		value: options.find(function (obj) {
 			return obj.value === value;
 		}) || { pageBuilderStyle: {} },
-		button: _react2.default.createElement(_Toolbar.ToolbarSelect, _extends({}, buttonProps, { value: value, onChange: onChange, options: options }))
+		button: _react2.default.createElement(_form.ToolbarSelect, _extends({}, buttonProps, { value: value, onChange: onChange, options: options }))
 	};
 }
 
@@ -2182,7 +2149,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _core = __webpack_require__(1);
 
-var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar/index.js");
+var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2197,8 +2164,52 @@ function useElementPropToggleButton(propName, value, buttonProps) {
 	}, [propName]);
 	return {
 		value: value,
-		button: _react2.default.createElement(_Toolbar.ToolbarButton, _extends({}, buttonProps, { active: !!value, onClick: onClick }))
+		button: _react2.default.createElement(_form.ToolbarButton, _extends({}, buttonProps, { active: !!value, onClick: onClick }))
 	};
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/hooks/useNodeState.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.useNodeState = useNodeState;
+
+var _core = __webpack_require__(1);
+
+function useNodeState() {
+	var _useEditor = (0, _core.useEditor)(function (state) {
+		return {
+			isActive: state.nodes[id] && state.nodes[id].events.selected
+		};
+	}),
+	    isActive = _useEditor.isActive,
+	    query = _useEditor.query;
+
+	var _useNode = (0, _core.useNode)(function (node) {
+		return {
+			id: node.id,
+			displayName: node.data.type.getTypeDisplayName(),
+			isHover: node.events.hovered,
+			isMoveable: query.node(node.id).isDraggable(),
+			isDeletable: query.node(node.id).isDeletable(),
+			parentId: node.data.parent
+		};
+	}),
+	    id = _useNode.id,
+	    displayName = _useNode.displayName,
+	    isHover = _useNode.isHover,
+	    isMoveable = _useNode.isMoveable,
+	    isDeletable = _useNode.isDeletable,
+	    parentId = _useNode.parentId;
+
+	return { id: id, displayName: displayName, isHover: isHover, isActive: isActive, isMoveable: isMoveable, isDeletable: isDeletable, parentId: parentId };
 }
 
 /***/ }),
@@ -15319,98 +15330,26 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarButton.js");
+var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
 
-Object.keys(_ToolbarButton).forEach(function (key) {
+Object.keys(_form).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _ToolbarButton[key];
+      return _form[key];
     }
   });
 });
 
-var _ToolbarSelect = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarSelect.js");
+var _elementUtilities = __webpack_require__("./client/src/components/PageBuilder/element-utilities/index.js");
 
-Object.keys(_ToolbarSelect).forEach(function (key) {
+Object.keys(_elementUtilities).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _ToolbarSelect[key];
-    }
-  });
-});
-
-var _ToolbarDropdown = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarDropdown.js");
-
-Object.keys(_ToolbarDropdown).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarDropdown[key];
-    }
-  });
-});
-
-var _ToolbarSeparator = __webpack_require__("./client/src/components/PageBuilder/Toolbar/ToolbarSeparator.js");
-
-Object.keys(_ToolbarSeparator).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarSeparator[key];
-    }
-  });
-});
-
-var _CreateElementButton = __webpack_require__("./client/src/components/PageBuilder/element-utilities/CreateElementButton.js");
-
-Object.keys(_CreateElementButton).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _CreateElementButton[key];
-    }
-  });
-});
-
-var _ElementContainer = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ElementContainer.js");
-
-Object.keys(_ElementContainer).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ElementContainer[key];
-    }
-  });
-});
-
-var _ToolbarPortalTop = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ToolbarPortalTop.js");
-
-Object.keys(_ToolbarPortalTop).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarPortalTop[key];
-    }
-  });
-});
-
-var _ToolbarPortalRow = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ToolbarPortalRow.js");
-
-Object.keys(_ToolbarPortalRow).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarPortalRow[key];
+      return _elementUtilities[key];
     }
   });
 });

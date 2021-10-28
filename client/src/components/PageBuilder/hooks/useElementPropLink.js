@@ -1,6 +1,6 @@
 import React from "react"
 import {useNode} from "@craftjs/core"
-import {ToolbarButton, ToolbarDropdown} from "components/PageBuilder/Toolbar"
+import {ToolbarButton, ToolbarDropdown} from "components/PageBuilder/form"
 import {LinkModalEmail, LinkModalExternal, LinkModalFile, LinkModalInternal} from "components/LinkModals"
 import {DropdownItem} from "reactstrap"
 

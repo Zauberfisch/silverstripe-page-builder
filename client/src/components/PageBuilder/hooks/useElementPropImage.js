@@ -1,6 +1,6 @@
 import React from "react"
 import {useNode} from "@craftjs/core"
-import {ToolbarButton} from "components/PageBuilder/Toolbar"
+import {ToolbarButton} from "components/PageBuilder/form"
 import {EmbedModalImage} from "components/LinkModals"
 
 export function useElementPropImage(propName, value) {
