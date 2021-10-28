@@ -96,7 +96,7 @@ Container.craft = {
 	},
 	rules: {
 		canMoveIn(incomingNodes) {
-			const forbiddenChildren = ["Container", "Grid"]
+			const forbiddenChildren = ["Container", "GridContainer"]
 			return !forbiddenChildren.includes(incomingNodes.length && incomingNodes[0].data.name)
 		},
 	},

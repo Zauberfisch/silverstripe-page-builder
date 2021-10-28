@@ -1122,7 +1122,7 @@ Container.craft = {
 	},
 	rules: {
 		canMoveIn: function canMoveIn(incomingNodes) {
-			var forbiddenChildren = ["Container", "Grid"];
+			var forbiddenChildren = ["Container", "GridContainer"];
 			return !forbiddenChildren.includes(incomingNodes.length && incomingNodes[0].data.name);
 		}
 	}
