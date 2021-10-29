@@ -573,8 +573,6 @@ var toastsActions = _interopRequireWildcard(_ToastsActions);
 
 var _useNodeState2 = __webpack_require__("./client/src/components/PageBuilder/hooks/useNodeState.js");
 
-var _clipboardy = __webpack_require__("./node_modules/clipboardy/browser.js");
-
 var _core = __webpack_require__(1);
 
 var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
@@ -582,6 +580,8 @@ var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var hasClipboard = navigator.clipboard || typeof navigator.clipboard.writeText === "function";
 
 function _ClipboardCopyButton(_ref) {
 	var toastsActions = _ref.toastsActions;
@@ -599,7 +599,7 @@ function _ClipboardCopyButton(_ref) {
 		}));
 		var json = JSON.stringify({ rootNodeId: tree.rootNodeId, nodes: nodes });
 		var str = _lzutf2.default.encodeBase64(_lzutf2.default.compress(json));
-		(0, _clipboardy.write)(str).then(function () {
+		navigator.clipboard.writeText(str).then(function () {
 			return toastsActions.success(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Success"));
 		}, function () {
 			return toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Error"));
@@ -607,7 +607,7 @@ function _ClipboardCopyButton(_ref) {
 			return toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Error"));
 		});
 	}, [id]);
-	return _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiClipboardMultiple", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Tooltip"), onClick: onClick });
+	return _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiClipboardMultiple", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Tooltip"), onClick: onClick, disabled: !hasClipboard });
 }
 
 var ClipboardCopyButton = exports.ClipboardCopyButton = (0, _reactRedux.connect)(function () {
@@ -629,6 +629,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.ClipboardPasteButton = undefined;
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 exports._ClipboardPasteButton = _ClipboardPasteButton;
@@ -645,8 +647,6 @@ var _utils = __webpack_require__(9);
 
 var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
 
-var _clipboardy = __webpack_require__("./node_modules/clipboardy/browser.js");
-
 var _core = __webpack_require__(1);
 
 var _useNodeState2 = __webpack_require__("./client/src/components/PageBuilder/hooks/useNodeState.js");
@@ -659,17 +659,65 @@ var _ToastsActions = __webpack_require__(8);
 
 var toastsActions = _interopRequireWildcard(_ToastsActions);
 
+var _reactstrap = __webpack_require__(2);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var requiresModal = !navigator.clipboard || typeof navigator.clipboard.readText !== "function";
+
+var PasteModal = function PasteModal(_ref) {
+	var isOpen = _ref.isOpen,
+	    close = _ref.close,
+	    insertIntoNodeId = _ref.insertIntoNodeId,
+	    query = _ref.query,
+	    actions = _ref.actions;
+
+	var _React$useState = _react2.default.useState(""),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    jsonToImport = _React$useState2[0],
+	    setJsonToImport = _React$useState2[1];
+
+	var onChange = _react2.default.useCallback(function (e) {
+		return setJsonToImport(e.target.value);
+	}, []);
+	var onClick = _react2.default.useCallback(function () {
+		importFromPaste(jsonToImport, insertIntoNodeId, query, actions);
+		close();
+	}, [jsonToImport, insertIntoNodeId]);
+	return _react2.default.createElement(
+		_reactstrap.Modal,
+		{ isOpen: isOpen, toggle: close },
+		_react2.default.createElement(
+			_reactstrap.ModalHeader,
+			{ toggle: close },
+			ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_ELEMENT.Container.PasteHeader", "Paste element")
+		),
+		_react2.default.createElement(
+			_reactstrap.ModalBody,
+			null,
+			_react2.default.createElement("textarea", _extends({ onChange: onChange, value: jsonToImport }, { style: { width: "100%", minHeight: 200 } }))
+		),
+		_react2.default.createElement(
+			_reactstrap.ModalFooter,
+			null,
+			_react2.default.createElement(
+				_reactstrap.Button,
+				{ color: "primary", onClick: onClick },
+				ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_ELEMENT.Container.PasteSubmit", "Submit")
+			)
+		)
+	);
+};
+
 function importFromPaste(str, insertIntoNodeId, query, actions) {
 	var json = _lzutf2.default.decompress(_lzutf2.default.decodeBase64(str));
 	var newNodes = JSON.parse(json);
-	var nodesArray = Object.entries(newNodes.nodes).map(function (_ref) {
-		var _ref2 = _slicedToArray(_ref, 2),
-		    _id = _ref2[0],
-		    nodeData = _ref2[1];
+	var nodesArray = Object.entries(newNodes.nodes).map(function (_ref2) {
+		var _ref3 = _slicedToArray(_ref2, 2),
+		    _id = _ref3[0],
+		    nodeData = _ref3[1];
 
 		var newId = (0, _utils.getRandomId)();
 		return {
@@ -681,8 +729,8 @@ function importFromPaste(str, insertIntoNodeId, query, actions) {
 		};
 	});
 	var findNode = function findNode(_oldId) {
-		return nodesArray.find(function (_ref3) {
-			var oldId = _ref3.oldId;
+		return nodesArray.find(function (_ref4) {
+			var oldId = _ref4.oldId;
 			return oldId === _oldId;
 		});
 	};
@@ -704,8 +752,8 @@ function importFromPaste(str, insertIntoNodeId, query, actions) {
 	processNode(newNodes.rootNodeId, insertIntoNodeId);
 }
 
-function _ClipboardPasteButton(_ref4) {
-	var toastsActions = _ref4.toastsActions;
+function _ClipboardPasteButton(_ref5) {
+	var toastsActions = _ref5.toastsActions;
 
 	var _useEditor = (0, _core.useEditor)(),
 	    actions = _useEditor.actions,
@@ -714,17 +762,34 @@ function _ClipboardPasteButton(_ref4) {
 	var _useNodeState = (0, _useNodeState2.useNodeState)(),
 	    id = _useNodeState.id;
 
+	var _React$useState3 = _react2.default.useState(false),
+	    _React$useState4 = _slicedToArray(_React$useState3, 2),
+	    isOpen = _React$useState4[0],
+	    setIsOpen = _React$useState4[1];
+
 	var onClick = _react2.default.useCallback(function () {
-		(0, _clipboardy.read)().then(function (str) {
-			importFromPaste(str, id, query, actions);
-			toastsActions.success(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Success"));
-		}, function (e) {
-			return toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error") + ": " + e);
-		}).catch(function (e) {
-			return toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error") + ": " + e);
-		});
+		if (requiresModal) {
+			setIsOpen(true);
+		} else {
+			navigator.clipboard.readText().then(function (str) {
+				importFromPaste(str, id, query, actions);
+				toastsActions.success(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Success"));
+			}, function (e) {
+				return toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error") + ": " + e);
+			}).catch(function (e) {
+				return toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error") + ": " + e);
+			});
+		}
 	}, []);
-	return _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiClipboardPlay", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Tooltip"), onClick: onClick });
+	var close = _react2.default.useCallback(function () {
+		return setIsOpen(false);
+	}, []);
+	return _react2.default.createElement(
+		_react2.default.Fragment,
+		null,
+		requiresModal ? _react2.default.createElement(PasteModal, { isOpen: isOpen, close: close, insertIntoNodeId: id, query: query, actions: actions }) : null,
+		_react2.default.createElement(_form.ToolbarButton, { iconName: "mdiClipboardPlay", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Tooltip"), onClick: onClick })
+	);
 }
 
 var ClipboardPasteButton = exports.ClipboardPasteButton = (0, _reactRedux.connect)(function () {
@@ -17998,39 +18063,6 @@ function isnan (val) {
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "./node_modules/clipboardy/browser.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* eslint-env browser */
-
-
-const write = async text => {
-	await navigator.clipboard.writeText(text);
-};
-/* harmony export (immutable) */ __webpack_exports__["write"] = write;
-
-
-const read = async () => navigator.clipboard.readText();
-/* harmony export (immutable) */ __webpack_exports__["read"] = read;
-
-
-const readSync = () => {
-	throw new Error('`.readSync()` is not supported in browsers!');
-};
-/* harmony export (immutable) */ __webpack_exports__["readSync"] = readSync;
-
-
-const writeSync = () => {
-	throw new Error('`.writeSync()` is not supported in browsers!');
-};
-/* harmony export (immutable) */ __webpack_exports__["writeSync"] = writeSync;
-
-
 
 /***/ }),
 

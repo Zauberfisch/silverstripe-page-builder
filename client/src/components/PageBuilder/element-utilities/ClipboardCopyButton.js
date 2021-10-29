@@ -4,9 +4,10 @@ import {connect as reduxConnect} from "react-redux"
 import {bindActionCreators} from "redux"
 import * as toastsActions from "state/toasts/ToastsActions"
 import {useNodeState} from "components/PageBuilder/hooks/useNodeState"
-import {write} from "clipboardy"
 import {useEditor} from "@craftjs/core"
 import {ToolbarButton} from "../form"
+
+const hasClipboard = navigator.clipboard || typeof navigator.clipboard.writeText === "function"
 
 function _ClipboardCopyButton({toastsActions}) {
 	const {query} = useEditor()
@@ -20,7 +21,7 @@ function _ClipboardCopyButton({toastsActions}) {
 		]))
 		const json = JSON.stringify({rootNodeId: tree.rootNodeId, nodes})
 		const str = lz.encodeBase64(lz.compress(json))
-		write(str).then(
+		navigator.clipboard.writeText(str).then(
 			() => toastsActions.success(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Success")),
 			() => toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Error")),
 		).catch(
@@ -28,7 +29,7 @@ function _ClipboardCopyButton({toastsActions}) {
 		)
 	}, [id])
 	return (
-		<ToolbarButton iconName="mdiClipboardMultiple" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Tooltip")} onClick={onClick} />
+		<ToolbarButton iconName="mdiClipboardMultiple" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Tooltip")} onClick={onClick} disabled={!hasClipboard} />
 	)
 }
 
