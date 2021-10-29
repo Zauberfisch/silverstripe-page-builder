@@ -38,10 +38,10 @@ export function ToolbarPortalTop({children, childrenRight}) {
 			<div style={{paddingRight: 5}}>
 				<span>{displayName}</span>
 			</div>
+			{childrenRight}
+			{isDeletable && <ClipboardCopyButton />}
 			{isDeletable && <ToolbarButton iconName="mdiArrowUp" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ParentElement")} onClick={onGoUp} />}
 			{isDeletable && <ToolbarButton iconName="mdiDeleteForever" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElement")} onClick={onDelete} />}
-			{isDeletable && <ClipboardCopyButton />}
-			{childrenRight}
 			<DeletionModal
 				isOpen={requireDeleteConfirmation}
 				body={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElementConfirm")}

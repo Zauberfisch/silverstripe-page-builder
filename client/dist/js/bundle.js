@@ -1190,10 +1190,10 @@ function ToolbarPortalTop(_ref) {
 					displayName
 				)
 			),
+			childrenRight,
+			isDeletable && _react2.default.createElement(_ClipboardCopyButton.ClipboardCopyButton, null),
 			isDeletable && _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiArrowUp", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ParentElement"), onClick: onGoUp }),
 			isDeletable && _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiDeleteForever", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElement"), onClick: onDelete }),
-			isDeletable && _react2.default.createElement(_ClipboardCopyButton.ClipboardCopyButton, null),
-			childrenRight,
 			_react2.default.createElement(_DeletionModal2.default, {
 				isOpen: requireDeleteConfirmation,
 				body: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElementConfirm"),
