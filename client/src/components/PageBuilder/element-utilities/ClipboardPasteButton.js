@@ -47,9 +47,9 @@ export function _ClipboardPasteButton({toastsActions}) {
 				importFromPaste(str, id, query, actions)
 				toastsActions.success(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Success"))
 			},
-			(e) => toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error")),
+			(e) => toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error") + ": " + e),
 		).catch(
-			(e) => toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error")),
+			(e) => toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error") + ": " + e),
 		)
 	}, [])
 	return <ToolbarButton iconName="mdiClipboardPlay" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Tooltip")} onClick={onClick} />

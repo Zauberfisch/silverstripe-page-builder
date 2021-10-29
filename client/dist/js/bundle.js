@@ -719,9 +719,9 @@ function _ClipboardPasteButton(_ref4) {
 			importFromPaste(str, id, query, actions);
 			toastsActions.success(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Success"));
 		}, function (e) {
-			return toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error"));
+			return toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error") + ": " + e);
 		}).catch(function (e) {
-			return toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error"));
+			return toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error") + ": " + e);
 		});
 	}, []);
 	return _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiClipboardPlay", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Tooltip"), onClick: onClick });
