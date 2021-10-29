@@ -629,6 +629,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.ClipboardPasteButton = undefined;
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
@@ -711,10 +713,15 @@ var PasteModal = function PasteModal(_ref) {
 	);
 };
 
+function canAddToParent(node, newParentNode) {
+	var nodeHelpers = undefined;
+	return newParentNode.rules.canMoveIn([node], newParentNode, nodeHelpers) && node.rules.canDrop(newParentNode, node, nodeHelpers);
+}
+
 function importFromPaste(str, insertIntoNodeId, query, actions) {
 	var json = _lzutf2.default.decompress(_lzutf2.default.decodeBase64(str));
-	var newNodes = JSON.parse(json);
-	var nodesArray = Object.entries(newNodes.nodes).map(function (_ref2) {
+	var parsedData = JSON.parse(json);
+	var nodesArray = Object.entries(parsedData.nodes).map(function (_ref2) {
 		var _ref3 = _slicedToArray(_ref2, 2),
 		    _id = _ref3[0],
 		    nodeData = _ref3[1];
@@ -734,26 +741,47 @@ function importFromPaste(str, insertIntoNodeId, query, actions) {
 			return oldId === _oldId;
 		});
 	};
-	var processNode = function processNode(oldId, parentNodeId) {
-		var _findNode = findNode(oldId),
-		    newId = _findNode.newId,
-		    node = _findNode.node;
+	var newTree = {
+		nodes: {},
+		rootNodeId: findNode(parsedData.rootNodeId).newId
+	};
+	nodesArray.forEach(function (_ref5) {
+		var oldId = _ref5.oldId,
+		    newId = _ref5.newId,
+		    node = _ref5.node;
 
-		var childrenNodeIds = node.data.nodes && node.data.nodes.length ? node.data.nodes : [];
-		node.data.nodes = [];
-		node.data.parent = parentNodeId;
-		actions.add(node, parentNodeId);
-		if (childrenNodeIds.length) {
-			childrenNodeIds.forEach(function (childOldId) {
-				return processNode(childOldId, newId);
+		if (node.data.nodes && node.data.nodes.length) {
+			node.data.nodes = node.data.nodes.map(function (_oldId) {
+				return findNode(_oldId).newId;
 			});
 		}
-	};
-	processNode(newNodes.rootNodeId, insertIntoNodeId);
+		if (node.data.linkedNodes && _typeof(node.data.linkedNodes) === "object") {
+			node.data.linkedNodes = Object.fromEntries(Object.entries(node.data.linkedNodes).map(function (_ref6) {
+				var _ref7 = _slicedToArray(_ref6, 2),
+				    linkId = _ref7[0],
+				    _oldId = _ref7[1];
+
+				return [linkId, findNode(_oldId).newId];
+			}));
+		}
+		if (node.data.parent === "ROOT" && findNode(node.data.parent)) {
+			node.data.parent = findNode(node.data.parent).newId;
+		} else {
+			node.data.parent = undefined;
+		}
+		newTree.nodes[newId] = node;
+	});
+	var insetIntoNode = query.node(insertIntoNodeId).get();
+	var newTreeRootNode = newTree.nodes[newTree.rootNodeId];
+	if (canAddToParent(newTreeRootNode, insetIntoNode)) {
+		actions.addNodeTree(newTree, insertIntoNodeId);
+	} else {
+		throw newTreeRootNode.data.type.name + " cannot be added to " + insetIntoNode.data.type.name;
+	}
 }
 
-function _ClipboardPasteButton(_ref5) {
-	var toastsActions = _ref5.toastsActions;
+function _ClipboardPasteButton(_ref8) {
+	var toastsActions = _ref8.toastsActions;
 
 	var _useEditor = (0, _core.useEditor)(),
 	    actions = _useEditor.actions,
@@ -775,9 +803,9 @@ function _ClipboardPasteButton(_ref5) {
 				importFromPaste(str, id, query, actions);
 				toastsActions.success(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Success"));
 			}, function (e) {
-				return toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error") + ": " + e);
+				toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error") + ": " + e);
 			}).catch(function (e) {
-				return toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error") + ": " + e);
+				toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error") + ": " + e);
 			});
 		}
 	}, []);

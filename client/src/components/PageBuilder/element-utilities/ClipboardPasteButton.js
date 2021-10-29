@@ -8,6 +8,7 @@ import {connect as reduxConnect} from "react-redux"
 import {bindActionCreators} from "redux"
 import * as toastsActions from "state/toasts/ToastsActions"
 import {Modal, ModalHeader, ModalBody, ModalFooter, Button} from "reactstrap"
+
 const requiresModal = !navigator.clipboard || typeof navigator.clipboard.readText !== "function"
 
 const PasteModal = ({isOpen, close, insertIntoNodeId, query, actions}) => {
@@ -24,7 +25,6 @@ const PasteModal = ({isOpen, close, insertIntoNodeId, query, actions}) => {
 			</ModalHeader>
 			<ModalBody>
 				<textarea {...{onChange, value: jsonToImport}} style={{width: "100%", minHeight: 200}} />
-				{/*<TextAreaField textProp={{jsonToImport, onChange}} />*/}
 			</ModalBody>
 			<ModalFooter>
 				<Button color={"primary"} onClick={onClick}>{ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_ELEMENT.Container.PasteSubmit", "Submit")}</Button>
@@ -33,11 +33,15 @@ const PasteModal = ({isOpen, close, insertIntoNodeId, query, actions}) => {
 	)
 }
 
+function canAddToParent(node, newParentNode) {
+	const nodeHelpers = undefined
+	return newParentNode.rules.canMoveIn([node], newParentNode, nodeHelpers) && node.rules.canDrop(newParentNode, node, nodeHelpers)
+}
 
 function importFromPaste(str, insertIntoNodeId, query, actions) {
 	const json = lz.decompress(lz.decodeBase64(str))
-	const newNodes = JSON.parse(json)
-	const nodesArray = Object.entries(newNodes.nodes).map(([_id, nodeData]) => {
+	const parsedData = JSON.parse(json)
+	const nodesArray = Object.entries(parsedData.nodes).map(([_id, nodeData]) => {
 		const newId = getRandomNodeId()
 		return {
 			oldId: _id,
@@ -50,17 +54,33 @@ function importFromPaste(str, insertIntoNodeId, query, actions) {
 	const findNode = (_oldId) => {
 		return nodesArray.find(({oldId}) => oldId === _oldId)
 	}
-	const processNode = (oldId, parentNodeId) => {
-		const {newId, node} = findNode(oldId)
-		const childrenNodeIds = node.data.nodes && node.data.nodes.length ? node.data.nodes : []
-		node.data.nodes = []
-		node.data.parent = parentNodeId
-		actions.add(node, parentNodeId)
-		if (childrenNodeIds.length) {
-			childrenNodeIds.forEach((childOldId) => processNode(childOldId, newId))
-		}
+	const newTree = {
+		nodes: {},
+		rootNodeId: findNode(parsedData.rootNodeId).newId,
 	}
-	processNode(newNodes.rootNodeId, insertIntoNodeId)
+	nodesArray.forEach(({oldId, newId, node}) => {
+		if (node.data.nodes && node.data.nodes.length) {
+			node.data.nodes = node.data.nodes.map(_oldId => {
+				return findNode(_oldId).newId
+			})
+		}
+		if (node.data.linkedNodes && typeof node.data.linkedNodes === "object") {
+			node.data.linkedNodes = Object.fromEntries(Object.entries(node.data.linkedNodes).map(([linkId, _oldId]) => [linkId, findNode(_oldId).newId]))
+		}
+		if (node.data.parent === "ROOT" && findNode(node.data.parent)) {
+			node.data.parent = findNode(node.data.parent).newId
+		} else {
+			node.data.parent = undefined
+		}
+		newTree.nodes[newId] = node
+	})
+	const insetIntoNode = query.node(insertIntoNodeId).get()
+	const newTreeRootNode = newTree.nodes[newTree.rootNodeId]
+	if (canAddToParent(newTreeRootNode, insetIntoNode)) {
+		actions.addNodeTree(newTree, insertIntoNodeId)
+	} else {
+		throw `${newTreeRootNode.data.type.name} cannot be added to ${insetIntoNode.data.type.name}`
+	}
 }
 
 export function _ClipboardPasteButton({toastsActions}) {
@@ -76,9 +96,13 @@ export function _ClipboardPasteButton({toastsActions}) {
 					importFromPaste(str, id, query, actions)
 					toastsActions.success(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Success"))
 				},
-				(e) => toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error") + ": " + e),
+				(e) => {
+					toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error") + ": " + e)
+				},
 			).catch(
-				(e) => toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error") + ": " + e),
+				(e) => {
+					toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error") + ": " + e)
+				},
 			)
 		}
 	}, [])
