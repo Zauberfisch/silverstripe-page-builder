@@ -607,7 +607,7 @@ function _ClipboardCopyButton(_ref) {
 			return toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Error"));
 		});
 	}, [id]);
-	return _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiClipboardMultiple", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Tooltip"), onClick: onClick, disabled: !hasClipboard });
+	return _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiTrayArrowUp", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Tooltip"), onClick: onClick, disabled: !hasClipboard });
 }
 
 var ClipboardCopyButton = exports.ClipboardCopyButton = (0, _reactRedux.connect)(function () {
@@ -816,7 +816,7 @@ function _ClipboardPasteButton(_ref8) {
 		_react2.default.Fragment,
 		null,
 		requiresModal ? _react2.default.createElement(PasteModal, { isOpen: isOpen, close: close, insertIntoNodeId: id, query: query, actions: actions }) : null,
-		_react2.default.createElement(_form.ToolbarButton, { iconName: "mdiClipboardPlay", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Tooltip"), onClick: onClick })
+		_react2.default.createElement(_form.ToolbarButton, { iconName: "mdiTrayArrowDown", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Tooltip"), onClick: onClick })
 	);
 }
 
