@@ -16,6 +16,7 @@ const PasteModal = ({isOpen, close, insertIntoNodeId, query, actions}) => {
 	const onChange = React.useCallback((e) => setJsonToImport(e.target.value), [])
 	const onClick = React.useCallback(() => {
 		importFromPaste(jsonToImport, insertIntoNodeId, query, actions)
+		setJsonToImport("")
 		close()
 	}, [jsonToImport, insertIntoNodeId])
 	return (

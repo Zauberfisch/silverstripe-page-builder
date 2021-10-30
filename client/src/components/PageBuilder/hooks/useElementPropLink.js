@@ -4,7 +4,7 @@ import {ToolbarButton, ToolbarDropdown} from "components/PageBuilder/form"
 import {LinkModalEmail, LinkModalExternal, LinkModalFile, LinkModalInternal} from "components/LinkModals"
 import {DropdownItem} from "reactstrap"
 
-function useLinkTypes() {
+export function useElementPropLinkTypes() {
 	return React.useMemo(() => [
 		{
 			id: "Internal",
@@ -29,9 +29,39 @@ function useLinkTypes() {
 	], [])
 }
 
+export function useElementPropLinkInsertCallback(callback, type, deps) {
+	return React.useCallback((data, file) => {
+		delete data.SecurityID
+		delete data["action_insert"]
+		delete data.AssetEditorHeaderFieldGroup
+		delete data.TitleHeader
+		delete data.Editor
+		delete data.FileSpecs
+		// let link = ""
+		// if (type === "Internal") {
+		// 	link = data.PageID
+		// } else if (type === "External") {
+		// 	link = data.Link
+		// 	if (data.Anchor) {
+		// 		link += `#${encodeURIComponent(data.Anchor)}`
+		// 	}
+		// } else if (type === "Email") {
+		// 	link = `mailto:${data.Link}`
+		// 	if (data.Subject) {
+		// 		link += `?subject=${encodeURIComponent(data.Subject)}`
+		// 	}
+		// } else if (type === "File") {
+		// 	link = file.url
+		// }
+		// callback({type, data, link})
+		// console.log({data, file})
+		callback({type, data, file: file ? {url: file.url} : undefined})
+	}, [type, ...deps])
+}
+
 export function useElementPropLink(propName, value) {
 	const {actions: {setProp}} = useNode()
-	const linkTypes = useLinkTypes()
+	const linkTypes = useElementPropLinkTypes()
 	const [openModalId, setOpenModalId] = React.useState("")
 	const addLink = React.useCallback((e) => {
 		setOpenModalId(e.target.dataset.modalid)
@@ -42,37 +72,13 @@ export function useElementPropLink(propName, value) {
 			_props[propName] = null
 		})
 	}, [])
-	const onInsert = React.useCallback((data, file) => {
-		delete data.SecurityID
-		delete data["action_insert"]
-		delete data.AssetEditorHeaderFieldGroup
-		delete data.TitleHeader
-		delete data.Editor
-		delete data.FileSpecs
-		data.Type = openModalId
-		let url = ""
-		if (openModalId === "Internal") {
-			url = data.PageID
-		} else if (openModalId === "External") {
-			url = data.Link
-			if (data.Anchor) {
-				url += `#${encodeURIComponent(data.Anchor)}`
-			}
-		} else if (openModalId === "Email") {
-			url = `mailto:${data.Link}`
-			if (data.Subject) {
-				url += `?subject=${encodeURIComponent(data.Subject)}`
-			}
-		} else if (openModalId === "File") {
-			url = file.url
-
-		}
+	const onInsert = useElementPropLinkInsertCallback(linkData => {
 		setProp((_props) => {
 			// eslint-disable-next-line no-param-reassign
-			_props[propName] = {data, url}
+			_props[propName] = linkData
 		})
 		setOpenModalId("")
-	}, [openModalId])
+	}, openModalId, [])
 	const onClosed = React.useCallback(() => setOpenModalId(""), [])
 	const hasValue = !!(value && typeof value === "object")
 	const _value = hasValue ? value : {}

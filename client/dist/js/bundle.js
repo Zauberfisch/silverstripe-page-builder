@@ -686,6 +686,7 @@ var PasteModal = function PasteModal(_ref) {
 	}, []);
 	var onClick = _react2.default.useCallback(function () {
 		importFromPaste(jsonToImport, insertIntoNodeId, query, actions);
+		setJsonToImport("");
 		close();
 	}, [jsonToImport, insertIntoNodeId]);
 	return _react2.default.createElement(
@@ -2585,6 +2586,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
+exports.useElementPropLinkTypes = useElementPropLinkTypes;
+exports.useElementPropLinkInsertCallback = useElementPropLinkInsertCallback;
 exports.useElementPropLink = useElementPropLink;
 
 var _react = __webpack_require__(0);
@@ -2601,7 +2604,9 @@ var _reactstrap = __webpack_require__(2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function useLinkTypes() {
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function useElementPropLinkTypes() {
 	return _react2.default.useMemo(function () {
 		return [{
 			id: "Internal",
@@ -2623,11 +2628,24 @@ function useLinkTypes() {
 	}, []);
 }
 
+function useElementPropLinkInsertCallback(callback, type, deps) {
+	return _react2.default.useCallback(function (data, file) {
+		delete data.SecurityID;
+		delete data["action_insert"];
+		delete data.AssetEditorHeaderFieldGroup;
+		delete data.TitleHeader;
+		delete data.Editor;
+		delete data.FileSpecs;
+
+		callback({ type: type, data: data, file: file ? { url: file.url } : undefined });
+	}, [type].concat(_toConsumableArray(deps)));
+}
+
 function useElementPropLink(propName, value) {
 	var _useNode = (0, _core.useNode)(),
 	    setProp = _useNode.actions.setProp;
 
-	var linkTypes = useLinkTypes();
+	var linkTypes = useElementPropLinkTypes();
 
 	var _React$useState = _react2.default.useState(""),
 	    _React$useState2 = _slicedToArray(_React$useState, 2),
@@ -2642,35 +2660,12 @@ function useElementPropLink(propName, value) {
 			_props[propName] = null;
 		});
 	}, []);
-	var onInsert = _react2.default.useCallback(function (data, file) {
-		delete data.SecurityID;
-		delete data["action_insert"];
-		delete data.AssetEditorHeaderFieldGroup;
-		delete data.TitleHeader;
-		delete data.Editor;
-		delete data.FileSpecs;
-		data.Type = openModalId;
-		var url = "";
-		if (openModalId === "Internal") {
-			url = data.PageID;
-		} else if (openModalId === "External") {
-			url = data.Link;
-			if (data.Anchor) {
-				url += "#" + encodeURIComponent(data.Anchor);
-			}
-		} else if (openModalId === "Email") {
-			url = "mailto:" + data.Link;
-			if (data.Subject) {
-				url += "?subject=" + encodeURIComponent(data.Subject);
-			}
-		} else if (openModalId === "File") {
-			url = file.url;
-		}
+	var onInsert = useElementPropLinkInsertCallback(function (linkData) {
 		setProp(function (_props) {
-			_props[propName] = { data: data, url: url };
+			_props[propName] = linkData;
 		});
 		setOpenModalId("");
-	}, [openModalId]);
+	}, openModalId, []);
 	var onClosed = _react2.default.useCallback(function () {
 		return setOpenModalId("");
 	}, []);
