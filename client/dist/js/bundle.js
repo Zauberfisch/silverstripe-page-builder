@@ -2153,7 +2153,7 @@ function ImagePropField(_ref) {
 	var _ref$label = _ref.label,
 	    label = _ref$label === undefined ? "" : _ref$label,
 	    _ref$imageProp = _ref.imageProp,
-	    url = _ref$imageProp.url,
+	    value = _ref$imageProp.value,
 	    addButton = _ref$imageProp.addButton,
 	    removeButton = _ref$imageProp.removeButton,
 	    linkProp = _ref.linkProp,
@@ -2168,7 +2168,7 @@ function ImagePropField(_ref) {
 		_react2.default.createElement(
 			"div",
 			null,
-			_react2.default.createElement("div", { className: _ImagePropFieldModule2.default.image, style: { backgroundImage: url && "url('" + url + "')", backgroundSize: backgroundSize } })
+			_react2.default.createElement("div", { className: _ImagePropFieldModule2.default.image, style: { backgroundImage: value && value.file && "url('" + value.file.url + "')", backgroundSize: backgroundSize } })
 		),
 		editable && _react2.default.createElement(
 			"div",
@@ -2637,7 +2637,6 @@ function useElementPropLinkInsertCallback(callback, linkType, deps) {
 		delete data.Editor;
 		delete data.FileSpecs;
 
-		console.log("useElementPropLinkInsertCallback", { data: data, file: file });
 		callback({ linkType: linkType, data: data, file: linkType === "File" && (typeof file === "undefined" ? "undefined" : _typeof(file)) === "object" ? { url: file.url } : {} });
 	}, [linkType].concat(_toConsumableArray(deps)));
 }

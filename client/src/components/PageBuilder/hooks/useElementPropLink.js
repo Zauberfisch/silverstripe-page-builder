@@ -55,7 +55,6 @@ export function useElementPropLinkInsertCallback(callback, linkType, deps) {
 		// }
 		// callback({type, data, link})
 		// console.log({data, file})
-		console.log("useElementPropLinkInsertCallback", {data, file})
 		callback({linkType, data, file: linkType === "File" && typeof file === "object" ? {url: file.url} : {}})
 	}, [linkType, ...deps])
 }
