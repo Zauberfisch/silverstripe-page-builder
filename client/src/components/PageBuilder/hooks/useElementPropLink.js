@@ -29,7 +29,7 @@ export function useElementPropLinkTypes() {
 	], [])
 }
 
-export function useElementPropLinkInsertCallback(callback, type, deps) {
+export function useElementPropLinkInsertCallback(callback, linkType, deps) {
 	return React.useCallback((data, file) => {
 		delete data.SecurityID
 		delete data["action_insert"]
@@ -55,8 +55,9 @@ export function useElementPropLinkInsertCallback(callback, type, deps) {
 		// }
 		// callback({type, data, link})
 		// console.log({data, file})
-		callback({type, data, file: file ? {url: file.url} : undefined})
-	}, [type, ...deps])
+		console.log("useElementPropLinkInsertCallback", {data, file})
+		callback({linkType, data, file: linkType === "File" && typeof file === "object" ? {url: file.url} : {}})
+	}, [linkType, ...deps])
 }
 
 export function useElementPropLink(propName, value) {
