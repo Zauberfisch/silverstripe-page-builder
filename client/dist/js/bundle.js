@@ -3156,7 +3156,8 @@ _jquery2.default.entwine("ss", function ($) {
 			var _this = this;
 			var props = {
 				elements: schemaData.elements,
-				value: this.getInputElement().value,
+				value: schemaData.value,
+
 				setPageBuilderEditorQuery: function setPageBuilderEditorQuery(query) {
 					_this.setPageBuilderEditorQuery(query);
 				}
@@ -3174,7 +3175,6 @@ _jquery2.default.entwine("ss", function ($) {
 		"from .cms-edit-form": {
 			onbeforesubmitform: function onbeforesubmitform() {
 				if (this.getPageBuilderEditorQuery()) {
-					console.log("PageBuilder: serialize data");
 					this.getInputElement().value = this.getPageBuilderEditorQuery().serialize();
 				} else {
 					console.error("PageBuilder: this.getPageBuilderEditorQuery() did not return a query");

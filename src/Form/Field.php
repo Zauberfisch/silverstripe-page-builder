@@ -24,6 +24,7 @@ class Field extends FormField {
 	public function getSchemaData() {
 		$arr = parent::getSchemaData();
 		$arr['elements'] = $this->config->getElementMap();
+		$arr['value'] = $this->dataValue();
 		return $arr;
 	}
 
@@ -33,7 +34,7 @@ class Field extends FormField {
 		if (count($properties)) {
 			$context = $context->customise($properties);
 		}
-		return $context->renderWith(SSViewer::fromString('<div $getAttributesHTML("value") data-schema="$SchemaData.JSON"><input type="hidden" $getAttributesHTML("class", "type", "id") /><div></div></div>'));
+		return $context->renderWith(SSViewer::fromString('<div $getAttributesHTML("value") data-schema="$SchemaData.JSON"><input type="hidden" $getAttributesHTML("class", "type", "id", "value") value="" /><div></div></div>'));
 		// return $context->renderWith(SSViewer::fromString('<div $AttributesHTML data-schema="$SchemaData.JSON"></div>'));
 	}
 

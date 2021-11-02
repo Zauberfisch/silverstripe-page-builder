@@ -16,7 +16,8 @@ jQuery.entwine("ss", function ($) {
 			const _this = this
 			const props = {
 				elements: schemaData.elements,
-				value: this.getInputElement().value,
+				value: schemaData.value,
+				// value: this.getInputElement().value,
 				setPageBuilderEditorQuery: (query) => {
 					_this.setPageBuilderEditorQuery(query)
 				},
@@ -37,7 +38,6 @@ jQuery.entwine("ss", function ($) {
 		"from .cms-edit-form": {
 			onbeforesubmitform: function () {
 				if (this.getPageBuilderEditorQuery()) {
-					console.log(`PageBuilder: serialize data`)
 					this.getInputElement().value = this.getPageBuilderEditorQuery().serialize()
 				} else {
 					console.error(`PageBuilder: this.getPageBuilderEditorQuery() did not return a query`)
