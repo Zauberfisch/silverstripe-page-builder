@@ -1,3 +1,4 @@
+export * from "components/PageBuilder/PageBuilderContext"
 export * from "components/PageBuilder/form"
 export * from "components/PageBuilder/element-utilities"
 export * from "components/PageBuilder/utility/Icon"

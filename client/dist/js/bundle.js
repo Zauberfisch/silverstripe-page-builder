@@ -16002,6 +16002,18 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilder/PageBuilderContext.js");
+
+Object.keys(_PageBuilderContext).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _PageBuilderContext[key];
+    }
+  });
+});
+
 var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
 
 Object.keys(_form).forEach(function (key) {
