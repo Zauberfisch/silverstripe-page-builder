@@ -24,7 +24,10 @@ abstract class Element extends ArrayData {
 		return $this->array;
 	}
 
-	protected function frontendConvertLink($link): array {
+	protected function frontendConvertLink($link): ?array {
+		if (!isset($link['linkType'])) {
+			return null;
+		}
 		$return = [
 			'href' => '/404/',
 			'title' => $link['data']['Description'] ?? '',
@@ -60,7 +63,10 @@ abstract class Element extends ArrayData {
 		return $return;
 	}
 
-	protected function frontendConvertImage($image): array {
+	protected function frontendConvertImage($image): ?array {
+		if (!isset($image['file']['url'])) {
+			return null;
+		}
 		return [
 			'name' => $image['file']['name'] ?? null,
 			'title' => $image['file']['title'] ?? null,
