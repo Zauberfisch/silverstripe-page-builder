@@ -1,5 +1,9 @@
 ---
 Name: zauberfisch-page-builder
+After:
+  - '#adminforms'
+  - '#modules-framework'
+  - '#assetadmin'
 ---
 SilverStripe\Admin\LeftAndMain:
   extensions:
