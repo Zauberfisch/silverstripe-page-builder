@@ -50,30 +50,32 @@ class PageBuilderConfig {
 	}
 
 	public function getValueForFrontend(): array {
-		$elements = json_decode($this->area->ElementsData, true);
 		$return = [];
-		if ($elements) {
-			foreach ($elements as $elementId => $elementData) {
-				$componentKey = $elementData['type']['resolvedName'];
-				if ($componentKey === 'RootContainer') {
-					$return['ROOT'] = [
-						"type" => $componentKey,
-						"props" => $elementData["props"],
-						"custom" => $elementData["custom"],
-						"nodes" => $elementData["nodes"],
-						"linkedNodes" => $elementData["linkedNodes"],
-					];
+		if ($this->area->ElementsData) {
+			$elements = json_decode($this->area->ElementsData, true);
+			if ($elements) {
+				foreach ($elements as $elementId => $elementData) {
+					$componentKey = $elementData['type']['resolvedName'];
+					if ($componentKey === 'RootContainer') {
+						$return['ROOT'] = [
+							"type" => $componentKey,
+							"props" => $elementData["props"],
+							"custom" => $elementData["custom"],
+							"nodes" => $elementData["nodes"],
+							"linkedNodes" => $elementData["linkedNodes"],
+						];
 
-				} else {
-					$config = $this->findElementConfigForComponentKey($componentKey);
-					$class = $config->getElementPhpClassName();
-					$obj = new $class([
-						"props" => $elementData["props"],
-						"custom" => $elementData["custom"],
-						"nodes" => $elementData["nodes"],
-						"linkedNodes" => $elementData["linkedNodes"],
-					], $elementId, $componentKey, $config);
-					$return[$elementId] = $obj->getValueForFrontend();
+					} else {
+						$config = $this->findElementConfigForComponentKey($componentKey);
+						$class = $config->getElementPhpClassName();
+						$obj = new $class([
+							"props" => $elementData["props"],
+							"custom" => $elementData["custom"],
+							"nodes" => $elementData["nodes"],
+							"linkedNodes" => $elementData["linkedNodes"],
+						], $elementId, $componentKey, $config);
+						$return[$elementId] = $obj->getValueForFrontend();
+					}
 				}
 			}
 		}
