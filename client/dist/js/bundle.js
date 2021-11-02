@@ -3174,7 +3174,10 @@ _jquery2.default.entwine("ss", function ($) {
 		"from .cms-edit-form": {
 			onbeforesubmitform: function onbeforesubmitform() {
 				if (this.getPageBuilderEditorQuery()) {
+					console.log("PageBuilder: serialize data");
 					this.getInputElement().value = this.getPageBuilderEditorQuery().serialize();
+				} else {
+					console.error("PageBuilder: this.getPageBuilderEditorQuery() did not return a query");
 				}
 				this._super();
 			}
