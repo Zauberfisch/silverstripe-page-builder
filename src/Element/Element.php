@@ -15,6 +15,7 @@ abstract class Element extends ArrayData {
 
 	public function __construct(array $value, string $elementId, string $componentKey, ElementConfig $config) {
 		parent::__construct($value);
+		$this->array['componentKey'] = $componentKey;
 		$this->elementId = $elementId;
 		$this->componentKey = $componentKey;
 		$this->config = $config;
