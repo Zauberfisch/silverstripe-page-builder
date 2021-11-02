@@ -7,21 +7,18 @@ namespace zauberfisch\PageBuilder\Form;
 use SilverStripe\Forms\FormField;
 use SilverStripe\ORM\DataObjectInterface;
 use SilverStripe\View\SSViewer;
-use zauberfisch\PageBuilder\Model\PageBuilderArea;
 
 /**
  * @author zauberfisch
  */
 class Field extends FormField {
-	protected PageBuilderArea $area;
 	protected PageBuilderConfig $config;
 
-	public function __construct($name, $title, PageBuilderArea $area, PageBuilderConfig $config) {
-		$this->area = $area;
+	public function __construct($name, $title, PageBuilderConfig $config) {
 		$this->config = $config;
 		$this->addExtraClass('zauberfisch__page-builder__field');
 		$this->addExtraClass('stacked');
-		parent::__construct($name, $title, $this->area->ElementsData);
+		parent::__construct($name, $title, $this->config->getArea()->ElementsData);
 	}
 
 	public function getSchemaData() {
@@ -50,7 +47,7 @@ class Field extends FormField {
 	// }
 
 	public function saveInto(DataObjectInterface $record) {
-		$component = $this->area;
+		$component = $this->config->getArea();
 		$component->setCastedField("ElementsData", $this->dataValue());
 		$component->write();
 

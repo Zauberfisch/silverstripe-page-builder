@@ -89,8 +89,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 window.document.addEventListener("DOMContentLoaded", function () {
 	_Injector2.default.component.registerMany({
 		PageBuilderField: _PageBuilderField2.default,
-		"zauberfisch\\PageBuilder\\Element\\Container": _elements.Container,
-		"FoobarTest": 123
+		"zauberfisch\\PageBuilder\\Element\\Container": _elements.Container
 	});
 });
 
