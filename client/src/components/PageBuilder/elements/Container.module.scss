@@ -1,9 +1,32 @@
 .container {
 	padding: 5px;
 }
+
 .isEmpty {
 	padding: 15px 5px;
 }
+
 .children {
 	//min-height: 30px;
+}
+
+
+.children {
+	$baseMinWidth: 300px;
+	$requiredScreenWidthPerColumn: 100px;
+
+	@for $i from 2 to 13 {
+		&.columns-#{$i} {
+			@media (min-width: $baseMinWidth + $requiredScreenWidthPerColumn * 2) {
+				display: grid;
+				gap: 5px;
+			}
+			@for $j from 2 to ($i+1) {
+				$minWidth: $baseMinWidth + $requiredScreenWidthPerColumn * $j;
+				@media (min-width: $minWidth) {
+					grid-template-columns: repeat($j, 1fr);
+				}
+			}
+		}
+	}
 }

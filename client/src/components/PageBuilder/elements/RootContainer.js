@@ -6,7 +6,7 @@ export const RootContainer = ({children}) => {
 	return (
 		<ElementContainer padding={false} style={{border: 0}}>
 			<ToolbarPortalTop childrenRight={<ClipboardPasteButton />} />
-			<div style={{padding: 15}}>{children}</div>
+			<div style={{padding: 15, minHeight: 60}}>{children}</div>
 		</ElementContainer>
 	)
 }

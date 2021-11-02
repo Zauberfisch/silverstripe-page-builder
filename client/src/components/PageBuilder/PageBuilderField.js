@@ -4,8 +4,11 @@ import {Toolbar} from "./Toolbar"
 import Injector from "lib/Injector"
 import styles from "./PageBuilderField.module.scss"
 import {PageBuilderContextProvider} from "./PageBuilderContext"
-import {UnknownElement, Container, RootContainer} from "./elements"
+import {UnknownElement, RootContainer} from "./elements"
+import {loadComponent} from "lib/Injector"
+import {CreateElementButton} from "./element-utilities"
 
+const Loading = loadComponent("Loading")
 
 function EditorInner({value, refToolbarTop, refToolbarRows, setPageBuilderEditorQuery}) {
 	const {query} = useEditor()
@@ -22,16 +25,48 @@ function EditorInner({value, refToolbarTop, refToolbarRows, setPageBuilderEditor
 	)
 }
 
+function createElement({key, className, singularName, config}) {
+	const Component = Injector.component.get(className)
+	const specs = {...Component.pageBuilderSpecs, ...config}
+	const NewComponent = (props) => <Component {...props} pageBuilderSpecs={specs} />
+	NewComponent.craft = {
+		props: specs.defaultProps,
+		related: {
+			CreateButton: specs.canCreate ? (props) => (
+				<CreateElementButton {...props} title={singularName} element={<Element canvas={specs.isCanvas} is={NewComponent} />} iconName={specs.iconName} />
+			) : undefined,
+		},
+		rules: specs.isCanvas ? {
+			canMoveIn(incomingNodes) {
+				if (specs.forbiddenChildren) {
+					return !specs.forbiddenChildren.includes(incomingNodes.length && incomingNodes[0].data.name)
+				}
+				return true
+			},
+		} : {},
+	}
+	NewComponent.getTypeDisplayName = () => singularName
+	return [key, NewComponent]
+}
+
 function PageBuilderField({value, setPageBuilderEditorQuery, elements: allowedElements}) {
 	const refPageBuilderContainer = React.createRef()
 	const refToolbarTop = React.createRef()
 	const refToolbarRows = React.createRef()
+	// const [injectorReady, setInjectorReady] = React.useState(false)
+	const injectorReady = true
+	const [isReady, setIsReady] = React.useState(false)
+	// React.useEffect(() => {
+	// 	Injector.ready(() => {
+	// 		setInjectorReady(true)
+	// 	})
+	// }, [])
 	const [allElements, elements] = React.useMemo(() => {
-		const valueObject = value ? JSON.parse(value) : null
-		const elements = {
-			Container,
+		if (!injectorReady) {
+			return [null, null]
 		}
-		Object.entries(allowedElements).forEach(([key, value]) => elements[key] = Injector.component.get(value))
+		const valueObject = value ? JSON.parse(value) : null
+		const elements = Object.fromEntries(allowedElements.map(createElement))
 		const allElements = {
 			RootContainer,
 			...elements,
@@ -46,9 +81,12 @@ function PageBuilderField({value, setPageBuilderEditorQuery, elements: allowedEl
 				}
 			})
 		}
+		setIsReady(true)
 		return [allElements, elements]
-	}, [JSON.stringify(allowedElements)])
-
+	}, [JSON.stringify(allowedElements), injectorReady])
+	if (!isReady) {
+		return <div style={{height: 109}}><Loading /></div>
+	}
 	return (
 		<PageBuilderContextProvider {...{
 			refPageBuilderContainer,

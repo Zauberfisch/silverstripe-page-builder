@@ -26,7 +26,7 @@ export const AddNewButton = ({}) => {
 				<PopoverHeader>{ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.AddDropdownTitle")}</PopoverHeader>
 				<PopoverBody>
 					<div className={styles.elements}>
-						{Object.entries(elements).map(([key, element]) => {
+						{elements ? Object.entries(elements).map(([key, element]) => {
 							if (element.craft.related && element.craft.related.CreateButton) {
 								return <div {...{key}}>
 									{element.craft.related.CreateButton({
@@ -43,7 +43,7 @@ export const AddNewButton = ({}) => {
 								</div>
 							}
 							return null
-						})}
+						}) : null}
 					</div>
 				</PopoverBody>
 			</Popover> : null}

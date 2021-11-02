@@ -6,7 +6,6 @@ namespace zauberfisch\PageBuilder\Form;
 
 use SilverStripe\Forms\FormField;
 use SilverStripe\ORM\DataObjectInterface;
-use SilverStripe\View\Requirements;
 use SilverStripe\View\SSViewer;
 use zauberfisch\PageBuilder\Model\PageBuilderArea;
 
@@ -15,25 +14,11 @@ use zauberfisch\PageBuilder\Model\PageBuilderArea;
  */
 class Field extends FormField {
 	protected PageBuilderArea $area;
-	protected array $elements = [];
+	protected PageBuilderConfig $config;
 
-	public function __construct($name, $title, PageBuilderArea $area, array $config) {
+	public function __construct($name, $title, PageBuilderArea $area, PageBuilderConfig $config) {
 		$this->area = $area;
-		$this->elements = $config['elements'];
-		Requirements::css('zauberfisch/silverstripe-page-builder: client/dist/styles/bundle.css');
-		Requirements::javascript('zauberfisch/silverstripe-page-builder: client/dist/js/vendor.js');
-		Requirements::javascript('zauberfisch/silverstripe-page-builder: client/dist/js/bundle.js');
-		Requirements::add_i18n_javascript('zauberfisch/silverstripe-page-builder: client/lang', false, true);
-
-		foreach($config['javascript'] as $file) {
-			Requirements::javascript($file);
-		}
-		foreach($config['css'] as $file) {
-			Requirements::css($file);
-		}
-		foreach($config['i18n'] as $file) {
-			Requirements::add_i18n_javascript($file, false, true);
-		}
+		$this->config = $config;
 		$this->addExtraClass('zauberfisch__page-builder__field');
 		$this->addExtraClass('stacked');
 		parent::__construct($name, $title, $this->area->ElementsData);
@@ -41,7 +26,7 @@ class Field extends FormField {
 
 	public function getSchemaData() {
 		$arr = parent::getSchemaData();
-		$arr['elements'] = $this->elements;
+		$arr['elements'] = $this->config->getElementMap();
 		return $arr;
 	}
 
@@ -51,7 +36,6 @@ class Field extends FormField {
 		if (count($properties)) {
 			$context = $context->customise($properties);
 		}
-		// value="$Value"
 		return $context->renderWith(SSViewer::fromString('<div $getAttributesHTML("value") data-schema="$SchemaData.JSON"><input type="hidden" $getAttributesHTML("class", "type", "id") /><div></div></div>'));
 		// return $context->renderWith(SSViewer::fromString('<div $AttributesHTML data-schema="$SchemaData.JSON"></div>'));
 	}

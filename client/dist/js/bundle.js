@@ -82,11 +82,15 @@ var _PageBuilderField = __webpack_require__("./client/src/components/PageBuilder
 
 var _PageBuilderField2 = _interopRequireDefault(_PageBuilderField);
 
+var _elements = __webpack_require__("./client/src/components/PageBuilder/elements/index.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.document.addEventListener("DOMContentLoaded", function () {
 	_Injector2.default.component.registerMany({
-		PageBuilderField: _PageBuilderField2.default
+		PageBuilderField: _PageBuilderField2.default,
+		"zauberfisch\\PageBuilder\\Element\\Container": _elements.Container,
+		"FoobarTest": 123
 	});
 });
 
@@ -324,9 +328,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Component = undefined;
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _react = __webpack_require__(0);
 
@@ -348,7 +352,11 @@ var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuild
 
 var _elements = __webpack_require__("./client/src/components/PageBuilder/elements/index.js");
 
+var _elementUtilities = __webpack_require__("./client/src/components/PageBuilder/element-utilities/index.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Loading = (0, _Injector.loadComponent)("Loading");
 
 function EditorInner(_ref) {
 	var value = _ref.value,
@@ -374,35 +382,69 @@ function EditorInner(_ref) {
 	);
 }
 
-function PageBuilderField(_ref2) {
-	var value = _ref2.value,
-	    setPageBuilderEditorQuery = _ref2.setPageBuilderEditorQuery,
-	    allowedElements = _ref2.elements;
+function createElement(_ref2) {
+	var key = _ref2.key,
+	    className = _ref2.className,
+	    singularName = _ref2.singularName,
+	    config = _ref2.config;
+
+	var Component = _Injector2.default.component.get(className);
+	var specs = _extends({}, Component.pageBuilderSpecs, config);
+	var NewComponent = function NewComponent(props) {
+		return _react2.default.createElement(Component, _extends({}, props, { pageBuilderSpecs: specs }));
+	};
+	NewComponent.craft = {
+		props: specs.defaultProps,
+		related: {
+			CreateButton: specs.canCreate ? function (props) {
+				return _react2.default.createElement(_elementUtilities.CreateElementButton, _extends({}, props, { title: singularName, element: _react2.default.createElement(_core.Element, { canvas: specs.isCanvas, is: NewComponent }), iconName: specs.iconName }));
+			} : undefined
+		},
+		rules: specs.isCanvas ? {
+			canMoveIn: function canMoveIn(incomingNodes) {
+				if (specs.forbiddenChildren) {
+					return !specs.forbiddenChildren.includes(incomingNodes.length && incomingNodes[0].data.name);
+				}
+				return true;
+			}
+		} : {}
+	};
+	NewComponent.getTypeDisplayName = function () {
+		return singularName;
+	};
+	return [key, NewComponent];
+}
+
+function PageBuilderField(_ref3) {
+	var value = _ref3.value,
+	    setPageBuilderEditorQuery = _ref3.setPageBuilderEditorQuery,
+	    allowedElements = _ref3.elements;
 
 	var refPageBuilderContainer = _react2.default.createRef();
 	var refToolbarTop = _react2.default.createRef();
 	var refToolbarRows = _react2.default.createRef();
 
-	var _React$useMemo = _react2.default.useMemo(function () {
-		var valueObject = value ? JSON.parse(value) : null;
-		var elements = {
-			Container: _elements.Container
-		};
-		Object.entries(allowedElements).forEach(function (_ref3) {
-			var _ref4 = _slicedToArray(_ref3, 2),
-			    key = _ref4[0],
-			    value = _ref4[1];
+	var injectorReady = true;
 
-			return elements[key] = _Injector2.default.component.get(value);
-		});
+	var _React$useState = _react2.default.useState(false),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    isReady = _React$useState2[0],
+	    setIsReady = _React$useState2[1];
+
+	var _React$useMemo = _react2.default.useMemo(function () {
+		if (!injectorReady) {
+			return [null, null];
+		}
+		var valueObject = value ? JSON.parse(value) : null;
+		var elements = Object.fromEntries(allowedElements.map(createElement));
 		var allElements = _extends({
 			RootContainer: _elements.RootContainer
 		}, elements);
 		if (valueObject) {
-			var usedElementTypes = Object.entries(valueObject).map(function (_ref5) {
-				var _ref6 = _slicedToArray(_ref5, 2),
-				    id = _ref6[0],
-				    element = _ref6[1];
+			var usedElementTypes = Object.entries(valueObject).map(function (_ref4) {
+				var _ref5 = _slicedToArray(_ref4, 2),
+				    id = _ref5[0],
+				    element = _ref5[1];
 
 				return element.type.resolvedName;
 			});
@@ -412,12 +454,20 @@ function PageBuilderField(_ref2) {
 				}
 			});
 		}
+		setIsReady(true);
 		return [allElements, elements];
-	}, [JSON.stringify(allowedElements)]),
+	}, [JSON.stringify(allowedElements), injectorReady]),
 	    _React$useMemo2 = _slicedToArray(_React$useMemo, 2),
 	    allElements = _React$useMemo2[0],
 	    elements = _React$useMemo2[1];
 
+	if (!isReady) {
+		return _react2.default.createElement(
+			"div",
+			{ style: { height: 109 } },
+			_react2.default.createElement(Loading, null)
+		);
+	}
 	return _react2.default.createElement(
 		_PageBuilderContext.PageBuilderContextProvider,
 		{
@@ -867,9 +917,6 @@ var CreateElementButton = exports.CreateElementButton = function CreateElementBu
 	var _useEditor = (0, _core.useEditor)(),
 	    connectors = _useEditor.connectors;
 
-	if (!title && element.type && typeof element.type.getTypeDisplayName === "function") {
-		title = element.type.getTypeDisplayName();
-	}
 	return _react2.default.createElement(
 		"div",
 		{ onDragStart: onDragStart, className: _CreateElementButtonModule2.default.button, ref: function ref(_ref2) {
@@ -1293,15 +1340,11 @@ exports.Container = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _core = __webpack_require__(1);
-
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
 var _elementUtilities = __webpack_require__("./client/src/components/PageBuilder/element-utilities/index.js");
-
-var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
 
 var _ContainerModule = __webpack_require__("./client/src/components/PageBuilder/elements/Container.module.scss");
 
@@ -1313,68 +1356,31 @@ var _classnames2 = _interopRequireDefault(_classnames);
 
 var _ClipboardPasteButton = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ClipboardPasteButton.js");
 
+var _useElementPropSelectDropdown = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropSelectDropdown.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var Container = exports.Container = function Container(_ref) {
 	var background = _ref.background,
-	    children = _ref.children;
+	    columns = _ref.columns,
+	    children = _ref.children,
+	    pageBuilderSpecs = _ref.pageBuilderSpecs;
 
-	var _useNode = (0, _core.useNode)(),
-	    setProp = _useNode.actions.setProp;
-
-	var backgroundOptions = _react2.default.useMemo(function () {
-		return [{
-			value: "default",
-			title: "Background",
-			pageBuilderStyle: {
-				backgroundColor: "transparent"
-			}
-		}, {
-			value: "white",
-			title: "White",
-			iconName: "mdiSquare",
-			iconStyle: {
-				color: "#ffffff"
-			},
-			pageBuilderStyle: {
-				backgroundColor: "#ffffff"
-			}
-		}, {
-			value: "pink",
-			title: "Pink",
-			iconName: "mdiSquare",
-			iconStyle: {
-				color: "#e50051"
-			},
-
-			pageBuilderStyle: {
-				backgroundColor: "#e50051",
-				color: "#ffffff"
-			}
-		}, {
-			value: "grey",
-			title: "Grey",
-			iconName: "mdiSquare",
-			iconStyle: {
-				color: "#ededed"
-			},
-			pageBuilderStyle: {
-				backgroundColor: "#ededed"
-			}
-		}];
-	}, []);
-	var backgroundOnChange = _react2.default.useCallback(function (newBackground) {
-		if (background !== newBackground) {
-			setProp(function (_props) {
-				_props.background = newBackground;
+	var backgroundOptions = pageBuilderSpecs.backgroundOptions || [];
+	var backgroundProp = (0, _useElementPropSelectDropdown.useElementPropSelectDropdown)("background", background, backgroundOptions, {});
+	var columnsOptions = _react2.default.useMemo(function () {
+		if (pageBuilderSpecs.columnsOptions) {
+			return pageBuilderSpecs.columnsOptions.map(function (option) {
+				return _extends({ pageBuilderClassName: _ContainerModule2.default["columns-" + option.value], iconName: "mdiGrid" }, option);
 			});
 		}
-	}, [background]);
-	var selectedBackground = backgroundOptions.find(function (obj) {
-		return obj.value === background;
-	}) || { pageBuilderStyle: {} };
+		return [];
+	}, [JSON.stringify(pageBuilderSpecs.columnsOptions)]);
+	var columnsProp = (0, _useElementPropSelectDropdown.useElementPropSelectDropdown)("columns", columns, columnsOptions, {});
+
+	var selectedBackground = backgroundProp.value;
 	var hasChildren = _react2.default.Children.count(children) > 0;
 	return _react2.default.createElement(
 		_elementUtilities.ElementContainer,
@@ -1382,39 +1388,21 @@ var Container = exports.Container = function Container(_ref) {
 		_react2.default.createElement(
 			_elementUtilities.ToolbarPortalTop,
 			{ childrenRight: _react2.default.createElement(_ClipboardPasteButton.ClipboardPasteButton, null) },
-			_react2.default.createElement(_form.ToolbarSelect, { value: background, onChange: backgroundOnChange, options: backgroundOptions })
+			backgroundOptions.length ? backgroundProp.button : null,
+			columnsOptions.length ? columnsProp.button : null
 		),
 		hasChildren ? _react2.default.createElement(
 			"div",
-			{ className: _ContainerModule2.default.children },
+			{ className: (0, _classnames2.default)(_ContainerModule2.default.children, columnsProp.value.pageBuilderClassName) },
 			children
 		) : null
 	);
 };
 
-var defaultProps = {
-	background: "default"
-};
-
-Container.getTypeDisplayName = function () {
-	return ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_ELEMENT.Container");
-};
-
-function CreateButton(props) {
-	return _react2.default.createElement(_elementUtilities.CreateElementButton, _extends({}, props, { title: Container.getTypeDisplayName(), element: _react2.default.createElement(_core.Element, { canvas: true, is: Container }), iconName: "mdiRectangleOutline" }));
-}
-
-Container.craft = {
-	props: defaultProps,
-	related: {
-		CreateButton: CreateButton
-	},
-	rules: {
-		canMoveIn: function canMoveIn(incomingNodes) {
-			var forbiddenChildren = ["Container", "GridContainer"];
-			return !forbiddenChildren.includes(incomingNodes.length && incomingNodes[0].data.name);
-		}
-	}
+Container.pageBuilderSpecs = {
+	defaultProps: {},
+	isCanvas: true,
+	iconName: "mdiRectangleOutline"
 };
 
 /***/ }),
@@ -1423,7 +1411,7 @@ Container.craft = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"container":"_3eiUVByYI1FIW207V-gvzk","isEmpty":"Djqbhfcq8n39KNuThF_nM"};
+module.exports = {"container":"_3eiUVByYI1FIW207V-gvzk","isEmpty":"Djqbhfcq8n39KNuThF_nM","children":"_1rmY2sSZMaqD4KHuc9iaH4","columns-2":"D_f91uusA-hL69nSHM0UE","columns-3":"aGKs52PxmqjsXiRVOYLZQ","columns-4":"_2oLCV_fpB85r5GsOj96w3U","columns-5":"_3vq1PzUocMdIwPwUDifJiA","columns-6":"_2Sg0kl0t3SOGq-FZlgHCzJ","columns-7":"XjjOUvKXpRX-WyQJ5EFYs","columns-8":"_1-0LUDsajVTvcGtJkh3d5t","columns-9":"_14kHCbkJZDNm2IgVbMmhwh","columns-10":"_8bJfvNtMacy5cswP6BF_Z","columns-11":"_1mIppBkS8488NVRqDGWMR","columns-12":"_1nuJptZHb9JYcq54nr4Dfz"};
 
 /***/ }),
 
@@ -1457,7 +1445,7 @@ var RootContainer = exports.RootContainer = function RootContainer(_ref) {
 		_react2.default.createElement(_elementUtilities.ToolbarPortalTop, { childrenRight: _react2.default.createElement(_ClipboardPasteButton.ClipboardPasteButton, null) }),
 		_react2.default.createElement(
 			"div",
-			{ style: { padding: 15 } },
+			{ style: { padding: 15, minHeight: 60 } },
 			children
 		)
 	);
@@ -1648,7 +1636,7 @@ var AddNewButton = exports.AddNewButton = function AddNewButton(_ref) {
 				_react2.default.createElement(
 					"div",
 					{ className: _AddNewButtonModule2.default.elements },
-					Object.entries(elements).map(function (_ref2) {
+					elements ? Object.entries(elements).map(function (_ref2) {
 						var _ref3 = _slicedToArray(_ref2, 2),
 						    key = _ref3[0],
 						    element = _ref3[1];
@@ -1674,7 +1662,7 @@ var AddNewButton = exports.AddNewButton = function AddNewButton(_ref) {
 							);
 						}
 						return null;
-					})
+					}) : null
 				)
 			)
 		) : null
@@ -1703,6 +1691,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.ToolbarButton = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _react = __webpack_require__(0);
 
@@ -1748,11 +1738,37 @@ var ToolbarButton = function ToolbarButton(_ref) {
 	    className = _ref$className === undefined ? "" : _ref$className,
 	    props = _objectWithoutProperties(_ref, ["title", "tooltip", "iconName", "iconStyle", "iconNameRight", "iconStyleRight", "active", "disabled", "id", "className"]);
 
+	var _id = (0, _utility.useUniqueId)();
+
+	var _React$useState = _react2.default.useState(false),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    tooltipOpen = _React$useState2[0],
+	    setTooltipOpen = _React$useState2[1];
+
+	var toggleTooltip = _react2.default.useCallback(function () {
+		return setTooltipOpen(function (_value) {
+			return !_value;
+		});
+	}, []);
 	var onMouseDown = _react2.default.useCallback(function (e) {
 		return e.preventDefault();
 	}, []);
-	var _id = (0, _utility.useUniqueId)();
 	id = id || _id;
+	var refTimeout = _react2.default.useRef();
+	_react2.default.useEffect(function () {
+		if (tooltipOpen) {
+			if (refTimeout.current) {
+				clearTimeout(refTimeout.current);
+			}
+			refTimeout.current = setTimeout(function () {
+				return setTooltipOpen(false);
+			}, 3000);
+		} else {
+			if (refTimeout.current) {
+				clearTimeout(refTimeout.current);
+			}
+		}
+	}, [tooltipOpen]);
 	return _react2.default.createElement(
 		"span",
 		null,
@@ -1772,8 +1788,8 @@ var ToolbarButton = function ToolbarButton(_ref) {
 			iconNameRight ? _react2.default.createElement(_utility.Icon, { className: _ToolbarButtonModule2.default.icon, iconName: iconNameRight, style: iconStyleRight }) : null
 		),
 		id && tooltip ? _react2.default.createElement(
-			_reactstrap.UncontrolledTooltip,
-			{ autohide: true, placement: "bottom", target: id },
+			_reactstrap.Tooltip,
+			{ placement: "bottom", isOpen: tooltipOpen, target: id, toggle: toggleTooltip },
 			tooltip
 		) : null
 	);
