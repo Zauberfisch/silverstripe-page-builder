@@ -13,12 +13,15 @@ abstract class Element extends ArrayData {
 	protected string $componentKey;
 	protected ElementConfig $config;
 
-	public function __construct(array $value, string $elementId, string $componentKey, ElementConfig $config) {
-		parent::__construct($value);
-		$this->array['componentKey'] = $componentKey;
+	public function __construct($value, string $elementId, string $componentKey, ElementConfig $config) {
+		parent::__construct((array)$value);
 		$this->elementId = $elementId;
 		$this->componentKey = $componentKey;
 		$this->config = $config;
+	}
+
+	public function getValueForBackend() {
+		return $this->array;
 	}
 
 	public function getValueForFrontend(): array {

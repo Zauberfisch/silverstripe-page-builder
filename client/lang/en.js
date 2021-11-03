@@ -13,7 +13,6 @@ if (typeof (ss) === "undefined" || typeof (ss.i18n) === "undefined") {
 		"ZAUBERFISCH_PAGEBUILDER.Redo": "Redo",
 		"ZAUBERFISCH_PAGEBUILDER.Add": "Add new element",
 		"ZAUBERFISCH_PAGEBUILDER.AddDropdownTitle": "Add with drag&drop",
-		"ZAUBERFISCH_PAGEBUILDER_ELEMENT.RootContainer": "Root",
 		"ZAUBERFISCH_PAGEBUILDER_ELEMENT.UnknownElement": "Unknown Element",
 		"ZAUBERFISCH_PAGEBUILDER_ELEMENT.UnknownElementMessage": "ERROR: Element type does not exist",
 		"ZAUBERFISCH_PAGEBUILDER_useElementPropLink.RemoveLink": "Remove Link",

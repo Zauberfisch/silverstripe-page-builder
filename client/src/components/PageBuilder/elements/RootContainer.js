@@ -11,4 +11,7 @@ export const RootContainer = ({children}) => {
 	)
 }
 
-RootContainer.getTypeDisplayName = () => ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_ELEMENT.RootContainer")
+RootContainer.pageBuilderSpecs = {
+	defaultProps: {},
+	isCanvas: true,
+}

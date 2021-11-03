@@ -4,13 +4,13 @@ import {Toolbar} from "./Toolbar"
 import Injector from "lib/Injector"
 import styles from "./PageBuilderField.module.scss"
 import {PageBuilderContextProvider} from "./PageBuilderContext"
-import {UnknownElement, RootContainer} from "./elements"
+import {RootContainer, UnknownElement} from "./elements"
 import {loadComponent} from "lib/Injector"
 import {CreateElementButton} from "./element-utilities"
 
 const Loading = loadComponent("Loading")
 
-function EditorInner({value, refToolbarTop, refToolbarRows, setPageBuilderEditorQuery}) {
+function EditorInner({value, refToolbarTop, refToolbarRows, setPageBuilderEditorQuery, defaultValue}) {
 	const {query} = useEditor()
 	React.useEffect(() => {
 		setPageBuilderEditorQuery(query)
@@ -19,7 +19,7 @@ function EditorInner({value, refToolbarTop, refToolbarRows, setPageBuilderEditor
 		<React.Fragment>
 			<Toolbar {...{refToolbarTop, refToolbarRows}} />
 			<Frame data={value}>
-				<Element canvas is={RootContainer} />
+				{defaultValue}
 			</Frame>
 		</React.Fragment>
 	)
@@ -67,8 +67,8 @@ function PageBuilderField({value, setPageBuilderEditorQuery, elements: allowedEl
 		}
 		const valueObject = value ? JSON.parse(value) : null
 		const elements = Object.fromEntries(allowedElements.map(createElement))
+		elements.RootContainer = elements["zauberfisch\\PageBuilder\\Element\\RootContainer.Default"]
 		const allElements = {
-			RootContainer,
 			...elements,
 		}
 		if (valueObject) {
@@ -96,7 +96,7 @@ function PageBuilderField({value, setPageBuilderEditorQuery, elements: allowedEl
 		}}>
 			<div className={styles.field} ref={refPageBuilderContainer}>
 				<Editor resolver={allElements}>
-					<EditorInner {...{value, refToolbarTop, refToolbarRows, setPageBuilderEditorQuery}} />
+					<EditorInner {...{value, refToolbarTop, refToolbarRows, setPageBuilderEditorQuery}} defaultValue={<Element canvas is={elements.RootContainer} />} />
 				</Editor>
 			</div>
 		</PageBuilderContextProvider>

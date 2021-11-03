@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace zauberfisch\PageBuilder\Form;
 
+use zauberfisch\PageBuilder\Element\Element;
 use zauberfisch\PageBuilder\Element\ElementConfig;
+use zauberfisch\PageBuilder\Element\RootContainer;
+use zauberfisch\PageBuilder\Element\RootContainerConfig;
 use zauberfisch\PageBuilder\Model\PageBuilderArea;
 
 class PageBuilderConfig {
@@ -16,10 +19,25 @@ class PageBuilderConfig {
 
 	public function __construct(PageBuilderArea $area) {
 		$this->area = $area;
+		$this->elements[] = new RootContainerConfig();
 	}
 
 	public function getArea(): PageBuilderArea {
 		return $this->area;
+	}
+
+	public function saveInto($value) {
+		$elements = $this->deSerializeValue($value);
+		$return = new \stdClass();
+		if ($elements) {
+			$return = [];
+			foreach ($elements as $id => $element) {
+				$return[$id] = $element->getValueForBackend();
+			}
+		}
+		$newJson = json_encode($return, JSON_PRETTY_PRINT);
+		$this->area->setCastedField("ElementsData", $newJson);
+		$this->area->write();
 	}
 
 	public function getElementMap(): array {
@@ -41,6 +59,9 @@ class PageBuilderConfig {
 	}
 
 	protected function findElementConfigForComponentKey(string $key): ElementConfig {
+		if ($key === 'RootContainer') {
+			$key = RootContainer::class . '.Default';
+		}
 		foreach ($this->elements as $elementConfig) {
 			if ($elementConfig->getComponentKey() === $key) {
 				return $elementConfig;
@@ -50,32 +71,29 @@ class PageBuilderConfig {
 	}
 
 	public function getValueForFrontend(): array {
+		$elements = $this->deSerializeValue($this->area->ElementsData);
 		$return = [];
-		if ($this->area->ElementsData) {
-			$elements = json_decode($this->area->ElementsData, true);
+		foreach ($elements as $elementId => $element) {
+			$return[$elementId] = $element->getValueForFrontend();
+		}
+		return $return;
+	}
+
+	/**
+	 * @param $json
+	 * @return array|Element[]
+	 * @throws \Exception
+	 */
+	protected function deSerializeValue($json) {
+		$return = [];
+		if ($json) {
+			$elements = json_decode($json);
 			if ($elements) {
 				foreach ($elements as $elementId => $elementData) {
-					$componentKey = $elementData['type']['resolvedName'];
-					if ($componentKey === 'RootContainer') {
-						$return['ROOT'] = [
-							"type" => $componentKey,
-							"props" => $elementData["props"],
-							"custom" => $elementData["custom"],
-							"nodes" => $elementData["nodes"],
-							"linkedNodes" => $elementData["linkedNodes"],
-						];
-
-					} else {
-						$config = $this->findElementConfigForComponentKey($componentKey);
-						$class = $config->getElementPhpClassName();
-						$obj = new $class([
-							"props" => $elementData["props"],
-							"custom" => $elementData["custom"],
-							"nodes" => $elementData["nodes"],
-							"linkedNodes" => $elementData["linkedNodes"],
-						], $elementId, $componentKey, $config);
-						$return[$elementId] = $obj->getValueForFrontend();
-					}
+					$componentKey = $elementData->type->resolvedName;
+					$config = $this->findElementConfigForComponentKey($componentKey);
+					$class = $config->getElementPhpClassName();
+					$return[$elementId] = new $class($elementData, $elementId, $componentKey, $config);
 				}
 			}
 		}

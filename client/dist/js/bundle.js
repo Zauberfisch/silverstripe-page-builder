@@ -89,7 +89,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 window.document.addEventListener("DOMContentLoaded", function () {
 	_Injector2.default.component.registerMany({
 		PageBuilderField: _PageBuilderField2.default,
-		"zauberfisch\\PageBuilder\\Element\\Container": _elements.Container
+		"zauberfisch\\PageBuilder\\Element\\Container": _elements.Container,
+		"zauberfisch\\PageBuilder\\Element\\RootContainer": _elements.RootContainer
 	});
 });
 
@@ -361,7 +362,8 @@ function EditorInner(_ref) {
 	var value = _ref.value,
 	    refToolbarTop = _ref.refToolbarTop,
 	    refToolbarRows = _ref.refToolbarRows,
-	    setPageBuilderEditorQuery = _ref.setPageBuilderEditorQuery;
+	    setPageBuilderEditorQuery = _ref.setPageBuilderEditorQuery,
+	    defaultValue = _ref.defaultValue;
 
 	var _useEditor = (0, _core.useEditor)(),
 	    query = _useEditor.query;
@@ -376,7 +378,7 @@ function EditorInner(_ref) {
 		_react2.default.createElement(
 			_core.Frame,
 			{ data: value },
-			_react2.default.createElement(_core.Element, { canvas: true, is: _elements.RootContainer })
+			defaultValue
 		)
 	);
 }
@@ -436,9 +438,8 @@ function PageBuilderField(_ref3) {
 		}
 		var valueObject = value ? JSON.parse(value) : null;
 		var elements = Object.fromEntries(allowedElements.map(createElement));
-		var allElements = _extends({
-			RootContainer: _elements.RootContainer
-		}, elements);
+		elements.RootContainer = elements["zauberfisch\\PageBuilder\\Element\\RootContainer.Default"];
+		var allElements = _extends({}, elements);
 		if (valueObject) {
 			var usedElementTypes = Object.entries(valueObject).map(function (_ref4) {
 				var _ref5 = _slicedToArray(_ref4, 2),
@@ -481,7 +482,7 @@ function PageBuilderField(_ref3) {
 			_react2.default.createElement(
 				_core.Editor,
 				{ resolver: allElements },
-				_react2.default.createElement(EditorInner, { value: value, refToolbarTop: refToolbarTop, refToolbarRows: refToolbarRows, setPageBuilderEditorQuery: setPageBuilderEditorQuery })
+				_react2.default.createElement(EditorInner, _extends({ value: value, refToolbarTop: refToolbarTop, refToolbarRows: refToolbarRows, setPageBuilderEditorQuery: setPageBuilderEditorQuery }, { defaultValue: _react2.default.createElement(_core.Element, { canvas: true, is: elements.RootContainer }) }))
 			)
 		)
 	);
@@ -1450,8 +1451,9 @@ var RootContainer = exports.RootContainer = function RootContainer(_ref) {
 	);
 };
 
-RootContainer.getTypeDisplayName = function () {
-	return ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_ELEMENT.RootContainer");
+RootContainer.pageBuilderSpecs = {
+	defaultProps: {},
+	isCanvas: true
 };
 
 /***/ }),
