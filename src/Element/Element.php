@@ -81,4 +81,12 @@ abstract class Element extends ArrayData {
 		}
 		return [];
 	}
+
+	protected function backendConvertLink($link) {
+		return $link;
+	}
+
+	protected function backendConvertImage($image) {
+		return $image;
+	}
 }
