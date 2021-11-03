@@ -34,7 +34,8 @@ export function useElementPropImage(propName, value) {
 	return {
 		value: _value,
 		hasValue,
-		url: hasValue ? _value.file.url : null,
+		url: hasValue ? _value.file.thumbnail : null,
+		// url: hasValue ? _value.file.url : null,
 		addButton: <React.Fragment>
 			<ToolbarButton iconName="mdiImage" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Add")} onClick={add} />
 			<EmbedModalImage {...{onInsert, onClosed, isOpen, fileAttributes: _value}} />

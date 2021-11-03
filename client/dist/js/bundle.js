@@ -2576,7 +2576,8 @@ function useElementPropImage(propName, value) {
 	return {
 		value: _value,
 		hasValue: hasValue,
-		url: hasValue ? _value.file.url : null,
+		url: hasValue ? _value.file.thumbnail : null,
+
 		addButton: _react2.default.createElement(
 			_react2.default.Fragment,
 			null,
