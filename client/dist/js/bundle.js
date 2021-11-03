@@ -2185,7 +2185,7 @@ function ImagePropField(_ref) {
 		_react2.default.createElement(
 			"div",
 			null,
-			_react2.default.createElement("div", { className: _ImagePropFieldModule2.default.image, style: { backgroundImage: value && value.file && "url('" + value.file.url + "')", backgroundSize: backgroundSize } })
+			_react2.default.createElement("div", { className: _ImagePropFieldModule2.default.image, style: { backgroundImage: value && "url('" + value.url + "')", backgroundSize: backgroundSize } })
 		),
 		editable && _react2.default.createElement(
 			"div",
@@ -2498,7 +2498,7 @@ function useElementPropFile(propName, value) {
 	return {
 		value: _value,
 		hasValue: hasValue,
-		url: hasValue ? _value.file.url : null,
+		url: hasValue ? _value.url : null,
 		addButton: _react2.default.createElement(
 			_react2.default.Fragment,
 			null,

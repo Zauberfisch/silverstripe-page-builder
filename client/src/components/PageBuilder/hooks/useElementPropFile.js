@@ -34,7 +34,7 @@ export function useElementPropFile(propName, value) {
 	return {
 		value: _value,
 		hasValue,
-		url: hasValue ? _value.file.url : null,
+		url: hasValue ? _value.url : null,
 		addButton: <React.Fragment>
 			<ToolbarButton iconName="mdiFolder" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropFile.Add")} onClick={add} />
 			<EmbedModalFile {...{onInsert, onClosed, isOpen, fileAttributes: _value}} />

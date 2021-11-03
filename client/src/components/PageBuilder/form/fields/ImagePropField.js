@@ -6,7 +6,7 @@ export function ImagePropField({label = "", imageProp: {value, addButton, remove
 	return (
 		<FieldHolder className={styles.container}>
 			<div>
-				<div className={styles.image} style={{backgroundImage: value && value.file && `url('${value.file.url}')`, backgroundSize}} />
+				<div className={styles.image} style={{backgroundImage: value && `url('${value.url}')`, backgroundSize}} />
 			</div>
 			{editable && <div className={styles.control}>
 				<div className={styles.label}>{label}</div>
