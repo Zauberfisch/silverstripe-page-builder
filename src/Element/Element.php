@@ -68,14 +68,17 @@ abstract class Element extends ArrayData {
 	}
 
 	protected function frontendConvertImage($image): ?array {
-		if (!isset($image['file']['url'])) {
-			return null;
+		if (isset($image['data']['ID'])) {
+			/** @var File $file */
+			$file = File::get()->byID($image['data']['ID']);
+			if ($file && $file->exists()) {
+				return [
+					'name' => $file->getFilename(),
+					'title' => $file->getTitle(),
+					'url' => $file->Link(),
+				];
+			}
 		}
-		return [
-			'name' => $image['file']['name'] ?? null,
-			'title' => $image['file']['title'] ?? null,
-			'url' => $image['file']['url'] ?? null,
-		];
+		return [];
 	}
-
 }
