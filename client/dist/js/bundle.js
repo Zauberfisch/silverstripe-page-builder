@@ -631,7 +631,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var hasClipboard = navigator.clipboard || typeof navigator.clipboard.writeText === "function";
+var hasClipboard = navigator.clipboard && typeof navigator.clipboard.writeText === "function";
 
 function _ClipboardCopyButton(_ref) {
 	var toastsActions = _ref.toastsActions;

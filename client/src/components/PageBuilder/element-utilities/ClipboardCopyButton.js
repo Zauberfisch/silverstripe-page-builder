@@ -7,7 +7,7 @@ import {useNodeState} from "components/PageBuilder/hooks/useNodeState"
 import {useEditor} from "@craftjs/core"
 import {ToolbarButton} from "../form"
 
-const hasClipboard = navigator.clipboard || typeof navigator.clipboard.writeText === "function"
+const hasClipboard = navigator.clipboard && typeof navigator.clipboard.writeText === "function"
 
 function _ClipboardCopyButton({toastsActions}) {
 	const {query} = useEditor()
