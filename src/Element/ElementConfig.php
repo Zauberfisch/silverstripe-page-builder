@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace zauberfisch\PageBuilder\Element;
 
+use SilverStripe\Core\ClassInfo;
+
 abstract class ElementConfig {
 	protected string $phpClassName;
 	protected string $componentKey = "Default";
@@ -44,7 +46,11 @@ abstract class ElementConfig {
 	}
 
 	public function getSingularName(): string {
-		return $this->singularName ?? preg_replace('@^.*\\\\(.*)$@', '$1', $this->phpClassName);
+		return $this->singularName ?? _t($this->getElementPhpClassName() . '.SINGULARNAME', ucwords(trim(strtolower(preg_replace(
+				'/_?([A-Z])/',
+				' $1',
+				ClassInfo::shortName($this)
+			)))));
 	}
 
 	public function setSingularName(string $name): ElementConfig {

@@ -1,0 +1,5 @@
+en:
+  zauberfisch\PageBuilder\Element\Container:
+    SINGULARNAME: Container
+  zauberfisch\PageBuilder\Element\RootContainer:
+    SINGULARNAME: Editor
