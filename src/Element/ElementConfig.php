@@ -49,7 +49,7 @@ abstract class ElementConfig {
 		return $this->singularName ?? _t($this->getElementPhpClassName() . '.SINGULARNAME', ucwords(trim(strtolower(preg_replace(
 				'/_?([A-Z])/',
 				' $1',
-				ClassInfo::shortName($this)
+				ClassInfo::shortName($this->getElementPhpClassName())
 			)))));
 	}
 
