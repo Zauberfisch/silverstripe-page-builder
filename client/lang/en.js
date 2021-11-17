@@ -32,6 +32,6 @@ if (typeof (ss) === "undefined" || typeof (ss.i18n) === "undefined") {
 
 		"ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Tooltip": "Paste from clipboard",
 		"ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Error": "Error pasting from clipboard",
-		"ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Success": "Elements pasted successfully",
+		"ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Success": "Elements pasted successfully"
 	})
 }
