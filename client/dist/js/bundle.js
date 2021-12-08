@@ -2723,6 +2723,107 @@ function useElementPropLink(propName, value) {
 
 /***/ }),
 
+/***/ "./client/src/components/PageBuilder/hooks/useElementPropLinksList.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.useElementPropLinksList = useElementPropLinksList;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _core = __webpack_require__(1);
+
+var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
+
+var _reactstrap = __webpack_require__(2);
+
+var _useElementPropLink = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropLink.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useElementPropLinksList(propName, value) {
+	var _useNode = (0, _core.useNode)(),
+	    setProp = _useNode.actions.setProp;
+
+	var linkTypes = (0, _useElementPropLink.useElementPropLinkTypes)();
+
+	var _React$useState = _react2.default.useState(""),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    openModalId = _React$useState2[0],
+	    setOpenModalId = _React$useState2[1];
+
+	var addLink = _react2.default.useCallback(function (e) {
+		setOpenModalId(e.target.dataset.modalid);
+	}, []);
+	var removeLink = _react2.default.useCallback(function (e) {
+		var index = e.target.dataset.itemindex;
+		setProp(function (_props) {
+			var newValue = JSON.parse(JSON.stringify(_props[propName]));
+			newValue.splice(index, 1);
+			_props[propName] = newValue;
+		});
+	}, []);
+	var onInsert = (0, _useElementPropLink.useElementPropLinkInsertCallback)(function (linkData) {
+		setProp(function (_props) {
+			var newValue = [];
+			if (_props[propName] && Array.isArray(_props[propName])) {
+				newValue = JSON.parse(JSON.stringify(_props[propName]));
+			}
+			newValue.push(linkData);
+			_props[propName] = newValue;
+		});
+		setOpenModalId("");
+	}, openModalId, []);
+	var onClosed = _react2.default.useCallback(function () {
+		return setOpenModalId("");
+	}, []);
+	var hasValue = !!(value && Array.isArray(value));
+	var _value = hasValue ? value : [];
+	return {
+		value: _value,
+		hasValue: hasValue,
+		url: _value.url || null,
+
+		addButton: _react2.default.createElement(
+			_react2.default.Fragment,
+			null,
+			_react2.default.createElement(
+				_form.ToolbarDropdown,
+				{ tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLink"), iconName: "mdiLink" },
+				linkTypes.map(function (_ref) {
+					var title = _ref.title,
+					    id = _ref.id;
+					return _react2.default.createElement(
+						_reactstrap.DropdownItem,
+						{ "data-modalid": id, onClick: addLink, style: { padding: "0 10px" } },
+						title
+					);
+				})
+			),
+			linkTypes.map(function (_ref2) {
+				var id = _ref2.id,
+				    component = _ref2.component;
+				return _react2.default.createElement(component, { key: id, fileAttributes: _value, onInsert: onInsert, onClosed: onClosed, isOpen: openModalId === id });
+			})
+		),
+		removeButtons: _value.map(function (item, i) {
+			return _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiLinkOff", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.RemoveLink"), "data-itemindex": i, onClick: removeLink, disabled: !hasValue });
+		})
+	};
+}
+
+/***/ }),
+
 /***/ "./client/src/components/PageBuilder/hooks/useElementPropSelectDropdown.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16125,6 +16226,18 @@ Object.keys(_useElementPropLink).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _useElementPropLink[key];
+    }
+  });
+});
+
+var _useElementPropLinksList = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropLinksList.js");
+
+Object.keys(_useElementPropLinksList).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _useElementPropLinksList[key];
     }
   });
 });
