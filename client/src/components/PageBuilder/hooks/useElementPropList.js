@@ -35,10 +35,11 @@ export function useElementPropList(propName, value, defaultItem) {
 		setProp((_props) => {
 			// eslint-disable-next-line no-param-reassign
 			const newValue = JSON.parse(JSON.stringify(_props[propName]))
+			console.log({newValue})
 			newValue[index] = value
 			_props[propName] = newValue
 		})
-	})
+	}, [propName])
 	const hasValue = value && Array.isArray(value) && value.length
 	const _value = hasValue ? value : []
 	return {

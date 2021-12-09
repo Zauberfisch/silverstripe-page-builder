@@ -2778,10 +2778,11 @@ function useElementPropList(propName, value, defaultItem) {
 	var itemChangeHandler = _react2.default.useCallback(function (index, value) {
 		setProp(function (_props) {
 			var newValue = JSON.parse(JSON.stringify(_props[propName]));
+			console.log({ newValue: newValue });
 			newValue[index] = value;
 			_props[propName] = newValue;
 		});
-	});
+	}, [propName]);
 	var hasValue = value && Array.isArray(value) && value.length;
 	var _value = hasValue ? value : [];
 	return {
