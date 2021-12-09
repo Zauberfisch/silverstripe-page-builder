@@ -2775,6 +2775,13 @@ function useElementPropList(propName, value, defaultItem) {
 			_props[propName] = newValue;
 		});
 	}, [propName]);
+	var itemChangeHandler = _react2.default.useCallback(function (index, value) {
+		setProp(function (_props) {
+			var newValue = JSON.parse(JSON.stringify(_props[propName]));
+			newValue[index] = value;
+			_props[propName] = newValue;
+		});
+	});
 	var hasValue = value && Array.isArray(value) && value.length;
 	var _value = hasValue ? value : [];
 	return {
@@ -2783,6 +2790,7 @@ function useElementPropList(propName, value, defaultItem) {
 		addHandler: addHandler,
 		clearHandler: clearHandler,
 		removeHandler: removeHandler,
+		itemChangeHandler: itemChangeHandler,
 		withAddHandler: function withAddHandler(Component) {
 			return function (_ref) {
 				var props = _objectWithoutProperties(_ref, []);
@@ -2804,6 +2812,7 @@ function useElementPropList(propName, value, defaultItem) {
 				return _react2.default.createElement(Component, _extends({}, props, { onClick: removeHandler, "data-itemindex": index, disabled: !hasValue }));
 			};
 		}
+
 	};
 }
 
