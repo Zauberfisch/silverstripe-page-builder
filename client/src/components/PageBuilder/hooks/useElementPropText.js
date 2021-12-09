@@ -11,6 +11,6 @@ export function useElementPropText(propName, value) {
 	}, [propName])
 	return {
 		value,
-		onChange,
+		changeHandler: onChange,
 	}
 }

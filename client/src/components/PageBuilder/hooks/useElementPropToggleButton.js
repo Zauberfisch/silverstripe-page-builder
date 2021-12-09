@@ -13,5 +13,6 @@ export function useElementPropToggleButton(propName, value, buttonProps) {
 	return {
 		value,
 		button: <ToolbarButton {...{...buttonProps, active: !!value, onClick}} />,
+		changeHandler: onClick,
 	}
 }

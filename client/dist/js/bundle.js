@@ -2473,12 +2473,12 @@ function useElementPropFile(propName, value) {
 
 	var add = _react2.default.useCallback(function () {
 		setIsOpen(true);
-	}, []);
+	}, [propName]);
 	var remove = _react2.default.useCallback(function () {
 		setProp(function (_props) {
 			_props[propName] = null;
 		});
-	}, []);
+	}, [propName]);
 	var onInsert = _react2.default.useCallback(function (data, file) {
 		delete data.SecurityID;
 		delete data["action_insert"];
@@ -2490,23 +2490,21 @@ function useElementPropFile(propName, value) {
 			_props[propName] = { data: data, file: file };
 		});
 		setIsOpen(false);
-	}, []);
+	}, [propName]);
 	var onClosed = _react2.default.useCallback(function () {
 		return setIsOpen(false);
-	}, []);
+	}, [propName]);
 	var hasValue = !!(value && _typeof(value.data) === "object" && _typeof(value.file) === "object");
 	var _value = hasValue ? value : {};
 	return {
 		value: _value,
 		hasValue: hasValue,
 		url: hasValue ? _value.file.thumbnail : null,
-		addButton: _react2.default.createElement(
-			_react2.default.Fragment,
-			null,
-			_react2.default.createElement(_form.ToolbarButton, { iconName: "mdiFolder", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropFile.Add"), onClick: add }),
-			_react2.default.createElement(_LinkModals.EmbedModalFile, { onInsert: onInsert, onClosed: onClosed, isOpen: isOpen, fileAttributes: _value })
-		),
-		removeButton: _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiFolderRemove", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropFile.Remove"), onClick: remove, disabled: !hasValue })
+		addButton: _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiFolder", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropFile.Add"), onClick: add }),
+		removeButton: _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiFolderRemove", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropFile.Remove"), onClick: remove, disabled: !hasValue }),
+		popup: _react2.default.createElement(_LinkModals.EmbedModalFile, { onInsert: onInsert, onClosed: onClosed, isOpen: isOpen, fileAttributes: _value }),
+		addHandler: add,
+		removeHandler: remove
 	};
 }
 
@@ -2579,13 +2577,11 @@ function useElementPropImage(propName, value) {
 		hasValue: hasValue,
 		url: hasValue ? _value.file.thumbnail : null,
 
-		addButton: _react2.default.createElement(
-			_react2.default.Fragment,
-			null,
-			_react2.default.createElement(_form.ToolbarButton, { iconName: "mdiImage", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Add"), onClick: add }),
-			_react2.default.createElement(_LinkModals.EmbedModalImage, { onInsert: onInsert, onClosed: onClosed, isOpen: isOpen, fileAttributes: _value })
-		),
-		removeButton: _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiImageMinus", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Remove"), onClick: remove, disabled: !hasValue })
+		addButton: _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiImage", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Add"), onClick: add }),
+		removeButton: _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiImageMinus", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Remove"), onClick: remove, disabled: !hasValue }),
+		popup: _react2.default.createElement(_LinkModals.EmbedModalImage, { onInsert: onInsert, onClosed: onClosed, isOpen: isOpen, fileAttributes: _value }),
+		addHandler: add,
+		removeHandler: remove
 	};
 }
 
@@ -2694,30 +2690,31 @@ function useElementPropLink(propName, value) {
 		value: _value,
 		hasValue: hasValue,
 		url: _value.url || null,
-
 		addButton: _react2.default.createElement(
+			_form.ToolbarDropdown,
+			{ tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLink"), iconName: "mdiLink" },
+			linkTypes.map(function (_ref) {
+				var title = _ref.title,
+				    id = _ref.id;
+				return _react2.default.createElement(
+					_reactstrap.DropdownItem,
+					{ "data-modalid": id, onClick: addLink, style: { padding: "0 10px" } },
+					title
+				);
+			})
+		),
+		removeButton: _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiLinkOff", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.RemoveLink"), onClick: removeLink, disabled: !hasValue }),
+		popup: _react2.default.createElement(
 			_react2.default.Fragment,
 			null,
-			_react2.default.createElement(
-				_form.ToolbarDropdown,
-				{ tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLink"), iconName: "mdiLink" },
-				linkTypes.map(function (_ref) {
-					var title = _ref.title,
-					    id = _ref.id;
-					return _react2.default.createElement(
-						_reactstrap.DropdownItem,
-						{ "data-modalid": id, onClick: addLink, style: { padding: "0 10px" } },
-						title
-					);
-				})
-			),
 			linkTypes.map(function (_ref2) {
 				var id = _ref2.id,
 				    component = _ref2.component;
 				return _react2.default.createElement(component, { key: id, fileAttributes: _value, onInsert: onInsert, onClosed: onClosed, isOpen: openModalId === id });
 			})
 		),
-		removeButton: _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiLinkOff", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.RemoveLink"), onClick: removeLink, disabled: !hasValue })
+		addHandler: addLink,
+		removeHandler: removeLink
 	};
 }
 
@@ -2792,33 +2789,33 @@ function useElementPropLinksList(propName, value) {
 	return {
 		value: _value,
 		hasValue: hasValue,
-		url: _value.url || null,
-
 		addButton: _react2.default.createElement(
+			_form.ToolbarDropdown,
+			{ tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLink"), iconName: "mdiLink" },
+			linkTypes.map(function (_ref) {
+				var title = _ref.title,
+				    id = _ref.id;
+				return _react2.default.createElement(
+					_reactstrap.DropdownItem,
+					{ "data-modalid": id, onClick: addLink, style: { padding: "0 10px" } },
+					title
+				);
+			})
+		),
+		removeButtons: _value.map(function (item, i) {
+			return _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiLinkOff", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.RemoveLink"), "data-itemindex": i, onClick: removeLink, disabled: !hasValue });
+		}),
+		popup: _react2.default.createElement(
 			_react2.default.Fragment,
 			null,
-			_react2.default.createElement(
-				_form.ToolbarDropdown,
-				{ tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLink"), iconName: "mdiLink" },
-				linkTypes.map(function (_ref) {
-					var title = _ref.title,
-					    id = _ref.id;
-					return _react2.default.createElement(
-						_reactstrap.DropdownItem,
-						{ "data-modalid": id, onClick: addLink, style: { padding: "0 10px" } },
-						title
-					);
-				})
-			),
 			linkTypes.map(function (_ref2) {
 				var id = _ref2.id,
 				    component = _ref2.component;
 				return _react2.default.createElement(component, { key: id, fileAttributes: _value, onInsert: onInsert, onClosed: onClosed, isOpen: openModalId === id });
 			})
 		),
-		removeButtons: _value.map(function (item, i) {
-			return _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiLinkOff", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.RemoveLink"), "data-itemindex": i, onClick: removeLink, disabled: !hasValue });
-		})
+		addHandler: addLink,
+		removeHandler: removeLink
 	};
 }
 
@@ -2863,7 +2860,8 @@ function useElementPropSelectDropdown(propName, value, options, buttonProps) {
 		value: options.find(function (obj) {
 			return obj.value === value;
 		}) || { pageBuilderStyle: {} },
-		button: _react2.default.createElement(_form.ToolbarSelect, _extends({}, buttonProps, { value: value, onChange: onChange, options: options }))
+		button: _react2.default.createElement(_form.ToolbarSelect, _extends({}, buttonProps, { value: value, onChange: onChange, options: options })),
+		changeHandler: onChange
 	};
 }
 
@@ -2900,7 +2898,7 @@ function useElementPropText(propName, value) {
 	}, [propName]);
 	return {
 		value: value,
-		onChange: onChange
+		changeHandler: onChange
 	};
 }
 
@@ -2941,7 +2939,8 @@ function useElementPropToggleButton(propName, value, buttonProps) {
 	}, [propName]);
 	return {
 		value: value,
-		button: _react2.default.createElement(_form.ToolbarButton, _extends({}, buttonProps, { active: !!value, onClick: onClick }))
+		button: _react2.default.createElement(_form.ToolbarButton, _extends({}, buttonProps, { active: !!value, onClick: onClick })),
+		changeHandler: onClick
 	};
 }
 

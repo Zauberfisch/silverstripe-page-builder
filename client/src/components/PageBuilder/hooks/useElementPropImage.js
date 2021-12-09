@@ -36,10 +36,10 @@ export function useElementPropImage(propName, value) {
 		hasValue,
 		url: hasValue ? _value.file.thumbnail : null,
 		// url: hasValue ? _value.file.url : null,
-		addButton: <React.Fragment>
-			<ToolbarButton iconName="mdiImage" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Add")} onClick={add} />
-			<EmbedModalImage {...{onInsert, onClosed, isOpen, fileAttributes: _value}} />
-		</React.Fragment>,
+		addButton: <ToolbarButton iconName="mdiImage" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Add")} onClick={add} />,
 		removeButton: <ToolbarButton iconName="mdiImageMinus" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Remove")} onClick={remove} disabled={!hasValue} />,
+		popup: <EmbedModalImage {...{onInsert, onClosed, isOpen, fileAttributes: _value}} />,
+		addHandler: add,
+		removeHandler: remove,
 	}
 }

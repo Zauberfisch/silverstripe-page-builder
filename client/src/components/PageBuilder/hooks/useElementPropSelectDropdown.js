@@ -15,5 +15,6 @@ export function useElementPropSelectDropdown(propName, value, options, buttonPro
 	return {
 		value: options.find(obj => obj.value === value) || {pageBuilderStyle: {}},
 		button: <ToolbarSelect {...{...buttonProps, value, onChange, options}} />,
+		changeHandler: onChange,
 	}
 }

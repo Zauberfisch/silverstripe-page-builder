@@ -38,9 +38,7 @@ export function useElementPropLinksList(propName, value) {
 	return {
 		value: _value,
 		hasValue,
-		url: _value.url || null,
-		// url: hasValue ? _value.file.url : null,
-		addButton: <React.Fragment>
+		addButton: (
 			<ToolbarDropdown tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLink")} iconName="mdiLink">
 				{linkTypes.map(({title, id}) => (
 					<DropdownItem data-modalid={id} onClick={addLink} style={{padding: "0 10px"}}>
@@ -48,15 +46,19 @@ export function useElementPropLinksList(propName, value) {
 					</DropdownItem>
 				))}
 			</ToolbarDropdown>
-			{linkTypes.map(({id, component}) => (
-				React.createElement(component, {key: id, fileAttributes: _value, onInsert, onClosed, isOpen: openModalId === id})
-			))}
-		</React.Fragment>,
-		removeButtons: _value.map((item, i) => {
-			return (
-				<ToolbarButton iconName="mdiLinkOff" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.RemoveLink")} data-itemindex={i} onClick={removeLink} disabled={!hasValue} />
-			)
-		}),
+		),
+		removeButtons: _value.map((item, i) => (
+			<ToolbarButton iconName="mdiLinkOff" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.RemoveLink")} data-itemindex={i} onClick={removeLink} disabled={!hasValue} />
+		)),
+		popup: (
+			<React.Fragment>
+				{linkTypes.map(({id, component}) => (
+					React.createElement(component, {key: id, fileAttributes: _value, onInsert, onClosed, isOpen: openModalId === id})
+				))}
+			</React.Fragment>
+		),
+		addHandler: addLink,
+		removeHandler: removeLink,
 		// removeButton:
 	}
 }
