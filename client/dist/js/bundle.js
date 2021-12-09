@@ -2757,7 +2757,7 @@ function useElementPropList(propName, value, defaultItem) {
 			_props[propName] = [];
 		});
 	}, [propName]);
-	var removeHandler = _react2.default.useCallback(function () {
+	var removeHandler = _react2.default.useCallback(function (e) {
 		var index = e.target.dataset.itemindex;
 		setProp(function (_props) {
 			var newValue = JSON.parse(JSON.stringify(_props[propName]));

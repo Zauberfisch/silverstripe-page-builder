@@ -11,7 +11,7 @@ export function useElementPropList(propName, value, defaultItem) {
 			_props[propName] = []
 		})
 	}, [propName])
-	const removeHandler = React.useCallback(() => {
+	const removeHandler = React.useCallback((e) => {
 		const index = e.target.dataset.itemindex
 		setProp((_props) => {
 			// eslint-disable-next-line no-param-reassign
