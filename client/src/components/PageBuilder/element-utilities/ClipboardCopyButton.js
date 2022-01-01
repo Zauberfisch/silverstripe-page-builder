@@ -29,7 +29,8 @@ function _ClipboardCopyButton({toastsActions}) {
 		)
 	}, [id])
 	return (
-		<ToolbarButton iconName="mdiTrayArrowUp" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Tooltip")} onClick={onClick} disabled={!hasClipboard} />
+		<ToolbarButton iconLeft={{iconName: "mdiTrayArrowUp"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Tooltip")} onClick={onClick} disabled={!hasClipboard} />
+		// <ToolbarButton iconName="mdiTrayArrowUp" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Tooltip")} onClick={onClick} disabled={!hasClipboard} />
 	)
 }
 

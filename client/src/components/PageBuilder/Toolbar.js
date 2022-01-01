@@ -35,8 +35,8 @@ export const Toolbar = ({refToolbarTop, refToolbarRows}) => {
 		<div className={styles.toolbar}>
 			<div className={styles.toolbarInner} ref={refToolbarRows}>
 				<div className={styles.toolbarRow} ref={refToolbarTop}>
-					<ToolbarButton iconName="mdiUndoVariant" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Undo")} disabled={!canUndo && !isBusy} onClick={undo} />
-					<ToolbarButton iconName="mdiRedoVariant" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Redo")} disabled={!canRedo && !isBusy} onClick={redo} />
+					<ToolbarButton iconLeft={{iconName: "mdiUndoVariant"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Undo")} disabled={!canUndo && !isBusy} onClick={undo} />
+					<ToolbarButton iconLeft={{iconName: "mdiRedoVariant"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Redo")} disabled={!canRedo && !isBusy} onClick={redo} />
 					<ToolbarSeparator />
 					<AddNewButton />
 					{/*{selected ? <React.Fragment>*/}

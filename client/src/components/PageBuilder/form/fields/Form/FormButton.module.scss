@@ -1,0 +1,68 @@
+@import "variables";
+
+.button {
+	display: inline-flex;
+
+	.hasText {}
+
+	.notActive {}
+
+	.active {}
+
+	.icon {
+		display: block;
+		width: 20px;
+		height: 20px;
+	}
+
+	////border-radius: ;
+	//text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	////background: #f1f3f6;
+	////border: 1px solid #f1f3f6;
+	//background: $body-bg-dark;
+	//border: 1px solid $body-bg-dark;
+	//color: #43536d;
+	//line-height: 20px;
+	//padding: 4px;
+	//font-size: 14px;
+	//text-align: center;
+	//display: flex;
+	//cursor: pointer;
+	//
+	//&:focus {
+	//	outline: none;
+	//}
+	//
+	//&.hasText {
+	//	padding: 4px 8px;
+	//}
+	//
+	//&:disabled {
+	//	opacity: .5;
+	//	//color: red;
+	//	//color: lighten(#43536d, 2%);
+	//	//background: lighten(#f1f3f6, 2%);
+	//}
+	//
+	//&:hover, &.active {
+	//	&:not(:disabled) {
+	//		color: #43536d;
+	//		background-color: #e1e6ec;
+	//		border-color: #b3bece;
+	//	}
+	//}
+	//
+	//.icon {
+	//	display: block;
+	//	width: 20px;
+	//	height: 20px;
+	//}
+	//
+	//.title {
+	//	display: block;
+	//}
+	//
+	//.icon + .title {
+	//	margin-left: 4px;
+	//}
+}

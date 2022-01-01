@@ -27,21 +27,20 @@ export function ToolbarPortalTop({children, childrenRight}) {
 			handler: onDeleteCancel,
 		},
 	]), [id])
-
 	if (isActive && refToolbarTop && refToolbarTop.current) {
 		return ReactDOM.createPortal(<React.Fragment>
-			{children && <React.Fragment>
+			{React.Children.count(children) ? <React.Fragment>
 				<ToolbarSeparator />
 				{children}
-			</React.Fragment>}
+			</React.Fragment> : null}
 			<div style={{flexGrow: 999}} />
 			<div style={{paddingRight: 5}}>
 				<span>{displayName}</span>
 			</div>
 			{childrenRight}
 			{isDeletable && <ClipboardCopyButton />}
-			{isDeletable && <ToolbarButton iconName="mdiArrowUp" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ParentElement")} onClick={onGoUp} />}
-			{isDeletable && <ToolbarButton iconName="mdiDeleteForever" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElement")} onClick={onDelete} />}
+			{isDeletable && <ToolbarButton iconLeft={{iconName: "mdiArrowUp"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ParentElement")} onClick={onGoUp} />}
+			{isDeletable && <ToolbarButton iconLeft={{iconName: "mdiDeleteForever"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElement")} onClick={onDelete} />}
 			<DeletionModal
 				isOpen={requireDeleteConfirmation}
 				body={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElementConfirm")}

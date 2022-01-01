@@ -111,7 +111,7 @@ export function _ClipboardPasteButton({toastsActions}) {
 	return (
 		<React.Fragment>
 			{requiresModal ? <PasteModal {...{isOpen, close, insertIntoNodeId: id, query, actions}} /> : null}
-			<ToolbarButton iconName="mdiTrayArrowDown" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Tooltip")} onClick={onClick} />
+			<ToolbarButton iconLeft={{iconName: "mdiTrayArrowDown"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Tooltip")} onClick={onClick} />
 		</React.Fragment>
 	)
 }

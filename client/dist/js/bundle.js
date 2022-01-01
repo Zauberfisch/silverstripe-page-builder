@@ -128,7 +128,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactstrap = __webpack_require__(2);
+var _reactstrap = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -575,8 +575,8 @@ var Toolbar = exports.Toolbar = function Toolbar(_ref) {
 			_react2.default.createElement(
 				"div",
 				{ className: _ToolbarModule2.default.toolbarRow, ref: refToolbarTop },
-				_react2.default.createElement(_form.ToolbarButton, { iconName: "mdiUndoVariant", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Undo"), disabled: !canUndo && !isBusy, onClick: undo }),
-				_react2.default.createElement(_form.ToolbarButton, { iconName: "mdiRedoVariant", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Redo"), disabled: !canRedo && !isBusy, onClick: redo }),
+				_react2.default.createElement(_form.ToolbarButton, { iconLeft: { iconName: "mdiUndoVariant" }, tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Undo"), disabled: !canUndo && !isBusy, onClick: undo }),
+				_react2.default.createElement(_form.ToolbarButton, { iconLeft: { iconName: "mdiRedoVariant" }, tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Redo"), disabled: !canRedo && !isBusy, onClick: redo }),
 				_react2.default.createElement(_form.ToolbarSeparator, null),
 				_react2.default.createElement(_form.AddNewButton, null)
 			)
@@ -657,7 +657,7 @@ function _ClipboardCopyButton(_ref) {
 			return toastsActions.error(ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Error"));
 		});
 	}, [id]);
-	return _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiTrayArrowUp", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Tooltip"), onClick: onClick, disabled: !hasClipboard });
+	return _react2.default.createElement(_form.ToolbarButton, { iconLeft: { iconName: "mdiTrayArrowUp" }, tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Tooltip"), onClick: onClick, disabled: !hasClipboard });
 }
 
 var ClipboardCopyButton = exports.ClipboardCopyButton = (0, _reactRedux.connect)(function () {
@@ -711,7 +711,7 @@ var _ToastsActions = __webpack_require__(8);
 
 var toastsActions = _interopRequireWildcard(_ToastsActions);
 
-var _reactstrap = __webpack_require__(2);
+var _reactstrap = __webpack_require__(3);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -867,7 +867,7 @@ function _ClipboardPasteButton(_ref8) {
 		_react2.default.Fragment,
 		null,
 		requiresModal ? _react2.default.createElement(PasteModal, { isOpen: isOpen, close: close, insertIntoNodeId: id, query: query, actions: actions }) : null,
-		_react2.default.createElement(_form.ToolbarButton, { iconName: "mdiTrayArrowDown", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Tooltip"), onClick: onClick })
+		_react2.default.createElement(_form.ToolbarButton, { iconLeft: { iconName: "mdiTrayArrowDown" }, tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Tooltip"), onClick: onClick })
 	);
 }
 
@@ -961,7 +961,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _MoveHandle = __webpack_require__("./client/src/components/PageBuilder/element-utilities/MoveHandle.js");
 
-var _classnames = __webpack_require__(3);
+var _classnames = __webpack_require__(2);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -1217,17 +1217,16 @@ function ToolbarPortalTop(_ref) {
 			handler: onDeleteCancel
 		}];
 	}, [id]);
-
 	if (isActive && refToolbarTop && refToolbarTop.current) {
 		return _reactDom2.default.createPortal(_react2.default.createElement(
 			_react2.default.Fragment,
 			null,
-			children && _react2.default.createElement(
+			_react2.default.Children.count(children) ? _react2.default.createElement(
 				_react2.default.Fragment,
 				null,
 				_react2.default.createElement(_form.ToolbarSeparator, null),
 				children
-			),
+			) : null,
 			_react2.default.createElement("div", { style: { flexGrow: 999 } }),
 			_react2.default.createElement(
 				"div",
@@ -1240,8 +1239,8 @@ function ToolbarPortalTop(_ref) {
 			),
 			childrenRight,
 			isDeletable && _react2.default.createElement(_ClipboardCopyButton.ClipboardCopyButton, null),
-			isDeletable && _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiArrowUp", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ParentElement"), onClick: onGoUp }),
-			isDeletable && _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiDeleteForever", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElement"), onClick: onDelete }),
+			isDeletable && _react2.default.createElement(_form.ToolbarButton, { iconLeft: { iconName: "mdiArrowUp" }, tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ParentElement"), onClick: onGoUp }),
+			isDeletable && _react2.default.createElement(_form.ToolbarButton, { iconLeft: { iconName: "mdiDeleteForever" }, tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElement"), onClick: onDelete }),
 			_react2.default.createElement(_DeletionModal2.default, {
 				isOpen: requireDeleteConfirmation,
 				body: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElementConfirm"),
@@ -1350,55 +1349,56 @@ var _ContainerModule = __webpack_require__("./client/src/components/PageBuilder/
 
 var _ContainerModule2 = _interopRequireDefault(_ContainerModule);
 
-var _classnames = __webpack_require__(3);
+var _classnames = __webpack_require__(2);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
 var _ClipboardPasteButton = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ClipboardPasteButton.js");
 
-var _useElementPropSelectDropdown = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropSelectDropdown.js");
+var _hooks = __webpack_require__("./client/src/components/PageBuilder/hooks/index.js");
+
+var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var Container = exports.Container = function Container(_ref) {
-	var background = _ref.background,
-	    columns = _ref.columns,
-	    children = _ref.children,
-	    pageBuilderSpecs = _ref.pageBuilderSpecs;
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-	var backgroundOptions = pageBuilderSpecs.backgroundOptions || [];
-	var backgroundProp = (0, _useElementPropSelectDropdown.useElementPropSelectDropdown)("background", background, backgroundOptions, {});
+var Container = function Container(_ref) {
+	var children = _ref.children,
+	    pageBuilderSpecs = _ref.pageBuilderSpecs,
+	    props = _objectWithoutProperties(_ref, ["children", "pageBuilderSpecs"]);
+
 	var columnsOptions = _react2.default.useMemo(function () {
 		if (pageBuilderSpecs.columnsOptions) {
 			return pageBuilderSpecs.columnsOptions.map(function (option) {
-				return _extends({ pageBuilderClassName: _ContainerModule2.default["columns-" + option.value], iconName: "mdiGrid" }, option);
+				return _extends({ pageBuilderClassName: _ContainerModule2.default["columns-" + option.value] }, option);
 			});
 		}
 		return [];
 	}, [JSON.stringify(pageBuilderSpecs.columnsOptions)]);
-	var columnsProp = (0, _useElementPropSelectDropdown.useElementPropSelectDropdown)("columns", columns, columnsOptions, {});
-
-	var selectedBackground = backgroundProp.value;
+	var columnsProp = (0, _hooks.useElementPropSelect)(props, "columns", columnsOptions);
+	var backgroundProp = (0, _hooks.useElementPropSelect)(props, "background", pageBuilderSpecs.backgroundOptions);
 	var hasChildren = _react2.default.Children.count(children) > 0;
 	return _react2.default.createElement(
 		_elementUtilities.ElementContainer,
-		{ padding: false, className: (0, _classnames2.default)(_ContainerModule2.default.container, _defineProperty({}, _ContainerModule2.default.isEmpty, !hasChildren)), style: selectedBackground.pageBuilderStyle },
+		{ padding: false, className: (0, _classnames2.default)(_ContainerModule2.default.container, _defineProperty({}, _ContainerModule2.default.isEmpty, !hasChildren)), style: backgroundProp.fullValue.pageBuilderStyle || {} },
 		_react2.default.createElement(
 			_elementUtilities.ToolbarPortalTop,
 			{ childrenRight: _react2.default.createElement(_ClipboardPasteButton.ClipboardPasteButton, null) },
-			backgroundOptions.length ? backgroundProp.button : null,
-			columnsOptions.length ? columnsProp.button : null
+			backgroundProp.options.length ? _react2.default.createElement(_form.ToolbarSelectField, { options: backgroundProp.options, onChange: backgroundProp.changeHandler, value: backgroundProp.value }) : null,
+			columnsProp.options.length ? _react2.default.createElement(_form.ToolbarSelectField, { options: columnsProp.options, onChange: columnsProp.changeHandler, value: columnsProp.value }) : null
 		),
 		hasChildren ? _react2.default.createElement(
 			"div",
-			{ className: (0, _classnames2.default)(_ContainerModule2.default.children, columnsProp.value.pageBuilderClassName) },
+			{ className: (0, _classnames2.default)(_ContainerModule2.default.children, columnsProp.fullValue.pageBuilderClassName) },
 			children
 		) : null
 	);
 };
 
+exports.Container = Container;
 Container.pageBuilderSpecs = {
 	defaultProps: {},
 	isCanvas: true,
@@ -1560,11 +1560,12 @@ Object.keys(_UnknownElement).forEach(function (key) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.AddNewButton = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.AddNewButton = AddNewButton;
 
 var _react = __webpack_require__(0);
 
@@ -1574,13 +1575,13 @@ var _AddNewButtonModule = __webpack_require__("./client/src/components/PageBuild
 
 var _AddNewButtonModule2 = _interopRequireDefault(_AddNewButtonModule);
 
-var _classnames2 = __webpack_require__(3);
+var _classnames2 = __webpack_require__(2);
 
 var _classnames3 = _interopRequireDefault(_classnames2);
 
-var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarButton.js");
+var _fields = __webpack_require__("./client/src/components/PageBuilder/form/fields/index.js");
 
-var _reactstrap = __webpack_require__(2);
+var _reactstrap = __webpack_require__(3);
 
 var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilder/PageBuilderContext.js");
 
@@ -1590,11 +1591,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
-
-var AddNewButton = exports.AddNewButton = function AddNewButton(_ref) {
-	_objectDestructuringEmpty(_ref);
-
+function AddNewButton() {
 	var id = (0, _utility.useUniqueId)();
 
 	var _React$useState = _react2.default.useState(false),
@@ -1614,7 +1611,7 @@ var AddNewButton = exports.AddNewButton = function AddNewButton(_ref) {
 			}
 			return !_isOpen;
 		});
-	});
+	}, []);
 
 	var _React$useContext = _react2.default.useContext(_PageBuilderContext.PageBuilderContext),
 	    elements = _React$useContext.elements;
@@ -1622,7 +1619,7 @@ var AddNewButton = exports.AddNewButton = function AddNewButton(_ref) {
 	return _react2.default.createElement(
 		"div",
 		null,
-		_react2.default.createElement(_ToolbarButton.ToolbarButton, _extends({ iconName: "mdiPlusBox" }, { id: id }, { tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Add") })),
+		_react2.default.createElement(_fields.ToolbarButton, { id: id, iconLeft: { iconName: "mdiPlusBox" }, tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Add") }),
 		id ? _react2.default.createElement(
 			_reactstrap.Popover,
 			_extends({ placement: "bottom", target: id }, { toggle: toggle, isOpen: isOpen }, { popperClassName: (0, _classnames3.default)(_defineProperty({}, _AddNewButtonModule2.default.popoverHidden, isHidden)) }),
@@ -1637,10 +1634,10 @@ var AddNewButton = exports.AddNewButton = function AddNewButton(_ref) {
 				_react2.default.createElement(
 					"div",
 					{ className: _AddNewButtonModule2.default.elements },
-					elements ? Object.entries(elements).map(function (_ref2) {
-						var _ref3 = _slicedToArray(_ref2, 2),
-						    key = _ref3[0],
-						    element = _ref3[1];
+					elements ? Object.entries(elements).map(function (_ref) {
+						var _ref2 = _slicedToArray(_ref, 2),
+						    key = _ref2[0],
+						    element = _ref2[1];
 
 						if (element.craft.related && element.craft.related.CreateButton) {
 							return _react2.default.createElement(
@@ -1668,7 +1665,7 @@ var AddNewButton = exports.AddNewButton = function AddNewButton(_ref) {
 			)
 		) : null
 	);
-};
+}
 
 /***/ }),
 
@@ -1677,381 +1674,6 @@ var AddNewButton = exports.AddNewButton = function AddNewButton(_ref) {
 
 // removed by extract-text-webpack-plugin
 module.exports = {"elements":"_1cPxMgxXsTlc4H6ktXGayW","popoverHidden":"_1_upKntT7XBfIEKaUIHIaI"};
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/form/ToolbarButton.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.ToolbarButton = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _ToolbarButtonModule = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarButton.module.scss");
-
-var _ToolbarButtonModule2 = _interopRequireDefault(_ToolbarButtonModule);
-
-var _classnames = __webpack_require__(3);
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _reactstrap = __webpack_require__(2);
-
-var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-var ToolbarButton = function ToolbarButton(_ref) {
-	var _classNames;
-
-	var _ref$title = _ref.title,
-	    title = _ref$title === undefined ? "" : _ref$title,
-	    _ref$tooltip = _ref.tooltip,
-	    tooltip = _ref$tooltip === undefined ? "" : _ref$tooltip,
-	    iconName = _ref.iconName,
-	    _ref$iconStyle = _ref.iconStyle,
-	    iconStyle = _ref$iconStyle === undefined ? {} : _ref$iconStyle,
-	    iconNameRight = _ref.iconNameRight,
-	    _ref$iconStyleRight = _ref.iconStyleRight,
-	    iconStyleRight = _ref$iconStyleRight === undefined ? {} : _ref$iconStyleRight,
-	    _ref$active = _ref.active,
-	    active = _ref$active === undefined ? false : _ref$active,
-	    _ref$disabled = _ref.disabled,
-	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
-	    id = _ref.id,
-	    _ref$className = _ref.className,
-	    className = _ref$className === undefined ? "" : _ref$className,
-	    props = _objectWithoutProperties(_ref, ["title", "tooltip", "iconName", "iconStyle", "iconNameRight", "iconStyleRight", "active", "disabled", "id", "className"]);
-
-	var _id = (0, _utility.useUniqueId)();
-
-	var _React$useState = _react2.default.useState(false),
-	    _React$useState2 = _slicedToArray(_React$useState, 2),
-	    tooltipOpen = _React$useState2[0],
-	    setTooltipOpen = _React$useState2[1];
-
-	var toggleTooltip = _react2.default.useCallback(function () {
-		return setTooltipOpen(function (_value) {
-			return !_value;
-		});
-	}, []);
-	var onMouseDown = _react2.default.useCallback(function (e) {
-		return e.preventDefault();
-	}, []);
-	id = id || _id;
-	var refTimeout = _react2.default.useRef();
-	_react2.default.useEffect(function () {
-		if (tooltipOpen) {
-			if (refTimeout.current) {
-				clearTimeout(refTimeout.current);
-			}
-			refTimeout.current = setTimeout(function () {
-				return setTooltipOpen(false);
-			}, 3000);
-		} else {
-			if (refTimeout.current) {
-				clearTimeout(refTimeout.current);
-			}
-		}
-	}, [tooltipOpen]);
-	return _react2.default.createElement(
-		"span",
-		null,
-		_react2.default.createElement(
-			"button",
-			_extends({}, _extends({ onMouseDown: onMouseDown }, props, { id: id, disabled: disabled }), { className: (0, _classnames2.default)(_ToolbarButtonModule2.default.button, className, (_classNames = {}, _defineProperty(_classNames, _ToolbarButtonModule2.default.active, active), _defineProperty(_classNames, _ToolbarButtonModule2.default.hasText, title), _classNames)) }),
-			iconName ? _react2.default.createElement(_utility.Icon, { className: _ToolbarButtonModule2.default.icon, iconName: iconName, style: iconStyle }) : null,
-			title ? _react2.default.createElement(
-				"span",
-				{ className: _ToolbarButtonModule2.default.title },
-				_react2.default.createElement(
-					"span",
-					null,
-					title
-				)
-			) : null,
-			iconNameRight ? _react2.default.createElement(_utility.Icon, { className: _ToolbarButtonModule2.default.icon, iconName: iconNameRight, style: iconStyleRight }) : null
-		),
-		id && tooltip ? _react2.default.createElement(
-			_reactstrap.Tooltip,
-			{ placement: "bottom", isOpen: tooltipOpen, target: id, toggle: toggleTooltip },
-			tooltip
-		) : null
-	);
-};
-exports.ToolbarButton = ToolbarButton;
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/form/ToolbarButton.module.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"button":"_17JZPLuy9eDy4dLOJ-kyEa","hasText":"_2OAmVbRkXSVo5n9O4aaHge","active":"_1Ioyt11yHfGSqGEwH7tFpw","icon":"_1lK5mjB7n2rwV7ZQPZs-HT","title":"_3BQ6q1wtcToT75uBwlDHj2"};
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/form/ToolbarDropdown.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.ToolbarDropdown = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactstrap = __webpack_require__(2);
-
-var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarButton.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-var ToolbarDropdown = function ToolbarDropdown(_ref) {
-	var _ref$title = _ref.title,
-	    title = _ref$title === undefined ? "" : _ref$title,
-	    iconName = _ref.iconName,
-	    _ref$iconStyle = _ref.iconStyle,
-	    iconStyle = _ref$iconStyle === undefined ? {} : _ref$iconStyle,
-	    _ref$disabled = _ref.disabled,
-	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
-	    children = _ref.children,
-	    props = _objectWithoutProperties(_ref, ["title", "iconName", "iconStyle", "disabled", "children"]);
-
-	var _React$useState = _react2.default.useState(false),
-	    _React$useState2 = _slicedToArray(_React$useState, 2),
-	    dropdownOpen = _React$useState2[0],
-	    setDropdownOpen = _React$useState2[1];
-
-	var toggle = function toggle() {
-		return setDropdownOpen(function (prevState) {
-			return !prevState;
-		});
-	};
-	return _react2.default.createElement(
-		_reactstrap.Dropdown,
-		{ isOpen: dropdownOpen, toggle: toggle },
-		_react2.default.createElement(
-			_reactstrap.DropdownToggle,
-			{ tag: "span" },
-			_react2.default.createElement(_ToolbarButton.ToolbarButton, _extends({}, props, { title: title, iconName: iconName, iconStyle: iconStyle, iconNameRight: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown", disabled: disabled, active: dropdownOpen }))
-		),
-		_react2.default.createElement(
-			_reactstrap.DropdownMenu,
-			null,
-			children
-		)
-	);
-};
-exports.ToolbarDropdown = ToolbarDropdown;
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/form/ToolbarSelect.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.ToolbarSelect = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
-
-var _ToolbarDropdown = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarDropdown.js");
-
-var _reactstrap = __webpack_require__(2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-var ToolbarSelectItem = function ToolbarSelectItem(_ref) {
-	var onClick = _ref.onClick,
-	    onChange = _ref.onChange,
-	    title = _ref.title,
-	    children = _ref.children,
-	    iconName = _ref.iconName,
-	    _ref$iconStyle = _ref.iconStyle,
-	    iconStyle = _ref$iconStyle === undefined ? {} : _ref$iconStyle,
-	    _ref$style = _ref.style,
-	    style = _ref$style === undefined ? {} : _ref$style,
-	    props = _objectWithoutProperties(_ref, ["onClick", "onChange", "title", "children", "iconName", "iconStyle", "style"]);
-
-	var onMouseDown = _react2.default.useCallback(function (e) {
-		return e.preventDefault();
-	}, []);
-	var _onClick = _react2.default.useCallback(function (e) {
-		e.preventDefault();
-		typeof onClick === "function" && onClick(e);
-		onChange(props.value);
-	}, [props.value]);
-	return _react2.default.createElement(
-		_reactstrap.DropdownItem,
-		_extends({}, props, { onMouseDown: onMouseDown, onClick: _onClick, style: _extends({ padding: "0 10px" }, style) }),
-		children ? children : _react2.default.createElement(
-			_react2.default.Fragment,
-			null,
-			iconName ? _react2.default.createElement(_utility.Icon, { style: _extends({ width: 20, display: "inline-block", padding: "0 5px 0 0" }, iconStyle), iconName: iconName }) : null,
-			_react2.default.createElement(
-				"span",
-				null,
-				title
-			)
-		)
-	);
-};
-
-var ToolbarSelect = function ToolbarSelect(_ref2) {
-	var options = _ref2.options,
-	    value = _ref2.value,
-	    onChange = _ref2.onChange,
-	    _ref2$showSelectedTit = _ref2.showSelectedTitle,
-	    showSelectedTitle = _ref2$showSelectedTit === undefined ? true : _ref2$showSelectedTit,
-	    _ref2$showSelectedIco = _ref2.showSelectedIcon,
-	    showSelectedIcon = _ref2$showSelectedIco === undefined ? true : _ref2$showSelectedIco,
-	    props = _objectWithoutProperties(_ref2, ["options", "value", "onChange", "showSelectedTitle", "showSelectedIcon"]);
-
-	var selected = options.find(function (_ref3) {
-		var _value = _ref3.value;
-		return value === _value;
-	}) || {};
-	return _react2.default.createElement(
-		_ToolbarDropdown.ToolbarDropdown,
-		_extends({}, props, { title: showSelectedTitle && selected && selected.title, iconName: showSelectedIcon && selected && selected.iconName, iconStyle: showSelectedIcon && selected && selected.iconStyle }),
-		options && options.map(function (option) {
-			return _react2.default.createElement(ToolbarSelectItem, _extends({}, option, { active: option.value === value, onChange: onChange }));
-		})
-	);
-};
-exports.ToolbarSelect = ToolbarSelect;
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/form/ToolbarSeparator.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.ToolbarSeparator = undefined;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _ToolbarSeparatorModule = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarSeparator.module.scss");
-
-var _ToolbarSeparatorModule2 = _interopRequireDefault(_ToolbarSeparatorModule);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var ToolbarSeparator = exports.ToolbarSeparator = function ToolbarSeparator() {
-	return _react2.default.createElement("span", { className: _ToolbarSeparatorModule2.default.separator });
-};
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/form/ToolbarSeparator.module.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"separator":"_1rj1ApJQtArXooYBzLDHNc"};
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/form/fields/ButtonField.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.ButtonField = ButtonField;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _FieldHolder = __webpack_require__("./client/src/components/PageBuilder/form/fields/FieldHolder.js");
-
-var _ButtonFieldModule = __webpack_require__("./client/src/components/PageBuilder/form/fields/ButtonField.module.scss");
-
-var _ButtonFieldModule2 = _interopRequireDefault(_ButtonFieldModule);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function ButtonField(_ref) {
-	var placeholder = _ref.placeholder,
-	    _ref$linkProp = _ref.linkProp,
-	    addButton = _ref$linkProp.addButton,
-	    removeButton = _ref$linkProp.removeButton,
-	    _ref$textProp = _ref.textProp,
-	    value = _ref$textProp.value,
-	    onChange = _ref$textProp.onChange,
-	    _ref$editable = _ref.editable,
-	    editable = _ref$editable === undefined ? true : _ref$editable;
-
-	return _react2.default.createElement(
-		_FieldHolder.FieldHolder,
-		{ style: { display: "flex" }, className: _ButtonFieldModule2.default.fieldHolder },
-		_react2.default.createElement("input", { placeholder: placeholder, type: "text", value: value, onChange: onChange, className: "text", disabled: !editable }),
-		_react2.default.createElement(
-			"div",
-			{ className: _ButtonFieldModule2.default.buttons },
-			editable && addButton,
-			editable && removeButton
-		)
-	);
-}
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/form/fields/ButtonField.module.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-module.exports = {"fieldHolder":"_1zvuMQU41ZicN7gFbrNSFb","buttons":"MM4VwlXTeB08oCE3Btoh4"};
 
 /***/ }),
 
@@ -2073,7 +1695,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(3);
+var _classnames = __webpack_require__(2);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -2143,7 +1765,7 @@ function FieldHolder(_ref) {
 
 /***/ }),
 
-/***/ "./client/src/components/PageBuilder/form/fields/ImagePropField.js":
+/***/ "./client/src/components/PageBuilder/form/fields/Form/FormButton.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2152,85 +1774,411 @@ function FieldHolder(_ref) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.ImagePropField = ImagePropField;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.FormButton = FormButton;
 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ImagePropFieldModule = __webpack_require__("./client/src/components/PageBuilder/form/fields/ImagePropField.module.scss");
+var _FormButtonModule = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormButton.module.scss");
 
-var _ImagePropFieldModule2 = _interopRequireDefault(_ImagePropFieldModule);
+var _FormButtonModule2 = _interopRequireDefault(_FormButtonModule);
 
-var _FieldHolder = __webpack_require__("./client/src/components/PageBuilder/form/fields/FieldHolder.js");
+var _classnames = __webpack_require__(2);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Unstyled = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/index.js");
+
+var _helpers = __webpack_require__("./client/src/components/PageBuilder/form/helpers/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function ImagePropField(_ref) {
-	var _ref$label = _ref.label,
-	    label = _ref$label === undefined ? "" : _ref$label,
-	    _ref$imageProp = _ref.imageProp,
-	    value = _ref$imageProp.value,
-	    addButton = _ref$imageProp.addButton,
-	    removeButton = _ref$imageProp.removeButton,
-	    url = _ref$imageProp.url,
-	    linkProp = _ref.linkProp,
-	    _ref$backgroundSize = _ref.backgroundSize,
-	    backgroundSize = _ref$backgroundSize === undefined ? "contain" : _ref$backgroundSize,
-	    _ref$editable = _ref.editable,
-	    editable = _ref$editable === undefined ? true : _ref$editable;
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function FormButton(_ref) {
+	var _ref$tooltip = _ref.tooltip,
+	    tooltip = _ref$tooltip === undefined ? "" : _ref$tooltip,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    _ref$active = _ref.active,
+	    active = _ref$active === undefined ? false : _ref$active,
+	    id = _ref.id,
+	    _ref$className = _ref.className,
+	    className = _ref$className === undefined ? "" : _ref$className,
+	    _ref$activeClassName = _ref.activeClassName,
+	    activeClassName = _ref$activeClassName === undefined ? "" : _ref$activeClassName,
+	    _ref$notActiveClassNa = _ref.notActiveClassName,
+	    notActiveClassName = _ref$notActiveClassNa === undefined ? "" : _ref$notActiveClassNa,
+	    _ref$containerClassNa = _ref.containerClassName,
+	    containerClassName = _ref$containerClassNa === undefined ? "" : _ref$containerClassNa,
+	    _ref$containerStyle = _ref.containerStyle,
+	    containerStyle = _ref$containerStyle === undefined ? {} : _ref$containerStyle,
+	    _ref$style = _ref.style,
+	    style = _ref$style === undefined ? {} : _ref$style,
+	    children = _ref.children,
+	    _ref$iconLeft = _ref.iconLeft,
+	    iconLeft = _ref$iconLeft === undefined ? {} : _ref$iconLeft,
+	    _ref$iconRight = _ref.iconRight,
+	    iconRight = _ref$iconRight === undefined ? {} : _ref$iconRight,
+	    _ref$buttonType = _ref.buttonType,
+	    buttonType = _ref$buttonType === undefined ? "outline-secondary" : _ref$buttonType,
+	    _ref$activeButtonType = _ref.activeButtonType,
+	    activeButtonType = _ref$activeButtonType === undefined ? "outline-primary" : _ref$activeButtonType,
+	    props = _objectWithoutProperties(_ref, ["tooltip", "disabled", "active", "id", "className", "activeClassName", "notActiveClassName", "containerClassName", "containerStyle", "style", "children", "iconLeft", "iconRight", "buttonType", "activeButtonType"]);
+
+	var allProps = _extends({
+		tooltip: tooltip, disabled: disabled, active: active, id: id, containerClassName: containerClassName, containerStyle: containerStyle, style: style
+	}, props, {
+		className: (0, _classnames2.default)(className, _FormButtonModule2.default.button, "btn", _defineProperty({}, _FormButtonModule2.default.hasText, _react2.default.Children.count(children))),
+		notActiveClassName: (0, _classnames2.default)(notActiveClassName, _FormButtonModule2.default.notActive, "btn-" + buttonType),
+		activeClassName: (0, _classnames2.default)(activeClassName, _FormButtonModule2.default.active, "btn-" + activeButtonType)
+	});
+	iconLeft.className = (0, _classnames2.default)(iconLeft.className, _FormButtonModule2.default.icon);
+	iconRight.className = (0, _classnames2.default)(iconLeft.className, _FormButtonModule2.default.icon);
+	return _react2.default.createElement(
+		_Unstyled.UnstyledButton,
+		allProps,
+		_react2.default.createElement(_helpers.TitleWithIcon, { children: children, iconLeft: iconLeft, iconRight: iconRight, className: "btn__title" })
+	);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Form/FormButton.module.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"button":"_2JpSgKO-3dN34wkoYzw0Sl","icon":"_16nGycrQ3z-LdworHAHtoB"};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Form/FormDropdownField.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.FormDropdownField = FormDropdownField;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FormButton = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormButton.js");
+
+var _Unstyled = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/index.js");
+
+var _FormFieldGroup = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormFieldGroup.js");
+
+var _useDropdownOpenState3 = __webpack_require__("./client/src/components/PageBuilder/hooks/Internal/useDropdownOpenState.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function FormDropdownField(_ref) {
+	var buttonOverwrite = _ref.buttonOverwrite,
+	    _ref$buttonComponent = _ref.buttonComponent,
+	    buttonComponent = _ref$buttonComponent === undefined ? _FormButton.FormButton : _ref$buttonComponent,
+	    _ref$buttonProps = _ref.buttonProps,
+	    buttonProps = _ref$buttonProps === undefined ? {} : _ref$buttonProps,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    children = _ref.children,
+	    onOpen = _ref.onOpen;
+
+	var _useDropdownOpenState = (0, _useDropdownOpenState3.useDropdownOpenState)(onOpen),
+	    _useDropdownOpenState2 = _slicedToArray(_useDropdownOpenState, 2),
+	    dropdownOpen = _useDropdownOpenState2[0],
+	    _onOpen = _useDropdownOpenState2[1];
+
+	if (buttonProps.iconRight === undefined) {
+		buttonProps.iconRight = { iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown" };
+	}
+	var allProps = { buttonOverwrite: buttonOverwrite, buttonComponent: buttonComponent, buttonProps: buttonProps, disabled: disabled, children: children, onOpen: _onOpen };
+	return _react2.default.createElement(
+		_FormFieldGroup.FormFieldGroup,
+		null,
+		_react2.default.createElement(_Unstyled.UnstyledDropdownField, allProps)
+	);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Form/FormFieldGroup.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.FormFieldGroup = FormFieldGroup;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function FormFieldGroup(_ref) {
+	var label = _ref.label,
+	    labelFor = _ref.labelFor,
+	    children = _ref.children,
+	    className = _ref.className,
+	    props = _objectWithoutProperties(_ref, ["label", "labelFor", "children", "className"]);
 
 	return _react2.default.createElement(
-		_FieldHolder.FieldHolder,
-		{ className: _ImagePropFieldModule2.default.container },
+		"div",
+		_extends({ className: "form-group field " + className }, props),
+		_react2.default.Children.count(label) ? _react2.default.createElement(
+			"label",
+			{ className: "form__field-label", htmlFor: labelFor },
+			label
+		) : null,
 		_react2.default.createElement(
 			"div",
-			null,
-			_react2.default.createElement("div", { className: _ImagePropFieldModule2.default.image, style: { backgroundImage: url && "url('" + url + "')", backgroundSize: backgroundSize } })
-		),
-		editable && _react2.default.createElement(
-			"div",
-			{ className: _ImagePropFieldModule2.default.control },
-			_react2.default.createElement(
-				"div",
-				{ className: _ImagePropFieldModule2.default.label },
-				label
-			),
-			linkProp && _react2.default.createElement(
-				"div",
-				null,
-				linkProp.addButton
-			),
-			linkProp && _react2.default.createElement(
-				"div",
-				null,
-				linkProp.removeButton
-			),
-			_react2.default.createElement(
-				"div",
-				null,
-				addButton
-			),
-			_react2.default.createElement(
-				"div",
-				null,
-				removeButton
-			)
+			{ className: "form__field-holder" },
+			children
 		)
 	);
 }
 
 /***/ }),
 
-/***/ "./client/src/components/PageBuilder/form/fields/ImagePropField.module.scss":
+/***/ "./client/src/components/PageBuilder/form/fields/Form/FormSelectField.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.FormSelectField = FormSelectField;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FormButton = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormButton.js");
+
+var _Unstyled = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/index.js");
+
+var _FormFieldGroup = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormFieldGroup.js");
+
+var _useDropdownOpenState3 = __webpack_require__("./client/src/components/PageBuilder/hooks/Internal/useDropdownOpenState.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function FormSelectField(_ref) {
+	var options = _ref.options,
+	    value = _ref.value,
+	    onChange = _ref.onChange,
+	    buttonTitle = _ref.buttonTitle,
+	    _ref$showSelectedTitl = _ref.showSelectedTitle,
+	    showSelectedTitle = _ref$showSelectedTitl === undefined ? true : _ref$showSelectedTitl,
+	    buttonOverwrite = _ref.buttonOverwrite,
+	    _ref$buttonComponent = _ref.buttonComponent,
+	    buttonComponent = _ref$buttonComponent === undefined ? _FormButton.FormButton : _ref$buttonComponent,
+	    _ref$buttonProps = _ref.buttonProps,
+	    buttonProps = _ref$buttonProps === undefined ? {} : _ref$buttonProps,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    onOpen = _ref.onOpen;
+
+	var _useDropdownOpenState = (0, _useDropdownOpenState3.useDropdownOpenState)(onOpen),
+	    _useDropdownOpenState2 = _slicedToArray(_useDropdownOpenState, 2),
+	    dropdownOpen = _useDropdownOpenState2[0],
+	    _onOpen = _useDropdownOpenState2[1];
+
+	if (buttonProps.iconRight === undefined) {
+		buttonProps.iconRight = { iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown" };
+	}
+	var allProps = { options: options, value: value, onChange: onChange, buttonTitle: buttonTitle, showSelectedTitle: showSelectedTitle, buttonOverwrite: buttonOverwrite, buttonComponent: buttonComponent, buttonProps: buttonProps, disabled: disabled, onOpen: _onOpen };
+	return _react2.default.createElement(
+		_FormFieldGroup.FormFieldGroup,
+		null,
+		_react2.default.createElement(_Unstyled.UnstyledSelectField, allProps)
+	);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Form/FormTextField.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.FormTextField = FormTextField;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FormTextFieldModule = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormTextField.module.scss");
+
+var _FormTextFieldModule2 = _interopRequireDefault(_FormTextFieldModule);
+
+var _classnames = __webpack_require__(2);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Unstyled = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function FormTextField(_ref) {
+	var title = _ref.title,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    _ref$className = _ref.className,
+	    className = _ref$className === undefined ? "" : _ref$className,
+	    _ref$labelClassName = _ref.labelClassName,
+	    labelClassName = _ref$labelClassName === undefined ? "" : _ref$labelClassName,
+	    _ref$containerClassNa = _ref.containerClassName,
+	    containerClassName = _ref$containerClassNa === undefined ? "" : _ref$containerClassNa,
+	    _ref$containerInnerCl = _ref.containerInnerClassName,
+	    containerInnerClassName = _ref$containerInnerCl === undefined ? "" : _ref$containerInnerCl,
+	    _ref$style = _ref.style,
+	    style = _ref$style === undefined ? {} : _ref$style,
+	    _ref$labelStyle = _ref.labelStyle,
+	    labelStyle = _ref$labelStyle === undefined ? {} : _ref$labelStyle,
+	    _ref$containerStyle = _ref.containerStyle,
+	    containerStyle = _ref$containerStyle === undefined ? {} : _ref$containerStyle,
+	    _ref$containerInnerSt = _ref.containerInnerStyle,
+	    containerInnerStyle = _ref$containerInnerSt === undefined ? {} : _ref$containerInnerSt,
+	    children = _ref.children,
+	    onChange = _ref.onChange,
+	    id = _ref.id,
+	    _ref$type = _ref.type,
+	    type = _ref$type === undefined ? "text" : _ref$type,
+	    _ref$value = _ref.value,
+	    value = _ref$value === undefined ? "" : _ref$value,
+	    props = _objectWithoutProperties(_ref, ["title", "disabled", "className", "labelClassName", "containerClassName", "containerInnerClassName", "style", "labelStyle", "containerStyle", "containerInnerStyle", "children", "onChange", "id", "type", "value"]);
+
+	var allProps = _extends({
+		title: title, disabled: disabled, children: children, onChange: onChange, id: id, type: type, value: value,
+		style: style, labelStyle: labelStyle, containerStyle: containerStyle, containerInnerStyle: containerInnerStyle
+	}, props, {
+		containerClassName: (0, _classnames2.default)(containerClassName, _FormTextFieldModule2.default.container, "form-group field text"),
+		containerInnerClassName: (0, _classnames2.default)(containerInnerClassName, _FormTextFieldModule2.default.containerInner, "form__field-holder"),
+		labelClassName: (0, _classnames2.default)(labelClassName, _FormTextFieldModule2.default.label, "form__field-label"),
+		className: (0, _classnames2.default)(className, _FormTextFieldModule2.default.field, "text")
+	});
+	return _react2.default.createElement(_Unstyled.UnstyledTextField, allProps);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Form/FormTextField.module.scss":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-module.exports = {"container":"hOeYk6WAecNCMJqiUILp-","image":"_2qicMxOT72h7HVB5SLqlI5","control":"_3RBP641rjFozbT1KWScy9-","label":"_1-0c7NG-0-4eTB7BwXxvhv"};
 
 /***/ }),
 
-/***/ "./client/src/components/PageBuilder/form/fields/TextAreaField.js":
+/***/ "./client/src/components/PageBuilder/form/fields/Form/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _FormButton = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormButton.js");
+
+Object.keys(_FormButton).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _FormButton[key];
+    }
+  });
+});
+
+var _FormDropdownField = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormDropdownField.js");
+
+Object.keys(_FormDropdownField).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _FormDropdownField[key];
+    }
+  });
+});
+
+var _FormFieldGroup = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormFieldGroup.js");
+
+Object.keys(_FormFieldGroup).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _FormFieldGroup[key];
+    }
+  });
+});
+
+var _FormSelectField = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormSelectField.js");
+
+Object.keys(_FormSelectField).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _FormSelectField[key];
+    }
+  });
+});
+
+var _FormTextField = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormTextField.js");
+
+Object.keys(_FormTextField).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _FormTextField[key];
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarButton.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2239,34 +2187,89 @@ module.exports = {"container":"hOeYk6WAecNCMJqiUILp-","image":"_2qicMxOT72h7HVB5
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.TextAreaField = TextAreaField;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.ToolbarButton = ToolbarButton;
 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _FieldHolder = __webpack_require__("./client/src/components/PageBuilder/form/fields/FieldHolder.js");
+var _ToolbarButtonModule = __webpack_require__("./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarButton.module.scss");
+
+var _ToolbarButtonModule2 = _interopRequireDefault(_ToolbarButtonModule);
+
+var _classnames = __webpack_require__(2);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Unstyled = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/index.js");
+
+var _helpers = __webpack_require__("./client/src/components/PageBuilder/form/helpers/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function TextAreaField(_ref) {
-	var _ref$textProp = _ref.textProp,
-	    value = _ref$textProp.value,
-	    onChange = _ref$textProp.onChange,
-	    placeholder = _ref.placeholder,
-	    _ref$editable = _ref.editable,
-	    editable = _ref$editable === undefined ? true : _ref$editable;
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function ToolbarButton(_ref) {
+	var _ref$tooltip = _ref.tooltip,
+	    tooltip = _ref$tooltip === undefined ? "" : _ref$tooltip,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    _ref$active = _ref.active,
+	    active = _ref$active === undefined ? false : _ref$active,
+	    id = _ref.id,
+	    _ref$className = _ref.className,
+	    className = _ref$className === undefined ? "" : _ref$className,
+	    _ref$activeClassName = _ref.activeClassName,
+	    activeClassName = _ref$activeClassName === undefined ? "" : _ref$activeClassName,
+	    _ref$containerClassNa = _ref.containerClassName,
+	    containerClassName = _ref$containerClassNa === undefined ? "" : _ref$containerClassNa,
+	    _ref$containerStyle = _ref.containerStyle,
+	    containerStyle = _ref$containerStyle === undefined ? {} : _ref$containerStyle,
+	    _ref$style = _ref.style,
+	    style = _ref$style === undefined ? {} : _ref$style,
+	    children = _ref.children,
+	    _ref$iconLeft = _ref.iconLeft,
+	    iconLeft = _ref$iconLeft === undefined ? {} : _ref$iconLeft,
+	    _ref$iconRight = _ref.iconRight,
+	    iconRight = _ref$iconRight === undefined ? {} : _ref$iconRight,
+	    onClick = _ref.onClick,
+	    props = _objectWithoutProperties(_ref, ["tooltip", "disabled", "active", "id", "className", "activeClassName", "containerClassName", "containerStyle", "style", "children", "iconLeft", "iconRight", "onClick"]);
+
+	var allProps = _extends({
+		tooltip: tooltip, disabled: disabled, active: active, id: id, containerClassName: containerClassName, containerStyle: containerStyle, style: style, onClick: onClick
+	}, props, {
+		className: (0, _classnames2.default)(className, _ToolbarButtonModule2.default.button, _defineProperty({}, _ToolbarButtonModule2.default.hasText, _react2.default.Children.count(children))),
+		activeClassName: (0, _classnames2.default)(activeClassName, _ToolbarButtonModule2.default.active)
+	});
+	iconLeft.className = (0, _classnames2.default)(iconLeft.className, _ToolbarButtonModule2.default.icon);
+	iconRight.className = (0, _classnames2.default)(iconLeft.className, _ToolbarButtonModule2.default.icon);
 	return _react2.default.createElement(
-		_FieldHolder.FieldHolder,
-		null,
-		_react2.default.createElement("textarea", { placeholder: placeholder, value: value, onChange: onChange, className: "text", disabled: !editable })
+		"span",
+		{ className: containerClassName, style: containerStyle },
+		_react2.default.createElement(
+			_Unstyled.UnstyledButton,
+			allProps,
+			_react2.default.createElement(_helpers.TitleWithIcon, { children: children, iconLeft: iconLeft, iconRight: iconRight })
+		)
 	);
 }
 
 /***/ }),
 
-/***/ "./client/src/components/PageBuilder/form/fields/TextField.js":
+/***/ "./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarButton.module.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"button":"_3QjvLhVOv1gp86zkLAl2o9","hasText":"_2AxVJSVpZ5W7kD3pGTeese","active":"_2k_pQdEFTnnib3NqPIltSj","icon":"_2MIPVTaWGKwsj--A8LVETq","title":"_1H0OA9aiS9iUD2_6V6EukE"};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarDropdownField.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2275,30 +2278,831 @@ function TextAreaField(_ref) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.TextField = TextField;
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.ToolbarDropdownField = ToolbarDropdownField;
 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _FieldHolder = __webpack_require__("./client/src/components/PageBuilder/form/fields/FieldHolder.js");
+var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarButton.js");
+
+var _Unstyled = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/index.js");
+
+var _useDropdownOpenState3 = __webpack_require__("./client/src/components/PageBuilder/hooks/Internal/useDropdownOpenState.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function TextField(_ref) {
-	var _ref$textProp = _ref.textProp,
-	    value = _ref$textProp.value,
-	    onChange = _ref$textProp.onChange,
-	    placeholder = _ref.placeholder,
-	    _ref$editable = _ref.editable,
-	    editable = _ref$editable === undefined ? true : _ref$editable;
+function ToolbarDropdownField(_ref) {
+	var buttonOverwrite = _ref.buttonOverwrite,
+	    _ref$buttonComponent = _ref.buttonComponent,
+	    buttonComponent = _ref$buttonComponent === undefined ? _ToolbarButton.ToolbarButton : _ref$buttonComponent,
+	    _ref$buttonProps = _ref.buttonProps,
+	    buttonProps = _ref$buttonProps === undefined ? {} : _ref$buttonProps,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    children = _ref.children,
+	    onOpen = _ref.onOpen;
 
+	var _useDropdownOpenState = (0, _useDropdownOpenState3.useDropdownOpenState)(onOpen),
+	    _useDropdownOpenState2 = _slicedToArray(_useDropdownOpenState, 2),
+	    dropdownOpen = _useDropdownOpenState2[0],
+	    _onOpen = _useDropdownOpenState2[1];
+
+	if (buttonProps.iconRight === undefined) {
+		buttonProps.iconRight = { iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown" };
+	}
+	var allProps = { buttonOverwrite: buttonOverwrite, buttonComponent: buttonComponent, buttonProps: buttonProps, disabled: disabled, children: children, onOpen: _onOpen };
+	return _react2.default.createElement(_Unstyled.UnstyledDropdownField, allProps);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarSelectField.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.ToolbarSelectField = ToolbarSelectField;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarButton.js");
+
+var _Unstyled = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/index.js");
+
+var _useDropdownOpenState3 = __webpack_require__("./client/src/components/PageBuilder/hooks/Internal/useDropdownOpenState.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ToolbarSelectField(_ref) {
+	var options = _ref.options,
+	    value = _ref.value,
+	    onChange = _ref.onChange,
+	    buttonTitle = _ref.buttonTitle,
+	    _ref$showSelectedTitl = _ref.showSelectedTitle,
+	    showSelectedTitle = _ref$showSelectedTitl === undefined ? true : _ref$showSelectedTitl,
+	    buttonOverwrite = _ref.buttonOverwrite,
+	    _ref$buttonComponent = _ref.buttonComponent,
+	    buttonComponent = _ref$buttonComponent === undefined ? _ToolbarButton.ToolbarButton : _ref$buttonComponent,
+	    _ref$buttonProps = _ref.buttonProps,
+	    buttonProps = _ref$buttonProps === undefined ? {} : _ref$buttonProps,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    onOpen = _ref.onOpen;
+
+	var _useDropdownOpenState = (0, _useDropdownOpenState3.useDropdownOpenState)(onOpen),
+	    _useDropdownOpenState2 = _slicedToArray(_useDropdownOpenState, 2),
+	    dropdownOpen = _useDropdownOpenState2[0],
+	    _onOpen = _useDropdownOpenState2[1];
+
+	if (buttonProps.iconRight === undefined) {
+		buttonProps.iconRight = { iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown" };
+	}
+	var allProps = { options: options, value: value, onChange: onChange, buttonTitle: buttonTitle, showSelectedTitle: showSelectedTitle, buttonOverwrite: buttonOverwrite, buttonComponent: buttonComponent, buttonProps: buttonProps, disabled: disabled, onOpen: _onOpen };
+	return _react2.default.createElement(_Unstyled.UnstyledSelectField, allProps);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarSeparator.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.ToolbarSeparator = undefined;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ToolbarSeparatorModule = __webpack_require__("./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarSeparator.module.scss");
+
+var _ToolbarSeparatorModule2 = _interopRequireDefault(_ToolbarSeparatorModule);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ToolbarSeparator = exports.ToolbarSeparator = function ToolbarSeparator() {
+	return _react2.default.createElement("span", { className: _ToolbarSeparatorModule2.default.separator });
+};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarSeparator.module.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"separator":"_3_twmUwaogZLs3OiouIChV"};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarTextField.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.ToolbarTextField = ToolbarTextField;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ToolbarTextFieldModule = __webpack_require__("./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarTextField.module.scss");
+
+var _ToolbarTextFieldModule2 = _interopRequireDefault(_ToolbarTextFieldModule);
+
+var _classnames = __webpack_require__(2);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Unstyled = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function ToolbarTextField(_ref) {
+	var title = _ref.title,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    _ref$className = _ref.className,
+	    className = _ref$className === undefined ? "" : _ref$className,
+	    _ref$containerClassNa = _ref.containerClassName,
+	    containerClassName = _ref$containerClassNa === undefined ? "" : _ref$containerClassNa,
+	    _ref$labelClassName = _ref.labelClassName,
+	    labelClassName = _ref$labelClassName === undefined ? "" : _ref$labelClassName,
+	    _ref$style = _ref.style,
+	    style = _ref$style === undefined ? {} : _ref$style,
+	    _ref$containerStyle = _ref.containerStyle,
+	    containerStyle = _ref$containerStyle === undefined ? {} : _ref$containerStyle,
+	    _ref$labelStyle = _ref.labelStyle,
+	    labelStyle = _ref$labelStyle === undefined ? {} : _ref$labelStyle,
+	    children = _ref.children,
+	    onChange = _ref.onChange,
+	    id = _ref.id,
+	    _ref$type = _ref.type,
+	    type = _ref$type === undefined ? "text" : _ref$type,
+	    _ref$value = _ref.value,
+	    value = _ref$value === undefined ? "" : _ref$value,
+	    props = _objectWithoutProperties(_ref, ["title", "disabled", "className", "containerClassName", "labelClassName", "style", "containerStyle", "labelStyle", "children", "onChange", "id", "type", "value"]);
+
+	var allProps = _extends({
+		title: title, disabled: disabled, containerStyle: containerStyle, style: style, children: children, onChange: onChange, id: id, type: type, value: value, labelStyle: labelStyle
+	}, props, {
+		containerClassName: (0, _classnames2.default)(containerClassName, _ToolbarTextFieldModule2.default.fieldHolder),
+		labelClassName: (0, _classnames2.default)(labelClassName, _ToolbarTextFieldModule2.default.label),
+		className: (0, _classnames2.default)(className, _ToolbarTextFieldModule2.default.field)
+	});
+	return _react2.default.createElement(_Unstyled.UnstyledTextField, allProps);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarTextField.module.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+module.exports = {"fieldHolder":"_1myqr1ymQCmICQjx9MszfS","label":"_3GX2XEEEZ_jYgC_wul9KGm","field":"_39FYG08caTlbNVI8rCSR3v"};
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Toolbar/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarButton.js");
+
+Object.keys(_ToolbarButton).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarButton[key];
+    }
+  });
+});
+
+var _ToolbarDropdownField = __webpack_require__("./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarDropdownField.js");
+
+Object.keys(_ToolbarDropdownField).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarDropdownField[key];
+    }
+  });
+});
+
+var _ToolbarSelectField = __webpack_require__("./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarSelectField.js");
+
+Object.keys(_ToolbarSelectField).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarSelectField[key];
+    }
+  });
+});
+
+var _ToolbarSeparator = __webpack_require__("./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarSeparator.js");
+
+Object.keys(_ToolbarSeparator).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarSeparator[key];
+    }
+  });
+});
+
+var _ToolbarTextField = __webpack_require__("./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarTextField.js");
+
+Object.keys(_ToolbarTextField).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarTextField[key];
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledButton.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.UnstyledButton = UnstyledButton;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
+
+var _reactstrap = __webpack_require__(3);
+
+var _classnames = __webpack_require__(2);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function UnstyledButton(_ref) {
+	var _classNames;
+
+	var _ref$tooltip = _ref.tooltip,
+	    tooltip = _ref$tooltip === undefined ? "" : _ref$tooltip,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    _ref$active = _ref.active,
+	    active = _ref$active === undefined ? false : _ref$active,
+	    id = _ref.id,
+	    _ref$className = _ref.className,
+	    className = _ref$className === undefined ? "" : _ref$className,
+	    _ref$activeClassName = _ref.activeClassName,
+	    activeClassName = _ref$activeClassName === undefined ? "" : _ref$activeClassName,
+	    _ref$notActiveClassNa = _ref.notActiveClassName,
+	    notActiveClassName = _ref$notActiveClassNa === undefined ? "" : _ref$notActiveClassNa,
+	    _ref$style = _ref.style,
+	    style = _ref$style === undefined ? {} : _ref$style,
+	    children = _ref.children,
+	    onClick = _ref.onClick,
+	    props = _objectWithoutProperties(_ref, ["tooltip", "disabled", "active", "id", "className", "activeClassName", "notActiveClassName", "style", "children", "onClick"]);
+
+	var _id = (0, _utility.useUniqueId)();
+	id = id || _id;
+
+	var _React$useState = _react2.default.useState(false),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    tooltipOpen = _React$useState2[0],
+	    setTooltipOpen = _React$useState2[1];
+
+	var toggleTooltip = _react2.default.useCallback(function () {
+		return setTooltipOpen(function (_value) {
+			return !_value;
+		});
+	}, []);
+	var onMouseDown = _react2.default.useCallback(function (e) {
+		return e.preventDefault();
+	}, []);
+	var refTimeout = _react2.default.useRef();
+	_react2.default.useEffect(function () {
+		if (tooltipOpen) {
+			if (refTimeout.current) {
+				clearTimeout(refTimeout.current);
+			}
+			refTimeout.current = setTimeout(function () {
+				return setTooltipOpen(false);
+			}, 3000);
+		} else {
+			if (refTimeout.current) {
+				clearTimeout(refTimeout.current);
+			}
+		}
+	}, [tooltipOpen]);
 	return _react2.default.createElement(
-		_FieldHolder.FieldHolder,
+		_react2.default.Fragment,
 		null,
-		_react2.default.createElement("input", { placeholder: placeholder, type: "text", value: value, onChange: onChange, className: "text", disabled: !editable })
+		_react2.default.createElement(
+			"button",
+			_extends({ onMouseDown: onMouseDown }, props, { id: id, disabled: disabled, className: (0, _classnames2.default)(className, (_classNames = {}, _defineProperty(_classNames, activeClassName, active), _defineProperty(_classNames, notActiveClassName, !active), _classNames)), style: style, onClick: onClick }),
+			children
+		),
+		id && tooltip ? _react2.default.createElement(
+			_reactstrap.Tooltip,
+			{ placement: "bottom", isOpen: tooltipOpen, target: id, toggle: toggleTooltip },
+			tooltip
+		) : null
 	);
 }
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledDropdownField.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.UnstyledDropdownField = UnstyledDropdownField;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactstrap = __webpack_require__(3);
+
+var _UnstyledButton = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledButton.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function UnstyledDropdownField(_ref) {
+	var buttonOverwrite = _ref.buttonOverwrite,
+	    _ref$buttonComponent = _ref.buttonComponent,
+	    buttonComponent = _ref$buttonComponent === undefined ? _UnstyledButton.UnstyledButton : _ref$buttonComponent,
+	    _ref$buttonProps = _ref.buttonProps,
+	    buttonProps = _ref$buttonProps === undefined ? {} : _ref$buttonProps,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    children = _ref.children,
+	    onOpen = _ref.onOpen;
+
+	var _React$useState = _react2.default.useState(false),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    dropdownOpen = _React$useState2[0],
+	    _setDropdownOpen = _React$useState2[1];
+
+	var setDropdownOpen = _react2.default.useCallback(function (newState) {
+		_setDropdownOpen(newState);
+		onOpen && onOpen(newState);
+	}, []);
+	var toggle = _react2.default.useCallback(function () {
+		return setDropdownOpen(function (prevState) {
+			return !prevState;
+		});
+	}, []);
+	buttonProps.disabled = disabled;
+	buttonProps.active = dropdownOpen;
+	return _react2.default.createElement(
+		_reactstrap.Dropdown,
+		{ isOpen: dropdownOpen, toggle: toggle },
+		_react2.default.createElement(
+			_reactstrap.DropdownToggle,
+			{ tag: "span" },
+			buttonOverwrite || _react2.default.createElement(buttonComponent, buttonProps)
+		),
+		_react2.default.createElement(
+			_reactstrap.DropdownMenu,
+			null,
+			children
+		)
+	);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledSelectField.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.UnstyledSelectItem = UnstyledSelectItem;
+exports.UnstyledSelectField = UnstyledSelectField;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(2);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _reactstrap = __webpack_require__(3);
+
+var _UnstyledDropdownField = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledDropdownField.js");
+
+var _UnstyledButton = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledButton.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function UnstyledSelectItem(_ref) {
+	var onClick = _ref.onClick,
+	    onChange = _ref.onChange,
+	    children = _ref.children,
+	    _ref$className = _ref.className,
+	    className = _ref$className === undefined ? "" : _ref$className,
+	    _ref$active = _ref.active,
+	    active = _ref$active === undefined ? false : _ref$active,
+	    _ref$activeClassName = _ref.activeClassName,
+	    activeClassName = _ref$activeClassName === undefined ? "" : _ref$activeClassName,
+	    _ref$style = _ref.style,
+	    style = _ref$style === undefined ? {} : _ref$style,
+	    value = _ref.value,
+	    props = _objectWithoutProperties(_ref, ["onClick", "onChange", "children", "className", "active", "activeClassName", "style", "value"]);
+
+	var onMouseDown = _react2.default.useCallback(function (e) {
+		return e.preventDefault();
+	}, []);
+	var _onClick = _react2.default.useCallback(function (e) {
+		e.preventDefault();
+		typeof onClick === "function" && onClick(e);
+		onChange(e, value);
+	}, [value]);
+	return _react2.default.createElement(
+		_reactstrap.DropdownItem,
+		_extends({}, props, { value: value, style: style, className: (0, _classnames2.default)(className, _defineProperty({}, activeClassName, active)), onMouseDown: onMouseDown, onClick: _onClick }),
+		children
+	);
+}
+
+function UnstyledSelectField(_ref2) {
+	var options = _ref2.options,
+	    value = _ref2.value,
+	    onChange = _ref2.onChange,
+	    buttonTitle = _ref2.buttonTitle,
+	    _ref2$showSelectedTit = _ref2.showSelectedTitle,
+	    showSelectedTitle = _ref2$showSelectedTit === undefined ? true : _ref2$showSelectedTit,
+	    buttonOverwrite = _ref2.buttonOverwrite,
+	    _ref2$buttonComponent = _ref2.buttonComponent,
+	    buttonComponent = _ref2$buttonComponent === undefined ? _UnstyledButton.UnstyledButton : _ref2$buttonComponent,
+	    _ref2$buttonProps = _ref2.buttonProps,
+	    buttonProps = _ref2$buttonProps === undefined ? {} : _ref2$buttonProps,
+	    _ref2$disabled = _ref2.disabled,
+	    disabled = _ref2$disabled === undefined ? false : _ref2$disabled,
+	    onOpen = _ref2.onOpen,
+	    props = _objectWithoutProperties(_ref2, ["options", "value", "onChange", "buttonTitle", "showSelectedTitle", "buttonOverwrite", "buttonComponent", "buttonProps", "disabled", "onOpen"]);
+
+	var selected = options.find(function (_ref3) {
+		var _value = _ref3.value;
+		return value === _value;
+	}) || {};
+	buttonProps.children = showSelectedTitle && selected.children ? selected.children : buttonTitle;
+	return _react2.default.createElement(
+		_UnstyledDropdownField.UnstyledDropdownField,
+		{ buttonOverwrite: buttonOverwrite, buttonComponent: buttonComponent, buttonProps: buttonProps, disabled: disabled, onOpen: onOpen, props: props },
+		options && options.map(function (option) {
+			return _react2.default.createElement(UnstyledSelectItem, _extends({}, option, { active: option.value === value, onChange: onChange }));
+		})
+	);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledTextField.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.UnstyledTextField = UnstyledTextField;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function UnstyledTextField(_ref) {
+	var title = _ref.title,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    _ref$className = _ref.className,
+	    className = _ref$className === undefined ? "" : _ref$className,
+	    _ref$labelClassName = _ref.labelClassName,
+	    labelClassName = _ref$labelClassName === undefined ? "" : _ref$labelClassName,
+	    _ref$containerClassNa = _ref.containerClassName,
+	    containerClassName = _ref$containerClassNa === undefined ? "" : _ref$containerClassNa,
+	    _ref$containerInnerCl = _ref.containerInnerClassName,
+	    containerInnerClassName = _ref$containerInnerCl === undefined ? "" : _ref$containerInnerCl,
+	    _ref$style = _ref.style,
+	    style = _ref$style === undefined ? {} : _ref$style,
+	    _ref$labelStyle = _ref.labelStyle,
+	    labelStyle = _ref$labelStyle === undefined ? {} : _ref$labelStyle,
+	    _ref$containerStyle = _ref.containerStyle,
+	    containerStyle = _ref$containerStyle === undefined ? {} : _ref$containerStyle,
+	    _ref$containerInnerSt = _ref.containerInnerStyle,
+	    containerInnerStyle = _ref$containerInnerSt === undefined ? {} : _ref$containerInnerSt,
+	    children = _ref.children,
+	    childrenBefore = _ref.childrenBefore,
+	    childrenAfter = _ref.childrenAfter,
+	    onChange = _ref.onChange,
+	    id = _ref.id,
+	    _ref$type = _ref.type,
+	    type = _ref$type === undefined ? "text" : _ref$type,
+	    _ref$value = _ref.value,
+	    value = _ref$value === undefined ? "" : _ref$value,
+	    props = _objectWithoutProperties(_ref, ["title", "disabled", "className", "labelClassName", "containerClassName", "containerInnerClassName", "style", "labelStyle", "containerStyle", "containerInnerStyle", "children", "childrenBefore", "childrenAfter", "onChange", "id", "type", "value"]);
+
+	var _id = (0, _utility.useUniqueId)();
+	id = id || _id;
+	return _react2.default.createElement(
+		"span",
+		{ className: containerClassName, style: containerStyle },
+		title ? _react2.default.createElement(
+			"label",
+			{ htmlFor: id, className: labelClassName, style: labelStyle },
+			title
+		) : null,
+		childrenBefore,
+		_react2.default.createElement(
+			"div",
+			{ className: containerInnerClassName, style: containerInnerStyle },
+			_react2.default.createElement("input", _extends({}, props, { type: type, id: id, disabled: disabled, className: className, style: style, onChange: onChange, value: value })),
+			children
+		),
+		childrenAfter
+	);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Unstyled/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _UnstyledButton = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledButton.js");
+
+Object.keys(_UnstyledButton).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _UnstyledButton[key];
+    }
+  });
+});
+
+var _UnstyledDropdownField = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledDropdownField.js");
+
+Object.keys(_UnstyledDropdownField).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _UnstyledDropdownField[key];
+    }
+  });
+});
+
+var _UnstyledSelectField = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledSelectField.js");
+
+Object.keys(_UnstyledSelectField).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _UnstyledSelectField[key];
+    }
+  });
+});
+
+var _UnstyledTextField = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledTextField.js");
+
+Object.keys(_UnstyledTextField).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _UnstyledTextField[key];
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Form = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/index.js");
+
+Object.keys(_Form).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _Form[key];
+    }
+  });
+});
+
+var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/form/fields/Toolbar/index.js");
+
+Object.keys(_Toolbar).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _Toolbar[key];
+    }
+  });
+});
+
+var _Unstyled = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/index.js");
+
+Object.keys(_Unstyled).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _Unstyled[key];
+    }
+  });
+});
+
+var _FieldColumns = __webpack_require__("./client/src/components/PageBuilder/form/fields/FieldColumns.js");
+
+Object.keys(_FieldColumns).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _FieldColumns[key];
+    }
+  });
+});
+
+var _FieldHolder = __webpack_require__("./client/src/components/PageBuilder/form/fields/FieldHolder.js");
+
+Object.keys(_FieldHolder).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _FieldHolder[key];
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/helpers/TitleWithIcon.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.TitleWithIcon = TitleWithIcon;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function TitleWithIcon(_ref) {
+	var children = _ref.children,
+	    iconLeft = _ref.iconLeft,
+	    iconRight = _ref.iconRight,
+	    className = _ref.className;
+
+	return _react2.default.createElement(
+		_react2.default.Fragment,
+		null,
+		iconLeft && iconLeft.iconName ? _react2.default.createElement(_utility.Icon, iconLeft) : null,
+		_react2.default.Children.count(children) ? _react2.default.createElement(
+			"span",
+			{ className: className },
+			children
+		) : null,
+		iconRight && iconRight.iconName ? _react2.default.createElement(_utility.Icon, iconRight) : null
+	);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/helpers/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _TitleWithIcon = __webpack_require__("./client/src/components/PageBuilder/form/helpers/TitleWithIcon.js");
+
+Object.keys(_TitleWithIcon).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _TitleWithIcon[key];
+    }
+  });
+});
 
 /***/ }),
 
@@ -2324,117 +3128,21 @@ Object.keys(_AddNewButton).forEach(function (key) {
   });
 });
 
-var _ImagePropField = __webpack_require__("./client/src/components/PageBuilder/form/fields/ImagePropField.js");
+var _fields = __webpack_require__("./client/src/components/PageBuilder/form/fields/index.js");
 
-Object.keys(_ImagePropField).forEach(function (key) {
+Object.keys(_fields).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _ImagePropField[key];
-    }
-  });
-});
-
-var _TextField = __webpack_require__("./client/src/components/PageBuilder/form/fields/TextField.js");
-
-Object.keys(_TextField).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _TextField[key];
-    }
-  });
-});
-
-var _TextAreaField = __webpack_require__("./client/src/components/PageBuilder/form/fields/TextAreaField.js");
-
-Object.keys(_TextAreaField).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _TextAreaField[key];
-    }
-  });
-});
-
-var _ButtonField = __webpack_require__("./client/src/components/PageBuilder/form/fields/ButtonField.js");
-
-Object.keys(_ButtonField).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ButtonField[key];
-    }
-  });
-});
-
-var _FieldColumns = __webpack_require__("./client/src/components/PageBuilder/form/fields/FieldColumns.js");
-
-Object.keys(_FieldColumns).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _FieldColumns[key];
-    }
-  });
-});
-
-var _ToolbarButton = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarButton.js");
-
-Object.keys(_ToolbarButton).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarButton[key];
-    }
-  });
-});
-
-var _ToolbarDropdown = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarDropdown.js");
-
-Object.keys(_ToolbarDropdown).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarDropdown[key];
-    }
-  });
-});
-
-var _ToolbarSelect = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarSelect.js");
-
-Object.keys(_ToolbarSelect).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarSelect[key];
-    }
-  });
-});
-
-var _ToolbarSeparator = __webpack_require__("./client/src/components/PageBuilder/form/ToolbarSeparator.js");
-
-Object.keys(_ToolbarSeparator).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _ToolbarSeparator[key];
+      return _fields[key];
     }
   });
 });
 
 /***/ }),
 
-/***/ "./client/src/components/PageBuilder/hooks/useElementPropFile.js":
+/***/ "./client/src/components/PageBuilder/hooks/ElementProp/useElementPropBoolean.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2443,438 +3151,7 @@ Object.keys(_ToolbarSeparator).forEach(function (key) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-exports.useElementPropFile = useElementPropFile;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _core = __webpack_require__(1);
-
-var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
-
-var _LinkModals = __webpack_require__("./client/src/components/LinkModals.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function useElementPropFile(propName, value) {
-	var _useNode = (0, _core.useNode)(),
-	    setProp = _useNode.actions.setProp;
-
-	var _React$useState = _react2.default.useState(false),
-	    _React$useState2 = _slicedToArray(_React$useState, 2),
-	    isOpen = _React$useState2[0],
-	    setIsOpen = _React$useState2[1];
-
-	var add = _react2.default.useCallback(function () {
-		setIsOpen(true);
-	}, [propName]);
-	var remove = _react2.default.useCallback(function () {
-		setProp(function (_props) {
-			_props[propName] = null;
-		});
-	}, [propName]);
-	var onInsert = _react2.default.useCallback(function (data, file) {
-		delete data.SecurityID;
-		delete data["action_insert"];
-		delete data.AssetEditorHeaderFieldGroup;
-		delete data.TitleHeader;
-		delete data.Editor;
-		delete data.FileSpecs;
-		setProp(function (_props) {
-			_props[propName] = { data: data, file: file };
-		});
-		setIsOpen(false);
-	}, [propName]);
-	var onClosed = _react2.default.useCallback(function () {
-		return setIsOpen(false);
-	}, [propName]);
-	var hasValue = !!(value && _typeof(value.data) === "object" && _typeof(value.file) === "object");
-	var _value = hasValue ? value : {};
-	return {
-		value: _value,
-		hasValue: hasValue,
-		url: hasValue ? _value.file.thumbnail : null,
-		addButton: _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiFolder", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropFile.Add"), onClick: add }),
-		removeButton: _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiFolderRemove", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropFile.Remove"), onClick: remove, disabled: !hasValue }),
-		popup: _react2.default.createElement(_LinkModals.EmbedModalFile, { onInsert: onInsert, onClosed: onClosed, isOpen: isOpen, fileAttributes: _value }),
-		addHandler: add,
-		removeHandler: remove
-	};
-}
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/hooks/useElementPropImage.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-exports.useElementPropImage = useElementPropImage;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _core = __webpack_require__(1);
-
-var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
-
-var _LinkModals = __webpack_require__("./client/src/components/LinkModals.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function useElementPropImage(propName, value) {
-	var _useNode = (0, _core.useNode)(),
-	    setProp = _useNode.actions.setProp;
-
-	var _React$useState = _react2.default.useState(false),
-	    _React$useState2 = _slicedToArray(_React$useState, 2),
-	    isOpen = _React$useState2[0],
-	    setIsOpen = _React$useState2[1];
-
-	var add = _react2.default.useCallback(function () {
-		setIsOpen(true);
-	}, []);
-	var remove = _react2.default.useCallback(function () {
-		setProp(function (_props) {
-			_props[propName] = null;
-		});
-	}, []);
-	var onInsert = _react2.default.useCallback(function (data, file) {
-		delete data.SecurityID;
-		delete data["action_insert"];
-		delete data.AssetEditorHeaderFieldGroup;
-		delete data.TitleHeader;
-		delete data.Editor;
-		delete data.FileSpecs;
-		setProp(function (_props) {
-			_props[propName] = { data: data, file: file };
-		});
-		setIsOpen(false);
-	}, []);
-	var onClosed = _react2.default.useCallback(function () {
-		return setIsOpen(false);
-	}, []);
-	var hasValue = !!(value && _typeof(value.data) === "object" && _typeof(value.file) === "object");
-	var _value = hasValue ? value : {};
-	return {
-		value: _value,
-		hasValue: hasValue,
-		url: hasValue ? _value.file.thumbnail : null,
-
-		addButton: _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiImage", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Add"), onClick: add }),
-		removeButton: _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiImageMinus", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropImage.Remove"), onClick: remove, disabled: !hasValue }),
-		popup: _react2.default.createElement(_LinkModals.EmbedModalImage, { onInsert: onInsert, onClosed: onClosed, isOpen: isOpen, fileAttributes: _value }),
-		addHandler: add,
-		removeHandler: remove
-	};
-}
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/hooks/useElementPropLink.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-exports.useElementPropLinkTypes = useElementPropLinkTypes;
-exports.useElementPropLinkInsertCallback = useElementPropLinkInsertCallback;
-exports.useElementPropLink = useElementPropLink;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _core = __webpack_require__(1);
-
-var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
-
-var _LinkModals = __webpack_require__("./client/src/components/LinkModals.js");
-
-var _reactstrap = __webpack_require__(2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function useElementPropLinkTypes() {
-	return _react2.default.useMemo(function () {
-		return [{
-			id: "Internal",
-			title: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLinkInternal"),
-			component: _LinkModals.LinkModalInternal
-		}, {
-			id: "External",
-			title: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLinkExternal"),
-			component: _LinkModals.LinkModalExternal
-		}, {
-			id: "Email",
-			title: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLinkEmail"),
-			component: _LinkModals.LinkModalEmail
-		}, {
-			id: "File",
-			title: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLinkFile"),
-			component: _LinkModals.LinkModalFile
-		}];
-	}, []);
-}
-
-function useElementPropLinkInsertCallback(callback, linkType, deps) {
-	return _react2.default.useCallback(function (data, file) {
-		delete data.SecurityID;
-		delete data["action_insert"];
-		delete data.AssetEditorHeaderFieldGroup;
-		delete data.TitleHeader;
-		delete data.Editor;
-		delete data.FileSpecs;
-
-		callback({ linkType: linkType, data: data, file: linkType === "File" && (typeof file === "undefined" ? "undefined" : _typeof(file)) === "object" ? { url: file.url } : {} });
-	}, [linkType].concat(_toConsumableArray(deps)));
-}
-
-function useElementPropLink(propName, value) {
-	var _useNode = (0, _core.useNode)(),
-	    setProp = _useNode.actions.setProp;
-
-	var linkTypes = useElementPropLinkTypes();
-
-	var _React$useState = _react2.default.useState(""),
-	    _React$useState2 = _slicedToArray(_React$useState, 2),
-	    openModalId = _React$useState2[0],
-	    setOpenModalId = _React$useState2[1];
-
-	var addLink = _react2.default.useCallback(function (e) {
-		setOpenModalId(e.target.dataset.modalid);
-	}, []);
-	var removeLink = _react2.default.useCallback(function () {
-		setProp(function (_props) {
-			_props[propName] = null;
-		});
-	}, []);
-	var onInsert = useElementPropLinkInsertCallback(function (linkData) {
-		setProp(function (_props) {
-			_props[propName] = linkData;
-		});
-		setOpenModalId("");
-	}, openModalId, []);
-	var onClosed = _react2.default.useCallback(function () {
-		return setOpenModalId("");
-	}, []);
-	var hasValue = !!(value && (typeof value === "undefined" ? "undefined" : _typeof(value)) === "object");
-	var _value = hasValue ? value : {};
-	return {
-		value: _value,
-		hasValue: hasValue,
-		url: _value.url || null,
-		addButton: _react2.default.createElement(
-			_form.ToolbarDropdown,
-			{ tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLink"), iconName: "mdiLink" },
-			linkTypes.map(function (_ref) {
-				var title = _ref.title,
-				    id = _ref.id;
-				return _react2.default.createElement(
-					_reactstrap.DropdownItem,
-					{ "data-modalid": id, onClick: addLink, style: { padding: "0 10px" } },
-					title
-				);
-			})
-		),
-		removeButton: _react2.default.createElement(_form.ToolbarButton, { iconName: "mdiLinkOff", tooltip: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.RemoveLink"), onClick: removeLink, disabled: !hasValue }),
-		popup: _react2.default.createElement(
-			_react2.default.Fragment,
-			null,
-			linkTypes.map(function (_ref2) {
-				var id = _ref2.id,
-				    component = _ref2.component;
-				return _react2.default.createElement(component, { key: id, fileAttributes: _value, onInsert: onInsert, onClosed: onClosed, isOpen: openModalId === id });
-			})
-		),
-		addHandler: addLink,
-		removeHandler: removeLink
-	};
-}
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/hooks/useElementPropList.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports.useElementPropList = useElementPropList;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _core = __webpack_require__(1);
-
-var _useElementPropLink = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropLink.js");
-
-var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-function useElementPropList(propName, value, defaultItem) {
-	var _useNode = (0, _core.useNode)(),
-	    setProp = _useNode.actions.setProp;
-
-	var clearHandler = _react2.default.useCallback(function () {
-		setProp(function (_props) {
-			_props[propName] = [];
-		});
-	}, [propName]);
-	var removeHandler = _react2.default.useCallback(function (e) {
-		var index = e.target.dataset.itemindex;
-		setProp(function (_props) {
-			var newValue = JSON.parse(JSON.stringify(_props[propName]));
-			newValue.splice(index, 1);
-			_props[propName] = newValue;
-		});
-	}, [propName]);
-	var addHandler = _react2.default.useCallback(function () {
-		setProp(function (_props) {
-			var newValue = [];
-			if (_props[propName] && Array.isArray(_props[propName])) {
-				newValue = JSON.parse(JSON.stringify(_props[propName]));
-			}
-			newValue.push(JSON.parse(JSON.stringify(defaultItem)));
-			_props[propName] = newValue;
-		});
-	}, [propName]);
-	var itemChangeHandler = _react2.default.useCallback(function (index, value) {
-		setProp(function (_props) {
-			var newValue = JSON.parse(JSON.stringify(_props[propName]));
-			console.log({ newValue: newValue });
-			newValue[index] = value;
-			_props[propName] = newValue;
-		});
-	}, [propName]);
-	var hasValue = value && Array.isArray(value) && value.length;
-	var _value = hasValue ? value : [];
-	return {
-		value: _value,
-		hasValue: hasValue,
-		addHandler: addHandler,
-		clearHandler: clearHandler,
-		removeHandler: removeHandler,
-		itemChangeHandler: itemChangeHandler,
-		withAddHandler: function withAddHandler(Component) {
-			return function (_ref) {
-				var props = _objectWithoutProperties(_ref, []);
-
-				return _react2.default.createElement(Component, _extends({}, props, { onClick: addHandler }));
-			};
-		},
-		withClearHandler: function withClearHandler(Component) {
-			return function (_ref2) {
-				var props = _objectWithoutProperties(_ref2, []);
-
-				return _react2.default.createElement(Component, _extends({}, props, { onClick: clearHandler }));
-			};
-		},
-		withRemoveHandler: function withRemoveHandler(Component, index) {
-			return function (_ref3) {
-				var props = _objectWithoutProperties(_ref3, []);
-
-				return _react2.default.createElement(Component, _extends({}, props, { onClick: removeHandler, "data-itemindex": index, disabled: !hasValue }));
-			};
-		}
-
-	};
-}
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/hooks/useElementPropSelectDropdown.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports.useElementPropSelectDropdown = useElementPropSelectDropdown;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _core = __webpack_require__(1);
-
-var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function useElementPropSelectDropdown(propName, value, options, buttonProps) {
-	var _useNode = (0, _core.useNode)(),
-	    setProp = _useNode.actions.setProp;
-
-	var onChange = _react2.default.useCallback(function (newValue) {
-		if (value !== newValue) {
-			setProp(function (_props) {
-				_props[propName] = newValue;
-			});
-		}
-	}, [value]);
-	return {
-		value: options.find(function (obj) {
-			return obj.value === value;
-		}) || { pageBuilderStyle: {} },
-		button: _react2.default.createElement(_form.ToolbarSelect, _extends({}, buttonProps, { value: value, onChange: onChange, options: options })),
-		changeHandler: onChange
-	};
-}
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/hooks/useElementPropText.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.useElementPropText = useElementPropText;
+exports.useElementPropBoolean = useElementPropBoolean;
 
 var _react = __webpack_require__(0);
 
@@ -2884,63 +3161,189 @@ var _core = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function useElementPropText(propName, value) {
+function useElementPropBoolean(props, propName) {
+	var value = !!props[propName];
+
 	var _useNode = (0, _core.useNode)(),
 	    setProp = _useNode.actions.setProp;
 
-	var onChange = _react2.default.useCallback(function (e) {
-		var val = e.target.value;
-		setProp(function (_props) {
-			_props[propName] = val;
-		}, 500);
-	}, [propName]);
-	return {
-		value: value,
-		changeHandler: onChange
-	};
-}
-
-/***/ }),
-
-/***/ "./client/src/components/PageBuilder/hooks/useElementPropToggleButton.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports.useElementPropToggleButton = useElementPropToggleButton;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _core = __webpack_require__(1);
-
-var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function useElementPropToggleButton(propName, value, buttonProps) {
-	var _useNode = (0, _core.useNode)(),
-	    setProp = _useNode.actions.setProp;
-
-	var onClick = _react2.default.useCallback(function (e) {
+	var changeHandler = _react2.default.useCallback(function (e) {
 		setProp(function (_props) {
 			_props[propName] = !_props[propName];
 		});
 	}, [propName]);
 	return {
-		value: value,
-		button: _react2.default.createElement(_form.ToolbarButton, _extends({}, buttonProps, { active: !!value, onClick: onClick })),
-		changeHandler: onClick
+		value: !!value,
+		changeHandler: changeHandler
 	};
 }
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/hooks/ElementProp/useElementPropSelect.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.useElementPropSelect = useElementPropSelect;
+
+var _useElementPropString2 = __webpack_require__("./client/src/components/PageBuilder/hooks/ElementProp/useElementPropString.js");
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useElementPropSelect(props, propName, options) {
+	var _useElementPropString = (0, _useElementPropString2.useElementPropString)(props, propName),
+	    value = _useElementPropString.value,
+	    changeHandler = _useElementPropString.changeHandler,
+	    clearHandler = _useElementPropString.clearHandler;
+
+	var _options = options || [];
+	return {
+		value: value,
+		options: _options,
+		fullValue: _options.find(function (obj) {
+			return obj.value === value;
+		}) || {},
+		changeHandler: changeHandler,
+		clearHandler: clearHandler
+	};
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/hooks/ElementProp/useElementPropString.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.useElementPropString = useElementPropString;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _core = __webpack_require__(1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useElementPropString(props, propName) {
+	var value = props[propName] || "";
+
+	var _useNode = (0, _core.useNode)(),
+	    setProp = _useNode.actions.setProp;
+
+	var changeHandler = _react2.default.useCallback(function (e) {
+		var val = e.target.value;
+		setProp(function (_props) {
+			_props[propName] = val;
+		}, 500);
+	}, [propName]);
+	var clearHandler = _react2.default.useCallback(function () {
+		setProp(function (_props) {
+			_props[propName] = "";
+		});
+	}, [propName]);
+	return {
+		value: value,
+		changeHandler: changeHandler,
+		clearHandler: clearHandler
+	};
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/hooks/Internal/useDropdownOpenState.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.useDropdownOpenState = useDropdownOpenState;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useDropdownOpenState(previousOnOpen) {
+	var _React$useState = _react2.default.useState(false),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    dropdownOpen = _React$useState2[0],
+	    setDropdownOpen = _React$useState2[1];
+
+	var onOpen = _react2.default.useCallback(function (newState) {
+		setDropdownOpen(newState);
+		previousOnOpen && previousOnOpen();
+	}, []);
+	return [dropdownOpen, onOpen];
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/hooks/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _useElementPropBoolean = __webpack_require__("./client/src/components/PageBuilder/hooks/ElementProp/useElementPropBoolean.js");
+
+Object.keys(_useElementPropBoolean).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _useElementPropBoolean[key];
+    }
+  });
+});
+
+var _useElementPropString = __webpack_require__("./client/src/components/PageBuilder/hooks/ElementProp/useElementPropString.js");
+
+Object.keys(_useElementPropString).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _useElementPropString[key];
+    }
+  });
+});
+
+var _useElementPropSelect = __webpack_require__("./client/src/components/PageBuilder/hooks/ElementProp/useElementPropSelect.js");
+
+Object.keys(_useElementPropSelect).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _useElementPropSelect[key];
+    }
+  });
+});
 
 /***/ }),
 
@@ -3246,7 +3649,7 @@ var _Injector = __webpack_require__(4);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _jquery2.default.entwine("ss", function ($) {
-	$(".js-injector-boot .form__field-holder .zauberfisch__page-builder__field").entwine({
+	$(".js-injector-boot .field.zauberfisch__page-builder__field > .zauberfisch__page-builder__field").entwine({
 		PageBuilderEditorQuery: null,
 		InputElement: null,
 		EditorElement: null,
@@ -16191,86 +16594,14 @@ Object.keys(_LinkModals).forEach(function (key) {
   });
 });
 
-var _useElementPropFile = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropFile.js");
+var _index = __webpack_require__("./client/src/components/PageBuilder/hooks/index.js");
 
-Object.keys(_useElementPropFile).forEach(function (key) {
+Object.keys(_index).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return _useElementPropFile[key];
-    }
-  });
-});
-
-var _useElementPropImage = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropImage.js");
-
-Object.keys(_useElementPropImage).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _useElementPropImage[key];
-    }
-  });
-});
-
-var _useElementPropLink = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropLink.js");
-
-Object.keys(_useElementPropLink).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _useElementPropLink[key];
-    }
-  });
-});
-
-var _useElementPropList = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropList.js");
-
-Object.keys(_useElementPropList).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _useElementPropList[key];
-    }
-  });
-});
-
-var _useElementPropSelectDropdown = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropSelectDropdown.js");
-
-Object.keys(_useElementPropSelectDropdown).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _useElementPropSelectDropdown[key];
-    }
-  });
-});
-
-var _useElementPropToggleButton = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropToggleButton.js");
-
-Object.keys(_useElementPropToggleButton).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _useElementPropToggleButton[key];
-    }
-  });
-});
-
-var _useElementPropText = __webpack_require__("./client/src/components/PageBuilder/hooks/useElementPropText.js");
-
-Object.keys(_useElementPropText).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _useElementPropText[key];
+      return _index[key];
     }
   });
 });
@@ -24855,14 +25186,14 @@ module.exports = jQuery;
 /***/ 2:
 /***/ (function(module, exports) {
 
-module.exports = Reactstrap;
+module.exports = classnames;
 
 /***/ }),
 
 /***/ 3:
 /***/ (function(module, exports) {
 
-module.exports = classnames;
+module.exports = Reactstrap;
 
 /***/ }),
 

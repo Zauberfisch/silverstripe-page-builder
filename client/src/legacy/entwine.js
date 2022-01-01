@@ -4,7 +4,7 @@ import ReactDOM from "react-dom"
 import {loadComponent} from "lib/Injector"
 
 jQuery.entwine("ss", function ($) {
-	$(".js-injector-boot .form__field-holder .zauberfisch__page-builder__field").entwine({
+	$(".js-injector-boot .field.zauberfisch__page-builder__field > .zauberfisch__page-builder__field").entwine({
 		PageBuilderEditorQuery: null,
 		InputElement: null,
 		EditorElement: null,

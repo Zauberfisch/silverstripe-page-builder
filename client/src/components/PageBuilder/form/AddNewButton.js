@@ -1,12 +1,12 @@
 import React from "react"
 import styles from "./AddNewButton.module.scss"
 import classnames from "classnames"
-import {ToolbarButton} from "./ToolbarButton"
+import {ToolbarButton} from "./fields"
 import {Popover, PopoverHeader, PopoverBody} from "reactstrap"
 import {PageBuilderContext} from "components/PageBuilder/PageBuilderContext"
 import {useUniqueId} from "components/PageBuilder/utility"
 
-export const AddNewButton = ({}) => {
+export function AddNewButton() {
 	const id = useUniqueId()
 	const [isOpen, setIsOpen] = React.useState(false)
 	const [isHidden, setIsHidden] = React.useState(false)
@@ -17,11 +17,15 @@ export const AddNewButton = ({}) => {
 			}
 			return !_isOpen
 		})
-	})
+	}, [])
+	// TODO fix unmount effect not fireing. possibly happens because of how we create the add button
+	// React.useEffect(() => {
+	// 	return () => setIsOpen(false)
+	// }, [])
 	const {elements} = React.useContext(PageBuilderContext)
 	return (
 		<div>
-			<ToolbarButton iconName="mdiPlusBox" {...{id}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Add")} />
+			<ToolbarButton id={id} iconLeft={{iconName: "mdiPlusBox"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Add")} />
 			{id ? <Popover placement="bottom" target={id} {...{toggle, isOpen}} popperClassName={classnames({[styles.popoverHidden]: isHidden})}>
 				<PopoverHeader>{ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.AddDropdownTitle")}</PopoverHeader>
 				<PopoverBody>
