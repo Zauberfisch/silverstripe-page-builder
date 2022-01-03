@@ -2004,9 +2004,9 @@ function FormDropdownComponent(_ref) {
 	    _onOpen = _useDropdownOpenState2[1];
 
 	var allProps = {
-		buttonOverwrite: buttonOverwrite, buttonComponent: buttonComponent, disabled: disabled, children: children, onOpen: _onOpen, buttonProps: _extends({}, buttonProps, {
-			iconRight: typeof buttonProps.iconRight === "undefined" ? buttonProps.iconRight : { iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown" }
-		})
+		buttonOverwrite: buttonOverwrite, buttonComponent: buttonComponent, disabled: disabled, children: children, onOpen: _onOpen, buttonProps: _extends({
+			iconRight: { iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown" }
+		}, buttonProps)
 	};
 	return _react2.default.createElement(_Unstyled.UnstyledDropdownComponent, allProps);
 }
@@ -2226,9 +2226,7 @@ function FormLinkPropField(_ref) {
 				} : elementProp.value.data), disabled: true }),
 			_react2.default.createElement(_FormLinkSelectComponent.FormLinkSelectComponent, {
 				onChange: elementProp.changeHandler,
-				onChangeType: elementProp.changeTypeHandler,
 				linkTypes: elementProp.linkTypes,
-				linkTypeValue: elementProp.linkType,
 				value: elementProp.value,
 				disabled: disabled,
 				id: id
@@ -2269,11 +2267,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function FormLinkSelectComponent(_ref) {
 	var onChange = _ref.onChange,
-	    onChangeType = _ref.onChangeType,
 	    _ref$linkTypes = _ref.linkTypes,
 	    linkTypes = _ref$linkTypes === undefined ? [] : _ref$linkTypes,
-	    _ref$linkTypeValue = _ref.linkTypeValue,
-	    linkTypeValue = _ref$linkTypeValue === undefined ? "" : _ref$linkTypeValue,
 	    _ref$value = _ref.value,
 	    value = _ref$value === undefined ? {} : _ref$value,
 	    _ref$addDropDownProps = _ref.addDropDownProps,
@@ -2287,9 +2282,7 @@ function FormLinkSelectComponent(_ref) {
 
 	return _react2.default.createElement(_UnstyledLinkSelectComponent.UnstyledLinkSelectComponent, {
 		onChange: onChange,
-		onChangeType: onChangeType,
 		linkTypes: linkTypes,
-		linkTypeValue: linkTypeValue,
 		value: value,
 		buttonComponent: _FormButtonComponent.FormButtonComponent,
 		dropdownComponent: _FormDropdownComponent.FormDropdownComponent,
@@ -2362,9 +2355,9 @@ function FormSelectComponent(_ref) {
 		buttonComponent: buttonComponent,
 		disabled: disabled,
 		onOpen: _onOpen,
-		buttonProps: _extends({}, buttonProps, {
-			iconRight: typeof buttonProps.iconRight === "undefined" ? { iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown" } : buttonProps.iconRight
-		})
+		buttonProps: _extends({
+			iconRight: { iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown" }
+		}, buttonProps)
 	});
 }
 
@@ -2834,11 +2827,63 @@ function ToolbarDropdownComponent(_ref) {
 	    _onOpen = _useDropdownOpenState2[1];
 
 	var allProps = {
-		buttonOverwrite: buttonOverwrite, buttonComponent: buttonComponent, disabled: disabled, children: children, onOpen: _onOpen, buttonProps: _extends({}, buttonProps, {
-			iconRight: typeof buttonProps.iconRight === "undefined" ? buttonProps.iconRight : { iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown" }
-		})
+		buttonOverwrite: buttonOverwrite, buttonComponent: buttonComponent, disabled: disabled, children: children, onOpen: _onOpen, buttonProps: _extends({
+			iconRight: { iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown" }
+		}, buttonProps)
 	};
 	return _react2.default.createElement(_Unstyled.UnstyledDropdownComponent, allProps);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarLinkSelectComponent.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.ToolbarLinkSelectComponent = ToolbarLinkSelectComponent;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _UnstyledLinkSelectComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledLinkSelectComponent.js");
+
+var _ToolbarButtonComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarButtonComponent.js");
+
+var _ToolbarDropdownComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarDropdownComponent.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ToolbarLinkSelectComponent(_ref) {
+	var onChange = _ref.onChange,
+	    linkTypes = _ref.linkTypes,
+	    _ref$value = _ref.value,
+	    value = _ref$value === undefined ? {} : _ref$value,
+	    _ref$addDropDownProps = _ref.addDropDownProps,
+	    addDropDownProps = _ref$addDropDownProps === undefined ? {} : _ref$addDropDownProps,
+	    _ref$editButtonProps = _ref.editButtonProps,
+	    editButtonProps = _ref$editButtonProps === undefined ? {} : _ref$editButtonProps,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    id = _ref.id;
+
+	return _react2.default.createElement(_UnstyledLinkSelectComponent.UnstyledLinkSelectComponent, {
+		onChange: onChange,
+		linkTypes: linkTypes,
+		value: value,
+		buttonComponent: _ToolbarButtonComponent.ToolbarButtonComponent,
+		dropdownComponent: _ToolbarDropdownComponent.ToolbarDropdownComponent,
+		addDropDownProps: addDropDownProps,
+		editButtonProps: editButtonProps,
+
+		disabled: disabled,
+		id: id
+	});
 }
 
 /***/ }),
@@ -2902,9 +2947,9 @@ function ToolbarSelectComponent(_ref) {
 		buttonComponent: buttonComponent,
 		disabled: disabled,
 		onOpen: _onOpen,
-		buttonProps: _extends({}, buttonProps, {
-			iconRight: typeof buttonProps.iconRight === "undefined" ? { iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown" } : buttonProps.iconRight
-		})
+		buttonProps: _extends({
+			iconRight: { iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown" }
+		}, buttonProps)
 	});
 }
 
@@ -3069,6 +3114,18 @@ Object.keys(_ToolbarSelectPropField).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _ToolbarSelectPropField[key];
+    }
+  });
+});
+
+var _ToolbarLinkSelectComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Toolbar/ToolbarLinkSelectComponent.js");
+
+Object.keys(_ToolbarLinkSelectComponent).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ToolbarLinkSelectComponent[key];
     }
   });
 });
@@ -3339,7 +3396,7 @@ function UnstyledFileSelectComponent(_ref) {
 	}, []);
 
 	var onInsert = _react2.default.useCallback(function (data, file) {
-		onChange && onChange(data, file);
+		onChange && onChange({ data: data, file: file });
 		setIsOpen(false);
 	}, []);
 
@@ -3393,11 +3450,8 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 function UnstyledLinkSelectComponent(_ref) {
 	var onChange = _ref.onChange,
-	    onChangeType = _ref.onChangeType,
 	    _ref$linkTypes = _ref.linkTypes,
 	    linkTypes = _ref$linkTypes === undefined ? [] : _ref$linkTypes,
-	    _ref$linkTypeValue = _ref.linkTypeValue,
-	    linkTypeValue = _ref$linkTypeValue === undefined ? "" : _ref$linkTypeValue,
 	    _ref$value = _ref.value,
 	    value = _ref$value === undefined ? {} : _ref$value,
 	    _ref$buttonComponent = _ref.buttonComponent,
@@ -3417,27 +3471,24 @@ function UnstyledLinkSelectComponent(_ref) {
 	var addDropDownButtonProps = _addDropDownProps.buttonProps,
 	    addDropDownProps = _objectWithoutProperties(_addDropDownProps, ["buttonProps"]);
 
-	var _React$useState = _react2.default.useState(false),
+	var _React$useState = _react2.default.useState(null),
 	    _React$useState2 = _slicedToArray(_React$useState, 2),
-	    isOpen = _React$useState2[0],
-	    setIsOpen = _React$useState2[1];
+	    openModalId = _React$useState2[0],
+	    setOpenModalId = _React$useState2[1];
 
 	var onClick = _react2.default.useCallback(function (e) {
-		if (e.currentTarget.dataset.modalid !== "edit") {
-			onChangeType(e.currentTarget.dataset.modalid);
-		}
-		setIsOpen(true);
+		setOpenModalId(e.currentTarget.dataset.modalid);
 	}, []);
 
 	var onClosed = _react2.default.useCallback(function () {
-		setIsOpen(false);
+		setOpenModalId(null);
 	}, []);
 	var onInsert = _react2.default.useCallback(function (data, file) {
-		onChange(data, file);
-		setIsOpen(false);
-	}, []);
+		onChange({ data: data, file: file, linkType: openModalId });
+		setOpenModalId(null);
+	}, [openModalId]);
 	var hasValue = !!(value && _typeof(value.data) === "object" && linkTypes.find(function (linkType) {
-		return linkType.id === linkTypeValue;
+		return linkType.id === value.linkType;
 	}));
 	return _react2.default.createElement(
 		_react2.default.Fragment,
@@ -3446,7 +3497,7 @@ function UnstyledLinkSelectComponent(_ref) {
 			return _react2.default.createElement(
 				_react2.default.Fragment,
 				{ key: linkType.id },
-				isOpen && linkTypeValue === linkType.id ? _react2.default.createElement(linkType.component, { fileAttributes: value.data, onInsert: onInsert, onClosed: onClosed, isOpen: true }) : null
+				openModalId === linkType.id ? _react2.default.createElement(linkType.component, { fileAttributes: value.data, onInsert: onInsert, onClosed: onClosed, isOpen: true }) : null
 			);
 		}),
 		hasValue ? _react2.default.createElement(buttonComponent, _extends({
@@ -3455,7 +3506,7 @@ function UnstyledLinkSelectComponent(_ref) {
 			id: id,
 			onClick: onClick,
 			disabled: disabled,
-			"data-modalid": "edit"
+			"data-modalid": value.linkType
 		})) : _react2.default.createElement(dropdownComponent, _extends({
 			buttonProps: _extends({
 				children: "Add Link",
@@ -3903,9 +3954,9 @@ function useElementPropFile(props, propName) {
 		});
 	}, [propName]);
 
-	var changeHandler = _react2.default.useCallback(function (data, file) {
+	var changeHandler = _react2.default.useCallback(function (fileData) {
 		setProp(function (_props) {
-			_props[propName] = { data: data, file: file };
+			_props[propName] = fileData;
 		});
 	}, [propName]);
 
@@ -3949,7 +4000,9 @@ var _LinkModals = __webpack_require__("./client/src/components/LinkModals.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function useElementPropLinkTypes(allowedLinkTypes) {
+function useElementPropLinkTypes() {
+	var allowedLinkTypes = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ["Internal", "External", "Email", "File"];
+
 	return _react2.default.useMemo(function () {
 		return [{
 			id: "Internal",
@@ -3976,44 +4029,36 @@ function useElementPropLinkTypes(allowedLinkTypes) {
 function useElementPropLink(props, propName) {
 	var allowedLinkTypes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ["Internal", "External", "Email", "File"];
 
-	var propNameType = propName + "Type";
-	var propNameValue = propName + "Value";
-	var linkType = props[propNameType] || "";
-	var value = props[propNameValue] || {};
+	var value = props[propName] || {};
 
 	var _useNode = (0, _core.useNode)(),
 	    setProp = _useNode.actions.setProp;
 
-	var linkTypes = useElementPropLinkTypes(allowedLinkTypes);
 	var clearHandler = _react2.default.useCallback(function () {
 		setProp(function (_props) {
-			_props[propNameType] = null;
-			_props[propNameValue] = null;
+			_props[propName] = null;
 		});
 	}, [propName]);
-	var changeHandler = _react2.default.useCallback(function (data, file) {
+	var changeHandler = _react2.default.useCallback(function (linkData) {
 		setProp(function (_props) {
-			_props[propNameValue] = { data: data, file: file };
-		});
-	}, [propName, linkType]);
-	var changeTypeHandler = _react2.default.useCallback(function (newType) {
-		setProp(function (_props) {
-			_props[propNameType] = newType;
+			_props[propName] = linkData;
 		});
 	}, [propName]);
-	var hasValue = !!(value && _typeof(value.data) === "object" && allowedLinkTypes.includes(linkType));
+	var hasValue = !!(value && _typeof(value.data) === "object" && allowedLinkTypes.includes(value.linkType));
 	var _value = hasValue ? value : {};
 
+	var linkTypes = useElementPropLinkTypes(allowedLinkTypes);
 	return {
 		propName: propName,
-		linkType: linkType,
+
 		value: _value,
 
 		hasValue: hasValue,
 
 		changeHandler: changeHandler,
 		clearHandler: clearHandler,
-		changeTypeHandler: changeTypeHandler,
+
+		allowedLinkTypes: allowedLinkTypes,
 		linkTypes: linkTypes
 	};
 }

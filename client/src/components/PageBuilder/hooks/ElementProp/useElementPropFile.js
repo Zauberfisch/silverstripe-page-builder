@@ -29,10 +29,10 @@ export function useElementPropFile(props, propName) {
 		})
 	}, [propName])
 	// const insertHandler = React.useCallback((data, file) => {
-	const changeHandler = React.useCallback((data, file) => {
+	const changeHandler = React.useCallback((fileData) => {
 		setProp((_props) => {
 			// eslint-disable-next-line no-param-reassign
-			_props[propName] = {data, file}
+			_props[propName] = fileData
 		})
 		// setModalOpen(false)
 	}, [propName])

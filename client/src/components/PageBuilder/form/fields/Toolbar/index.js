@@ -5,5 +5,6 @@ export * from "./ToolbarSeparator"
 
 export * from "./ToolbarButtonPropField"
 export * from "./ToolbarSelectPropField"
+export * from "./ToolbarLinkSelectComponent"
 
 // export * from "./ToolbarTextField"

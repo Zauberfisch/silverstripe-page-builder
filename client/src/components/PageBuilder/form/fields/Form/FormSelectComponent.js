@@ -28,8 +28,9 @@ export function FormSelectComponent({
 			disabled,
 			onOpen: _onOpen,
 			buttonProps: {
+				iconRight: {iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown"},
 				...buttonProps,
-				iconRight: typeof buttonProps.iconRight === "undefined" ? {iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown"} : buttonProps.iconRight,
+				// iconRight: typeof buttonProps.iconRight === "undefined" ? {iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown"} : buttonProps.iconRight,
 			},
 		}} />
 	)

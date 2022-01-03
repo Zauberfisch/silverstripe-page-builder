@@ -4,24 +4,18 @@ import {ToolbarButtonComponent} from "./ToolbarButtonComponent"
 import {ToolbarDropdownComponent} from "./ToolbarDropdownComponent"
 
 export function ToolbarLinkSelectComponent({
-	                                        onChange,
-	                                        onChangeType,
-	                                        linkTypes,
-	                                        linkTypeValue = "",
-	                                        value = {},
-	                                        addDropDownProps = {},
-	                                        editButtonProps = {},
-	                                        disabled = false,
-	                                        id,
-                                        }) {
-
-
+	                                           onChange,
+	                                           linkTypes,
+	                                           value = {},
+	                                           addDropDownProps = {},
+	                                           editButtonProps = {},
+	                                           disabled = false,
+	                                           id,
+                                           }) {
 	return (
 		<UnstyledLinkSelectComponent {...{
 			onChange,
-			onChangeType,
 			linkTypes,
-			linkTypeValue,
 			value,
 			buttonComponent: ToolbarButtonComponent,
 			dropdownComponent: ToolbarDropdownComponent,

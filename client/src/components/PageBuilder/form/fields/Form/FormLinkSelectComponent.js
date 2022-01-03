@@ -5,9 +5,7 @@ import {UnstyledLinkSelectComponent} from "../Unstyled/UnstyledLinkSelectCompone
 
 export function FormLinkSelectComponent({
 	                                        onChange,
-	                                        onChangeType,
 	                                        linkTypes = [],
-	                                        linkTypeValue = "",
 	                                        value = {},
 	                                        addDropDownProps = {},
 	                                        editButtonProps = {},
@@ -19,9 +17,7 @@ export function FormLinkSelectComponent({
 	return (
 		<UnstyledLinkSelectComponent {...{
 			onChange,
-			onChangeType,
 			linkTypes,
-			linkTypeValue,
 			value,
 			buttonComponent: FormButtonComponent,
 			dropdownComponent: FormDropdownComponent,

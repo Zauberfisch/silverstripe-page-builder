@@ -23,9 +23,7 @@ export function FormLinkPropField({
 				} : elementProp.value.data)} disabled={true} />
 				<FormLinkSelectComponent {...{
 					onChange: elementProp.changeHandler,
-					onChangeType: elementProp.changeTypeHandler,
 					linkTypes: elementProp.linkTypes,
-					linkTypeValue: elementProp.linkType,
 					value: elementProp.value,
 					disabled,
 					id,

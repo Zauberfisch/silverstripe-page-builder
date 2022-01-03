@@ -14,8 +14,9 @@ export function FormDropdownComponent({
 	const [dropdownOpen, _onOpen] = useDropdownOpenState(onOpen)
 	const allProps = {
 		buttonOverwrite, buttonComponent, disabled, children, onOpen: _onOpen, buttonProps: {
+			iconRight: {iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown"},
 			...buttonProps,
-			iconRight: typeof buttonProps.iconRight === "undefined" ? buttonProps.iconRight : {iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown"},
+			// iconRight: typeof buttonProps.iconRight === "undefined" ? {iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown"} : buttonProps.iconRight,
 		},
 	}
 	return (
