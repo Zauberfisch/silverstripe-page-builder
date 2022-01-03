@@ -9,4 +9,6 @@ export * from "./FormTextPropField"
 
 export * from "./FormFilePropField"
 
+export * from "./FormLinkPropField"
+
 export * from "./FormFieldGroup"

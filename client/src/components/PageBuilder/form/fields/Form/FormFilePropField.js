@@ -8,7 +8,7 @@ import {FormButtonComponent} from "./FormButtonComponent"
 export function FormFilePropField({
 	                                  elementProp,
 	                                  label,
-	                                  buttonTitle,
+	                                  buttonTitle = "Select a File",
 	                                  buttonProps = {},
 	                                  disabled = false,
                                   }) {

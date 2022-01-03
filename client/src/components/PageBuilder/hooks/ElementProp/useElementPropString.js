@@ -5,7 +5,7 @@ export function useElementPropString(props, propName) {
 	const value = props[propName] || ""
 	const {actions: {setProp}} = useNode()
 	const changeHandler = React.useCallback(e => {
-		const val = e.target.value
+		const val = e.currentTarget.value
 		setProp((_props) => {
 			// eslint-disable-next-line no-param-reassign
 			_props[propName] = val

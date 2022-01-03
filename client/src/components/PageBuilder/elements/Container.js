@@ -26,6 +26,7 @@ export const Container = ({
 		<ElementContainer padding={false} className={classNames(styles.container, {
 			[styles.isEmpty]: !hasChildren,
 		})} style={backgroundProp.fullValue.pageBuilderStyle || {}}>
+			{/*<pre>{JSON.stringify({columnsProp, backgroundProp}, null, 2)}</pre>*/}
 			<ToolbarPortalTop childrenRight={<ClipboardPasteButton />}>
 				{backgroundProp.options.length ? <ToolbarSelectPropField elementProp={backgroundProp} /> : null}
 				{columnsProp.options.length ? <ToolbarSelectPropField elementProp={columnsProp} /> : null}

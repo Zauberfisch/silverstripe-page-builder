@@ -7,6 +7,7 @@ const InsertLinkInternalModal = createInsertLinkModal("SilverStripe\\CMS\\Contro
 import InsertMediaModal from "containers/InsertMediaModal/InsertMediaModal"
 
 function onInsertData(data) {
+	// console.log('onInsertData', onInsertData)
 	delete data.SecurityID
 	delete data["action_insert"]
 	delete data.AssetEditorHeaderFieldGroup
@@ -15,7 +16,9 @@ function onInsertData(data) {
 	delete data.FileSpecs
 	return data
 }
+
 function onInsertFile(file) {
+	// console.log('onInsertFile', file)
 	return typeof file === "object" ? {
 		url: file.url,
 		extension: file.extension,
@@ -26,11 +29,16 @@ function onInsertFile(file) {
 	} : {}
 }
 
-export function LinkModalExternal(props) {
+export function LinkModalExternal({onInsert, ...props}) {
 	return (
 		<InsertLinkExternalModal
 			title={i18n._t("Admin.LINK_EXTERNAL", "Insert external link")}
 			requireLinkText={false}
+			identifier="PageBuilder.InsertLinkExternalModal"
+			onInsert={(data) => {
+				onInsert(onInsertData(data))
+				// return false
+			}}
 			{...props}
 		/>
 	)
@@ -39,11 +47,17 @@ export function LinkModalExternal(props) {
 	// identifier="Admin.InsertLinkExternalModal"
 }
 
-export function LinkModalInternal(props) {
+export function LinkModalInternal({onInsert, ...props}) {
 	return (
 		<InsertLinkInternalModal
 			title={i18n._t("CMS.LINK_ANCHOR", "Link to an anchor on a page")}
 			requireLinkText={false}
+			identifier="PageBuilder.InsertLinkInternalModal"
+			onInsert={(data, a, b, c, d, e) => {
+				console.log({data, a, b, c, d, e})
+				onInsert(onInsertData(data))
+				// return false
+			}}
 			{...props}
 		/>
 	)
@@ -52,11 +66,16 @@ export function LinkModalInternal(props) {
 	// identifier="Admin.InsertLinkInternalModal"
 }
 
-export function LinkModalEmail(props) {
+export function LinkModalEmail({onInsert, ...props}) {
 	return (
 		<InsertLinkEmailModal
 			title={i18n._t("Admin.LINK_EMAIL", "Insert email link")}
 			requireLinkText={false}
+			identifier="PageBuilder.InsertLinkEmailModal"
+			onInsert={(data) => {
+				onInsert(onInsertData(data))
+				// return false
+			}}
 			{...props}
 		/>
 		// bodyClassName="modal__dialog"

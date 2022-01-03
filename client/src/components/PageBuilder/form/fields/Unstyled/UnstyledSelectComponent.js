@@ -1,7 +1,5 @@
 import React from "react"
-import classNames from "classnames"
-import {DropdownItem} from "reactstrap"
-import {UnstyledDropdownComponent} from "./UnstyledDropdownComponent"
+import {UnstyledDropdownComponent, UnstyledDropdownItemComponent} from "./UnstyledDropdownComponent"
 import {UnstyledButtonComponent} from "./UnstyledButtonComponent"
 
 export function UnstyledSelectComponent({
@@ -13,7 +11,6 @@ export function UnstyledSelectComponent({
 	                                        buttonOverwrite,
 	                                        buttonComponent = UnstyledButtonComponent,
 	                                        buttonProps = {},
-
 	                                        disabled = false,
 	                                        onOpen,
 	                                        ...props
@@ -23,30 +20,8 @@ export function UnstyledSelectComponent({
 	return (
 		<UnstyledDropdownComponent {...{buttonOverwrite, buttonComponent, buttonProps, disabled, onOpen, props}}>
 			{options && options.map((option, i) => {
-				return <UnstyledSelectItem key={`${i}${option.value}`} {...option} active={option.value === value} onChange={onChange} />
+				return <UnstyledDropdownItemComponent key={`${i}${option.value}`} {...option} active={option.value === value} onChange={onChange} />
 			})}
 		</UnstyledDropdownComponent>
 	)
-}
-
-export function UnstyledSelectItem({
-	                                   onClick,
-	                                   onChange,
-	                                   children,
-	                                   className = "",
-	                                   active = false,
-	                                   activeClassName = "",
-	                                   style = {},
-	                                   value,
-	                                   ...props
-                                   }) {
-	const onMouseDown = React.useCallback((e) => e.preventDefault(), [])
-	const _onClick = React.useCallback((e) => {
-		e.preventDefault()
-		typeof onClick === "function" && onClick(e)
-		onChange(e, value)
-	}, [value])
-	return <DropdownItem {...{...props, value, style, className: classNames(className, {[activeClassName]: active}), onMouseDown, onClick: _onClick}}>
-		{children}
-	</DropdownItem>
 }

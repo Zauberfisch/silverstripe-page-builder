@@ -16,6 +16,7 @@ export function UnstyledFileSelectComponent({
 	const onClosed = React.useCallback(() => {
 		setIsOpen(false)
 	}, [])
+	// TODO we should use propName to bust the cache of React.useCallback
 	const onInsert = React.useCallback((data, file) => {
 		onChange && onChange(data, file)
 		setIsOpen(false)

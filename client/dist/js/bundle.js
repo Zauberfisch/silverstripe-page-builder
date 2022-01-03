@@ -180,15 +180,11 @@ exports.default = DeletionModal;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.EmbedModalImage = exports.EmbedModalFile = exports.LinkModalFile = undefined;
+exports.EmbedModalImage = exports.EmbedModalFile = exports.LinkModalFile = exports.LinkModalEmail = exports.LinkModalInternal = exports.LinkModalExternal = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-exports.LinkModalExternal = LinkModalExternal;
-exports.LinkModalInternal = LinkModalInternal;
-exports.LinkModalEmail = LinkModalEmail;
 
 var _react = __webpack_require__(0);
 
@@ -218,6 +214,7 @@ function onInsertData(data) {
 	delete data.FileSpecs;
 	return data;
 }
+
 function onInsertFile(file) {
 	return (typeof file === "undefined" ? "undefined" : _typeof(file)) === "object" ? {
 		url: file.url,
@@ -229,35 +226,60 @@ function onInsertFile(file) {
 	} : {};
 }
 
-function LinkModalExternal(props) {
-	return _react2.default.createElement(InsertLinkExternalModal, _extends({
-		title: i18n._t("Admin.LINK_EXTERNAL", "Insert external link"),
-		requireLinkText: false
-	}, props));
-}
-
-function LinkModalInternal(props) {
-	return _react2.default.createElement(InsertLinkInternalModal, _extends({
-		title: i18n._t("CMS.LINK_ANCHOR", "Link to an anchor on a page"),
-		requireLinkText: false
-	}, props));
-}
-
-function LinkModalEmail(props) {
-	return _react2.default.createElement(InsertLinkEmailModal, _extends({
-		title: i18n._t("Admin.LINK_EMAIL", "Insert email link"),
-		requireLinkText: false
-	}, props));
-}
-
-function LinkModalFile(_ref) {
+function LinkModalExternal(_ref) {
 	var _onInsert = _ref.onInsert,
 	    props = _objectWithoutProperties(_ref, ["onInsert"]);
+
+	return _react2.default.createElement(InsertLinkExternalModal, _extends({
+		title: i18n._t("Admin.LINK_EXTERNAL", "Insert external link"),
+		requireLinkText: false,
+		identifier: "PageBuilder.InsertLinkExternalModal",
+		onInsert: function onInsert(data) {
+			_onInsert(onInsertData(data));
+		}
+	}, props));
+}
+
+exports.LinkModalExternal = LinkModalExternal;
+function LinkModalInternal(_ref2) {
+	var _onInsert2 = _ref2.onInsert,
+	    props = _objectWithoutProperties(_ref2, ["onInsert"]);
+
+	return _react2.default.createElement(InsertLinkInternalModal, _extends({
+		title: i18n._t("CMS.LINK_ANCHOR", "Link to an anchor on a page"),
+		requireLinkText: false,
+		identifier: "PageBuilder.InsertLinkInternalModal",
+		onInsert: function onInsert(data, a, b, c, d, e) {
+			console.log({ data: data, a: a, b: b, c: c, d: d, e: e });
+			_onInsert2(onInsertData(data));
+		}
+	}, props));
+}
+
+exports.LinkModalInternal = LinkModalInternal;
+function LinkModalEmail(_ref3) {
+	var _onInsert3 = _ref3.onInsert,
+	    props = _objectWithoutProperties(_ref3, ["onInsert"]);
+
+	return _react2.default.createElement(InsertLinkEmailModal, _extends({
+		title: i18n._t("Admin.LINK_EMAIL", "Insert email link"),
+		requireLinkText: false,
+		identifier: "PageBuilder.InsertLinkEmailModal",
+		onInsert: function onInsert(data) {
+			_onInsert3(onInsertData(data));
+		}
+	}, props));
+}
+
+exports.LinkModalEmail = LinkModalEmail;
+function LinkModalFile(_ref4) {
+	var _onInsert4 = _ref4.onInsert,
+	    props = _objectWithoutProperties(_ref4, ["onInsert"]);
 
 	return _react2.default.createElement(_InsertMediaModal2.default, _extends({}, props, {
 		type: "insert-link",
 		onInsert: function onInsert(data, file) {
-			_onInsert(onInsertData(data), onInsertFile(file));
+			_onInsert4(onInsertData(data), onInsertFile(file));
 			return Promise.resolve();
 		},
 		title: false,
@@ -266,14 +288,14 @@ function LinkModalFile(_ref) {
 }
 
 exports.LinkModalFile = LinkModalFile;
-function EmbedModalFile(_ref2) {
-	var _onInsert2 = _ref2.onInsert,
-	    props = _objectWithoutProperties(_ref2, ["onInsert"]);
+function EmbedModalFile(_ref5) {
+	var _onInsert5 = _ref5.onInsert,
+	    props = _objectWithoutProperties(_ref5, ["onInsert"]);
 
 	return _react2.default.createElement(_InsertMediaModal2.default, _extends({}, props, {
 		type: "insert-link",
 		onInsert: function onInsert(data, file) {
-			_onInsert2(onInsertData(data), onInsertFile(file));
+			_onInsert5(onInsertData(data), onInsertFile(file));
 			return Promise.resolve();
 		},
 		title: false,
@@ -282,14 +304,14 @@ function EmbedModalFile(_ref2) {
 }
 
 exports.EmbedModalFile = EmbedModalFile;
-function EmbedModalImage(_ref3) {
-	var _onInsert3 = _ref3.onInsert,
-	    props = _objectWithoutProperties(_ref3, ["onInsert"]);
+function EmbedModalImage(_ref6) {
+	var _onInsert6 = _ref6.onInsert,
+	    props = _objectWithoutProperties(_ref6, ["onInsert"]);
 
 	return _react2.default.createElement(_InsertMediaModal2.default, _extends({}, props, {
 		type: "insert-link",
 		onInsert: function onInsert(data, file) {
-			_onInsert3(onInsertData(data), onInsertFile(file));
+			_onInsert6(onInsertData(data), onInsertFile(file));
 			return Promise.resolve();
 		},
 		title: false,
@@ -756,7 +778,7 @@ var PasteModal = function PasteModal(_ref) {
 	    setJsonToImport = _React$useState2[1];
 
 	var onChange = _react2.default.useCallback(function (e) {
-		return setJsonToImport(e.target.value);
+		return setJsonToImport(e.currentTarget.value);
 	}, []);
 	var onClick = _react2.default.useCallback(function () {
 		importFromPaste(jsonToImport, insertIntoNodeId, query, actions);
@@ -1937,6 +1959,60 @@ function FormButtonPropField(_ref) {
 
 /***/ }),
 
+/***/ "./client/src/components/PageBuilder/form/fields/Form/FormDropdownComponent.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.FormDropdownComponent = FormDropdownComponent;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FormButtonComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormButtonComponent.js");
+
+var _Unstyled = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/index.js");
+
+var _useDropdownOpenState3 = __webpack_require__("./client/src/components/PageBuilder/hooks/Internal/useDropdownOpenState.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function FormDropdownComponent(_ref) {
+	var buttonOverwrite = _ref.buttonOverwrite,
+	    _ref$buttonComponent = _ref.buttonComponent,
+	    buttonComponent = _ref$buttonComponent === undefined ? _FormButtonComponent.FormButtonComponent : _ref$buttonComponent,
+	    _ref$buttonProps = _ref.buttonProps,
+	    buttonProps = _ref$buttonProps === undefined ? {} : _ref$buttonProps,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    children = _ref.children,
+	    onOpen = _ref.onOpen;
+
+	var _useDropdownOpenState = (0, _useDropdownOpenState3.useDropdownOpenState)(onOpen),
+	    _useDropdownOpenState2 = _slicedToArray(_useDropdownOpenState, 2),
+	    dropdownOpen = _useDropdownOpenState2[0],
+	    _onOpen = _useDropdownOpenState2[1];
+
+	var allProps = {
+		buttonOverwrite: buttonOverwrite, buttonComponent: buttonComponent, disabled: disabled, children: children, onOpen: _onOpen, buttonProps: _extends({}, buttonProps, {
+			iconRight: typeof buttonProps.iconRight === "undefined" ? buttonProps.iconRight : { iconName: dropdownOpen ? "mdiMenuUp" : "mdiMenuDown" }
+		})
+	};
+	return _react2.default.createElement(_Unstyled.UnstyledDropdownComponent, allProps);
+}
+
+/***/ }),
+
 /***/ "./client/src/components/PageBuilder/form/fields/Form/FormFieldGroup.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2018,7 +2094,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function FormFilePropField(_ref) {
 	var elementProp = _ref.elementProp,
 	    label = _ref.label,
-	    buttonTitle = _ref.buttonTitle,
+	    _ref$buttonTitle = _ref.buttonTitle,
+	    buttonTitle = _ref$buttonTitle === undefined ? "Select a File" : _ref$buttonTitle,
 	    _ref$buttonProps = _ref.buttonProps,
 	    buttonProps = _ref$buttonProps === undefined ? {} : _ref$buttonProps,
 	    _ref$disabled = _ref.disabled,
@@ -2097,6 +2174,130 @@ function FormFileSelectComponent(_ref) {
 		disabled: disabled,
 		onChange: onChange,
 		value: value
+	});
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Form/FormLinkPropField.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.FormLinkPropField = FormLinkPropField;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FormFieldGroup = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormFieldGroup.js");
+
+var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
+
+var _FormTextComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormTextComponent.js");
+
+var _FormButtonComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormButtonComponent.js");
+
+var _FormLinkSelectComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormLinkSelectComponent.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function FormLinkPropField(_ref) {
+	var elementProp = _ref.elementProp,
+	    label = _ref.label,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled;
+
+	var id = (0, _utility.useUniqueId)();
+	return _react2.default.createElement(
+		_FormFieldGroup.FormFieldGroup,
+		{ label: label, labelFor: id, className: "fieldgroup", innerClassName: "form__fieldgroup" },
+		_react2.default.createElement(
+			"div",
+			{ className: "input-group" },
+			_react2.default.createElement(_FormTextComponent.FormTextComponent, { value: JSON.stringify(elementProp.value.file && elementProp.value.file.url ? {
+					Link: elementProp.value.file.url,
+					Description: elementProp.value.data.Description,
+					TargetBlank: elementProp.value.data.TargetBlank
+				} : elementProp.value.data), disabled: true }),
+			_react2.default.createElement(_FormLinkSelectComponent.FormLinkSelectComponent, {
+				onChange: elementProp.changeHandler,
+				onChangeType: elementProp.changeTypeHandler,
+				linkTypes: elementProp.linkTypes,
+				linkTypeValue: elementProp.linkType,
+				value: elementProp.value,
+				disabled: disabled,
+				id: id
+			}),
+			elementProp.hasValue ? _react2.default.createElement(
+				"span",
+				{ className: "input-group-append" },
+				_react2.default.createElement(_FormButtonComponent.FormButtonComponent, { children: "Remove", onClick: elementProp.clearHandler })
+			) : null
+		)
+	);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Form/FormLinkSelectComponent.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.FormLinkSelectComponent = FormLinkSelectComponent;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FormButtonComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormButtonComponent.js");
+
+var _FormDropdownComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormDropdownComponent.js");
+
+var _UnstyledLinkSelectComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledLinkSelectComponent.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function FormLinkSelectComponent(_ref) {
+	var onChange = _ref.onChange,
+	    onChangeType = _ref.onChangeType,
+	    _ref$linkTypes = _ref.linkTypes,
+	    linkTypes = _ref$linkTypes === undefined ? [] : _ref$linkTypes,
+	    _ref$linkTypeValue = _ref.linkTypeValue,
+	    linkTypeValue = _ref$linkTypeValue === undefined ? "" : _ref$linkTypeValue,
+	    _ref$value = _ref.value,
+	    value = _ref$value === undefined ? {} : _ref$value,
+	    _ref$addDropDownProps = _ref.addDropDownProps,
+	    addDropDownProps = _ref$addDropDownProps === undefined ? {} : _ref$addDropDownProps,
+	    _ref$editButtonProps = _ref.editButtonProps,
+	    editButtonProps = _ref$editButtonProps === undefined ? {} : _ref$editButtonProps,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    id = _ref.id;
+
+
+	return _react2.default.createElement(_UnstyledLinkSelectComponent.UnstyledLinkSelectComponent, {
+		onChange: onChange,
+		onChangeType: onChangeType,
+		linkTypes: linkTypes,
+		linkTypeValue: linkTypeValue,
+		value: value,
+		buttonComponent: _FormButtonComponent.FormButtonComponent,
+		dropdownComponent: _FormDropdownComponent.FormDropdownComponent,
+		addDropDownProps: addDropDownProps,
+		editButtonProps: editButtonProps,
+
+		disabled: disabled,
+		id: id
 	});
 }
 
@@ -2424,6 +2625,18 @@ Object.keys(_FormFilePropField).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _FormFilePropField[key];
+    }
+  });
+});
+
+var _FormLinkPropField = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormLinkPropField.js");
+
+Object.keys(_FormLinkPropField).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _FormLinkPropField[key];
     }
   });
 });
@@ -2981,6 +3194,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 exports.UnstyledDropdownComponent = UnstyledDropdownComponent;
+exports.UnstyledDropdownItemComponent = UnstyledDropdownItemComponent;
 
 var _react = __webpack_require__(0);
 
@@ -2990,7 +3204,15 @@ var _reactstrap = __webpack_require__(5);
 
 var _UnstyledButtonComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledButtonComponent.js");
 
+var _classnames = __webpack_require__(2);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 function UnstyledDropdownComponent(_ref) {
 	var buttonOverwrite = _ref.buttonOverwrite,
@@ -3033,6 +3255,37 @@ function UnstyledDropdownComponent(_ref) {
 			null,
 			children
 		)
+	);
+}
+
+function UnstyledDropdownItemComponent(_ref2) {
+	var onClick = _ref2.onClick,
+	    onChange = _ref2.onChange,
+	    children = _ref2.children,
+	    _ref2$className = _ref2.className,
+	    className = _ref2$className === undefined ? "" : _ref2$className,
+	    _ref2$active = _ref2.active,
+	    active = _ref2$active === undefined ? false : _ref2$active,
+	    _ref2$activeClassName = _ref2.activeClassName,
+	    activeClassName = _ref2$activeClassName === undefined ? "" : _ref2$activeClassName,
+	    _ref2$style = _ref2.style,
+	    style = _ref2$style === undefined ? {} : _ref2$style,
+	    value = _ref2.value,
+	    props = _objectWithoutProperties(_ref2, ["onClick", "onChange", "children", "className", "active", "activeClassName", "style", "value"]);
+
+	var onMouseDown = _react2.default.useCallback(function (e) {
+		return e.preventDefault();
+	}, []);
+	var _onClick = _react2.default.useCallback(function (e) {
+		e.preventDefault();
+		typeof onClick === "function" && onClick(e);
+
+		typeof onChange === "function" && onChange(e, value);
+	}, [value]);
+	return _react2.default.createElement(
+		_reactstrap.DropdownItem,
+		_extends({}, props, { value: value, style: style, className: (0, _classnames2.default)(className, _defineProperty({}, activeClassName, active)), onMouseDown: onMouseDown, onClick: _onClick }),
+		children
 	);
 }
 
@@ -3084,6 +3337,7 @@ function UnstyledFileSelectComponent(_ref) {
 	var onClosed = _react2.default.useCallback(function () {
 		setIsOpen(false);
 	}, []);
+
 	var onInsert = _react2.default.useCallback(function (data, file) {
 		onChange && onChange(data, file);
 		setIsOpen(false);
@@ -3107,6 +3361,127 @@ function UnstyledFileSelectComponent(_ref) {
 
 /***/ }),
 
+/***/ "./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledLinkSelectComponent.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.UnstyledLinkSelectComponent = UnstyledLinkSelectComponent;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
+
+var _Unstyled = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function UnstyledLinkSelectComponent(_ref) {
+	var onChange = _ref.onChange,
+	    onChangeType = _ref.onChangeType,
+	    _ref$linkTypes = _ref.linkTypes,
+	    linkTypes = _ref$linkTypes === undefined ? [] : _ref$linkTypes,
+	    _ref$linkTypeValue = _ref.linkTypeValue,
+	    linkTypeValue = _ref$linkTypeValue === undefined ? "" : _ref$linkTypeValue,
+	    _ref$value = _ref.value,
+	    value = _ref$value === undefined ? {} : _ref$value,
+	    _ref$buttonComponent = _ref.buttonComponent,
+	    buttonComponent = _ref$buttonComponent === undefined ? _Unstyled.UnstyledButtonComponent : _ref$buttonComponent,
+	    _ref$dropdownComponen = _ref.dropdownComponent,
+	    dropdownComponent = _ref$dropdownComponen === undefined ? _Unstyled.UnstyledDropdownComponent : _ref$dropdownComponen,
+	    _ref$addDropDownProps = _ref.addDropDownProps,
+	    _addDropDownProps = _ref$addDropDownProps === undefined ? {} : _ref$addDropDownProps,
+	    _ref$editButtonProps = _ref.editButtonProps,
+	    editButtonProps = _ref$editButtonProps === undefined ? {} : _ref$editButtonProps,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    _id = _ref.id;
+
+	var id = (0, _utility.useUniqueId)(_id);
+
+	var addDropDownButtonProps = _addDropDownProps.buttonProps,
+	    addDropDownProps = _objectWithoutProperties(_addDropDownProps, ["buttonProps"]);
+
+	var _React$useState = _react2.default.useState(false),
+	    _React$useState2 = _slicedToArray(_React$useState, 2),
+	    isOpen = _React$useState2[0],
+	    setIsOpen = _React$useState2[1];
+
+	var onClick = _react2.default.useCallback(function (e) {
+		if (e.currentTarget.dataset.modalid !== "edit") {
+			onChangeType(e.currentTarget.dataset.modalid);
+		}
+		setIsOpen(true);
+	}, []);
+
+	var onClosed = _react2.default.useCallback(function () {
+		setIsOpen(false);
+	}, []);
+	var onInsert = _react2.default.useCallback(function (data, file) {
+		onChange(data, file);
+		setIsOpen(false);
+	}, []);
+	var hasValue = !!(value && _typeof(value.data) === "object" && linkTypes.find(function (linkType) {
+		return linkType.id === linkTypeValue;
+	}));
+	return _react2.default.createElement(
+		_react2.default.Fragment,
+		null,
+		linkTypes.map(function (linkType) {
+			return _react2.default.createElement(
+				_react2.default.Fragment,
+				{ key: linkType.id },
+				isOpen && linkTypeValue === linkType.id ? _react2.default.createElement(linkType.component, { fileAttributes: value.data, onInsert: onInsert, onClosed: onClosed, isOpen: true }) : null
+			);
+		}),
+		hasValue ? _react2.default.createElement(buttonComponent, _extends({
+			children: "Edit Link"
+		}, editButtonProps, {
+			id: id,
+			onClick: onClick,
+			disabled: disabled,
+			"data-modalid": "edit"
+		})) : _react2.default.createElement(dropdownComponent, _extends({
+			buttonProps: _extends({
+				children: "Add Link",
+				iconRight: { iconName: "mdiMenuDown" },
+				onClick: onClick
+			}, addDropDownButtonProps)
+		}, addDropDownProps, {
+			id: id,
+			disabled: disabled,
+			children: linkTypes.map(function (linkType) {
+				return _react2.default.createElement(
+					_react2.default.Fragment,
+					{ key: linkType.id },
+					_react2.default.createElement(
+						_Unstyled.UnstyledDropdownItemComponent,
+						{ "data-modalid": linkType.id, onClick: onClick },
+						linkType.title
+					)
+				);
+			})
+		}))
+	);
+}
+
+/***/ }),
+
 /***/ "./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledSelectComponent.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3120,25 +3495,16 @@ Object.defineProperty(exports, "__esModule", {
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 exports.UnstyledSelectComponent = UnstyledSelectComponent;
-exports.UnstyledSelectItem = UnstyledSelectItem;
 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
-
-var _classnames = __webpack_require__(2);
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _reactstrap = __webpack_require__(5);
 
 var _UnstyledDropdownComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledDropdownComponent.js");
 
 var _UnstyledButtonComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledButtonComponent.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
@@ -3168,38 +3534,8 @@ function UnstyledSelectComponent(_ref) {
 		_UnstyledDropdownComponent.UnstyledDropdownComponent,
 		{ buttonOverwrite: buttonOverwrite, buttonComponent: buttonComponent, buttonProps: buttonProps, disabled: disabled, onOpen: onOpen, props: props },
 		options && options.map(function (option, i) {
-			return _react2.default.createElement(UnstyledSelectItem, _extends({ key: "" + i + option.value }, option, { active: option.value === value, onChange: onChange }));
+			return _react2.default.createElement(_UnstyledDropdownComponent.UnstyledDropdownItemComponent, _extends({ key: "" + i + option.value }, option, { active: option.value === value, onChange: onChange }));
 		})
-	);
-}
-
-function UnstyledSelectItem(_ref3) {
-	var onClick = _ref3.onClick,
-	    onChange = _ref3.onChange,
-	    children = _ref3.children,
-	    _ref3$className = _ref3.className,
-	    className = _ref3$className === undefined ? "" : _ref3$className,
-	    _ref3$active = _ref3.active,
-	    active = _ref3$active === undefined ? false : _ref3$active,
-	    _ref3$activeClassName = _ref3.activeClassName,
-	    activeClassName = _ref3$activeClassName === undefined ? "" : _ref3$activeClassName,
-	    _ref3$style = _ref3.style,
-	    style = _ref3$style === undefined ? {} : _ref3$style,
-	    value = _ref3.value,
-	    props = _objectWithoutProperties(_ref3, ["onClick", "onChange", "children", "className", "active", "activeClassName", "style", "value"]);
-
-	var onMouseDown = _react2.default.useCallback(function (e) {
-		return e.preventDefault();
-	}, []);
-	var _onClick = _react2.default.useCallback(function (e) {
-		e.preventDefault();
-		typeof onClick === "function" && onClick(e);
-		onChange(e, value);
-	}, [value]);
-	return _react2.default.createElement(
-		_reactstrap.DropdownItem,
-		_extends({}, props, { value: value, style: style, className: (0, _classnames2.default)(className, _defineProperty({}, activeClassName, active)), onMouseDown: onMouseDown, onClick: _onClick }),
-		children
 	);
 }
 
@@ -3556,7 +3892,7 @@ var _core = __webpack_require__(1);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function useElementPropFile(props, propName) {
-	var value = props[propName] || "";
+	var value = props[propName] || {};
 
 	var _useNode = (0, _core.useNode)(),
 	    setProp = _useNode.actions.setProp;
@@ -3583,6 +3919,102 @@ function useElementPropFile(props, propName) {
 		url: hasValue ? _value.file.thumbnail : null,
 		changeHandler: changeHandler,
 		clearHandler: clearHandler
+	};
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/hooks/ElementProp/useElementPropLink.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.useElementPropLinkTypes = useElementPropLinkTypes;
+exports.useElementPropLink = useElementPropLink;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _core = __webpack_require__(1);
+
+var _LinkModals = __webpack_require__("./client/src/components/LinkModals.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useElementPropLinkTypes(allowedLinkTypes) {
+	return _react2.default.useMemo(function () {
+		return [{
+			id: "Internal",
+			title: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLinkInternal"),
+			component: _LinkModals.LinkModalInternal
+		}, {
+			id: "External",
+			title: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLinkExternal"),
+			component: _LinkModals.LinkModalExternal
+		}, {
+			id: "Email",
+			title: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLinkEmail"),
+			component: _LinkModals.LinkModalEmail
+		}, {
+			id: "File",
+			title: ss.i18n._t("ZAUBERFISCH_PAGEBUILDER_useElementPropLink.AddLinkFile"),
+			component: _LinkModals.LinkModalFile
+		}].filter(function (type) {
+			return allowedLinkTypes.includes(type.id);
+		});
+	}, [JSON.stringify(allowedLinkTypes)]);
+}
+
+function useElementPropLink(props, propName) {
+	var allowedLinkTypes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ["Internal", "External", "Email", "File"];
+
+	var propNameType = propName + "Type";
+	var propNameValue = propName + "Value";
+	var linkType = props[propNameType] || "";
+	var value = props[propNameValue] || {};
+
+	var _useNode = (0, _core.useNode)(),
+	    setProp = _useNode.actions.setProp;
+
+	var linkTypes = useElementPropLinkTypes(allowedLinkTypes);
+	var clearHandler = _react2.default.useCallback(function () {
+		setProp(function (_props) {
+			_props[propNameType] = null;
+			_props[propNameValue] = null;
+		});
+	}, [propName]);
+	var changeHandler = _react2.default.useCallback(function (data, file) {
+		setProp(function (_props) {
+			_props[propNameValue] = { data: data, file: file };
+		});
+	}, [propName, linkType]);
+	var changeTypeHandler = _react2.default.useCallback(function (newType) {
+		setProp(function (_props) {
+			_props[propNameType] = newType;
+		});
+	}, [propName]);
+	var hasValue = !!(value && _typeof(value.data) === "object" && allowedLinkTypes.includes(linkType));
+	var _value = hasValue ? value : {};
+
+	return {
+		propName: propName,
+		linkType: linkType,
+		value: _value,
+
+		hasValue: hasValue,
+
+		changeHandler: changeHandler,
+		clearHandler: clearHandler,
+		changeTypeHandler: changeTypeHandler,
+		linkTypes: linkTypes
 	};
 }
 
@@ -3653,7 +4085,7 @@ function useElementPropString(props, propName) {
 	    setProp = _useNode.actions.setProp;
 
 	var changeHandler = _react2.default.useCallback(function (e) {
-		var val = e.target.value;
+		var val = e.currentTarget.value;
 		setProp(function (_props) {
 			_props[propName] = val;
 		}, 500);
@@ -3761,6 +4193,18 @@ Object.keys(_useElementPropFile).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _useElementPropFile[key];
+    }
+  });
+});
+
+var _useElementPropLink = __webpack_require__("./client/src/components/PageBuilder/hooks/ElementProp/useElementPropLink.js");
+
+Object.keys(_useElementPropLink).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _useElementPropLink[key];
     }
   });
 });

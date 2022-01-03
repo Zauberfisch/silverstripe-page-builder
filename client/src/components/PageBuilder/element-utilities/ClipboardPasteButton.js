@@ -13,7 +13,7 @@ const requiresModal = !navigator.clipboard || typeof navigator.clipboard.readTex
 
 const PasteModal = ({isOpen, close, insertIntoNodeId, query, actions}) => {
 	const [jsonToImport, setJsonToImport] = React.useState("")
-	const onChange = React.useCallback((e) => setJsonToImport(e.target.value), [])
+	const onChange = React.useCallback((e) => setJsonToImport(e.currentTarget.value), [])
 	const onClick = React.useCallback(() => {
 		importFromPaste(jsonToImport, insertIntoNodeId, query, actions)
 		setJsonToImport("")

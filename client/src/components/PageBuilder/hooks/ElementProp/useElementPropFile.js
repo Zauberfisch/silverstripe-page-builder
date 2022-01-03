@@ -2,7 +2,7 @@ import React from "react"
 import {useNode} from "@craftjs/core"
 
 export function useElementPropFile(props, propName) {
-	const value = props[propName] || ""
+	const value = props[propName] || {}
 	const {actions: {setProp}} = useNode()
 	// const changeHandler = React.useCallback(e => {
 	// 	const val = e.target.value
