@@ -3,6 +3,7 @@ import {UnstyledButtonComponent} from "./UnstyledButtonComponent"
 import {EmbedModalFile} from "../../../../LinkModals"
 
 export function UnstyledFileSelectComponent({
+	                                            buttonTitle,
 	                                            buttonOverwrite,
 	                                            buttonComponent = UnstyledButtonComponent,
 	                                            buttonProps = {},
@@ -30,6 +31,7 @@ export function UnstyledFileSelectComponent({
 					typeof buttonProps.onClick === "function" && buttonProps.onClick(e)
 					setIsOpen(true)
 				}, []),
+				children: buttonTitle,
 			})}
 			<EmbedModalFile {...{onInsert, onClosed, isOpen, fileAttributes: value}} />
 			{/*<pre>{JSON.stringify({value}, null, 2)}</pre>*/}

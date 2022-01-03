@@ -1361,6 +1361,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Container = undefined;
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -1379,7 +1381,11 @@ var _ClipboardPasteButton = __webpack_require__("./client/src/components/PageBui
 
 var _hooks = __webpack_require__("./client/src/components/PageBuilder/hooks/index.js");
 
+var _form = __webpack_require__("./client/src/components/PageBuilder/form/index.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
@@ -1388,10 +1394,31 @@ var Container = function Container(_ref) {
 	    pageBuilderSpecs = _ref.pageBuilderSpecs,
 	    props = _objectWithoutProperties(_ref, ["children", "pageBuilderSpecs"]);
 
+	var columnsOptions = _react2.default.useMemo(function () {
+		if (pageBuilderSpecs.columnsOptions) {
+			return pageBuilderSpecs.columnsOptions.map(function (option) {
+				return _extends({ pageBuilderClassName: _ContainerModule2.default["columns-" + option.value] }, option);
+			});
+		}
+		return [];
+	}, [JSON.stringify(pageBuilderSpecs.columnsOptions)]);
+	var columnsProp = (0, _hooks.useElementPropSelect)(props, "columns", columnsOptions);
+	var backgroundProp = (0, _hooks.useElementPropSelect)(props, "background", pageBuilderSpecs.backgroundOptions);
+	var hasChildren = _react2.default.Children.count(children) > 0;
 	return _react2.default.createElement(
-		"div",
-		null,
-		"asd"
+		_elementUtilities.ElementContainer,
+		{ padding: false, className: (0, _classnames2.default)(_ContainerModule2.default.container, _defineProperty({}, _ContainerModule2.default.isEmpty, !hasChildren)), style: backgroundProp.fullValue.pageBuilderStyle || {} },
+		_react2.default.createElement(
+			_elementUtilities.ToolbarPortalTop,
+			{ childrenRight: _react2.default.createElement(_ClipboardPasteButton.ClipboardPasteButton, null) },
+			backgroundProp.options.length ? _react2.default.createElement(_form.ToolbarSelectPropField, { elementProp: backgroundProp }) : null,
+			columnsProp.options.length ? _react2.default.createElement(_form.ToolbarSelectPropField, { elementProp: columnsProp }) : null
+		),
+		hasChildren ? _react2.default.createElement(
+			"div",
+			{ className: (0, _classnames2.default)(_ContainerModule2.default.children, columnsProp.fullValue.pageBuilderClassName) },
+			children
+		) : null
 	);
 };
 
@@ -1937,7 +1964,8 @@ function FormFieldGroup(_ref) {
 	    labelFor = _ref.labelFor,
 	    children = _ref.children,
 	    className = _ref.className,
-	    props = _objectWithoutProperties(_ref, ["label", "labelFor", "children", "className"]);
+	    innerClassName = _ref.innerClassName,
+	    props = _objectWithoutProperties(_ref, ["label", "labelFor", "children", "className", "innerClassName"]);
 
 	return _react2.default.createElement(
 		"div",
@@ -1949,10 +1977,127 @@ function FormFieldGroup(_ref) {
 		) : null,
 		_react2.default.createElement(
 			"div",
-			{ className: "form__field-holder" },
+			{ className: "form__field-holder " + innerClassName },
 			children
 		)
 	);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Form/FormFilePropField.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.FormFilePropField = FormFilePropField;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FormFileSelectComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormFileSelectComponent.js");
+
+var _FormFieldGroup = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormFieldGroup.js");
+
+var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
+
+var _FormTextComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormTextComponent.js");
+
+var _FormButtonComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormButtonComponent.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function FormFilePropField(_ref) {
+	var elementProp = _ref.elementProp,
+	    label = _ref.label,
+	    buttonTitle = _ref.buttonTitle,
+	    _ref$buttonProps = _ref.buttonProps,
+	    buttonProps = _ref$buttonProps === undefined ? {} : _ref$buttonProps,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled;
+
+	var id = (0, _utility.useUniqueId)();
+	return _react2.default.createElement(
+		_FormFieldGroup.FormFieldGroup,
+		{ label: label, labelFor: id, className: "fieldgroup", innerClassName: "form__fieldgroup" },
+		_react2.default.createElement(
+			"div",
+			{ className: "input-group" },
+			_react2.default.createElement(_FormTextComponent.FormTextComponent, { value: elementProp.fileName || "", disabled: true }),
+			_react2.default.createElement(
+				"span",
+				{ className: "input-group-append" },
+				_react2.default.createElement(_FormFileSelectComponent.FormFileSelectComponent, _extends({}, buttonProps, {
+					buttonTitle: buttonTitle,
+					id: id,
+					onChange: elementProp.changeHandler,
+					value: elementProp.value,
+					disabled: disabled
+				}))
+			),
+			elementProp.fileName ? _react2.default.createElement(
+				"span",
+				{ className: "input-group-append" },
+				_react2.default.createElement(_FormButtonComponent.FormButtonComponent, { children: "Remove", onClick: elementProp.clearHandler })
+			) : null
+		)
+	);
+}
+
+/***/ }),
+
+/***/ "./client/src/components/PageBuilder/form/fields/Form/FormFileSelectComponent.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.FormFileSelectComponent = FormFileSelectComponent;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _FormTextComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormTextComponent.js");
+
+var _FormFieldGroup = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormFieldGroup.js");
+
+var _Unstyled = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/index.js");
+
+var _FormButtonComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormButtonComponent.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function FormFileSelectComponent(_ref) {
+	var buttonTitle = _ref.buttonTitle,
+	    _ref$buttonComponent = _ref.buttonComponent,
+	    buttonComponent = _ref$buttonComponent === undefined ? _FormButtonComponent.FormButtonComponent : _ref$buttonComponent,
+	    _ref$buttonProps = _ref.buttonProps,
+	    buttonProps = _ref$buttonProps === undefined ? {} : _ref$buttonProps,
+	    _ref$disabled = _ref.disabled,
+	    disabled = _ref$disabled === undefined ? false : _ref$disabled,
+	    onChange = _ref.onChange,
+	    value = _ref.value;
+
+	return _react2.default.createElement(_Unstyled.UnstyledFileSelectComponent, {
+		buttonComponent: buttonComponent,
+		buttonTitle: buttonTitle,
+		buttonProps: buttonProps,
+		disabled: disabled,
+		onChange: onChange,
+		value: value
+	});
 }
 
 /***/ }),
@@ -2033,6 +2178,9 @@ function FormSelectComponent(_ref) {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 exports.FormSelectPropField = FormSelectPropField;
 
 var _react = __webpack_require__(0);
@@ -2063,12 +2211,13 @@ function FormSelectPropField(_ref) {
 		_FormFieldGroup.FormFieldGroup,
 		{ label: label, labelFor: id },
 		_react2.default.createElement(_FormSelectComponent.FormSelectComponent, {
-			id: id,
 			options: elementProp.options,
 			value: elementProp.value,
 			onChange: elementProp.changeHandler,
 			buttonTitle: buttonTitle,
-			buttonProps: buttonProps,
+			buttonProps: _extends({}, buttonProps, {
+				id: id
+			}),
 			showSelectedTitle: showSelectedTitle,
 			disabled: disabled
 		})
@@ -2263,6 +2412,18 @@ Object.keys(_FormTextPropField).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _FormTextPropField[key];
+    }
+  });
+});
+
+var _FormFilePropField = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormFilePropField.js");
+
+Object.keys(_FormFilePropField).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _FormFilePropField[key];
     }
   });
 });
@@ -2904,7 +3065,8 @@ var _LinkModals = __webpack_require__("./client/src/components/LinkModals.js");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function UnstyledFileSelectComponent(_ref) {
-	var buttonOverwrite = _ref.buttonOverwrite,
+	var buttonTitle = _ref.buttonTitle,
+	    buttonOverwrite = _ref.buttonOverwrite,
 	    _ref$buttonComponent = _ref.buttonComponent,
 	    buttonComponent = _ref$buttonComponent === undefined ? _UnstyledButtonComponent.UnstyledButtonComponent : _ref$buttonComponent,
 	    _ref$buttonProps = _ref.buttonProps,
@@ -2936,7 +3098,8 @@ function UnstyledFileSelectComponent(_ref) {
 				e.preventDefault();
 				typeof buttonProps.onClick === "function" && buttonProps.onClick(e);
 				setIsOpen(true);
-			}, [])
+			}, []),
+			children: buttonTitle
 		})),
 		_react2.default.createElement(_LinkModals.EmbedModalFile, { onInsert: onInsert, onClosed: onClosed, isOpen: isOpen, fileAttributes: value })
 	);
@@ -3416,6 +3579,7 @@ function useElementPropFile(props, propName) {
 		value: _value,
 
 		hasValue: hasValue,
+		fileName: hasValue ? _value.data.FileFilename : null,
 		url: hasValue ? _value.file.thumbnail : null,
 		changeHandler: changeHandler,
 		clearHandler: clearHandler

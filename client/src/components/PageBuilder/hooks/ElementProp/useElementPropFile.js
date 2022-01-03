@@ -43,6 +43,7 @@ export function useElementPropFile(props, propName) {
 		value: _value,
 		// modalOpen,
 		hasValue,
+		fileName: hasValue ? _value.data.FileFilename : null,
 		url: hasValue ? _value.file.thumbnail : null,
 		changeHandler,
 		clearHandler,

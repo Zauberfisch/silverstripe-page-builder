@@ -15,12 +15,14 @@ export function FormSelectPropField({
 	return (
 		<FormFieldGroup label={label} labelFor={id}>
 			<FormSelectComponent {...{
-				id,
 				options: elementProp.options,
 				value: elementProp.value,
 				onChange: elementProp.changeHandler,
 				buttonTitle,
-				buttonProps,
+				buttonProps: {
+					...buttonProps,
+					id,
+				},
 				showSelectedTitle,
 				disabled,
 			}} />
