@@ -3,7 +3,7 @@ import {PageBuilderContext} from "components/PageBuilder/PageBuilderContext"
 import {useNodeState} from "components/PageBuilder/hooks/useNodeState"
 import ReactDOM from "react-dom"
 import {useEditor} from "@craftjs/core"
-import {ToolbarButton, ToolbarSeparator} from "components/PageBuilder/form"
+import {ToolbarButtonComponent, ToolbarSeparator} from "components/PageBuilder/form"
 import DeletionModal from "components/DeletionModal"
 import {ClipboardCopyButton} from "./ClipboardCopyButton"
 
@@ -39,8 +39,8 @@ export function ToolbarPortalTop({children, childrenRight}) {
 			</div>
 			{childrenRight}
 			{isDeletable && <ClipboardCopyButton />}
-			{isDeletable && <ToolbarButton iconLeft={{iconName: "mdiArrowUp"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ParentElement")} onClick={onGoUp} />}
-			{isDeletable && <ToolbarButton iconLeft={{iconName: "mdiDeleteForever"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElement")} onClick={onDelete} />}
+			{isDeletable && <ToolbarButtonComponent iconLeft={{iconName: "mdiArrowUp"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ParentElement")} onClick={onGoUp} />}
+			{isDeletable && <ToolbarButtonComponent iconLeft={{iconName: "mdiDeleteForever"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElement")} onClick={onDelete} />}
 			<DeletionModal
 				isOpen={requireDeleteConfirmation}
 				body={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.DeleteElementConfirm")}

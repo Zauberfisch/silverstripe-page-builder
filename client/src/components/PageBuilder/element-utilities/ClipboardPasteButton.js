@@ -1,7 +1,7 @@
 import React from "react"
 import lz from "lzutf8"
 import {getRandomId as getRandomNodeId} from "@craftjs/utils"
-import {ToolbarButton} from "../form"
+import {ToolbarButtonComponent} from "../form"
 import {useEditor} from "@craftjs/core"
 import {useNodeState} from "../hooks/useNodeState"
 import {connect as reduxConnect} from "react-redux"
@@ -111,7 +111,7 @@ export function _ClipboardPasteButton({toastsActions}) {
 	return (
 		<React.Fragment>
 			{requiresModal ? <PasteModal {...{isOpen, close, insertIntoNodeId: id, query, actions}} /> : null}
-			<ToolbarButton iconLeft={{iconName: "mdiTrayArrowDown"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Tooltip")} onClick={onClick} />
+			<ToolbarButtonComponent iconLeft={{iconName: "mdiTrayArrowDown"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.ClipboardPasteButton.Tooltip")} onClick={onClick} />
 		</React.Fragment>
 	)
 }

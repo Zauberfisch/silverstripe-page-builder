@@ -5,7 +5,7 @@ import {bindActionCreators} from "redux"
 import * as toastsActions from "state/toasts/ToastsActions"
 import {useNodeState} from "components/PageBuilder/hooks/useNodeState"
 import {useEditor} from "@craftjs/core"
-import {ToolbarButton} from "../form"
+import {ToolbarButtonComponent} from "../form"
 
 const hasClipboard = navigator.clipboard && typeof navigator.clipboard.writeText === "function"
 
@@ -29,7 +29,7 @@ function _ClipboardCopyButton({toastsActions}) {
 		)
 	}, [id])
 	return (
-		<ToolbarButton iconLeft={{iconName: "mdiTrayArrowUp"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Tooltip")} onClick={onClick} disabled={!hasClipboard} />
+		<ToolbarButtonComponent iconLeft={{iconName: "mdiTrayArrowUp"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Tooltip")} onClick={onClick} disabled={!hasClipboard} />
 		// <ToolbarButton iconName="mdiTrayArrowUp" tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.CopyToClipboardButton.Tooltip")} onClick={onClick} disabled={!hasClipboard} />
 	)
 }

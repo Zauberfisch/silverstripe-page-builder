@@ -3,7 +3,7 @@ import {useUniqueId} from "../../../utility"
 import {Tooltip} from "reactstrap"
 import classNames from "classnames"
 
-export function UnstyledButton({
+export function UnstyledButtonComponent({
 	                               tooltip = "",
 	                               disabled = false,
 	                               active = false,
@@ -18,8 +18,7 @@ export function UnstyledButton({
 	                               onClick,
 	                               ...props
                                }) {
-	const _id = useUniqueId()
-	id = id || _id
+	const _id = useUniqueId(id)
 	const [tooltipOpen, setTooltipOpen] = React.useState(false)
 	const toggleTooltip = React.useCallback(() => setTooltipOpen(_value => !_value), [])
 	const onMouseDown = React.useCallback((e) => e.preventDefault(), [])
@@ -39,13 +38,13 @@ export function UnstyledButton({
 	return (
 		<React.Fragment>
 		{/*<span className={containerClassName} style={containerStyle}>*/}
-			<button {...{onMouseDown, ...props, id, disabled, className: classNames(className, {
+			<button {...{onMouseDown, ...props, id: _id, disabled, className: classNames(className, {
 				[activeClassName]: active,
 				[notActiveClassName]: !active,
 			}), style, onClick}}>
 				{children}
 			</button>
-			{id && tooltip ? <Tooltip placement="bottom" isOpen={tooltipOpen} target={id} toggle={toggleTooltip}>
+			{_id && tooltip ? <Tooltip placement="bottom" isOpen={tooltipOpen} target={_id} toggle={toggleTooltip}>
 				{tooltip}
 			</Tooltip> : null}
 		{/*</span>*/}

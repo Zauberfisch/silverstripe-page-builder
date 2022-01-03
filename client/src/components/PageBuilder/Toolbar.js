@@ -1,7 +1,7 @@
 import {useEditor} from "@craftjs/core"
 import React from "react"
 import styles from "./Toolbar.module.scss"
-import {ToolbarButton, AddNewButton, ToolbarSeparator} from "./form"
+import {ToolbarButtonComponent, AddNewButton, ToolbarSeparator} from "./form"
 import {EventBus} from "components/PageBuilder/utility"
 
 export const Toolbar = ({refToolbarTop, refToolbarRows}) => {
@@ -35,8 +35,8 @@ export const Toolbar = ({refToolbarTop, refToolbarRows}) => {
 		<div className={styles.toolbar}>
 			<div className={styles.toolbarInner} ref={refToolbarRows}>
 				<div className={styles.toolbarRow} ref={refToolbarTop}>
-					<ToolbarButton iconLeft={{iconName: "mdiUndoVariant"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Undo")} disabled={!canUndo && !isBusy} onClick={undo} />
-					<ToolbarButton iconLeft={{iconName: "mdiRedoVariant"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Redo")} disabled={!canRedo && !isBusy} onClick={redo} />
+					<ToolbarButtonComponent iconLeft={{iconName: "mdiUndoVariant"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Undo")} disabled={!canUndo && !isBusy} onClick={undo} />
+					<ToolbarButtonComponent iconLeft={{iconName: "mdiRedoVariant"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Redo")} disabled={!canRedo && !isBusy} onClick={redo} />
 					<ToolbarSeparator />
 					<AddNewButton />
 					{/*{selected ? <React.Fragment>*/}

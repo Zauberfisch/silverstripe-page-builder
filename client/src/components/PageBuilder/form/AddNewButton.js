@@ -1,7 +1,7 @@
 import React from "react"
 import styles from "./AddNewButton.module.scss"
 import classnames from "classnames"
-import {ToolbarButton} from "./fields"
+import {ToolbarButtonComponent} from "./fields"
 import {Popover, PopoverHeader, PopoverBody} from "reactstrap"
 import {PageBuilderContext} from "components/PageBuilder/PageBuilderContext"
 import {useUniqueId} from "components/PageBuilder/utility"
@@ -25,7 +25,7 @@ export function AddNewButton() {
 	const {elements} = React.useContext(PageBuilderContext)
 	return (
 		<div>
-			<ToolbarButton id={id} iconLeft={{iconName: "mdiPlusBox"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Add")} />
+			<ToolbarButtonComponent id={id} iconLeft={{iconName: "mdiPlusBox"}} tooltip={ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.Add")} />
 			{id ? <Popover placement="bottom" target={id} {...{toggle, isOpen}} popperClassName={classnames({[styles.popoverHidden]: isHidden})}>
 				<PopoverHeader>{ss.i18n._t("ZAUBERFISCH_PAGEBUILDER.AddDropdownTitle")}</PopoverHeader>
 				<PopoverBody>

@@ -1,5 +1,9 @@
-export * from "./ToolbarButton"
-export * from "./ToolbarDropdownField"
-export * from "./ToolbarSelectField"
+export * from "./ToolbarButtonComponent"
+export * from "./ToolbarDropdownComponent"
+export * from "./ToolbarSelectComponent"
 export * from "./ToolbarSeparator"
-export * from "./ToolbarTextField"
+
+export * from "./ToolbarButtonPropField"
+export * from "./ToolbarSelectPropField"
+
+// export * from "./ToolbarTextField"
