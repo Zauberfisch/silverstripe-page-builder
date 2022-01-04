@@ -450,6 +450,7 @@ function createElement(_ref2) {
 		rules: specs.isCanvas ? {
 			canMoveIn: function canMoveIn(incomingNodes) {
 				if (specs.forbiddenChildren) {
+					console.log("checoing forbiddenChildren", { forbiddenChildren: specs.forbiddenChildren, incomingName: incomingNodes.length && incomingNodes[0].data.name });
 					return !specs.forbiddenChildren.includes(incomingNodes.length && incomingNodes[0].data.name);
 				}
 				return true;
