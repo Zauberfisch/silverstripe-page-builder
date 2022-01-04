@@ -1414,7 +1414,11 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 var Container = function Container(_ref) {
 	var children = _ref.children,
 	    pageBuilderSpecs = _ref.pageBuilderSpecs,
-	    props = _objectWithoutProperties(_ref, ["children", "pageBuilderSpecs"]);
+	    _ref$className = _ref.className,
+	    className = _ref$className === undefined ? "" : _ref$className,
+	    _ref$style = _ref.style,
+	    style = _ref$style === undefined ? {} : _ref$style,
+	    props = _objectWithoutProperties(_ref, ["children", "pageBuilderSpecs", "className", "style"]);
 
 	var columnsOptions = _react2.default.useMemo(function () {
 		if (pageBuilderSpecs.columnsOptions) {
@@ -1429,7 +1433,7 @@ var Container = function Container(_ref) {
 	var hasChildren = _react2.default.Children.count(children) > 0;
 	return _react2.default.createElement(
 		_elementUtilities.ElementContainer,
-		{ padding: false, className: (0, _classnames2.default)(_ContainerModule2.default.container, _defineProperty({}, _ContainerModule2.default.isEmpty, !hasChildren)), style: backgroundProp.fullValue.pageBuilderStyle || {} },
+		{ padding: false, className: (0, _classnames2.default)(className, _ContainerModule2.default.container, _defineProperty({}, _ContainerModule2.default.isEmpty, !hasChildren)), style: _extends({}, style, backgroundProp.fullValue.pageBuilderStyle || {}) },
 		_react2.default.createElement(
 			_elementUtilities.ToolbarPortalTop,
 			{ childrenRight: _react2.default.createElement(_ClipboardPasteButton.ClipboardPasteButton, null) },

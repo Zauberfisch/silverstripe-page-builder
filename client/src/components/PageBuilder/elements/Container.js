@@ -9,6 +9,10 @@ import {ToolbarSelectPropField} from "../form"
 export const Container = ({
 	                          children,
 	                          pageBuilderSpecs,
+	                          // className,
+	                          // style,
+	                          className = "",
+	                          style = {},
 	                          ...props
                           }) => {
 	const columnsOptions = React.useMemo(() => {
@@ -23,9 +27,9 @@ export const Container = ({
 	const backgroundProp = useElementPropSelect(props, "background", pageBuilderSpecs.backgroundOptions)
 	const hasChildren = React.Children.count(children) > 0
 	return (
-		<ElementContainer padding={false} className={classNames(styles.container, {
+		<ElementContainer padding={false} className={classNames(className, styles.container, {
 			[styles.isEmpty]: !hasChildren,
-		})} style={backgroundProp.fullValue.pageBuilderStyle || {}}>
+		})} style={{...style, ...(backgroundProp.fullValue.pageBuilderStyle || {})}}>
 			{/*<pre>{JSON.stringify({columnsProp, backgroundProp}, null, 2)}</pre>*/}
 			<ToolbarPortalTop childrenRight={<ClipboardPasteButton />}>
 				{backgroundProp.options.length ? <ToolbarSelectPropField elementProp={backgroundProp} /> : null}
