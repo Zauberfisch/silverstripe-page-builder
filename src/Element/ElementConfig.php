@@ -45,6 +45,11 @@ abstract class ElementConfig {
 		return $this;
 	}
 
+	public function setForbiddenChildren(array $array): ElementConfig {
+		$this->config['forbiddenChildren'] = $array;
+		return $this;
+	}
+
 	public function getSingularName(): string {
 		return $this->singularName ?? _t($this->getElementPhpClassName() . '.SINGULARNAME', ucwords(trim(strtolower(preg_replace(
 				'/_?([A-Z])/',
