@@ -74,7 +74,7 @@
 "use strict";
 
 
-var _Injector = __webpack_require__(3);
+var _Injector = __webpack_require__(4);
 
 var _Injector2 = _interopRequireDefault(_Injector);
 
@@ -128,7 +128,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactstrap = __webpack_require__(5);
+var _reactstrap = __webpack_require__(3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -386,7 +386,7 @@ var _core = __webpack_require__(1);
 
 var _Toolbar = __webpack_require__("./client/src/components/PageBuilder/Toolbar.js");
 
-var _Injector = __webpack_require__(3);
+var _Injector = __webpack_require__(4);
 
 var _Injector2 = _interopRequireDefault(_Injector);
 
@@ -757,7 +757,7 @@ var _ToastsActions = __webpack_require__(8);
 
 var toastsActions = _interopRequireWildcard(_ToastsActions);
 
-var _reactstrap = __webpack_require__(5);
+var _reactstrap = __webpack_require__(3);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -1150,7 +1150,7 @@ var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuild
 
 var _useNodeState2 = __webpack_require__("./client/src/components/PageBuilder/hooks/useNodeState.js");
 
-var _reactDom = __webpack_require__(4);
+var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -1203,7 +1203,7 @@ var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuild
 
 var _useNodeState2 = __webpack_require__("./client/src/components/PageBuilder/hooks/useNodeState.js");
 
-var _reactDom = __webpack_require__(4);
+var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -1627,7 +1627,7 @@ var _classnames3 = _interopRequireDefault(_classnames2);
 
 var _fields = __webpack_require__("./client/src/components/PageBuilder/form/fields/index.js");
 
-var _reactstrap = __webpack_require__(5);
+var _reactstrap = __webpack_require__(3);
 
 var _PageBuilderContext = __webpack_require__("./client/src/components/PageBuilder/PageBuilderContext.js");
 
@@ -2610,6 +2610,18 @@ Object.keys(_FormTextPropField).forEach(function (key) {
   });
 });
 
+var _FormFileSelectComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormFileSelectComponent.js");
+
+Object.keys(_FormFileSelectComponent).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _FormFileSelectComponent[key];
+    }
+  });
+});
+
 var _FormFilePropField = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormFilePropField.js");
 
 Object.keys(_FormFilePropField).forEach(function (key) {
@@ -2618,6 +2630,18 @@ Object.keys(_FormFilePropField).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _FormFilePropField[key];
+    }
+  });
+});
+
+var _FormLinkSelectComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Form/FormLinkSelectComponent.js");
+
+Object.keys(_FormLinkSelectComponent).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _FormLinkSelectComponent[key];
     }
   });
 });
@@ -3154,7 +3178,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _utility = __webpack_require__("./client/src/components/PageBuilder/utility/index.js");
 
-var _reactstrap = __webpack_require__(5);
+var _reactstrap = __webpack_require__(3);
 
 var _classnames = __webpack_require__(2);
 
@@ -3257,7 +3281,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactstrap = __webpack_require__(5);
+var _reactstrap = __webpack_require__(3);
 
 var _UnstyledButtonComponent = __webpack_require__("./client/src/components/PageBuilder/form/fields/Unstyled/UnstyledButtonComponent.js");
 
@@ -4549,11 +4573,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(4);
+var _reactDom = __webpack_require__(5);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Injector = __webpack_require__(3);
+var _Injector = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26102,21 +26126,21 @@ module.exports = classnames;
 /***/ 3:
 /***/ (function(module, exports) {
 
-module.exports = Injector;
+module.exports = Reactstrap;
 
 /***/ }),
 
 /***/ 4:
 /***/ (function(module, exports) {
 
-module.exports = ReactDom;
+module.exports = Injector;
 
 /***/ }),
 
 /***/ 5:
 /***/ (function(module, exports) {
 
-module.exports = Reactstrap;
+module.exports = ReactDom;
 
 /***/ }),
 
