@@ -45,6 +45,10 @@ abstract class ElementConfig {
 		return $this;
 	}
 
+	/**
+	 * @param array $array array of componentKey strings that cannot be a child of this element
+	 * @return $this
+	 */
 	public function setForbiddenChildren(array $array): ElementConfig {
 		$this->config['forbiddenChildren'] = $array;
 		return $this;
