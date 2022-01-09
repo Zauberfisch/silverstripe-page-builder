@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace zauberfisch\PageBuilder\Model;
 
-use app\model\DataObject;
 use SilverStripe\Assets\File;
 use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\FieldType\DBText;
 
 /**
