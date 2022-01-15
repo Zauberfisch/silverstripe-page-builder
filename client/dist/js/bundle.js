@@ -1370,6 +1370,30 @@ Object.keys(_ToolbarPortalTop).forEach(function (key) {
   });
 });
 
+var _ClipboardPasteButton = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ClipboardPasteButton.js");
+
+Object.keys(_ClipboardPasteButton).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ClipboardPasteButton[key];
+    }
+  });
+});
+
+var _ClipboardCopyButton = __webpack_require__("./client/src/components/PageBuilder/element-utilities/ClipboardCopyButton.js");
+
+Object.keys(_ClipboardCopyButton).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _ClipboardCopyButton[key];
+    }
+  });
+});
+
 /***/ }),
 
 /***/ "./client/src/components/PageBuilder/elements/Container.js":
