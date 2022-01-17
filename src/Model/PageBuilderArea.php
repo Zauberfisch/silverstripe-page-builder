@@ -8,6 +8,7 @@ use SilverStripe\Assets\File;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\FieldType\DBText;
+use SilverStripe\Versioned\Versioned;
 
 /**
  * @property string $ElementsData
@@ -25,4 +26,9 @@ class PageBuilderArea extends DataObject {
 		'RelatedPages' => SiteTree::class,
 	];
 	private static $table_name = 'PageBuilderArea';
+	private static $extensions = [
+		Versioned::class,
+	];
+
+	private static $hide_in_campaigns = true;
 }
