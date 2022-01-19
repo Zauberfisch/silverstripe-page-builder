@@ -23,7 +23,7 @@ abstract class Element extends ArrayData {
 		return $this->array['data'];
 	}
 
-	public function getValueForFrontend(PageBuilderConfig $config = null): \stdClass {
+	public function getValueForFrontend(PageBuilderConfig $config): \stdClass {
 		$return = new \stdClass();
 		$data = $this->array['data'];
 		$return->type = $data->type->resolvedName;
