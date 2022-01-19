@@ -7,6 +7,7 @@ namespace zauberfisch\PageBuilder\Element;
 use SilverStripe\Assets\File;
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\View\ArrayData;
+use zauberfisch\PageBuilder\Form\PageBuilderConfig;
 
 abstract class Element extends ArrayData {
 	public function __construct($value, string $elementId, string $componentKey, ElementConfig $config) {
@@ -22,7 +23,7 @@ abstract class Element extends ArrayData {
 		return $this->array['data'];
 	}
 
-	public function getValueForFrontend() {
+	public function getValueForFrontend(PageBuilderConfig $config = null): \stdClass {
 		$return = new \stdClass();
 		$data = $this->array['data'];
 		$return->type = $data->type->resolvedName;

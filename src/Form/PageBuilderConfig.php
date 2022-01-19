@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace zauberfisch\PageBuilder\Form;
 
+use app\model\DataObject;
 use zauberfisch\PageBuilder\Element\Element;
 use zauberfisch\PageBuilder\Element\ElementConfig;
 use zauberfisch\PageBuilder\Element\RootContainer;
@@ -12,18 +13,27 @@ use zauberfisch\PageBuilder\Model\PageBuilderArea;
 
 class PageBuilderConfig {
 	protected PageBuilderArea $area;
+	protected $context;
 	/**
 	 * @var array|ElementConfig[]
 	 */
 	protected array $elements = [];
 
-	public function __construct(PageBuilderArea $area) {
+	public function __construct(PageBuilderArea $area, $context = null) {
 		$this->area = $area;
+		$this->context = $context;
 		$this->elements[] = new RootContainerConfig();
 	}
 
 	public function getArea(): PageBuilderArea {
 		return $this->area;
+	}
+
+	/**
+	 * @return mixed|null|\Page|DataObject
+	 */
+	public function getContext() {
+		return $this->context;
 	}
 
 	public function saveInto($value) {
@@ -74,7 +84,7 @@ class PageBuilderConfig {
 		$elements = $this->deSerializeValue($this->area->ElementsData);
 		$return = [];
 		foreach ($elements as $elementId => $element) {
-			$return[$elementId] = $element->getValueForFrontend();
+			$return[$elementId] = $element->getValueForFrontend($this);
 		}
 		return $return;
 	}
