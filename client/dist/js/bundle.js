@@ -452,6 +452,18 @@ function createElement(_ref2) {
 				if (specs.forbiddenChildren) {
 					return !specs.forbiddenChildren.includes(incomingNodes.length && incomingNodes[0].data.name);
 				}
+				if (specs.allowedChildren) {
+					return specs.allowedChildren.includes(incomingNodes.length && incomingNodes[0].data.name);
+				}
+				return true;
+			},
+			canDrop: function canDrop(targetNode) {
+				if (specs.forbiddenParents) {
+					return !specs.forbiddenParents.includes(targetNode.data.name);
+				}
+				if (specs.allowedParents) {
+					return specs.allowedParents.includes(targetNode.data.name);
+				}
 				return true;
 			}
 		} : {}
