@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace zauberfisch\PageBuilder\Element;
 
-class ContainerConfig extends ElementConfig {
+class ContainerConfig extends ElementCanvasConfig {
 	protected string $phpClassName = Container::class;
 
 	public function setBackgroundOptions(array $options): ContainerConfig {

@@ -10,11 +10,11 @@ use SilverStripe\View\ArrayData;
 use zauberfisch\PageBuilder\Form\PageBuilderConfig;
 
 abstract class Element extends ArrayData {
-	public function __construct($value, string $elementId, string $componentKey, ElementConfig $config) {
+	public function __construct($value, string $elementId, string $elementKey, ElementConfig $config) {
 		parent::__construct([
 			'data' => $value,
 			'elementId' => $elementId,
-			'componentKey' => $componentKey,
+			'elementKey' => $elementKey,
 			'config' => $config,
 		]);
 	}

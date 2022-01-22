@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace zauberfisch\PageBuilder\Form;
 
 use app\model\DataObject;
+use SilverStripe\ORM\ArrayList;
 use zauberfisch\PageBuilder\Element\Element;
 use zauberfisch\PageBuilder\Element\ElementConfig;
 use zauberfisch\PageBuilder\Element\RootContainer;
@@ -22,7 +23,7 @@ class PageBuilderConfig {
 	public function __construct(PageBuilderArea $area, $context = null) {
 		$this->area = $area;
 		$this->context = $context;
-		$this->elements[] = new RootContainerConfig();
+		$this->setElements([]);
 	}
 
 	public function getArea(): PageBuilderArea {
@@ -54,7 +55,7 @@ class PageBuilderConfig {
 		$return = [];
 		foreach ($this->elements as $elementConfig) {
 			$return[] = [
-				'key' => $elementConfig->getComponentKey(),
+				'key' => $elementConfig->getComponentFullKey(),
 				'className' => $elementConfig->getElementJavascriptClassName(),
 				'singularName' => $elementConfig->getSingularName(),
 				'config' => $elementConfig->getConfig(),
@@ -68,12 +69,38 @@ class PageBuilderConfig {
 		return $this;
 	}
 
-	protected function findElementConfigForComponentKey(string $key): ElementConfig {
+	public function setElements(array $elements, $addRoot = true): PageBuilderConfig {
+		$this->elements = $elements;
+		if ($addRoot) {
+			$this->addElement(new RootContainerConfig());
+		}
+		return $this;
+	}
+
+	public function getElements(): array {
+		return $this->elements;
+	}
+
+	public function getElementsByType($className): ArrayList {
+		$elements = new ArrayList();
+		foreach ($this->elements as $element) {
+			if ($element instanceof $className) {
+				$elements->push($element);
+			}
+		}
+		return $elements;
+	}
+
+	public function getElementByType($className): ?ElementConfig {
+		return $this->getElementsByType($className)->first();
+	}
+
+	protected function findElementConfigForElementKey(string $key): ElementConfig {
 		if ($key === 'RootContainer') {
 			$key = RootContainer::class . '.Default';
 		}
 		foreach ($this->elements as $elementConfig) {
-			if ($elementConfig->getComponentKey() === $key) {
+			if ($elementConfig->getElementKey() === $key) {
 				return $elementConfig;
 			}
 		}
@@ -100,10 +127,10 @@ class PageBuilderConfig {
 			$elements = json_decode($json);
 			if ($elements) {
 				foreach ($elements as $elementId => $elementData) {
-					$componentKey = $elementData->type->resolvedName;
-					$config = $this->findElementConfigForComponentKey($componentKey);
+					$elementKey = $elementData->type->resolvedName;
+					$config = $this->findElementConfigForElementKey($elementKey);
 					$class = $config->getElementPhpClassName();
-					$return[$elementId] = new $class($elementData, $elementId, $componentKey, $config);
+					$return[$elementId] = new $class($elementData, $elementId, $elementKey, $config);
 				}
 			}
 		}
