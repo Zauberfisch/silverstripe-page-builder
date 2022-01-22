@@ -56,7 +56,7 @@ class PageBuilderConfig {
 		$return = [];
 		foreach ($this->elements as $elementConfig) {
 			$return[] = [
-				'key' => $elementConfig->getComponentFullKey(),
+				'key' => $elementConfig->getElementKey(),
 				'className' => $elementConfig->getElementJavascriptClassName(),
 				'singularName' => $elementConfig->getSingularName(),
 				'config' => $elementConfig->getConfig(),
