@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace zauberfisch\PageBuilder\Form;
 
 use app\model\DataObject;
+use Exception;
 use SilverStripe\ORM\ArrayList;
 use zauberfisch\PageBuilder\Element\Element;
 use zauberfisch\PageBuilder\Element\ElementConfig;
@@ -64,9 +65,46 @@ class PageBuilderConfig {
 		return $return;
 	}
 
-	public function addElement(ElementConfig $element): PageBuilderConfig {
+	/**
+	 * @throws Exception
+	 */
+	public function addElement(ElementConfig $element, string $beforeElementKey = null): PageBuilderConfig {
+		if ($this->getElementByKey($element->getElementKey())) {
+			throw new Exception("Tried to add new element, but elementKey '{$element->getElementKey()}' already exists");
+		}
+		if ($beforeElementKey) {
+			foreach ($this->elements as $i => $child) {
+				array_splice($this->elements, $i + 1, 0, [$element]);
+				return $this;
+			}
+		}
 		$this->elements[] = $element;
 		return $this;
+	}
+
+	public function removeElement(ElementConfig $element): PageBuilderConfig {
+		$renumberKeys = false;
+		foreach ($this->elements as $key => $_element) {
+			if ($element === $_element) {
+				$renumberKeys = true;
+				unset($this->elements[$key]);
+			}
+		}
+		if ($renumberKeys) {
+			$this->elements = array_values($this->elements);
+		}
+		return $this;
+	}
+
+	public function removeElementsByType($className): PageBuilderConfig {
+		foreach ($this->getElementsByType($className) as $element) {
+			$this->removeElement($element);
+		}
+		return $this;
+	}
+
+	public function removeElementsByKey(string $elementKey): PageBuilderConfig {
+		return $this->removeElement($this->getElementByKey($elementKey));
 	}
 
 	public function setElements(array $elements, $addRoot = true): PageBuilderConfig {
@@ -119,7 +157,7 @@ class PageBuilderConfig {
 	/**
 	 * @param $json
 	 * @return array|Element[]
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	protected function deSerializeValue($json) {
 		$return = [];
@@ -130,7 +168,7 @@ class PageBuilderConfig {
 					$elementKey = $elementData->type->resolvedName;
 					$config = $this->getElementByKey($elementKey);
 					if (!$config) {
-						throw new \Exception("Element config for component key '$elementKey' could not be found");
+						throw new Exception("Element config for component key '$elementKey' could not be found");
 					}
 					$class = $config->getElementPhpClassName();
 					$return[$elementId] = new $class($elementData, $elementId, $elementKey, $config);
