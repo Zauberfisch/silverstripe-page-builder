@@ -133,8 +133,9 @@ class PageBuilderConfig {
 		return $this->getElementsByType($className)->first();
 	}
 
-	protected function getElementByKey(string $elementKey): ?ElementConfig {
+	public function getElementByKey(string $elementKey): ?ElementConfig {
 		if ($elementKey === 'RootContainer') {
+			// TODO refactor this to not need a hardcoded string here
 			$elementKey = RootContainer::class . '.Default';
 		}
 		foreach ($this->elements as $elementConfig) {
