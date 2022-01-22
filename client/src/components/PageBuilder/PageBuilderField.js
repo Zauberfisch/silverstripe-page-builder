@@ -10,10 +10,10 @@ import {CreateElementButton} from "./element-utilities"
 
 const Loading = loadComponent("Loading")
 
-function EditorInner({value, refToolbarTop, refToolbarRows, setPageBuilderEditorQuery, defaultValue}) {
+function EditorInner({value, refToolbarTop, refToolbarRows, setOnSubmitCallback, setInputValue, defaultValue}) {
 	const {query} = useEditor()
 	React.useEffect(() => {
-		setPageBuilderEditorQuery(query)
+		setOnSubmitCallback(() => setInputValue(query.serialize(), false))
 	}, [])
 	return (
 		<React.Fragment>
@@ -61,7 +61,7 @@ function createElement({key, className, singularName, config}) {
 	return [key, NewComponent]
 }
 
-function PageBuilderField({value, setPageBuilderEditorQuery, elements: allowedElements}) {
+function PageBuilderField({value, setOnSubmitCallback, setInputValue, elements: allowedElements}) {
 	const refPageBuilderContainer = React.createRef()
 	const refToolbarTop = React.createRef()
 	const refToolbarRows = React.createRef()
@@ -96,6 +96,10 @@ function PageBuilderField({value, setPageBuilderEditorQuery, elements: allowedEl
 		setIsReady(true)
 		return [allElements, elements]
 	}, [JSON.stringify(allowedElements), injectorReady])
+	const onNodesChange = React.useCallback((query) => {
+		setInputValue(query.serialize())
+		// console.log("onNodesChange", {a, b, c})
+	}, [])
 	if (!isReady) {
 		return <div style={{height: 109}}><Loading /></div>
 	}
@@ -107,8 +111,8 @@ function PageBuilderField({value, setPageBuilderEditorQuery, elements: allowedEl
 			refToolbarRows,
 		}}>
 			<div className={styles.field} ref={refPageBuilderContainer}>
-				<Editor resolver={allElements}>
-					<EditorInner {...{value, refToolbarTop, refToolbarRows, setPageBuilderEditorQuery}} defaultValue={<Element canvas is={elements.RootContainer} />} />
+				<Editor resolver={allElements} onNodesChange={onNodesChange}>
+					<EditorInner {...{value, refToolbarTop, refToolbarRows, setOnSubmitCallback, setInputValue}} defaultValue={<Element canvas is={elements.RootContainer} />} />
 				</Editor>
 			</div>
 		</PageBuilderContextProvider>
