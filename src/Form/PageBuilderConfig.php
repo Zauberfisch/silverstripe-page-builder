@@ -108,7 +108,7 @@ class PageBuilderConfig {
 	}
 
 	public function setElements(array $elements, $addRoot = true): PageBuilderConfig {
-		$this->elements = $elements;
+		$this->elements = array_values($elements);
 		if ($addRoot) {
 			$this->addElement(new RootContainerConfig());
 		}
