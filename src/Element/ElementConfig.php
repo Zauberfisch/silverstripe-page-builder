@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace zauberfisch\PageBuilder\Element;
 
 use SilverStripe\Core\ClassInfo;
-use SilverStripe\ORM\ArrayList;
 
 abstract class ElementConfig {
 	protected string $phpClassName;

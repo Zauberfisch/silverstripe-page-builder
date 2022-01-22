@@ -95,16 +95,16 @@ class PageBuilderConfig {
 		return $this->getElementsByType($className)->first();
 	}
 
-	protected function findElementConfigForElementKey(string $key): ElementConfig {
-		if ($key === 'RootContainer') {
-			$key = RootContainer::class . '.Default';
+	protected function getElementByKey(string $elementKey): ?ElementConfig {
+		if ($elementKey === 'RootContainer') {
+			$elementKey = RootContainer::class . '.Default';
 		}
 		foreach ($this->elements as $elementConfig) {
-			if ($elementConfig->getElementKey() === $key) {
+			if ($elementConfig->getElementKey() === $elementKey) {
 				return $elementConfig;
 			}
 		}
-		throw new \Exception("Element config for component key '$key' could not be found");
+		return null;
 	}
 
 	public function getValueForFrontend(): array {
@@ -128,7 +128,10 @@ class PageBuilderConfig {
 			if ($elements) {
 				foreach ($elements as $elementId => $elementData) {
 					$elementKey = $elementData->type->resolvedName;
-					$config = $this->findElementConfigForElementKey($elementKey);
+					$config = $this->getElementByKey($elementKey);
+					if (!$config) {
+						throw new \Exception("Element config for component key '$elementKey' could not be found");
+					}
 					$class = $config->getElementPhpClassName();
 					$return[$elementId] = new $class($elementData, $elementId, $elementKey, $config);
 				}
