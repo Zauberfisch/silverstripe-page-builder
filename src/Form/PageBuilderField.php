@@ -13,7 +13,8 @@ class PageBuilderField extends FormField {
 	public function __construct($name, $title, PageBuilderConfig $config) {
 		$this->config = $config;
 		$this->addExtraClass('zauberfisch__page-builder__field');
-		parent::__construct($name, $title, $this->config->getArea()->ElementsData);
+		parent::__construct($name, $title);
+		$this->value = $this->config->getArea()->ElementsData;
 	}
 
 	public function setSubmittedValue($value, $data = null) {
