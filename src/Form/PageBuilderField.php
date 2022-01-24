@@ -16,6 +16,15 @@ class PageBuilderField extends FormField {
 		parent::__construct($name, $title, $this->config->getArea()->ElementsData);
 	}
 
+	public function setSubmittedValue($value, $data = null) {
+		$this->value = $value;
+		return $this;
+	}
+
+	public function setValue($value, $data = null) {
+		return $this;
+	}
+
 	public function getSchemaData() {
 		$arr = parent::getSchemaData();
 		$arr['elements'] = $this->config->getElementMap();

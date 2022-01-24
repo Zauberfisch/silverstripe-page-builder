@@ -13,8 +13,8 @@ jQuery.entwine("ss", function ($) {
 		onmatch() {
 			const PageBuilderField = loadComponent("PageBuilderField")
 			const schemaData = this.data("schema")
-			console.log("PageBuilder schema json", this.attr("data-schema"))
-			console.log("PageBuilder onmatch", {"this": this, schemaData, value: schemaData.value})
+			// console.log("PageBuilder schema json", this.attr("data-schema"))
+			// console.log("PageBuilder onmatch", {"this": this, schemaData, value: schemaData.value})
 			const input = this.find("> input")
 			this.setInputElement(input.get(0))
 			this.setEditorElement(this.find("> div").get(0))
