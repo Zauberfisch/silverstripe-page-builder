@@ -12,6 +12,7 @@ jQuery.entwine("ss", function ($) {
 		OnSubmitCallback: null,
 		onmatch() {
 			const PageBuilderField = loadComponent("PageBuilderField")
+			console.log("PageBuilder onmatch", {"this": this, schemaData: this.attr("data-schema")})
 			const schemaData = this.data("schema")
 			const input = this.find("> input")
 			this.setInputElement(input.get(0))
