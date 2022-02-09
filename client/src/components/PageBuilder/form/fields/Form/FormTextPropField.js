@@ -12,15 +12,19 @@ export function FormTextPropField({
 	                                  // ...props
                                   }) {
 	const id = useUniqueId()
+	const onChange = React.useCallback((e) => {
+		elementProp.changeHandler(e.currentTarget.value, e)
+	}, [elementProp.propName])
 	return (
 		<FormFieldGroup label={label} labelFor={id} className={"text"}>
 			<FormTextComponent  {...{
 				...inputProps,
 				id,
-				onChange: elementProp.changeHandler,
+				onChange,
 				value: elementProp.value,
 				disabled,
 			}} />
 		</FormFieldGroup>
 	)
 }
+

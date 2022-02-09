@@ -8,13 +8,16 @@ export function ToolbarButtonPropField({
 	                                       buttonProps = {},
 	                                       disabled = false,
                                        }) {
+	const onClick = React.useCallback((e) => {
+		elementProp.changeHandler(!elementProp.value, e)
+	}, [elementProp.propName, elementProp.value])
 	return (
 		<span>
 			<ToolbarButtonComponent {...{
 				...buttonProps,
 				children: buttonTitle,
 				active: elementProp.value,
-				onClick: elementProp.changeHandler,
+				onClick: onClick,
 				disabled,
 			}} />
 		</span>

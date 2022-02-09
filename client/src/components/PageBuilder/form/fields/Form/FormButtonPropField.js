@@ -9,8 +9,11 @@ export function FormButtonPropField({
 	                                    buttonTitle,
 	                                    buttonProps = {},
 	                                    disabled = false,
-}) {
+                                    }) {
 	const id = useUniqueId()
+	const onClick = React.useCallback((e) => {
+		elementProp.changeHandler(!elementProp.value, e)
+	}, [elementProp.propName, elementProp.value])
 	return (
 		<FormFieldGroup label={label} labelFor={id}>
 			<FormButtonComponent {...{
@@ -18,7 +21,7 @@ export function FormButtonPropField({
 				id,
 				children: buttonTitle,
 				active: elementProp.value,
-				onClick: elementProp.changeHandler,
+				onClick,
 				disabled,
 			}} />
 		</FormFieldGroup>

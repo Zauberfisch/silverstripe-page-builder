@@ -49,8 +49,7 @@ export function UnstyledDropdownItemComponent({
 	const _onClick = React.useCallback((e) => {
 		e.preventDefault()
 		typeof onClick === "function" && onClick(e)
-		// TODO onChange is Select specific, should we remove it?
-		typeof onChange === "function" && onChange(e, value)
+		typeof onChange === "function" && onChange(value, e)
 	}, [value])
 	return <DropdownItem {...{...props, value, style, className: classNames(className, {[activeClassName]: active}), onMouseDown, onClick: _onClick}}>
 		{children}

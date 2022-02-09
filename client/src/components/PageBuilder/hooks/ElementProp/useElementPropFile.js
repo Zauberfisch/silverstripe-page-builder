@@ -1,6 +1,8 @@
 import React from "react"
 import {useNode} from "@craftjs/core"
 
+export function handleChange(setProps, ) {}
+
 export function useElementPropFile(props, propName) {
 	const value = props[propName] || {}
 	const {actions: {setProp}} = useNode()
