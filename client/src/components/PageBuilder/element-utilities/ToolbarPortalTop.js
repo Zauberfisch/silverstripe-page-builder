@@ -4,8 +4,8 @@ import {useNodeState} from "components/PageBuilder/hooks/useNodeState"
 import ReactDOM from "react-dom"
 import {useEditor} from "@craftjs/core"
 import {ToolbarButtonComponent, ToolbarSeparator} from "components/PageBuilder/form"
-import DeletionModal from "components/DeletionModal"
 import {ClipboardCopyButton} from "./ClipboardCopyButton"
+import DeletionModal from "../modals/DeletionModal"
 
 export function ToolbarPortalTop({children, childrenRight}) {
 	const {actions} = useEditor()

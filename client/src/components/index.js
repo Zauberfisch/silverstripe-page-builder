@@ -1,3 +1,3 @@
 export * from "./PageBuilder/PageBuilderField"
-export * from "./DeletionModal"
-export * from "./LinkModals"
+export * from "./PageBuilder/modals/DeletionModal"
+export * from "./PageBuilder/modals/LinkModals"

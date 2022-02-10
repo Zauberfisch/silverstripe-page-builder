@@ -1,6 +1,6 @@
 import React from "react"
 import {ElementPropHelper} from "./ElementPropHelper"
-import {LinkModalEmail, LinkModalExternal, LinkModalFile, LinkModalInternal} from "../../../LinkModals"
+import {LinkModalEmail, LinkModalExternal, LinkModalFile, LinkModalInternal} from "../../modals"
 
 export function useElementPropLinkTypes(allowedLinkTypes = ["Internal", "External", "Email", "File"]) {
 	return React.useMemo(() => [

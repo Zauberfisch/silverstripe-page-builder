@@ -1,6 +1,6 @@
 import React from "react"
 import {UnstyledButtonComponent} from "./UnstyledButtonComponent"
-import {EmbedModalFile} from "../../../../LinkModals"
+import {EmbedModalFile} from "../../../modals"
 
 export function UnstyledFileSelectComponent({
 	                                            buttonTitle,
