@@ -84,7 +84,7 @@ export class ElementPropHelper {
 		})
 		elementPropLists.forEach(elementProp => {
 			if (count > elementProp.items.length) {
-				elementProp.addHandler(count - elementProp.items.length)
+				elementProp.addHandler(count - elementProp.items.length, true)
 			}
 			addHandlers.push(elementProp.addHandler)
 			clearHandlers.push(elementProp.clearHandler)

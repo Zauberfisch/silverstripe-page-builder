@@ -1,4 +1,4 @@
-import {useNode} from "@craftjs/core"
+import {useEditor, useNode} from "@craftjs/core"
 import React from "react"
 
 export function ensureArray(value) {
@@ -18,7 +18,7 @@ export function setProp(nodeHelper, propName, newValue) {
 	actions.setProp(props => {
 		// eslint-disable-next-line no-param-reassign
 		props[propName] = newValue
-	})
+	}, 500)
 }
 
 export function setPropListCallback(nodeHelper, propName, callback) {
@@ -27,7 +27,7 @@ export function setPropListCallback(nodeHelper, propName, callback) {
 		// eslint-disable-next-line no-param-reassign
 		props[propName] = ensureArray(props[propName])
 		callback(props[propName])
-	})
+	}, 500)
 }
 
 
@@ -39,7 +39,7 @@ export function setPropListItem(nodeHelper, propName, index, newValue) {
 		props[propName] = v
 		// eslint-disable-next-line no-param-reassign
 		// props[propName][index] = newValue
-	})
+	}, 500)
 }
 
 export function useChangeHandler(propName, castingCallback) {
@@ -88,8 +88,14 @@ export function useListItemRemoveHandler(propName) {
 }
 
 export function useListItemAddHandler(propName, emptyValue) {
-	const nodeHelper = useNode()
-	return React.useCallback((amountToAdd = 1) => {
+	const {actions: {setProp}, id} = useNode()
+	const {actions: {history: {ignore}}} = useEditor()
+	return React.useCallback((amountToAdd = 1, noHistory = false) => {
+		const nodeHelper = {
+			actions: {
+				setProp: noHistory ? (callback, throttle) => ignore().setProp(id, callback) : setProp,
+			},
+		}
 		setPropListCallback(nodeHelper, propName, list => {
 			for (let i = 0; i < amountToAdd; i++) {
 				// TODO check if we really need the deep clone here, maybe immer.js already handles this
