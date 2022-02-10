@@ -34,10 +34,12 @@ export class ElementPropHelper {
 		const c = normalizeConfig(config)
 		const value = c.cast(props[propName])
 		const changeHandler = useChangeHandler(propName, c.cast)
+		const clearHandler = useListItemClearHandler(propName, c.cast(null))
 		return c.itemCallback(c.returnCallback({
 			propName,
 			value,
 			changeHandler,
+			clearHandler,
 		}))
 	}
 
@@ -98,10 +100,10 @@ export class ElementPropHelper {
 				// TODO createItemHandler() will create an empty item that is kind of useless and may break if we use useMemo/useCallback. We use it here because otherwise we might have undefined elementProps. This however only matters for the first render, after addHandler() is called it will actually rerender and on the 2nd render the count ob objects will be the same on all lists, so we only create this empty fake item for a render that will be throw away anyway. Maybe we should use "isReady" property on a groupedListProp instead? (so we only show the form fields once the state is correct)
 				group[key] = elementPropLists[j].items[i] || elementPropLists[j].createItemHandler(null, i)
 				// _values[key] = group[key].value
-				_clearHandlers.push(elementPropLists[j].clearHandler)
-				_removeHandlers.push(elementPropLists[j].removeHandler)
-				_moveUpHandlers.push(elementPropLists[j].moveUpHandler)
-				_moveDownHandlers.push(elementPropLists[j].moveDownHandler)
+				_clearHandlers.push(elementPropLists[j].items[i].clearHandler)
+				_removeHandlers.push(elementPropLists[j].items[i].removeHandler)
+				_moveUpHandlers.push(elementPropLists[j].items[i].moveUpHandler)
+				_moveDownHandlers.push(elementPropLists[j].items[i].moveDownHandler)
 			})
 			group.clearHandler = () => callAllInArray(_clearHandlers)
 			group.removeHandler = () => callAllInArray(_removeHandlers)

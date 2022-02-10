@@ -24,11 +24,10 @@ export function UnstyledLinkSelectComponent({
 		setOpenModalId(e.currentTarget.dataset.modalid)
 	}, [])
 	// TODO refactor out into unstyled component
-	const onClosed = React.useCallback(() => {
+	const onClosed = React.useCallback((a, b, c) => {
 		setOpenModalId(null)
 	}, [])
-	const onInsert = React.useCallback((data, file) => {
-		// elementProp.changeHandler(data, file)
+	const onInsert = React.useCallback((data, file, ...foo) => {
 		onChange({data, file, linkType: openModalId})
 		setOpenModalId(null)
 	}, [openModalId])

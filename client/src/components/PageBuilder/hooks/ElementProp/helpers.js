@@ -35,13 +35,7 @@ export function setPropListItem(nodeHelper, propName, index, newValue) {
 	const {actions} = nodeHelper
 	actions.setProp(props => {
 		const v = JSON.parse(JSON.stringify(ensureArray(props[propName])))
-		console.log({
-			old: props[propName],
-			ensureArray: ensureArray(props[propName]),
-			v,
-		})
 		v[index] = newValue
-		console.log({newV: v, index, newValue})
 		props[propName] = v
 		// eslint-disable-next-line no-param-reassign
 		// props[propName][index] = newValue

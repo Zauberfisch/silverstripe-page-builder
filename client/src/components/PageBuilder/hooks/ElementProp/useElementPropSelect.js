@@ -1,15 +1,6 @@
-import {useElementPropString} from "./useElementPropString"
 import React from "react"
+import {ElementPropHelper} from "./ElementPropHelper"
 
 export function useElementPropSelect(props, propName, options) {
-	const {value, changeHandler, clearHandler} = useElementPropString(props, propName)
-	const _options = options || []
-	return {
-		value,
-		options: _options,
-		fullValue: _options.find(obj => obj.value === value) || {}, //{pageBuilderStyle: {}},
-		changeHandler,
-		clearHandler,
-	}
+	return ElementPropHelper.useElementProp(props, propName, ElementPropHelper.CREATE_TYPE_SELECT_STRING(options))
 }
-

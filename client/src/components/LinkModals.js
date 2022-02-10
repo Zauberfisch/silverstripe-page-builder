@@ -53,10 +53,8 @@ export function LinkModalInternal({onInsert, ...props}) {
 			title={i18n._t("CMS.LINK_ANCHOR", "Link to an anchor on a page")}
 			requireLinkText={false}
 			identifier="PageBuilder.InsertLinkInternalModal"
-			onInsert={(data, a, b, c, d, e) => {
-				console.log({data, a, b, c, d, e})
+			onInsert={(data) => {
 				onInsert(onInsertData(data))
-				// return false
 			}}
 			{...props}
 		/>
