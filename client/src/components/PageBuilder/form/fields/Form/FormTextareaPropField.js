@@ -3,7 +3,7 @@ import {FormTextareaComponent} from "./FormTextareaComponent"
 import {FormFieldGroup} from "./FormFieldGroup"
 import {useUniqueId} from "../../../utility"
 
-export function FormTextPropField({
+export function FormTextareaPropField({
 	                                  elementProp,
 	                                  label,
 	                                  disabled = false,
@@ -17,7 +17,7 @@ export function FormTextPropField({
 	}, [elementProp.propName])
 	return (
 		<FormFieldGroup label={label} labelFor={id} className={"text"}>
-			<FormTextareaComponent  {...{
+			<FormTextareaComponent {...{
 				...inputProps,
 				id,
 				onChange,

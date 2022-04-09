@@ -9,7 +9,6 @@ export function FormTextareaComponent({
 	                                  // children,
 	                                  onChange,
 	                                  id,
-	                                  type = "text",
 	                                  value = "",
 	                                  placeholder = "",
 	                                  ...props
@@ -22,7 +21,6 @@ export function FormTextareaComponent({
 			style,
 			onChange,
 			id,
-			type,
 			value,
 			placeholder,
 		}} />
