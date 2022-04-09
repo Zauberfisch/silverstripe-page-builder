@@ -7,6 +7,9 @@ export * from "./FormSelectPropField"
 export * from "./FormTextComponent"
 export * from "./FormTextPropField"
 
+export * from "./FormTextareaComponent"
+export * from "./FormTextareaPropField"
+
 export * from "./FormFileSelectComponent"
 export * from "./FormFilePropField"
 
