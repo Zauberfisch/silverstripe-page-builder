@@ -11,12 +11,13 @@ export function FormFilePropField({
 	                                  buttonTitle = "Select a File",
 	                                  buttonProps = {},
 	                                  disabled = false,
+	                                  canEditAsText = false,
                                   }) {
 	const id = useUniqueId()
 	return (
 		<FormFieldGroup label={label} labelFor={id} className={"fieldgroup"} innerClassName={"form__fieldgroup"}>
 			<div className="input-group">
-				<FormTextComponent value={elementProp.fileName || ""} disabled={true} />
+				<FormTextComponent value={elementProp.fileName || ""} onChange={canEditAsText ? elementProp.changeHandler : undefined} disabled={!canEditAsText} />
 				<span className="input-group-append">
 					<FormFileSelectComponent  {...{
 						...buttonProps,

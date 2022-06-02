@@ -11,6 +11,7 @@ export function FormLinkPropField({
 	                                  // buttonTitle,
 	                                  // buttonProps = {},
 	                                  disabled = false,
+	                                  canEditAsText = false,
                                   }) {
 	const id = useUniqueId()
 	return (
@@ -20,7 +21,7 @@ export function FormLinkPropField({
 					Link: elementProp.value.file.url,
 					Description: elementProp.value.data.Description,
 					TargetBlank: elementProp.value.data.TargetBlank,
-				} : elementProp.value.data)} disabled={true} />
+				} : elementProp.value.data)} onChange={canEditAsText ? elementProp.changeHandler : undefined} disabled={!canEditAsText} />
 				<FormLinkSelectComponent {...{
 					onChange: elementProp.changeHandler,
 					linkTypes: elementProp.linkTypes,
