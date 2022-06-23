@@ -29,7 +29,8 @@ class PageBuilderField extends FormField {
 	public function getSchemaData() {
 		$arr = parent::getSchemaData();
 		$arr['elements'] = $this->config->getElementMap();
-		$arr['value'] = $this->dataValue();
+		// $arr['value'] = $this->dataValue();
+		$arr['value'] = $this->config->getValueForBackend();
 		return $arr;
 	}
 

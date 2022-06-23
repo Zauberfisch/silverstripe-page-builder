@@ -19,7 +19,11 @@ abstract class Element extends ArrayData {
 		]);
 	}
 
-	public function getValueForBackend() {
+	public function getValueForWrite(PageBuilderConfig $config) {
+		return $this->array['data'];
+	}
+
+	public function getValueForBackend(PageBuilderConfig $config) {
 		return $this->array['data'];
 	}
 

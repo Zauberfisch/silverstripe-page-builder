@@ -44,7 +44,7 @@ class PageBuilderConfig {
 		if ($elements) {
 			$return = [];
 			foreach ($elements as $id => $element) {
-				$return[$id] = $element->getValueForBackend();
+				$return[$id] = $element->getValueForWrite($this);
 			}
 		}
 		$newJson = json_encode($return, JSON_PRETTY_PRINT);
@@ -151,6 +151,15 @@ class PageBuilderConfig {
 		$return = [];
 		foreach ($elements as $elementId => $element) {
 			$return[$elementId] = $element->getValueForFrontend($this);
+		}
+		return $return;
+	}
+
+	public function getValueForBackend($value): array {
+		$elements = $this->deSerializeValue($value);
+		$return = [];
+		foreach ($elements as $elementId => $element) {
+			$return[$elementId] = $element->getValueForBackend($this);
 		}
 		return $return;
 	}

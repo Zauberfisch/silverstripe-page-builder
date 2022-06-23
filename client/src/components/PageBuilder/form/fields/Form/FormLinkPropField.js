@@ -13,6 +13,7 @@ export function FormLinkPropField({
 	                                  disabled = false,
 	                                  canEditAsText = false,
                                   }) {
+	// FIXME canEditAsText
 	const id = useUniqueId()
 	return (
 		<FormFieldGroup label={label} labelFor={id} className={"fieldgroup"} innerClassName={"form__fieldgroup"}>
