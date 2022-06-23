@@ -8,31 +8,24 @@ import {FormButtonComponent} from "./FormButtonComponent"
 export function FormFilePropField({
 	                                  elementProp,
 	                                  label,
-	                                  buttonTitle = "Select a File",
-	                                  buttonProps = {},
 	                                  disabled = false,
-	                                  canEditAsText = false,
+	                                  maxFiles = 1,
+	                                  multi = false,
+	                                  parentId = 0,
                                   }) {
 	// FIXME canEditAsText
 	const id = useUniqueId()
 	return (
 		<FormFieldGroup label={label} labelFor={id} className={"fieldgroup"} innerClassName={"form__fieldgroup"}>
-			<div className="input-group">
-				<FormTextComponent value={elementProp.fileName || ""} onChange={canEditAsText ? elementProp.changeHandler : undefined} disabled={!canEditAsText} />
-				<span className="input-group-append">
-					<FormFileSelectComponent  {...{
-						...buttonProps,
-						buttonTitle,
-						id,
-						onChange: elementProp.changeHandler,
-						value: elementProp.value,
-						disabled,
-					}} />
-				</span>
-				{elementProp.fileName ? <span className="input-group-append">
-					<FormButtonComponent children={"Remove"} onClick={elementProp.clearHandler} />
-				</span> : null}
-			</div>
+					<FormFileSelectComponent
+						id={id}
+						onChange={elementProp.changeHandler}
+						value={elementProp.value}
+						disabled={disabled}
+						maxFiles={maxFiles}
+						multi={multi}
+						parentId={parentId}
+					/>
 		</FormFieldGroup>
 	)
 }
