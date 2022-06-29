@@ -30,7 +30,8 @@ class PageBuilderField extends FormField {
 		$arr = parent::getSchemaData();
 		$arr['elements'] = $this->config->getElementMap();
 		// $arr['value'] = $this->dataValue();
-		$arr['value'] = json_encode($this->config->getValueForBackend($this->dataValue()));
+		$value = $this->config->getValueForBackend($this->dataValue());
+		$arr['value'] = $value ? json_encode($value) : null;
 		return $arr;
 	}
 
