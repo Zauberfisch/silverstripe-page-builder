@@ -3,7 +3,8 @@
 		"node": ">=10.x"
 	},
 	"scripts": {
-		"build": "yarn && yarn lint && NODE_ENV=production webpack -p --bail --progress",
+		"build": "yarn && NODE_ENV=production webpack -p --bail --progress",
+		"build-lint": "yarn && yarn lint && NODE_ENV=production webpack -p --bail --progress",
 		"dev": "NODE_ENV=development webpack --progress",
 		"watch": "NODE_ENV=development webpack --watch --progress",
 		"test": "jest",

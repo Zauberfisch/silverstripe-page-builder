@@ -6,7 +6,6 @@ import {throttle} from "lodash"
 
 jQuery.entwine("ss", function ($) {
 	$(".js-injector-boot .field.zauberfisch__page-builder__field > .zauberfisch__page-builder__field").entwine({
-		PageBuilderEditorQuery: null,
 		InputElement: null,
 		EditorElement: null,
 		OnSubmitCallback: null,
@@ -18,15 +17,20 @@ jQuery.entwine("ss", function ($) {
 			this.setEditorElement(this.find("> div").get(0))
 			const form = this.closest("form")
 			const _this = this
+			// re-serialize the initial state to ensure it's formatted the same (needed for changed state)
+			let initialValue = schemaData.value === null ? null : JSON.stringify(JSON.parse(schemaData.value))
 			const setInputValue = (value) => {
 				input.val(value)
-				// Trigger change detection (see jquery.changetracker.js)
-				form.trigger("change")
+				if (initialValue !== value) {
+					// input.val(value)
+					// Trigger change detection (see jquery.changetracker.js)
+					form.trigger("change")
+				}
 			}
 			const setInputValueThrottled = throttle(setInputValue, 1000)
 			const props = {
 				elements: schemaData.elements,
-				value: schemaData.value,
+				value: initialValue,
 				// value: this.getInputElement().value,
 				setOnSubmitCallback: (callback) => _this.setOnSubmitCallback(callback),
 				setInputValue: (value, shouldThrottle = true) => {
